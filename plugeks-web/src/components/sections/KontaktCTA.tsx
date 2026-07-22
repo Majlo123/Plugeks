@@ -1,0 +1,63 @@
+import Link from "next/link";
+import { Phone, MessageCircle, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/Reveal";
+import { site } from "@/lib/site";
+import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import { Tractor } from "lucide-react";
+
+/**
+ * Završna CTA traka — snažan poziv na akciju pre footera.
+ */
+export function KontaktCTA() {
+  return (
+    <section className="section bg-white">
+      <div className="container">
+        <Reveal>
+          <div className="relative isolate overflow-hidden rounded-3xl px-6 py-16 text-center md:px-12 md:py-20">
+            {/* pozadina */}
+            <div className="absolute inset-0 -z-10">
+              <MediaPlaceholder
+                tone="field"
+                icon={Tractor}
+                src="/images/cta.jpg"
+                sizes="100vw"
+                className="h-full w-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/90 via-brand-600/85 to-charcoal/92" />
+            </div>
+
+            <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-cream backdrop-blur-sm">
+              Spremni za sezonu?
+            </span>
+            <h2 className="mx-auto mt-6 max-w-2xl font-display text-3xl font-bold leading-tight text-cream text-balance sm:text-4xl md:text-5xl">
+              Recite nam šta vam treba — mi šaljemo ponudu isti dan
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-cream/80">
+              Bez obaveze. Javite traktor i posao, a mi preporučujemo najbolji model,
+              cenu i način plaćanja — uključujući subvencije i rate.
+            </p>
+
+            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild variant="accent" size="lg">
+                <Link href="/kontakt">
+                  Zatraži ponudu <ArrowRight className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="light" size="lg">
+                <a href={site.telHref}>
+                  <Phone className="h-5 w-5" /> {site.phoneDisplay}
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-cream/40 text-cream hover:bg-cream hover:text-charcoal">
+                <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-5 w-5" /> WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

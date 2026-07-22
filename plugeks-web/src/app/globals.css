@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Sora", sans-serif;
+    --font-sans: "Manrope", sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    /* Osnovna veličina fonta — standardnih 16px (kompaktan, "ne-zumiran" izgled).
+       Naslovi i meni su uvećani eksplicitno tamo gde treba. */
+    font-size: 100%; /* 16px */
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    /* "cv05" = malo "l" sa repom (lakše se razlikuje od I/1) → bolja čitljivost */
+    font-feature-settings: "cv05";
+    letter-spacing: -0.004em;
+    line-height: 1.6;
+  }
+
+  /* Naslovi koriste display font — zbijeni razmak za premium izgled */
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.024em;
+    line-height: 1.08;
+  }
+
+  /* Telesni tekst (paragrafi) — prijatnija visina reda za duže blokove */
+  p {
+    line-height: 1.65;
+  }
+
+  ::selection {
+    @apply bg-brand text-cream;
+  }
+}
+
+@layer components {
+  /* Sekcijski razmak — konzistentan, kompaktan ritam */
+  .section {
+    @apply py-14 md:py-20;
+  }
+
+  /* Mala oznaka iznad naslova sekcije (eyebrow) */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600;
+  }
+
+  /* Suptilni stakleni efekat za header na skrolu */
+  .glass {
+    @apply bg-cream/80 backdrop-blur-md;
+  }
+
+  /* Premium gradijent overlay preko slika */
+  .img-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-transparent;
+  }
+
+  /* Tekst-balans za lepše prelome naslova */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Sakrij scrollbar za horizontalne trake (galerija/kategorije) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Poštuj korisnike koji smanjuju animacije */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
