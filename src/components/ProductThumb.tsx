@@ -47,6 +47,10 @@ export function ProductThumb({
           fill
           sizes={sizes}
           priority={priority}
+          // Fotografije proizvoda su već male (prosek ~28KB), pa im optimizer
+          // ne donosi ništa — a 3824 slike bi progutale mesečnu kvotu hostinga
+          // za transformacije. Hero/kategorijske slike (0.6–1.8MB) je zadržavaju.
+          unoptimized
           className="object-cover"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
