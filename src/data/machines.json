@@ -1,0 +1,98 @@
+[
+  {
+    "id": "4706",
+    "name": "Podrivač Deeper GBM \"Michel\"",
+    "group": "masine-rolland",
+    "subgroup": "podrivaci",
+    "tagline": "Dubinsko rastresanje bez prevrtanja sloja",
+    "brand": "rolland"
+  },
+  {
+    "id": "4705",
+    "name": "Podrivač Deeper GBK \"Kret\"",
+    "group": "masine-rolland",
+    "subgroup": "podrivaci",
+    "tagline": "Razbijanje tabana pluga i drenaža zemljišta",
+    "brand": "rolland"
+  },
+  {
+    "id": "4704",
+    "name": "Laki bezoranični agregat Grander ABL",
+    "group": "masine-rolland",
+    "subgroup": "agregati",
+    "tagline": "Plitka obrada strništa za manje traktore",
+    "brand": "rolland"
+  },
+  {
+    "id": "4703",
+    "name": "Bezoranični agregat Grander AB",
+    "group": "masine-rolland",
+    "subgroup": "agregati",
+    "tagline": "Obrada bez oranja u jednom prohodu",
+    "brand": "rolland"
+  },
+  {
+    "id": "4692",
+    "name": "Polunošeni tanjirasti agregat ATP",
+    "group": "masine-rolland",
+    "subgroup": "agregati",
+    "tagline": "Veliki zahvat uz stabilnost polunošene konstrukcije",
+    "brand": "rolland"
+  },
+  {
+    "id": "4577",
+    "name": "Polunošena tanjirača BTP",
+    "group": "masine-rolland",
+    "subgroup": "tanjirace",
+    "tagline": "Tanjirača velikog kapaciteta za veće parcele",
+    "brand": "rolland"
+  },
+  {
+    "id": "4576",
+    "name": "Hidraulična polunošena tanjirača BH-PB",
+    "group": "masine-rolland",
+    "subgroup": "tanjirace",
+    "tagline": "Hidrauličko sklapanje za lakši transport",
+    "brand": "rolland"
+  },
+  {
+    "id": "4575",
+    "name": "Hidraulična polunošena tanjirača BH-PA",
+    "group": "masine-rolland",
+    "subgroup": "tanjirace",
+    "tagline": "Hidrauličko sklapanje za lakši transport",
+    "brand": "rolland"
+  },
+  {
+    "id": "4397",
+    "name": "Valjci za obradu zemljišta",
+    "group": "masine-rolland",
+    "subgroup": "valjci",
+    "tagline": "Različiti tipovi valjaka za sve agregate i tanjirače",
+    "brand": "rolland"
+  },
+  {
+    "id": "4396",
+    "name": "Tanjirača Field BT",
+    "group": "masine-rolland",
+    "subgroup": "tanjirace",
+    "tagline": "Nošena tanjirača za svakodnevnu obradu",
+    "brand": "rolland"
+  },
+  {
+    "id": "4395",
+    "name": "Tanjirasti agregat Field AT",
+    "group": "masine-rolland",
+    "subgroup": "agregati",
+    "tagline": "Tanjirasti agregat sa valjkom za pripremu setvene osnove",
+    "brand": "rolland"
+  },
+  {
+    "id": "4394",
+    "name": "Hidraulična tanjirača Field Hawk BH",
+    "group": "masine-rolland",
+    "subgroup": "tanjirace",
+    "tagline": "Hidraulična tanjirača za veliki dnevni učinak",
+    "brand": "rolland"
+  }
+]

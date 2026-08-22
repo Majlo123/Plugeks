@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X, MessageCircle } from "lucide-react";
+import { Phone, Menu, X, PhoneCall } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { nav, site } from "@/lib/site";
@@ -37,7 +37,7 @@ export function Header() {
     >
       <div className="container flex h-[4.65rem] items-center justify-between md:h-[5.2rem]">
         <Link href="/" aria-label="PlugekS — početna" className="shrink-0">
-          <Logo variant={light ? "light" : "dark"} />
+          <Logo />
         </Link>
 
         {/* Desktop navigacija */}
@@ -69,16 +69,12 @@ export function Header() {
         <div className="hidden items-center gap-2 xl:flex">
           <Button
             asChild
-            variant="outline"
             size="md"
-            className={cn(
-              "text-[0.98rem] font-semibold",
-              light && "border-cream/40 text-cream hover:bg-cream hover:text-charcoal",
-            )}
+            className="bg-[#7360F2] text-white text-[0.98rem] font-semibold shadow-soft hover:bg-[#5F4FD8] hover:shadow-lift"
           >
-            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="h-[1.15rem] w-[1.15rem]" />
-              WhatsApp
+            <a href={site.viberHref} target="_blank" rel="noopener noreferrer">
+              <PhoneCall className="h-[1.15rem] w-[1.15rem]" />
+              Viber
             </a>
           </Button>
           <Button asChild variant="accent" size="md" className="text-[0.98rem] font-semibold">
@@ -137,12 +133,12 @@ export function Header() {
             </Link>
           ))}
           <a
-            href={site.whatsappHref}
+            href={site.viberHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-brand/30 px-4 py-3 font-medium text-brand"
+            className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#7360F2] px-4 py-3 font-medium text-white"
           >
-            <MessageCircle className="h-4 w-4" /> Piši nam na WhatsApp
+            <PhoneCall className="h-4 w-4" /> Piši nam na Viber
           </a>
         </nav>
       </div>

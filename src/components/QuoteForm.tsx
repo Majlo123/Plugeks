@@ -2,9 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
-import { Input, Textarea, Select } from "@/components/ui/input";
+import { Input, Textarea } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { categories } from "@/lib/data";
 
 /**
  * Forma „Zatraži ponudu" — hvata lead-ove (ime, telefon, proizvod, poruka).
@@ -97,27 +96,13 @@ export function QuoteForm({
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="proizvod" className="text-sm font-medium text-charcoal">
-          Proizvod / kategorija
-        </label>
-        <Select id="proizvod" name="proizvod" defaultValue={defaultProduct}>
-          <option value="">Izaberite ili napišite u poruci…</option>
-          {categories.map((c) => (
-            <option key={c.key} value={c.label}>
-              {c.label}
-            </option>
-          ))}
-        </Select>
-      </div>
-
-      <div className="space-y-1.5">
         <label htmlFor="poruka" className="text-sm font-medium text-charcoal">
           Poruka
         </label>
         <Textarea
           id="poruka"
           name="poruka"
-          placeholder="Recite nam koji traktor imate i za koji posao vam treba mašina — preporučićemo najbolji model i poslati cenu."
+          placeholder="Recite nam koji proizvod vas zanima, koji traktor imate i za koji posao vam treba mašina — preporučićemo najbolji model i poslati cenu."
           defaultValue={defaultProduct ? `Zanima me: ${defaultProduct}. ` : ""}
         />
       </div>

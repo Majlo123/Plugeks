@@ -181,7 +181,7 @@ export default function SubvencijePage() {
             </p>
             <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild variant="accent" size="lg">
-                <Link href="/kontakt">
+                <Link href="/zatrazi-ponudu">
                   Zatraži ponudu i savet <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>

@@ -7,3 +7,16 @@
 .env*.local
 next-env.d.ts
 /.vercel
+
+# TypeScript inkrementalni build cache
+tsconfig.tsbuildinfo
+
+# Sirovi ulazni podaci za scrapere (scripts/build-catalog.mjs, scripts/import-images.mjs).
+# Nisu potrebni za build sajta — generisani izlaz je u src/data/*.json i public/images/rolland/.
+/data
+/backup_rolland_original
+
+# Lokalni radni fajlovi
+*.npy
+/IMG_*.JPG
+/IMG_*.jpg

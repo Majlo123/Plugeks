@@ -1,8 +1,10 @@
 /**
- * Sadržaj sajta — proizvodi, kategorije, prednosti, utisci, statistika.
+ * Sadržaj sajta — kategorije asortimana, prednosti, utisci, statistika.
+ *
+ * Sami proizvodi (mašine i delovi) NISU ovde — dolaze iz Rolland kataloga,
+ * vidi `src/lib/catalog.ts` i `npm run catalog`.
  *
  * KAKO DA ZAMENIŠ PRAVE PODATKE:
- *  - Proizvode (cene/specifikacije/nazive) menjaš u nizu `products`.
  *  - `tone` određuje boju premium placeholder slike. Kad imaš pravu fotografiju,
  *    vidi README → "Zamena placeholder slika pravim fotografijama".
  *  - Utiske kupaca u `testimonials`, brojke poverenja u `stats`.
@@ -12,7 +14,6 @@ import type { LucideIcon } from "lucide-react";
 import {
   Scissors,
   Cog,
-  Forklift,
   Tractor,
   Layers,
   Wrench,
@@ -26,12 +27,16 @@ import {
 
 /* ---------------------------------- Kategorije ---------------------------------- */
 
+/**
+ * Ključevi moraju da odgovaraju `subgroup` vrednostima iz `src/data/machines.json`
+ * (vidi `MACHINE_SUBGROUPS` u scripts/rolland-dictionary.mjs) — po njima filtrira
+ * katalog na `/proizvodi?vrsta=masine&tip=...`.
+ */
 export type CategoryKey =
-  | "malceri"
-  | "freze"
-  | "utovarivaci"
-  | "traktori"
-  | "prikljucne"
+  | "tanjirace"
+  | "agregati"
+  | "podrivaci"
+  | "valjci"
   | "delovi";
 
 export type Category = {
@@ -48,61 +53,51 @@ export type ImageTone = "field" | "forest" | "soil" | "steel" | "harvest";
 
 export const categories: Category[] = [
   {
-    key: "malceri",
-    label: "Malčeri",
-    short: "Malčeri / Mulčeri",
+    key: "tanjirace",
+    label: "Tanjirače",
+    short: "Tanjirače",
     description:
-      "Mašine za usitnjavanje rastinja, žetvenih ostataka i šiblja. Hidrauličko podešavanje, kaljeni noževi i robusna konstrukcija za svakodnevni rad.",
-    icon: Scissors,
-    tone: "field",
-    image: "/images/malceri.jpg",
+      "Nošene, polunošene i hidraulične tanjirače — Field BT, Field Hawk BH, BTP i BH-PA/PB. Obrada strništa i priprema zemljišta u jednom prohodu.",
+    icon: Layers,
+    tone: "soil",
+    image: "/images/prikljucne.jpg",
   },
   {
-    key: "freze",
-    label: "Freze",
-    short: "Rotacione freze",
+    key: "agregati",
+    label: "Agregati",
+    short: "Agregati",
     description:
-      "Priprema zemljišta u jednom prohodu — usitnjavanje i prevrtanje za savršenu setvenu osnovu.",
+      "Tanjirasti i bezoranični agregati Grander AB/ABL, Field AT i ATP — kompletna priprema setvene osnove sa valjkom.",
     icon: Cog,
-    tone: "soil",
+    tone: "field",
     image: "/images/freze.jpg",
   },
   {
-    key: "utovarivaci",
-    label: "Prednji utovarivači",
-    short: "Prednji utovarivači",
+    key: "podrivaci",
+    label: "Podrivači",
+    short: "Podrivači",
     description:
-      "Utovarivači za sve veličine traktora — utovar, manipulacija i transport bez gubitka vremena.",
-    icon: Forklift,
-    tone: "steel",
-    image: "/images/utovarivaci.jpg",
-  },
-  {
-    key: "traktori",
-    label: "Kompakt traktori",
-    short: "Kompakt traktori",
-    description:
-      "Pouzdani kompakt traktori za voćnjake, plastenike, dvorišta i komunalne radove.",
+      'Deeper GBM "Michel" i GBK "Kret" — dubinsko rastresanje i razbijanje tabana pluga bez prevrtanja sloja.',
     icon: Tractor,
     tone: "harvest",
     image: "/images/traktori.jpg",
   },
   {
-    key: "prikljucne",
-    label: "Priključne mašine",
-    short: "Priključci",
+    key: "valjci",
+    label: "Valjci",
+    short: "Valjci za obradu",
     description:
-      "Tanjirače, kosačice i priključci koji proširuju mogućnosti vašeg traktora.",
-    icon: Layers,
-    tone: "field",
-    image: "/images/prikljucne.jpg",
+      "Različiti tipovi valjaka za obradu zemljišta — kombinuju se sa agregatima i tanjiračama po izboru.",
+    icon: Scissors,
+    tone: "steel",
+    image: "/images/utovarivaci.jpg",
   },
   {
     key: "delovi",
     label: "Rezervni delovi",
     short: "Rezervni delovi",
     description:
-      "Originalni i kompatibilni rezervni delovi — brza isporuka i stručna pomoć pri izboru.",
+      "Preko 4.600 delova za plugove, agregate, tanjirače, sejalice i vadilice — Lemken, Kuhn, Kverneland, Rabe, Pöttinger i drugi.",
     icon: Wrench,
     tone: "steel",
     image: "/images/delovi.jpg",
@@ -111,229 +106,6 @@ export const categories: Category[] = [
 
 export const categoryLabel = (key: CategoryKey) =>
   categories.find((c) => c.key === key)?.label ?? key;
-
-/* ---------------------------------- Proizvodi ---------------------------------- */
-
-export type Spec = { label: string; value: string };
-
-export type Product = {
-  id: string;
-  name: string;
-  category: CategoryKey;
-  tagline: string;
-  description: string;
-  specs: Spec[];
-  highlights: string[];
-  badge?: string; // npr. "Akcija", "Najprodavanije"
-  popular?: boolean;
-  tone: ImageTone;
-};
-
-// ZAMENI: prave nazive, specifikacije i fotografije proizvoda iz vašeg asortimana.
-// NT/VT modeli su primeri iz audita — proveri tačne vrednosti pre objave.
-export const products: Product[] = [
-  {
-    id: "malcer-nt-4-0",
-    name: "Malčer NT-4.0",
-    category: "malceri",
-    tagline: "Kompaktan malčer za voćnjake i međuredni prostor",
-    description:
-      "Lagana ali izdržljiva mašina idealna za voćnjake, vinograde i uže parcele. Hidrauličko podešavanje dubine i pomeranje sa strane omogućavaju rad uz same redove.",
-    specs: [
-      { label: "Radni zahvat", value: "1,40 m" },
-      { label: "Broj noževa", value: "16 čekić-noževa" },
-      { label: "Podešavanje dubine", value: "Hidrauličko" },
-      { label: "Preporučena snaga", value: "od 35 KS" },
-    ],
-    highlights: ["Bočni hidraulični pomak", "Kaljeni noževi", "Pojačan rotor"],
-    badge: "Najprodavanije",
-    popular: true,
-    tone: "field",
-  },
-  {
-    id: "malcer-vt-5-0",
-    name: "Malčer VT-5.0",
-    category: "malceri",
-    tagline: "Univerzalni malčer za ratarstvo i održavanje",
-    description:
-      "Sredina ponude — odnos snage, zahvata i cene koji najbolje odgovara većini gazdinstava. Pogodan za žetvene ostatke, travu i sitnije šiblje.",
-    specs: [
-      { label: "Radni zahvat", value: "1,75 m" },
-      { label: "Broj noževa", value: "20 čekić-noževa" },
-      { label: "Podešavanje dubine", value: "Hidrauličko" },
-      { label: "Preporučena snaga", value: "od 50 KS" },
-    ],
-    highlights: ["Dupli kaiš pogon", "Valjak za kopiranje terena", "Zaštita reduktora"],
-    popular: true,
-    tone: "harvest",
-  },
-  {
-    id: "malcer-vt-7-0",
-    name: "Malčer VT-7.0",
-    category: "malceri",
-    tagline: "Malčer visokog učinka za velike površine",
-    description:
-      "Najjači u seriji — projektovan za intenzivan rad i velike parcele. Veliki radni zahvat i pojačana konstrukcija znače veću efikasnost i dug vek trajanja.",
-    specs: [
-      { label: "Radni zahvat", value: "2,00 m" },
-      { label: "Broj noževa", value: "24 čekić-noža" },
-      { label: "Podešavanje dubine", value: "Hidrauličko" },
-      { label: "Preporučena snaga", value: "od 70 KS" },
-    ],
-    highlights: ["Visok učinak", "Robusno kućište", "Dug radni vek"],
-    badge: "Akcija",
-    tone: "field",
-  },
-  {
-    id: "freza-rotaciona-180",
-    name: "Rotaciona freza 1.80",
-    category: "freze",
-    tagline: "Priprema zemljišta u jednom prohodu",
-    description:
-      "Snažna rotaciona freza za pripremu setvene osnove. Usitnjava i prevrće zemljište do željene dubine, ostavljajući ravan i rastresit profil.",
-    specs: [
-      { label: "Radni zahvat", value: "1,80 m" },
-      { label: "Broj noževa", value: "48 zakrivljenih noževa" },
-      { label: "Dubina obrade", value: "do 18 cm" },
-      { label: "Preporučena snaga", value: "od 45 KS" },
-    ],
-    highlights: ["Bočni prenos lancem", "Podesiva zadnja klapna", "Sigurnosna kvačila"],
-    tone: "soil",
-  },
-  {
-    id: "freza-laka-125",
-    name: "Laka freza 1.25",
-    category: "freze",
-    tagline: "Za bašte, plastenike i kompakt traktore",
-    description:
-      "Kompaktna freza za manje traktore, plastenike i povrtarstvo. Lako se kači i daje finu strukturu zemljišta.",
-    specs: [
-      { label: "Radni zahvat", value: "1,25 m" },
-      { label: "Broj noževa", value: "36 noževa" },
-      { label: "Dubina obrade", value: "do 15 cm" },
-      { label: "Preporučena snaga", value: "od 25 KS" },
-    ],
-    highlights: ["Mala masa", "Centralni prenos", "Idealna za plastenike"],
-    tone: "field",
-  },
-  {
-    id: "utovarivac-fl-premium",
-    name: "Prednji utovarivač FL Premium",
-    category: "utovarivaci",
-    tagline: "Brza montaža i demontaža, za sve veličine traktora",
-    description:
-      "Univerzalni prednji utovarivač sa euro-prihvatom za dodatke. Hidraulično paralelno vođenje i euro-ploča omogućavaju brzu zamenu kašike, vila i drugih alata.",
-    specs: [
-      { label: "Visina dizanja", value: "do 3,4 m" },
-      { label: "Nosivost", value: "do 1.200 kg" },
-      { label: "Prihvat", value: "Euro-ploča" },
-      { label: "Montaža", value: "Brza (quick-coupler)" },
-    ],
-    highlights: ["Euro-prihvat dodataka", "Paralelno vođenje", "Joystick komanda"],
-    popular: true,
-    tone: "steel",
-  },
-  {
-    id: "utovarivac-kasika-vile",
-    name: "Set: kašika + vile za balu",
-    category: "utovarivaci",
-    tagline: "Dodaci koji proširuju mogućnosti utovarivača",
-    description:
-      "Komplet dodataka sa euro-prihvatom — kašika za rasuti teret i vile za bale. Brza zamena bez alata.",
-    specs: [
-      { label: "Širina kašike", value: "1,80 m" },
-      { label: "Prihvat", value: "Euro-ploča" },
-      { label: "Materijal", value: "Visokočvrsti čelik" },
-      { label: "Kompatibilnost", value: "Svi FL utovarivači" },
-    ],
-    highlights: ["Brza zamena", "Ojačani zubi", "Univerzalni prihvat"],
-    tone: "steel",
-  },
-  {
-    id: "traktor-compact-26",
-    name: "Kompakt traktor 26 KS 4x4",
-    category: "traktori",
-    tagline: "Okretan pogonaš za voćnjake i dvorišta",
-    description:
-      "Kompaktan traktor sa pogonom na sva četiri točka, idealan za voćnjake, vinograde, plastenike i komunalno održavanje. Mali gabariti, velika upotrebljivost.",
-    specs: [
-      { label: "Snaga motora", value: "26 KS" },
-      { label: "Pogon", value: "4x4" },
-      { label: "Priključno vratilo", value: "540 o/min" },
-      { label: "Hidraulika", value: "Zadnji troточkasti priključak" },
-    ],
-    highlights: ["Pogon 4x4", "Servo upravljač", "Niska potrošnja"],
-    badge: "Subvencije",
-    popular: true,
-    tone: "harvest",
-  },
-  {
-    id: "traktor-compact-50",
-    name: "Kompakt traktor 50 KS 4x4",
-    category: "traktori",
-    tagline: "Više snage za zahtevnije radove",
-    description:
-      "Snažniji kompakt traktor za rad sa malčerom, frezom i utovarivačem. Komforna kabina i pouzdan motor za celodnevni rad.",
-    specs: [
-      { label: "Snaga motora", value: "50 KS" },
-      { label: "Pogon", value: "4x4" },
-      { label: "Priključno vratilo", value: "540 / 1000 o/min" },
-      { label: "Hidraulika", value: "Pojačana, sa dodatnim izvodima" },
-    ],
-    highlights: ["Klimatizovana kabina", "Pojačana hidraulika", "Sinhronizovani menjač"],
-    tone: "harvest",
-  },
-  {
-    id: "tanjiraca-20",
-    name: "Tanjirača 20 diskova",
-    category: "prikljucne",
-    tagline: "Brza i kvalitetna obrada strništa",
-    description:
-      "Vučena/nošena tanjirača za obradu strništa i pripremu zemljišta. Nazubljeni diskovi obezbeđuju dobro usitnjavanje i mešanje žetvenih ostataka.",
-    specs: [
-      { label: "Broj diskova", value: "20" },
-      { label: "Radni zahvat", value: "2,20 m" },
-      { label: "Prečnik diska", value: "560 mm" },
-      { label: "Preporučena snaga", value: "od 60 KS" },
-    ],
-    highlights: ["Nazubljeni diskovi", "Podesiv ugao", "Robusna rama"],
-    tone: "soil",
-  },
-  {
-    id: "kosacica-rotaciona",
-    name: "Rotaciona kosačica 1.65",
-    category: "prikljucne",
-    tagline: "Za košenje livada i zelene mase",
-    description:
-      "Pouzdana rotaciona kosačica za košenje trave, deteline i livada. Jednostavno održavanje i čist otkos.",
-    specs: [
-      { label: "Radni zahvat", value: "1,65 m" },
-      { label: "Broj diskova", value: "4" },
-      { label: "Zaštita", value: "Preklopna greda" },
-      { label: "Preporučena snaga", value: "od 40 KS" },
-    ],
-    highlights: ["Preklopna greda", "Lako održavanje", "Čist otkos"],
-    tone: "field",
-  },
-  {
-    id: "delovi-noz-reduktor",
-    name: "Rezervni delovi i potrošni materijal",
-    category: "delovi",
-    tagline: "Noževi, reduktori, kaiševi, ležajevi i više",
-    description:
-      "Široka ponuda rezervnih delova za malčere, freze i priključke. Pošaljite model mašine — pomažemo da izaberete tačan deo i šaljemo brzo.",
-    specs: [
-      { label: "Asortiman", value: "Noževi, reduktori, kaiševi" },
-      { label: "Dostupnost", value: "Sa lagera i po porudžbini" },
-      { label: "Isporuka", value: "Brza, širom Srbije" },
-      { label: "Podrška", value: "Stručan izbor delova" },
-    ],
-    highlights: ["Velika dostupnost", "Brza isporuka", "Stručna pomoć"],
-    tone: "steel",
-  },
-];
-
-export const popularProducts = products.filter((p) => p.popular);
 
 /* ---------------------------------- Zašto PlugekS ---------------------------------- */
 
@@ -406,30 +178,30 @@ export const testimonials: Testimonial[] = [
   {
     name: "Milan J.",
     location: "Bačka Palanka",
-    machine: "Malčer VT-5.0",
+    machine: "Tanjirača Field BT",
     quote:
       "Mašina radi besprekorno već drugu sezonu. Isporuka brza, a kad sam zvao za podešavanje — odmah su mi izašli u susret.",
   },
   {
     name: "Dragan S.",
     location: "Ruma",
-    machine: "Prednji utovarivač FL Premium",
+    machine: "Tanjirasti agregat Field AT",
     quote:
-      "Utovarivač mi je dosta ubrzao posao oko bala. Montaža je jednostavna, a euro-prihvat znači da menjam dodatke za par minuta.",
+      "Agregat mi je dosta ubrzao pripremu njive — u jednom prohodu dobijem setvenu osnovu za koju sam ranije išao dva puta.",
   },
   {
     name: "Zoran M.",
     location: "Bijeljina (BiH)",
-    machine: "Kompakt traktor 26 KS 4x4",
+    machine: "Podrivač Deeper GBK \"Kret\"",
     quote:
-      "Tražio sam okretan traktor za voćnjak i dobio tačno to. Sve dogovoreno preko telefona, isporuka preko granice bez problema.",
+      "Godinama sam imao problem sa tabanom pluga. Posle podrivača se vidi razlika već prve sezone. Sve dogovoreno telefonom, isporuka preko granice bez problema.",
   },
   {
     name: "Nenad P.",
     location: "Šabac",
-    machine: "Rotaciona freza 1.80",
+    machine: "Bezoranični agregat Grander AB",
     quote:
-      "Pomogli su mi i oko papira za subvenciju. Freza ostavlja zemlju kao iz knjige. Preporuka svakom domaćinu.",
+      "Pomogli su mi i oko papira za subvenciju. Agregat ostavlja zemlju kao iz knjige. Preporuka svakom domaćinu.",
   },
 ];
 
