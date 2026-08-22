@@ -65,4 +65,5 @@ export const nav: NavItem[] = [
   { label: "Subvencije i finansiranje", href: "/subvencije-i-finansiranje" },
   { label: "O nama", href: "/o-nama" },
   { label: "Kontakt", href: "/kontakt" },
+  { label: "Zatraži ponudu", href: "/zatrazi-ponudu" },
 ];

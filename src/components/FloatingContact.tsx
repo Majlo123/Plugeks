@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Phone, X, Plus } from "lucide-react";
+import { MessageCircle, Phone, X } from "lucide-react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -79,7 +79,7 @@ export function FloatingContact() {
           open ? "bg-charcoal rotate-90" : "bg-brand",
         )}
       >
-        {open ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
+        {open ? <X className="h-6 w-6" /> : <Phone className="h-6 w-6" />}
         {!open && (
           <span className="absolute inline-flex h-14 w-14 animate-ping rounded-full bg-brand/40 [animation-duration:2.5s]" />
         )}

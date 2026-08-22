@@ -5,9 +5,9 @@ import { ProizvodiClient } from "./ProizvodiClient";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 
 export const metadata: Metadata = {
-  title: "Proizvodi — Malčeri, freze, utovarivači, traktori",
+  title: "Proizvodi — Mašine i rezervni delovi",
   description:
-    "Kompletan katalog poljoprivredne mehanizacije: malčeri, freze, prednji utovarivači, kompakt traktori, priključne mašine i rezervni delovi. Zatražite ponudu.",
+    "Katalog poljoprivredne mehanizacije i preko 4.600 rezervnih delova za plugove, agregate, tanjirače, sejalice i vadilice — Lemken, Kuhn, Kverneland, Rabe, Pöttinger i drugi. Filtrirajte po brendu i tipu dela i zatražite ponudu.",
 };
 
 export default function ProizvodiPage() {
@@ -15,8 +15,8 @@ export default function ProizvodiPage() {
     <>
       <PageHeader
         breadcrumb="Proizvodi"
-        title="Katalog mehanizacije"
-        description="Izaberite kategoriju, pogledajte specifikacije i za svaki model u par klikova zatražite ponudu. Javljamo se sa cenom isti dan."
+        title="Katalog mehanizacije i delova"
+        description="Recite nam da li tražite mašinu ili rezervni deo, suzite izbor filterima i u par klikova zatražite ponudu. Javljamo se sa cenom isti dan."
         tone="steel"
         image="/images/utovarivaci.jpg"
       />

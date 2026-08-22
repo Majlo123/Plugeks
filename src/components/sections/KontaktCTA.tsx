@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MessageCircle, ArrowRight } from "lucide-react";
+import { Phone, PhoneCall, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
@@ -40,7 +40,7 @@ export function KontaktCTA() {
 
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild variant="accent" size="lg">
-                <Link href="/kontakt">
+                <Link href="/zatrazi-ponudu">
                   Zatraži ponudu <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
@@ -49,9 +49,9 @@ export function KontaktCTA() {
                   <Phone className="h-5 w-5" /> {site.phoneDisplay}
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-cream/40 text-cream hover:bg-cream hover:text-charcoal">
-                <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="h-5 w-5" /> WhatsApp
+              <Button asChild size="lg" className="bg-[#7360F2] text-white shadow-soft hover:bg-[#5F4FD8] hover:shadow-lift">
+                <a href={site.viberHref} target="_blank" rel="noopener noreferrer">
+                  <PhoneCall className="h-5 w-5" /> Viber
                 </a>
               </Button>
             </div>

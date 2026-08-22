@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "catalog": "node scripts/build-catalog.mjs",
+    "slike": "node scripts/import-images.mjs"
   },
   "dependencies": {
     "next": "14.2.35",

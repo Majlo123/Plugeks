@@ -86,6 +86,53 @@ Promena ovde se odražava na **celom sajtu** (header, footer, dugmad, JSON-LD).
 
 > Sva mesta koja treba proveriti/zameniti označena su komentarom `// ZAMENI: ...`
 
+### 3) Katalog sa rolland.pl → `npm run catalog`
+
+Katalog na `/proizvodi` ima dva dela:
+
+| Deo | Izvor | Fajl |
+| --- | --- | --- |
+| Mašine (23) | `src/lib/data.ts` (PlugekS) + Rolland | `src/data/machines.json` |
+| Rezervni delovi (4.644) | Rolland | `src/data/parts.json` |
+
+Rolland deo se generiše iz njihovog `sitemap.xml` — jedine stranice koja nije iza
+anti-bot zaštite. Osvežavanje:
+
+```bash
+curl -o data/rolland-sitemap.xml https://www.rolland.pl/sitemap.xml
+npm run catalog
+```
+
+Skripta iz URL-ova izvlači tip dela, brend mašine, kataloški broj i stranu
+ugradnje, i sve prevodi na srpski. **Prevode, brendove i nazive mašina menjaš u
+`scripts/rolland-dictionary.mjs`** — ako skripta prijavi „neprepoznati tipovi
+delova", dodaj ih u `PART_TYPES` i pokreni ponovo.
+
+Delovi se u pretraživač učitavaju tek kad korisnik izabere „Rezervni delovi",
+pa `parts.json` ne opterećuje početno učitavanje stranice.
+
+### 4) Fotografije proizvoda → `npm run slike`
+
+rolland.pl blokira automatski pristup HTML stranicama (403 „bot challenge"), ali
+putanja `/uploads/...` nije zaštićena — slike se skidaju normalno. Fali samo
+spisak adresa, koji postoji jedino u HTML-u kategorija. Zato:
+
+1. Otvori kategoriju na rolland.pl **u svom pretraživaču**
+2. `Ctrl+S` → sačuvaj kao „Web stranica, samo HTML" u `data/rolland-pages/`
+3. Ponovi za ostale kategorije i strane paginacije
+4. `npm run slike`
+
+Skripta iz sačuvanog HTML-a izvlači sve adrese oblika
+`/uploads/produkt/{godina}/{mesec}/{id}-{slug}-0-4.jpg`, skida ih u
+`public/images/rolland/` i piše mapu `src/data/images.json` (id → putanja).
+Katalog automatski koristi pravu sliku kad postoji. Ponovno pokretanje je
+bezbedno — već preuzete slike se preskaču.
+
+> **Vodeni žig:** fotografije *delova* na rolland.pl imaju veliki ROLLAND žig
+> preko samog proizvoda, pa ga nije moguće ukloniti bez vidnog oštećenja slike.
+> Fotografije *mašina* su čiste. Za čiste slike delova traži media paket od
+> Rollanda — kao distributer ih dobijaš na zahtev.
+
 ---
 
 ## 🖼️ Slike — mockup je već ubačen

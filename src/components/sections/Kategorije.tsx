@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@/lib/data";
+import { catalogHref } from "@/lib/catalog";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/Reveal";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
@@ -29,7 +30,7 @@ export function Kategorije() {
             return (
               <Reveal key={c.key} delay={(i % 3) * 0.07}>
                 <Link
-                  href={`/proizvodi?kategorija=${c.key}`}
+                  href={catalogHref(c.key)}
                   className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lift"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">

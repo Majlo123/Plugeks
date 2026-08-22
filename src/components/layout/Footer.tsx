@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Globe } from "lucide-r
 import { Logo } from "@/components/Logo";
 import { nav, site } from "@/lib/site";
 import { categories } from "@/lib/data";
+import { catalogHref } from "@/lib/catalog";
 
 export function Footer() {
   return (
@@ -10,7 +11,7 @@ export function Footer() {
       <div className="container grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         {/* Brend + NAP */}
         <div className="lg:col-span-1">
-          <Logo variant="light" />
+          <Logo full />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/60">
             Uvoz i prodaja poljoprivredne mehanizacije i delova. Stručan savet,
             finansiranje i isporuka širom Srbije i regiona.
@@ -76,7 +77,7 @@ export function Footer() {
             {categories.map((c) => (
               <li key={c.key}>
                 <Link
-                  href={`/proizvodi?kategorija=${c.key}`}
+                  href={catalogHref(c.key)}
                   className="text-cream/60 transition-colors hover:text-cream"
                 >
                   {c.label}
