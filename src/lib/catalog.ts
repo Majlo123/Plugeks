@@ -13,12 +13,13 @@
 
 import machinesJson from "@/data/machines.json";
 import imagesJson from "@/data/images.json";
+import popularJson from "@/data/popular.json";
 import { categories } from "@/lib/data";
 
 /**
- * Prave fotografije proizvoda sa rolland.pl (id proizvoda → lokalna putanja).
- * Popunjava ih `npm run slike` — dok je mapa prazna, koriste se ilustracije
- * kategorije. Vidi scripts/import-images.mjs.
+ * Prave fotografije proizvoda (id proizvoda → lokalna putanja): mašine i delovi
+ * sa rolland.pl (`npm run slike`) + crteži delova za plugove
+ * (`npm run plugovi`). Bez unosa u mapi kartica pokazuje brendiran placeholder.
  */
 const productImages = imagesJson as Record<string, string>;
 
@@ -150,6 +151,52 @@ export const machines: CatalogItem[] = (machinesJson as MachineRow[]).map((m) =>
   facets: { tip: m.subgroup },
   search: normalize(`${m.name} ${m.tagline} ${MACHINE_TYPE_LABELS[m.subgroup] ?? ""}`),
 }));
+
+/* --------------------------- Najtraženiji delovi --------------------------- */
+
+/** Deo iz `popular.json` — nosi i gotove oznake za karticu. */
+export type PopularPart = CatalogItem & { tags: string[] };
+
+type PopularRow = {
+  id: string;
+  name: string;
+  image: string;
+  facets: Record<string, string>;
+  tags: string[];
+};
+
+/**
+ * Najtraženiji delovi za plugove — po jedan komad za svaku kombinaciju
+ * brend + tip dela, sa pravom fotografijom. Mali fajl (~24 stavke) pa sme i u
+ * klijentski bundle: koristi ga početna strana i katalog PRE filtriranja, gde
+ * `parts.json` još nije učitan. Popunjava ga `npm run plugovi`
+ * (vidi scripts/import-plow-parts.mjs).
+ */
+export const popularParts: PopularPart[] = (popularJson as PopularRow[]).map((p) => ({
+  id: p.id,
+  type: "delovi",
+  name: p.name,
+  image: p.image,
+  facets: p.facets,
+  search: normalize(`${p.name} ${p.tags.join(" ")}`),
+  tags: p.tags,
+}));
+
+/** Redosled najtraženijih delova, `id` → mesto u listi (0 = prvi). */
+const popularRank = new Map(popularParts.map((p, i) => [p.id, i]));
+
+/**
+ * Najtraženiji delovi na početak, ostatak nepromenjen — za prvi ekran kataloga,
+ * dok korisnik nije ništa filtrirao. Bez ovoga prvih 24 rezultata su prosto
+ * delovi sa najvećim id-em, što nikome ništa ne znači.
+ */
+export function popularFirst(items: CatalogItem[]): CatalogItem[] {
+  const top: CatalogItem[] = [];
+  const rest: CatalogItem[] = [];
+  for (const item of items) (popularRank.has(item.id) ? top : rest).push(item);
+  top.sort((a, b) => popularRank.get(a.id)! - popularRank.get(b.id)!);
+  return [...top, ...rest];
+}
 
 /* -------------------------------- Delovi ---------------------------------- */
 

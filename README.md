@@ -58,7 +58,8 @@ src/
 │   ├── ui/                         # Button, Card, Badge, Input, MediaPlaceholder, SectionHeading
 │   ├── layout/                     # Header (sticky), Footer
 │   ├── sections/                   # Hero, ZastoMi, Kategorije, ProizvodiPreview,
-│   │                               # Akcije, Galerija, Reference, KontaktCTA, TrustStats
+│   │                               # DeloviPreview, Akcije, Galerija, Reference,
+│   │                               # KontaktCTA, TrustStats
 │   ├── ProductCard.tsx, QuoteForm.tsx, PageHeader.tsx, FloatingContact.tsx, Reveal.tsx, Logo.tsx
 └── lib/
     ├── site.ts                     # ⭐ KONTAKT/NAP podaci — jedan izvor istine
@@ -132,6 +133,33 @@ bezbedno — već preuzete slike se preskaču.
 > preko samog proizvoda, pa ga nije moguće ukloniti bez vidnog oštećenja slike.
 > Fotografije *mašina* su čiste. Za čiste slike delova traži media paket od
 > Rollanda — kao distributer ih dobijaš na zahtev.
+
+### 5) Delovi za plugove + najtraženiji delovi → `npm run plugovi`
+
+Molbro program potrošnih delova za plugove (Kverneland, Lemken, Kuhn, Överum,
+Vogel & Noot, Regent, Rabe, Pöttinger) prikazan je na `agritechnicom.co.rs` sa
+**čistim tehničkim crtežima bez žiga** i OEM kataloškim brojem u naslovu. Naši
+nazivi iz Rolland kataloga nose iste brojeve, samo drugačije formatirane
+(`344 4012` ↔ `3444012`), pa se slika i proizvod povezuju automatski:
+
+```bash
+npm run plugovi              # skini + poveži + upiši
+npm run plugovi -- --dry --report   # samo izveštaj, ništa se ne upisuje
+```
+
+Skripta piše dva fajla:
+
+| Fajl | Šta je unutra |
+| --- | --- |
+| `public/images/plugovi/{id}.jpg` + `src/data/images.json` | 195 crteža; gde je postojala Rolland slika sa žigom, ona je zamenjena |
+| `src/data/popular.json` | **najtraženiji delovi** — po jedan komad za svaku kombinaciju brend + tip |
+
+`popular.json` je mali fajl (24 stavke) pa se sme uvesti i u klijentski bundle —
+koriste ga sekcija „Najtraženiji delovi" na početnoj (`DeloviPreview`) i katalog
+na `/proizvodi` **pre filtriranja** (prvi ekran i početni redosled rezultata).
+
+Ako se njihov spisak promeni, `--report` ispiše koje naslove nismo uspeli da
+povežemo (najčešće zato što taj kataloški broj ne postoji u našem katalogu).
 
 ---
 

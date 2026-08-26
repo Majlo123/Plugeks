@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { UspBar } from "@/components/sections/UspBar";
 import { Kategorije } from "@/components/sections/Kategorije";
 import { ProizvodiPreview } from "@/components/sections/ProizvodiPreview";
+import { DeloviPreview } from "@/components/sections/DeloviPreview";
 import { Akcije } from "@/components/sections/Akcije";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 
@@ -15,6 +16,7 @@ export default function HomePage() {
       <UspBar />
       <Kategorije />
       <ProizvodiPreview />
+      <DeloviPreview />
       <Akcije />
       <KontaktCTA />
     </>

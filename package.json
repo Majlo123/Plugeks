@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "catalog": "node scripts/build-catalog.mjs",
-    "slike": "node scripts/import-images.mjs"
+    "slike": "node scripts/import-images.mjs",
+    "plugovi": "node scripts/import-plow-parts.mjs"
   },
   "dependencies": {
     "next": "14.2.35",

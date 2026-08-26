@@ -1,0 +1,410 @@
+[
+  {
+    "id": "1970",
+    "name": "Plužna daska Kverneland 063 261 (desno)",
+    "image": "/images/plugovi/1970.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "kverneland",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kverneland",
+      "Plužna daska",
+      "Desni"
+    ]
+  },
+  {
+    "id": "2719",
+    "name": "Ažurna lajsna daske Lemken 344 4012 (desno)",
+    "image": "/images/plugovi/2719.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "lajsna",
+      "brend": "lemken",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Lemken",
+      "Lajsna daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "1652",
+    "name": "Plužna daska Kuhn / Huard 616 138 (desno)",
+    "image": "/images/plugovi/1652.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "kuhn-huard",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kuhn / Huard",
+      "Plužna daska",
+      "Desni"
+    ]
+  },
+  {
+    "id": "3161",
+    "name": "Plužna daska Överum 96 084 (desno)",
+    "image": "/images/plugovi/3161.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "overum",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Överum",
+      "Plužna daska",
+      "Desni"
+    ]
+  },
+  {
+    "id": "4662",
+    "name": "Plužna daska Vogel & Noot HST UN UN 1160 400 B4 15 PK4 001 02 (desno)",
+    "image": "/images/plugovi/4662.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "vogel-noot",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Vogel & Noot",
+      "Plužna daska",
+      "Desni"
+    ]
+  },
+  {
+    "id": "3802",
+    "name": "Lemeš (raonik) Regent DU S DW S 440 440 (levo)",
+    "image": "/images/plugovi/3802.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "lemes",
+      "brend": "regent",
+      "strana": "levi"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Regent",
+      "Lemeš (raonik)",
+      "Levi"
+    ]
+  },
+  {
+    "id": "3482",
+    "name": "Plužna daska Rabe / RabeWerk HRP O 296 27020102 (levo)",
+    "image": "/images/plugovi/3482.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "rabe-werk",
+      "strana": "levi"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Rabe / RabeWerk",
+      "Plužna daska",
+      "Levi"
+    ]
+  },
+  {
+    "id": "2146",
+    "name": "Lemeš (raonik) Landsberg / Pöttinger 925 131 160 (desno)",
+    "image": "/images/plugovi/2146.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "lemes",
+      "brend": "landsberg-pottinger",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Landsberg / Pöttinger",
+      "Lemeš (raonik)",
+      "Desni"
+    ]
+  },
+  {
+    "id": "1957",
+    "name": "Grudi daske Kverneland 063 240 (desno)",
+    "image": "/images/plugovi/1957.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "grudi",
+      "brend": "kverneland",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kverneland",
+      "Grudi daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "2592",
+    "name": "Plužna daska Lemken B B 40 344 1040 (desno)",
+    "image": "/images/plugovi/2592.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "lemken",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Lemken",
+      "Plužna daska",
+      "Desni"
+    ]
+  },
+  {
+    "id": "1620",
+    "name": "Grudi daske Kuhn / Huard 619 172 (desno)",
+    "image": "/images/plugovi/1620.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "grudi",
+      "brend": "kuhn-huard",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kuhn / Huard",
+      "Grudi daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "3199",
+    "name": "Grudi daske Överum 96 086 (desno)",
+    "image": "/images/plugovi/3199.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "grudi",
+      "brend": "overum",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Överum",
+      "Grudi daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "4713",
+    "name": "Grudi daske Vogel & Noot UN PK 400 B4 U15 4 001 03 (desno)",
+    "image": "/images/plugovi/4713.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "grudi",
+      "brend": "vogel-noot",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Vogel & Noot",
+      "Grudi daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "3872",
+    "name": "Kratki plaz Regent 1600 118 2 (levo)",
+    "image": "/images/plugovi/3872.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "plaz",
+      "brend": "regent",
+      "strana": "levi"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Regent",
+      "Plaz",
+      "Levi"
+    ]
+  },
+  {
+    "id": "3627",
+    "name": "Grudi daske Rabe / RabeWerk VRP 292 (levo)",
+    "image": "/images/plugovi/3627.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "grudi",
+      "brend": "rabe-werk",
+      "strana": "levi"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Rabe / RabeWerk",
+      "Grudi daske",
+      "Levi"
+    ]
+  },
+  {
+    "id": "2277",
+    "name": "Dleto Landsberg / Pöttinger 925 260 110 (desno)",
+    "image": "/images/plugovi/2277.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "dleto",
+      "brend": "landsberg-pottinger",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Landsberg / Pöttinger",
+      "Dleto",
+      "Desni"
+    ]
+  },
+  {
+    "id": "2048",
+    "name": "Lajsna daske Kverneland 053387 (desno)",
+    "image": "/images/plugovi/2048.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "lajsna",
+      "brend": "kverneland",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kverneland",
+      "Lajsna daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "2624",
+    "name": "Grudi daske Lemken B K 2 345 1000 (desno)",
+    "image": "/images/plugovi/2624.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "grudi",
+      "brend": "lemken",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Lemken",
+      "Grudi daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "1777",
+    "name": "Lajsna daske Kuhn / Huard 648 102 (desno)",
+    "image": "/images/plugovi/1777.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "lajsna",
+      "brend": "kuhn-huard",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kuhn / Huard",
+      "Lajsna daske",
+      "Desni"
+    ]
+  },
+  {
+    "id": "3258",
+    "name": "Držač odsecača Överum 84 022 (desno)",
+    "image": "/images/plugovi/3258.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "drzac",
+      "brend": "overum",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Överum",
+      "Držač",
+      "Desni"
+    ]
+  },
+  {
+    "id": "198",
+    "name": "Odsecač busena Vogel & Noot PK 805 102 (desno)",
+    "image": "/images/plugovi/198.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "odsecac",
+      "brend": "vogel-noot",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Vogel & Noot",
+      "Odsecač busena",
+      "Desni"
+    ]
+  },
+  {
+    "id": "3424",
+    "name": "Lemeš (raonik) Rabe / RabeWerk SSP OS 293 (levo)",
+    "image": "/images/plugovi/3424.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "lemes",
+      "brend": "rabe-werk",
+      "strana": "levi"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Rabe / RabeWerk",
+      "Lemeš (raonik)",
+      "Levi"
+    ]
+  },
+  {
+    "id": "2294",
+    "name": "Daska predplužnjaka Landsberg / Pöttinger 921 041 280 (levo)",
+    "image": "/images/plugovi/2294.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "daska",
+      "brend": "landsberg-pottinger",
+      "strana": "levi"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Landsberg / Pöttinger",
+      "Plužna daska",
+      "Levi"
+    ]
+  },
+  {
+    "id": "2043",
+    "name": "Odsecač busena Kverneland 073300 (desno)",
+    "image": "/images/plugovi/2043.jpg",
+    "facets": {
+      "grupa": "delovi-plugovi",
+      "tip": "odsecac",
+      "brend": "kverneland",
+      "strana": "desni"
+    },
+    "tags": [
+      "Delovi za plugove",
+      "Kverneland",
+      "Odsecač busena",
+      "Desni"
+    ]
+  }
+]

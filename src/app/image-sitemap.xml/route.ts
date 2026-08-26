@@ -5,9 +5,10 @@ import { getProductsWithPhotos, productHref } from "@/lib/products";
  * sitemap ne ume da upiše `<image:image>` unose. Ovo je mehanizam kojim se
  * fotografije proizvoda prijavljuju za Google Images.
  *
- * Lista samo proizvode koji IMAJU pravu fotografiju u `public/images/rolland/`.
- * Dok tamo stoje samo skinute (watermark) slike — one će biti i ovde; zameni ih
- * čistim, licenciranim fotografijama pre puštanja u Google Search Console.
+ * Lista samo proizvode koji IMAJU pravu fotografiju (`src/data/images.json` →
+ * `public/images/rolland/` ili `public/images/plugovi/`). Crteži delova za
+ * plugove su čisti, ali Rolland slike nose njihov žig — zameni ih čistim,
+ * licenciranim fotografijama pre puštanja u Google Search Console.
  */
 
 const BASE = "https://plugeks.rs";

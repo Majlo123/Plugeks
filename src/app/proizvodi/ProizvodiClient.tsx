@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-import { ArrowLeft, Cog, Loader2, Search, Wrench, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Cog, Loader2, Search, Wrench, X } from "lucide-react";
 import {
   FACETS,
   TYPE_META,
@@ -13,6 +14,8 @@ import {
   filterItems,
   loadParts,
   machines,
+  popularFirst,
+  popularParts,
   type CatalogItem,
   type CatalogType,
 } from "@/lib/catalog";
@@ -126,10 +129,13 @@ export function ProizvodiClient() {
     () => (type === "delovi" ? (parts ?? []) : machines),
     [type, parts],
   );
-  const results = useMemo(
-    () => filterItems(items, selection, query),
-    [items, selection, query],
-  );
+  const results = useMemo(() => {
+    const found = filterItems(items, selection, query);
+    // Katalog delova otvara najtraženijim komadima (isti oni sa početne strane)
+    // — inače bi prvih 24 rezultata bili prosto delovi sa najvećim id-em, bez
+    // fotografije. Kad korisnik kuca u pretragu, redosled se ne dira.
+    return type === "delovi" && !query ? popularFirst(found) : found;
+  }, [items, selection, query, type]);
 
   const [visible, setVisible] = useState(PAGE_SIZE);
   useEffect(() => setVisible(PAGE_SIZE), [type, selection, query]);
@@ -307,6 +313,50 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
             </button>
           );
         })}
+      </div>
+
+      <PopularParts />
+    </div>
+  );
+}
+
+/**
+ * Vitrina najtraženijih delova za plugove — vidi se odmah, pre bilo kakvog
+ * filtriranja. Podaci dolaze iz `popular.json` (mala lista), pa se prikazuju i
+ * dok se veliki katalog delova još nije učitao.
+ */
+function PopularParts() {
+  const featured = popularParts.slice(0, 12);
+  if (featured.length === 0) return null;
+
+  return (
+    <div className="mt-14">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
+        <div>
+          <span className="eyebrow">
+            <span className="h-px w-6 bg-current" />
+            Delovi za plugove
+          </span>
+          <h3 className="mt-3 font-display text-2xl font-bold text-charcoal">
+            Najtraženiji delovi
+          </h3>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+            Komadi koji najčešće izlaze sa lagera — Kverneland, Lemken, Kuhn, Överum,
+            Vogel &amp; Noot, Regent, Rabe i Pöttinger.
+          </p>
+        </div>
+        <Button asChild variant="outline" size="sm" className="shrink-0">
+          <Link href="/proizvodi?vrsta=delovi&grupa=delovi-plugovi">
+            Svi delovi za plugove
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
+
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+        {featured.map((part) => (
+          <PartCard key={part.id} item={part} tags={part.tags} />
+        ))}
       </div>
     </div>
   );
