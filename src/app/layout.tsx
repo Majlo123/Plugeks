@@ -56,7 +56,6 @@ export const metadata: Metadata = {
     title: "PlugekS — Napredna poljoprivredna mehanizacija",
     description:
       "Malčeri, freze, utovarivači i kompakt traktori uz finansiranje, podršku oko subvencija i isporuku širom Srbije i regiona.",
-    // ZAMENI: prava OG slika (1200×630) u /public — npr. /og.jpg
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "PlugekS — poljoprivredna mehanizacija" }],
   },
   twitter: {
@@ -79,12 +78,20 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Store",
+  // Stabilan @id — vezuje sve pominjanje firme za jedan entitet.
+  "@id": `${SITE_URL}/#plugeks`,
   name: site.name,
+  // Ljudi kucaju "plugeks", ne "PlugekS".
+  alternateName: ["Plugeks", "PLUGEKS"],
   description: site.description,
   url: SITE_URL,
   telephone: site.phoneIntl,
   email: site.email,
   image: `${SITE_URL}/og.jpg`,
+  logo: `${SITE_URL}/images/logo-full.png`,
+  priceRange: "$$",
+  currenciesAccepted: "RSD",
+  areaServed: { "@type": "Country", name: "Srbija" },
   slogan: site.slogan,
   address: {
     "@type": "PostalAddress",
