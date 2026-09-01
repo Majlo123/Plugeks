@@ -284,3 +284,79 @@ export function partDescription(p: Product): string {
   const kind = p.typeLabel ? p.typeLabel.toLowerCase() : "rezervni deo";
   return `Rezervni deo (${kind}) za ${forMachine}. ${brand} Radimo sa proverenim dobavljačima; recite nam kataloški broj i model mašine i šaljemo ponudu sa cenom i rokom isporuke isti dan.`;
 }
+
+/* --------------------------- Kategorije za SEO ---------------------------- */
+
+/**
+ * Rute ispod postoje zato što je `/proizvodi` klijentska komponenta: filtrira u
+ * pretraživaču i prikazuje 24 po strani uz dugme „Prikaži još". Googlebot izvrši
+ * JS, ali ne klikće dugmad, pa u HTML-u nema nijednog linka ka proizvodu —
+ * merenjem: 0 na `/proizvodi`, 16 na početnoj, 4 po proizvodu. Bez ovoga bi
+ * ~4400 proizvoda postojalo samo u sitemap-u, bez ijednog internog linka, što
+ * Google po pravilu ostavlja u „Discovered – currently not indexed".
+ */
+
+export type Kategorija = { key: string; label: string; count: number };
+
+const sortiraj = (a: Kategorija, b: Kategorija) =>
+  b.count - a.count || a.label.localeCompare(b.label, "sr");
+
+function prebroj(
+  items: Product[],
+  kljuc: (p: Product) => string | undefined,
+  naziv: (p: Product) => string | undefined,
+): Kategorija[] {
+  const mapa = new Map<string, Kategorija>();
+  for (const p of items) {
+    const k = kljuc(p);
+    if (!k) continue;
+    const postojeci = mapa.get(k);
+    if (postojeci) postojeci.count += 1;
+    else mapa.set(k, { key: k, label: naziv(p) ?? k, count: 1 });
+  }
+  return [...mapa.values()].sort(sortiraj);
+}
+
+export function getParts(): Product[] {
+  return build().all.filter((p) => p.kind === "deo");
+}
+
+/** Tipovi delova (lemeš, plužna daska, plaz…) — po njima ljudi i pretražuju. */
+export function partTypes(): Kategorija[] {
+  return prebroj(getParts(), (p) => p.typeKey, (p) => p.typeLabel);
+}
+
+/** Brendovi plugova za koje postoje delovi (Lemken, Kuhn, Kverneland…). */
+export function partBrands(): Kategorija[] {
+  return prebroj(
+    getParts().filter((p) => p.brandKey && p.brandKey !== "univerzalno"),
+    (p) => p.brandKey,
+    (p) => p.brandLabel,
+  );
+}
+
+/** Podgrupe mašina (tanjirače, agregati, podrivači, valjci). */
+export function machineCategories(): Kategorija[] {
+  return prebroj(getMachines(), (p) => p.typeKey, (p) => p.typeLabel);
+}
+
+export const getPartsByType = (typeKey: string) =>
+  getParts().filter((p) => p.typeKey === typeKey);
+
+export const getPartsByBrand = (brandKey: string) =>
+  getParts().filter((p) => p.brandKey === brandKey);
+
+export const getMachinesByCategory = (typeKey: string) =>
+  getMachines().filter((p) => p.typeKey === typeKey);
+
+/** Koliko proizvoda ide na jednu stranu kataloškog indeksa. */
+export const KATALOG_PO_STRANI = 120;
+
+export function katalogBrojStrana(): number {
+  return Math.max(1, Math.ceil(getAllProducts().length / KATALOG_PO_STRANI));
+}
+
+export function katalogStrana(strana: number): Product[] {
+  const start = (strana - 1) * KATALOG_PO_STRANI;
+  return getAllProducts().slice(start, start + KATALOG_PO_STRANI);
+}

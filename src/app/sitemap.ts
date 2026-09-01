@@ -1,5 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getAllProducts, productHref } from "@/lib/products";
+import {
+  getAllProducts,
+  productHref,
+  partTypes,
+  machineCategories,
+  katalogBrojStrana,
+} from "@/lib/products";
 
 const BASE = "https://plugeks.com";
 
@@ -22,6 +28,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/zatrazi-ponudu`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
+  // Kategorijske stranice — one nose pretrage tipa „lemeš za plug".
+  const kategorije: MetadataRoute.Sitemap = [
+    ...machineCategories().map((c) => ({
+      url: `${BASE}/masine/${c.key}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...partTypes().map((t) => ({
+      url: `${BASE}/delovi/${t.key}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
+
+  // Kataloški indeks — jedini put kojim svaki proizvod dobija interni link.
+  const katalog: MetadataRoute.Sitemap = Array.from(
+    { length: katalogBrojStrana() },
+    (_, i) => ({
+      url: `${BASE}/katalog/${i + 1}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.4,
+    }),
+  );
+
   const products: MetadataRoute.Sitemap = getAllProducts().map((p) => ({
     url: `${BASE}${productHref(p)}`,
     lastModified: now,
@@ -29,5 +62,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p.kind === "masina" ? 0.8 : 0.5,
   }));
 
-  return [...staticRoutes, ...products];
+  return [...staticRoutes, ...kategorije, ...katalog, ...products];
 }
