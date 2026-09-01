@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { ProizvodiClient } from "./ProizvodiClient";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
-import { partTypes, machineCategories, katalogBrojStrana } from "@/lib/products";
+import { partTypes, partBrands, machineCategories, katalogBrojStrana } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Proizvodi — Mašine i rezervni delovi",
@@ -59,6 +59,17 @@ export default function ProizvodiPage() {
               <li key={t.key}>
                 <Link href={`/delovi/${t.key}`} className="text-brand hover:underline">
                   {t.label} <span className="text-muted-foreground">({t.count})</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-8 text-sm font-semibold text-charcoal">Delovi po marki pluga</p>
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {partBrands().map((b) => (
+              <li key={b.key}>
+                <Link href={`/delovi/brend/${b.key}`} className="text-brand hover:underline">
+                  {b.label} <span className="text-muted-foreground">({b.count})</span>
                 </Link>
               </li>
             ))}

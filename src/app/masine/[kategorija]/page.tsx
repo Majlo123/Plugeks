@@ -6,6 +6,7 @@ import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { machineCategories, getMachinesByCategory } from "@/lib/products";
 import { categories } from "@/lib/data";
+import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 
 /**
  * Stranica po podgrupi mašina (tanjirače, agregati, podrivači, valjci).
@@ -39,6 +40,12 @@ export default function KategorijaMasinaPage({ params }: { params: { kategorija:
 
   return (
     <>
+      <PutanjaJsonLd
+        stavke={[
+          { naziv: "Proizvodi", href: "/proizvodi" },
+          { naziv: kat.label, href: `/masine/${kat.key}` },
+        ]}
+      />
       <PageHeader
         breadcrumb={kat.label}
         title={kat.label}

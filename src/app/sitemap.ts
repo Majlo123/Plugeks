@@ -3,6 +3,7 @@ import {
   getAllProducts,
   productHref,
   partTypes,
+  partBrands,
   machineCategories,
   katalogBrojStrana,
 } from "@/lib/products";
@@ -38,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...partTypes().map((t) => ({
       url: `${BASE}/delovi/${t.key}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...partBrands().map((b) => ({
+      url: `${BASE}/delovi/brend/${b.key}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,

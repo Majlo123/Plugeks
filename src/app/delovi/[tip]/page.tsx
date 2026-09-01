@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { partTypes, getPartsByType } from "@/lib/products";
+import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 
 /**
  * Stranica po tipu dela (lemeš, plužna daska, plaz…). Ovo su pojmovi koje
@@ -44,6 +45,12 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
 
   return (
     <>
+      <PutanjaJsonLd
+        stavke={[
+          { naziv: "Proizvodi", href: "/proizvodi" },
+          { naziv: tip.label, href: `/delovi/${tip.key}` },
+        ]}
+      />
       <PageHeader
         breadcrumb={tip.label}
         title={`${tip.label} za plugove`}
