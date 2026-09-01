@@ -11,7 +11,7 @@ import { getProductsWithPhotos, productHref, type Product } from "@/lib/products
  * licenciranim fotografijama pre puštanja u Google Search Console.
  */
 
-const BASE = "https://www.plugeks.com";
+const BASE = "https://plugeks.com";
 
 const escapeXml = (s: string) =>
   s.replace(/[<>&'"]/g, (c) =>

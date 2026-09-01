@@ -28,7 +28,7 @@ import {
   type Product,
 } from "@/lib/products";
 
-const SITE_URL = "https://www.plugeks.com";
+const SITE_URL = "https://plugeks.com";
 
 /* Sve stranice su statičke; nepoznat slug → 404 (nema tankih dinamičkih URL-ova). */
 export const dynamicParams = false;

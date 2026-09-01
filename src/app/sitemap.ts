@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllProducts, productHref } from "@/lib/products";
 
-const BASE = "https://www.plugeks.com";
+const BASE = "https://plugeks.com";
 
 /**
  * Sitemap svih stranica (početna, kategorije + svaki proizvod).

@@ -22,7 +22,7 @@ const sans = Manrope({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const SITE_URL = "https://www.plugeks.com";
+const SITE_URL = "https://plugeks.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
