@@ -16,12 +16,12 @@ export const site = {
   email: "plugeks@gmail.com",
 
   address: {
-    street: "Žabalj",
+    street: "Šajkaška 20",
     city: "Žabalj",
     postalCode: "21230",
     region: "Vojvodina",
     country: "Srbija",
-    full: "Žabalj 21230, Vojvodina, Srbija",
+    full: "Šajkaška 20, Žabalj 21230, Vojvodina, Srbija",
     // ZAMENI: prave koordinate firme za precizan pin na mapi
     lat: 45.3722,
     lng: 20.0686,
