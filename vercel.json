@@ -1,0 +1,20 @@
+{
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "@plugeks_site_url"
+  },
+  "domains": [
+    {
+      "domain": "plugeks.rs",
+      "redirects": [
+        {
+          "source": "/(.*)$",
+          "destination": "https://www.plugeks.rs/$1",
+          "statusCode": 301
+        }
+      ]
+    },
+    {
+      "domain": "www.plugeks.rs"
+    }
+  ]
+}
