@@ -21,7 +21,9 @@ const escapeXml = (s: string) =>
 export function GET() {
   const products = getProductsWithPhotos();
 
+  // Isključi Rolland slike (imaju watermark) — samo plugovi/ slike su čiste
   const urls = products
+    .filter((p) => p.image.includes("/plugovi/"))
     .map((p) => {
       const loc = escapeXml(`${BASE}${productHref(p)}`);
       const img = escapeXml(`${BASE}${p.image}`);

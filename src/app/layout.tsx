@@ -48,6 +48,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "PlugekS" }],
   alternates: { canonical: SITE_URL },
+  verification: { google: "googlebf4d410f6fb7fd1e" },
   openGraph: {
     type: "website",
     locale: "sr_RS",
