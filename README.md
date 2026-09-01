@@ -228,7 +228,7 @@ await fetch("/api/upit", {
 - `sitemap.xml` i `robots.txt` (automatski generisani)
 - Optimizovano za mobilne i brzinu (Core Web Vitals)
 
-Pre objave: u `src/app/layout.tsx` i `sitemap.ts`/`robots.ts` proveri da je domen `https://plugeks.rs` tačan.
+Pre objave: u `src/app/layout.tsx` i `sitemap.ts`/`robots.ts` proveri da je domen `https://www.plugeks.com` tačan.
 
 ---
 

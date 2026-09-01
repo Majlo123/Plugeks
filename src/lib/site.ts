@@ -37,7 +37,7 @@ export const site = {
   socials: {
     facebook: "https://www.facebook.com/p/PlugekS-100077726130337/",
     instagram: "https://www.instagram.com/plugeks/",
-    website: "https://plugeks.rs",
+    website: "https://www.plugeks.com",
   },
 
   // Brzi linkovi za komunikaciju

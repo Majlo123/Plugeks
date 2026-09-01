@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE = "https://plugeks.rs";
+const BASE = "https://www.plugeks.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {

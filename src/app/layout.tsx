@@ -22,7 +22,7 @@ const sans = Manrope({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const SITE_URL = "https://plugeks.rs";
+const SITE_URL = "https://www.plugeks.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,7 +48,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "PlugekS" }],
   alternates: { canonical: SITE_URL },
-  verification: { google: "googlebf4d410f6fb7fd1e" },
   openGraph: {
     type: "website",
     locale: "sr_RS",

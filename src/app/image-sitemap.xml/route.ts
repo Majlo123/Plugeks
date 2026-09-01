@@ -1,4 +1,4 @@
-import { getProductsWithPhotos, productHref } from "@/lib/products";
+import { getProductsWithPhotos, productHref, type Product } from "@/lib/products";
 
 /**
  * Image sitemap — poseban XML sa `image:` namespace-om, jer ugrađeni Next 14
@@ -11,7 +11,7 @@ import { getProductsWithPhotos, productHref } from "@/lib/products";
  * licenciranim fotografijama pre puštanja u Google Search Console.
  */
 
-const BASE = "https://plugeks.rs";
+const BASE = "https://www.plugeks.com";
 
 const escapeXml = (s: string) =>
   s.replace(/[<>&'"]/g, (c) =>
@@ -23,7 +23,7 @@ export function GET() {
 
   // Isključi Rolland slike (imaju watermark) — samo plugovi/ slike su čiste
   const urls = products
-    .filter((p) => p.image.includes("/plugovi/"))
+    .filter((p): p is Product & { image: string } => !!p.image && p.image.includes("/plugovi/"))
     .map((p) => {
       const loc = escapeXml(`${BASE}${productHref(p)}`);
       const img = escapeXml(`${BASE}${p.image}`);
