@@ -232,6 +232,22 @@ Pre objave: u `src/app/layout.tsx` i `sitemap.ts`/`robots.ts` proveri da je dome
 
 ---
 
+## ✉️ Upiti sa forme „Zatraži ponudu"
+
+Forma šalje POST na `/api/upit`, a ruta prosleđuje email preko [Resend](https://resend.com).
+Bez podešenog `RESEND_API_KEY` forma korisniku javi grešku i uputi ga na telefon —
+namerno, da se upiti nikad ne izgube tiho.
+
+Podesi na Vercel-u (Settings → Environment Variables), pregled u `.env.example`:
+
+| Promenljiva | Obavezno | Čemu služi |
+| --- | --- | --- |
+| `RESEND_API_KEY` | da | Ključ sa resend.com |
+| `UPIT_TO` | ne | Gde stižu upiti (podrazumevano `site.email`) |
+| `UPIT_FROM` | ne | Pošiljalac; traži verifikovan domen na Resend-u |
+
+---
+
 ## ☁️ Objava (kasnije)
 
 Najlakše preko [Vercel](https://vercel.com) (kreator Next.js-a): povežeš repozitorijum

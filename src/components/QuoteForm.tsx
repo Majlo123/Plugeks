@@ -6,14 +6,12 @@ import { Input, Textarea } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 /**
- * Forma „Zatraži ponudu" — hvata lead-ove (ime, telefon, proizvod, poruka).
+ * Forma „Zatraži ponudu" — hvata lead-ove (ime, telefon, proizvod, poruka)
+ * i šalje ih na `/api/upit`, koji prosleđuje email na adresu firme.
  *
- * TRENUTNO: validacija + poruka o uspehu (bez slanja).
- * KAKO DA POVEŽEŠ SA EMAIL-OM/CRM-OM (kasnije):
- *   1) Napravi API rutu: src/app/api/upit/route.ts (POST) i tamo pošalji email
- *      (npr. Resend, Nodemailer) ili upiši u CRM.
- *   2) U `handleSubmit` zameni simulaciju sa:
- *        await fetch("/api/upit", { method: "POST", body: JSON.stringify(data) })
+ * „Upit je poslat!" se prikazuje ISKLJUČIVO kad ruta potvrdi da je mail otišao.
+ * Ranije je stajala simulacija koja je uvek javljala uspeh, pa su se upiti
+ * gubili bez traga — zato se svaka greška ovde prikazuje korisniku.
  */
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -48,8 +46,33 @@ export function QuoteForm({
     }
 
     setStatus("loading");
-    // Simulacija slanja — ZAMENI pravim POST-om (vidi komentar gore).
-    await new Promise((r) => setTimeout(r, 900));
+    try {
+      const res = await fetch("/api/upit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ime,
+          telefon,
+          poruka: String(data.get("poruka") ?? "").trim(),
+          proizvod: defaultProduct,
+          website: String(data.get("website") ?? ""),
+        }),
+      });
+      const odgovor = (await res.json().catch(() => null)) as
+        | { ok?: boolean; poruka?: string }
+        | null;
+
+      if (!res.ok || !odgovor?.ok) {
+        setStatus("idle");
+        setError(odgovor?.poruka ?? "Slanje nije uspelo. Pokušajte ponovo ili nas pozovite.");
+        return;
+      }
+    } catch {
+      setStatus("idle");
+      setError("Nema veze sa serverom. Proverite internet ili nas pozovite.");
+      return;
+    }
+
     setStatus("success");
     form.reset();
   }
@@ -73,6 +96,15 @@ export function QuoteForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      {/* Mamac za botove — skriveno od ljudi i od čitača ekrana. */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+        className="hidden"
+      />
       <div className={compact ? "space-y-4" : "grid gap-4 sm:grid-cols-2"}>
         <div className="space-y-1.5">
           <label htmlFor="ime" className="text-sm font-medium text-charcoal">
