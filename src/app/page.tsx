@@ -14,9 +14,9 @@ export default function HomePage() {
     <>
       <Hero />
       <UspBar />
-      <Kategorije />
-      <ProizvodiPreview />
       <DeloviPreview />
+      <ProizvodiPreview />
+      <Kategorije />
       <Akcije />
       <KontaktCTA />
     </>

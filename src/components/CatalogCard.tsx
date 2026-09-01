@@ -21,7 +21,8 @@ export function MachineCard({
   const href = productPath(item);
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
-      <Link href={href} className="relative block aspect-[4/3] overflow-hidden" aria-label={item.name}>
+      {/* 16:10 — isti kadar kao slike mašina, pa se cela mašina vidi bez opsecanja. */}
+      <Link href={href} className="relative block aspect-[16/10] overflow-hidden" aria-label={item.name}>
         <ProductThumb
           src={item.image}
           name={item.name}

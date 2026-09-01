@@ -15,6 +15,7 @@ import {
 import { ProductThumb } from "@/components/ProductThumb";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 import {
   getAllProducts,
   getProductBySlug,
@@ -183,7 +184,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   }
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
-                  className="aspect-[4/3] w-full"
+                  className={cn(
+                    "w-full",
+                    p.kind === "masina" ? "aspect-[16/10]" : "aspect-[4/3]",
+                  )}
                 />
               </div>
             </div>
@@ -308,7 +312,10 @@ function RelatedGrid({ p }: { p: Product }) {
               groupKey={r.groupKey}
               code={r.id}
               sizes="(max-width: 640px) 50vw, 25vw"
-              className="aspect-[4/3] w-full"
+              className={cn(
+                "w-full",
+                r.kind === "masina" ? "aspect-[16/10]" : "aspect-[4/3]",
+              )}
             />
             <div className="flex flex-1 flex-col p-3">
               <h3 className="line-clamp-2 text-sm font-semibold text-charcoal group-hover:text-brand">

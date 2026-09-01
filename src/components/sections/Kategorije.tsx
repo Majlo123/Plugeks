@@ -8,7 +8,8 @@ import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 
 export function Kategorije() {
   return (
-    <section className="section bg-cream">
+    // Sekcija ispod (Akcije) je takođe krem — tanka linija ih razdvaja.
+    <section className="section border-b border-border bg-cream">
       <div className="container">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading

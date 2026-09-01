@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Phone, Tractor, Truck, ShieldCheck, Star } from "lucide-react";
+import { Cog, Phone, Tractor, Truck, ShieldCheck, Star, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { site } from "@/lib/site";
@@ -58,14 +58,28 @@ export function Hero() {
             Srbije i regiona.
           </p>
 
+          {/* Dva ulaza u katalog — svaki vodi direktno na svoju vrstu, bez koraka „šta tražite". */}
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="accent" size="lg">
-              <Link href="/proizvodi">
-                Pogledaj ponudu
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="light" size="lg">
+            <div className="flex gap-3">
+              <Button asChild variant="accent" size="lg">
+                <Link href="/proizvodi?vrsta=masine">
+                  <Cog className="h-5 w-5" />
+                  Mašine
+                </Link>
+              </Button>
+              <Button asChild variant="light" size="lg">
+                <Link href="/proizvodi?vrsta=delovi">
+                  <Wrench className="h-5 w-5" />
+                  Delovi
+                </Link>
+              </Button>
+            </div>
+            <Button
+              asChild
+              variant="light"
+              size="lg"
+              className="border border-cream/30 bg-cream/10 text-cream backdrop-blur-sm hover:bg-cream/20 hover:text-cream"
+            >
               <a href={site.telHref}>
                 <Phone className="h-5 w-5" />
                 Pozovi: {site.phoneDisplay}

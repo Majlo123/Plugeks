@@ -13,6 +13,7 @@
 
 import machinesJson from "@/data/machines.json";
 import imagesJson from "@/data/images.json";
+import machineImagesJson from "@/data/machine-images.json";
 import popularJson from "@/data/popular.json";
 import { categories } from "@/lib/data";
 
@@ -20,8 +21,15 @@ import { categories } from "@/lib/data";
  * Prave fotografije proizvoda (id proizvoda → lokalna putanja): mašine i delovi
  * sa rolland.pl (`npm run slike`) + crteži delova za plugove
  * (`npm run plugovi`). Bez unosa u mapi kartica pokazuje brendiran placeholder.
+ *
+ * `machine-images.json` ide POSLE i gazi mapu: to su ručno pripremljene slike
+ * mašina (jedna mašina po kadru, 16:10, bela podloga — vidi public/images/masine),
+ * pa ostaju i kad se `images.json` ponovo generiše skriptom.
  */
-const productImages = imagesJson as Record<string, string>;
+const productImages: Record<string, string> = {
+  ...(imagesJson as Record<string, string>),
+  ...(machineImagesJson as Record<string, string>),
+};
 
 /* ---------------------------------- Model ---------------------------------- */
 

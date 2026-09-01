@@ -14,8 +14,7 @@ export function DeloviPreview() {
   if (featured.length === 0) return null;
 
   return (
-    // Sekcija ispod (Akcije) je takođe krem — tanka linija ih razdvaja.
-    <section className="section border-b border-border bg-cream">
+    <section className="section bg-cream">
       <div className="container">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <SectionHeading

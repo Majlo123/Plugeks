@@ -14,10 +14,15 @@
 import machinesJson from "@/data/machines.json";
 import packedParts from "@/data/parts.json";
 import imagesJson from "@/data/images.json";
+import machineImagesJson from "@/data/machine-images.json";
 import { categories } from "@/lib/data";
 import { productSlug, idFromSlug } from "@/lib/catalog";
 
-const productImages = imagesJson as Record<string, string>;
+// Ručne slike mašina gaze generisanu mapu — vidi komentar u lib/catalog.ts.
+const productImages: Record<string, string> = {
+  ...(imagesJson as Record<string, string>),
+  ...(machineImagesJson as Record<string, string>),
+};
 
 /* ---------------------------------- Model ---------------------------------- */
 

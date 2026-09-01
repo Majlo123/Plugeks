@@ -46,11 +46,18 @@ export type Category = {
   description: string;
   icon: LucideIcon;
   tone: ImageTone;
-  image: string; // ZAMENI: prava fotografija (/public/images/...)
+  image: string;
 };
 
 export type ImageTone = "field" | "forest" | "soil" | "steel" | "harvest";
 
+/**
+ * Slike kategorija žive u `public/images/kategorije/` (900x563, 16:10, bela
+ * podloga) i nisu mockup — to su isečci PRAVIH Rolland rendera naših mašina
+ * (čiste verzije iz git istorije `public/images/rolland/`: 4394 Field Hawk BH,
+ * 4703 Grander AB, 4705 Deeper GB-325, 4396 valjak sa Field BT), a „Rezervni
+ * delovi" je mreža 2x2 Molbro crteža iz `public/images/plugovi/`.
+ */
 export const categories: Category[] = [
   {
     key: "tanjirace",
@@ -60,7 +67,7 @@ export const categories: Category[] = [
       "Nošene, polunošene i hidraulične tanjirače — Field BT, Field Hawk BH, BTP i BH-PA/PB. Obrada strništa i priprema zemljišta u jednom prohodu.",
     icon: Layers,
     tone: "soil",
-    image: "/images/prikljucne.jpg",
+    image: "/images/kategorije/tanjirace.jpg",
   },
   {
     key: "agregati",
@@ -70,7 +77,7 @@ export const categories: Category[] = [
       "Tanjirasti i bezoranični agregati Grander AB/ABL, Field AT i ATP — kompletna priprema setvene osnove sa valjkom.",
     icon: Cog,
     tone: "field",
-    image: "/images/freze.jpg",
+    image: "/images/kategorije/agregati.jpg",
   },
   {
     key: "podrivaci",
@@ -80,7 +87,7 @@ export const categories: Category[] = [
       'Deeper GBM "Michel" i GBK "Kret" — dubinsko rastresanje i razbijanje tabana pluga bez prevrtanja sloja.',
     icon: Tractor,
     tone: "harvest",
-    image: "/images/traktori.jpg",
+    image: "/images/kategorije/podrivaci.jpg",
   },
   {
     key: "valjci",
@@ -90,7 +97,7 @@ export const categories: Category[] = [
       "Različiti tipovi valjaka za obradu zemljišta — kombinuju se sa agregatima i tanjiračama po izboru.",
     icon: Scissors,
     tone: "steel",
-    image: "/images/utovarivaci.jpg",
+    image: "/images/kategorije/valjci.jpg",
   },
   {
     key: "delovi",
@@ -100,7 +107,7 @@ export const categories: Category[] = [
       "Preko 4.600 delova za plugove, agregate, tanjirače, sejalice i vadilice — Lemken, Kuhn, Kverneland, Rabe, Pöttinger i drugi.",
     icon: Wrench,
     tone: "steel",
-    image: "/images/delovi.jpg",
+    image: "/images/kategorije/delovi.jpg",
   },
 ];
 
