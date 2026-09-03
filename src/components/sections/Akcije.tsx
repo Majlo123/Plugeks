@@ -35,8 +35,8 @@ export function Akcije() {
                   Popusti do <span className="text-accent">50%</span> na odabrane modele
                 </h3>
                 <p className="mt-4 max-w-md text-cream/70">
-                  Sezona je uveliko počela — iskoristite akcijske cene na izabrane
-                  malčere, freze i priključke. Količine su ograničene, zato požurite.
+                  Sezona je uveliko počela — iskoristite akcijske cene. Količine su
+                  ograničene, zato požurite.
                 </p>
               </div>
               <div className="relative mt-8 flex flex-col gap-3 sm:flex-row">

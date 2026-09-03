@@ -3,8 +3,16 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Cog, Phone, Tractor, Truck, ShieldCheck, Star, Wrench } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  Cog,
+  Phone,
+  Tractor,
+  Truck,
+  ShieldCheck,
+  Star,
+  Wrench,
+} from "lucide-react";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { site } from "@/lib/site";
 
@@ -53,38 +61,51 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/95 sm:text-xl">
-            Malčeri, freze, prednji utovarivači i kompakt traktori — provereni
-            kvalitet uz finansiranje, podršku oko subvencija i isporuku širom
-            Srbije i regiona.
+            Veliki izbor delova i mašina za poljoprivredu poznatih svetskih
+            proizvođača.
           </p>
 
-          {/* Dva ulaza u katalog — svaki vodi direktno na svoju vrstu, bez koraka „šta tražite". */}
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <div className="flex gap-3">
-              <Button asChild variant="accent" size="lg">
-                <Link href="/proizvodi?vrsta=masine">
-                  <Cog className="h-5 w-5" />
+          {/* Dva ulaza u katalog — svaki vodi direktno na svoju vrstu, bez
+              koraka „šta tražite". Uočljivi su punom bojom, većim formatom i
+              mekom obojenom senkom, a ne dekoracijom; telefon stoji uz njih u
+              istom formatu, samo staklen, da se vidi ali ne konkuriše. */}
+          <div className="mt-9">
+            <div className="flex flex-col gap-3 sm:inline-flex sm:flex-row sm:gap-4">
+              <Link
+                href="/proizvodi?vrsta=masine"
+                className="group inline-flex h-[3.75rem] w-full items-center justify-between gap-3 rounded-full bg-accent pl-7 pr-3 text-[1.0625rem] font-semibold tracking-[-0.01em] text-charcoal shadow-[0_14px_34px_-14px_rgba(224,161,6,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-400 hover:shadow-[0_20px_40px_-14px_rgba(224,161,6,0.95)] sm:w-auto sm:pl-8 sm:text-lg"
+              >
+                <span className="inline-flex items-center gap-2.5">
+                  <Cog className="h-5 w-5 shrink-0" />
                   Mašine
-                </Link>
-              </Button>
-              <Button asChild variant="light" size="lg">
-                <Link href="/proizvodi?vrsta=delovi">
-                  <Wrench className="h-5 w-5" />
+                </span>
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-charcoal/10 transition-transform duration-200 group-hover:translate-x-0.5">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+              <Link
+                href="/proizvodi?vrsta=delovi"
+                className="group inline-flex h-[3.75rem] w-full items-center justify-between gap-3 rounded-full bg-cream pl-7 pr-3 text-[1.0625rem] font-semibold tracking-[-0.01em] text-brand shadow-[0_14px_34px_-14px_rgba(16,20,17,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_40px_-14px_rgba(16,20,17,0.75)] sm:w-auto sm:pl-8 sm:text-lg"
+              >
+                <span className="inline-flex items-center gap-2.5">
+                  <Wrench className="h-5 w-5 shrink-0" />
                   Delovi
-                </Link>
-              </Button>
-            </div>
-            <Button
-              asChild
-              variant="light"
-              size="lg"
-              className="border border-cream/30 bg-cream/10 text-cream backdrop-blur-sm hover:bg-cream/20 hover:text-cream"
-            >
-              <a href={site.telHref}>
-                <Phone className="h-5 w-5" />
+                </span>
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand/10 transition-transform duration-200 group-hover:translate-x-0.5">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+
+              {/* Telefon: isti format, ali „staklen" — vidi se na fotografiji,
+                  a puna boja ostaje rezervisana za dva ulaza u katalog. */}
+              <a
+                href={site.telHref}
+                className="inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-full border border-cream/45 bg-charcoal/35 px-7 text-base font-semibold tracking-[-0.01em] text-cream shadow-[0_14px_34px_-14px_rgba(16,20,17,0.6)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-cream/70 hover:bg-charcoal/50 sm:h-[3.75rem] sm:w-auto sm:text-[1.0625rem]"
+              >
+                <Phone className="h-5 w-5 shrink-0 text-accent" />
                 Pozovi: {site.phoneDisplay}
               </a>
-            </Button>
+            </div>
           </div>
 
           {/* Trust signali */}

@@ -33,11 +33,6 @@ export function KontaktCTA() {
             <h2 className="mx-auto mt-6 max-w-2xl font-display text-3xl font-bold leading-tight text-cream text-balance sm:text-4xl md:text-5xl">
               Recite nam šta vam treba — mi šaljemo ponudu isti dan
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-cream/80">
-              Bez obaveze. Javite traktor i posao, a mi preporučujemo najbolji model,
-              cenu i način plaćanja — uključujući subvencije i rate.
-            </p>
-
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild variant="accent" size="lg">
                 <Link href="/zatrazi-ponudu">
