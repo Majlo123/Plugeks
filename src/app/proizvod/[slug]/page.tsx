@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import {
   ArrowRight,
   ChevronRight,
@@ -30,8 +30,14 @@ import {
 
 const SITE_URL = "https://plugeks.com";
 
-/* Sve stranice su statičke; nepoznat slug → 404 (nema tankih dinamičkih URL-ova). */
-export const dynamicParams = false;
+/**
+ * Svi poznati proizvodi se generišu statički. `dynamicParams` je uključen samo
+ * zbog STARIH adresa: kad se proizvod preimenuje (npr. „Plužna daska" →
+ * „Daska"), slug se menja, a zapamćeni/indeksirani linkovi bi vraćali 404.
+ * Zato slug koji nosi postojeći kataloški broj na kraju ide 308 na novu adresu
+ * (vidi `getProductBySlug` → `idFromSlug`), a sve ostalo je i dalje 404.
+ */
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllProducts().map((p) => ({ slug: p.slug }));
@@ -150,6 +156,8 @@ function ProductJsonLd({ p }: { p: Product }) {
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const p = getProductBySlug(params.slug);
   if (!p) notFound();
+  // Stari slug istog proizvoda → trajno preusmerenje na aktuelnu adresu.
+  if (params.slug !== p.slug) permanentRedirect(productHref(p));
 
   return (
     <>

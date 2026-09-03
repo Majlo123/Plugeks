@@ -321,7 +321,7 @@ export function getParts(): Product[] {
   return build().all.filter((p) => p.kind === "deo");
 }
 
-/** Tipovi delova (lemeš, plužna daska, plaz…) — po njima ljudi i pretražuju. */
+/** Tipovi delova (raonik, daska, plaz…) — po njima ljudi i pretražuju. */
 export function partTypes(): Kategorija[] {
   return prebroj(getParts(), (p) => p.typeKey, (p) => p.typeLabel);
 }

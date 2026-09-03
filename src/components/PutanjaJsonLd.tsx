@@ -2,7 +2,7 @@ const SITE_URL = "https://plugeks.com";
 
 /**
  * BreadcrumbList strukturirani podaci. Google ih koristi da u rezultatu umesto
- * golog URL-a prikaže putanju (Početna › Delovi › Lemeš), što primetno podiže
+ * golog URL-a prikaže putanju (Početna › Delovi › Raonik), što primetno podiže
  * broj klikova. Stranice proizvoda ovo već imaju; ovde je za nove kategorijske.
  */
 export function PutanjaJsonLd({

@@ -98,7 +98,7 @@ export function catalogHref(categoryKey: string): string {
     : `/proizvodi?vrsta=masine&tip=${categoryKey}`;
 }
 
-/** „Plužna daska Överum” → „pluzna daska overum” (za pretragu bez dijakritike). */
+/** „Daska Överum” → „daska overum” (za pretragu bez dijakritike). */
 export function normalize(text: string): string {
   return text
     .toLowerCase()
@@ -160,6 +160,21 @@ export const machines: CatalogItem[] = (machinesJson as MachineRow[]).map((m) =>
   search: normalize(`${m.name} ${m.tagline} ${MACHINE_TYPE_LABELS[m.subgroup] ?? ""}`),
 }));
 
+/**
+ * Stari (i narodni) nazivi tipova delova — ulaze SAMO u indeks pretrage, ne
+ * prikazuju se nigde. Katalog koristi terminologiju sa terena („raonik”,
+ * „daska”, „deflektor”…), ali kupac koji ukuca „lemeš” ili „plužna daska” mora
+ * i dalje da nađe isti deo.
+ */
+const TYPE_SYNONYMS: Record<string, string> = {
+  lemes: "lemeš lemes",
+  daska: "plužna daska",
+  lajsna: "lajsna daske ažurna lajsna",
+  dleto: "dleto",
+  odsecac: "odsecač busena",
+  gredelj: "gredelj",
+};
+
 /* --------------------------- Najtraženiji delovi --------------------------- */
 
 /** Deo iz `popular.json` — nosi i gotove oznake za karticu. */
@@ -186,7 +201,9 @@ export const popularParts: PopularPart[] = (popularJson as PopularRow[]).map((p)
   name: p.name,
   image: p.image,
   facets: p.facets,
-  search: normalize(`${p.name} ${p.tags.join(" ")}`),
+  search: normalize(
+    `${p.name} ${p.tags.join(" ")} ${TYPE_SYNONYMS[p.facets.tip] ?? ""}`,
+  ),
   tags: p.tags,
 }));
 
@@ -250,7 +267,9 @@ export async function loadParts(): Promise<CatalogItem[]> {
         ...(side && { strana: side.key }),
       },
       search: normalize(
-        `${name} ${brand?.label ?? ""} ${type?.label ?? ""} ${group?.label ?? ""}`,
+        `${name} ${brand?.label ?? ""} ${type?.label ?? ""} ${group?.label ?? ""} ${
+          type ? TYPE_SYNONYMS[type.key] ?? "" : ""
+        }`,
       ),
     };
   });

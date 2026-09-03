@@ -27,12 +27,12 @@ export function generateMetadata({ params }: { params: { brend: string } }): Met
 
   return {
     title: `${brend.label} — rezervni delovi za plugove`,
-    description: `Rezervni delovi za plugove ${brend.label} — lemeši, plužne daske, plazovi, grudi i lajsne. ${brend.count} kataloških brojeva. Pošaljite oznaku pluga, javljamo cenu i rok isti dan.`,
+    description: `Rezervni delovi za plugove ${brend.label} — raonici, daske, plazovi, grudi i nastavci daske. ${brend.count} kataloških brojeva. Pošaljite oznaku pluga, javljamo cenu i rok isti dan.`,
     alternates: { canonical: `/delovi/brend/${brend.key}` },
     keywords: [
       `${brend.label} delovi`,
       `delovi za plug ${brend.label}`,
-      `${brend.label} lemeš`,
+      `${brend.label} raonik`,
       "rezervni delovi za plugove",
     ],
   };

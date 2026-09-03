@@ -56,21 +56,21 @@ export const GROUPS = {
 // Prepoznaju se po prvom tokenu slug-a. Redosled nije bitan (tačno poklapanje).
 export const PART_TYPES = {
   // Plug
-  lemiesz: { key: "lemes", label: "Lemeš (raonik)" },
-  odkladnia: { key: "daska", label: "Plužna daska" },
-  odkladnica: { key: "daska", label: "Plužna daska" },
+  lemiesz: { key: "lemes", label: "Raonik" },
+  odkladnia: { key: "daska", label: "Daska" },
+  odkladnica: { key: "daska", label: "Daska" },
   odkladniczka: { key: "predpluzna-daska", label: "Predplužna daska" },
   ploza: { key: "plaz", label: "Plaz" },
   piers: { key: "grudi", label: "Grudi daske" },
-  listwa: { key: "lajsna", label: "Lajsna daske" },
-  dluto: { key: "dleto", label: "Dleto" },
-  scinacz: { key: "odsecac", label: "Odsecač busena" },
+  listwa: { key: "lajsna", label: "Nastavak daske" },
+  dluto: { key: "dleto", label: "Vrh raonika" },
+  scinacz: { key: "odsecac", label: "Deflektor" },
   kroj: { key: "crtalo", label: "Crtalo" },
   kroje: { key: "crtalo", label: "Crtalo" },
   nakladka: { key: "obloga", label: "Obloga (nalegač)" },
   korpus: { key: "telo", label: "Plužno telo" },
   uchwyt: { key: "drzac", label: "Držač" },
-  grzadziel: { key: "gredelj", label: "Gredelj" },
+  grzadziel: { key: "gredelj", label: "Vrat/greda" },
   podstawa: { key: "postolje", label: "Postolje" },
   oslona: { key: "zastita", label: "Zaštita" },
   przod: { key: "prednji-deo", label: "Prednji deo" },
@@ -109,17 +109,17 @@ export const PART_TYPES = {
 // Duži prefiksi moraju biti navedeni pre kraćih.
 export const NAME_PREFIXES = [
   { prefix: "czesc-przednia-plozy", label: "Prednji deo plaza" },
-  { prefix: "listwa-odkladnicy", label: "Lajsna daske" },
-  { prefix: "listwa-azurowa", label: "Ažurna lajsna daske" },
-  { prefix: "lemiesz-przedpluzka", label: "Lemeš predplužnjaka" },
+  { prefix: "listwa-odkladnicy", label: "Nastavak daske" },
+  { prefix: "listwa-azurowa", label: "Rešetka/traka daske" },
+  { prefix: "lemiesz-przedpluzka", label: "Raonik predplužnjaka" },
   { prefix: "odkladnia-przedpluzka", label: "Daska predplužnjaka" },
   { prefix: "piers-przedpluzka", label: "Grudi daske predplužnjaka" },
   { prefix: "ploza-przednia", label: "Prednji plaz" },
   { prefix: "ploza-dluga", label: "Dugi plaz" },
   { prefix: "ploza-krotka", label: "Kratki plaz" },
-  { prefix: "kroj-plozy", label: "Crtalo plaza" },
+  { prefix: "kroj-plozy", label: "Nožasto crtalo" },
   { prefix: "nakladka-plozy", label: "Obloga plaza" },
-  { prefix: "uchwyt-scinacza", label: "Držač odsecača" },
+  { prefix: "uchwyt-scinacza", label: "Nosač deflektora" },
   { prefix: "piers-odkladni", label: "Grudi daske" },
   { prefix: "czesc-przednia", label: "Prednji deo" },
 ];
@@ -128,7 +128,8 @@ export const NAME_PREFIXES = [
 // `match` su tokeni iz slug-a; duži/precizniji obrasci idu prvi.
 export const BRANDS = [
   // Složeni brendovi — moraju biti pre pojedinačnih tokena.
-  { key: "rabe-werk", label: "Rabe / RabeWerk", match: ["rabe-werk", "rabe"] },
+  // „Werk” bez „rabe” u slug-u (MU, KU, KSU, GWR serije) je isti proizvođač — Rabe Werk.
+  { key: "rabe-werk", label: "Rabe / RabeWerk", match: ["rabe-werk", "rabe", "werk"] },
   { key: "landsberg-pottinger", label: "Landsberg / Pöttinger", match: ["landsberg-pottinger"] },
   { key: "dowdeswell-ransomes", label: "Dowdeswell / Ransomes", match: ["dowdeswell-ransomes"] },
   { key: "agrolux-fiskars", label: "Agrolux / Fiskars", match: ["agrolux-fiskars"] },
@@ -143,7 +144,6 @@ export const BRANDS = [
   { key: "case-ih", label: "Case IH / International", match: ["case-international", "case-ih", "case", "international"] },
   { key: "john-deere", label: "John Deere", match: ["john-deere", "deere"] },
   { key: "kongskilde", label: "Kongskilde", match: ["kongskilde", "skjold"] },
-  { key: "werk", label: "Werk", match: ["werk"] },
   { key: "lemken", label: "Lemken", match: ["lemken"] },
   { key: "niemeyer", label: "Niemeyer", match: ["niemeyer"] },
   { key: "gassner", label: "Gassner", match: ["gassner"] },
@@ -216,7 +216,7 @@ export const TOKEN_FIXES = {
 
 /* ------------------------------- Strana ugradnje ------------------------------ */
 // `label` je za filter, `suffix` se dodaje na kraj naziva (rodno neutralno,
-// jer se odnosi na „Lemeš” (m), „Daska” (ž) i „Grudi” (mn.) podjednako).
+// jer se odnosi na „Raonik” (m), „Daska” (ž) i „Grudi” (mn.) podjednako).
 export const SIDES = {
   lewy: { key: "levi", label: "Levi", suffix: "levo" },
   lewa: { key: "levi", label: "Levi", suffix: "levo" },
@@ -257,12 +257,12 @@ export const DESCRIPTORS = {
   grzadziela: "gredelja",
   redlicy: "raonika",
   noza: "noža",
-  scinacza: "odsecača",
+  scinacza: "deflektora",
   przedpluzka: "predplužnjaka",
   gruber: "gruber",
   do: "za",
-  lemiesza: "lemeša",
-  dluta: "dleta",
+  lemiesza: "raonika",
+  dluta: "vrha raonika",
   kroju: "crtala",
   korpusu: "plužnog tela",
   pluga: "pluga",

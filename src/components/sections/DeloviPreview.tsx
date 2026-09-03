@@ -20,7 +20,7 @@ export function DeloviPreview() {
           <SectionHeading
             eyebrow="Delovi za plugove"
             title="Najtraženiji delovi"
-            description="Daske, grudi, lemeši, plazovi i dleta za Kverneland, Lemken, Kuhn, Överum, Vogel & Noot, Regent, Rabe i Pöttinger — sa lagera ili po narudžbi."
+            description="Raonici, daske, grudi, plazovi i deflektori za Kverneland, Lemken, Kuhn, Överum, Vogel & Noot, Regent, Rabe i Pöttinger — sa lagera ili po narudžbi."
           />
           <Button asChild variant="outline" size="md" className="hidden shrink-0 sm:inline-flex">
             <Link href="/proizvodi?vrsta=delovi&grupa=delovi-plugovi">

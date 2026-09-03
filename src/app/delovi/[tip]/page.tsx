@@ -8,7 +8,7 @@ import { partTypes, getPartsByType } from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 
 /**
- * Stranica po tipu dela (lemeš, plužna daska, plaz…). Ovo su pojmovi koje
+ * Stranica po tipu dela (raonik, daska, plaz…). Ovo su pojmovi koje
  * ljudi zaista kucaju, a do sada su postojali samo kao filter u URL-u
  * (`/proizvodi?vrsta=delovi&tip=lemes`), što Google ne indeksira kao zasebnu
  * stranicu.

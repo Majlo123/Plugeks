@@ -102,7 +102,7 @@ async function fetchBoxes(slug) {
 
 const packed = JSON.parse(readFileSync(resolve(root, "src/data/parts.json"), "utf8"));
 
-/** „Plužna daska Överum 96 084 (levo)" → „PLUZNADASKAOVERUM96084LEVO". */
+/** „Daska Överum 96 084 (levo)" → „DASKAOVERUM96084LEVO". */
 const norm = (s) =>
   s
     .normalize("NFD")

@@ -1,7 +1,7 @@
 [
   {
     "id": "1970",
-    "name": "Plužna daska Kverneland 063 261 (desno)",
+    "name": "Daska Kverneland 063 261 (desno)",
     "image": "/images/plugovi/1970.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -12,13 +12,13 @@
     "tags": [
       "Delovi za plugove",
       "Kverneland",
-      "Plužna daska",
+      "Daska",
       "Desni"
     ]
   },
   {
     "id": "2719",
-    "name": "Ažurna lajsna daske Lemken 344 4012 (desno)",
+    "name": "Rešetka/traka daske Lemken 344 4012 (desno)",
     "image": "/images/plugovi/2719.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -29,13 +29,13 @@
     "tags": [
       "Delovi za plugove",
       "Lemken",
-      "Lajsna daske",
+      "Nastavak daske",
       "Desni"
     ]
   },
   {
     "id": "1652",
-    "name": "Plužna daska Kuhn / Huard 616 138 (desno)",
+    "name": "Daska Kuhn / Huard 616 138 (desno)",
     "image": "/images/plugovi/1652.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -46,13 +46,13 @@
     "tags": [
       "Delovi za plugove",
       "Kuhn / Huard",
-      "Plužna daska",
+      "Daska",
       "Desni"
     ]
   },
   {
     "id": "3161",
-    "name": "Plužna daska Överum 96 084 (desno)",
+    "name": "Daska Överum 96 084 (desno)",
     "image": "/images/plugovi/3161.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -63,13 +63,13 @@
     "tags": [
       "Delovi za plugove",
       "Överum",
-      "Plužna daska",
+      "Daska",
       "Desni"
     ]
   },
   {
     "id": "4662",
-    "name": "Plužna daska Vogel & Noot HST UN UN 1160 400 B4 15 PK4 001 02 (desno)",
+    "name": "Daska Vogel & Noot HST UN UN 1160 400 B4 15 PK4 001 02 (desno)",
     "image": "/images/plugovi/4662.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -80,13 +80,13 @@
     "tags": [
       "Delovi za plugove",
       "Vogel & Noot",
-      "Plužna daska",
+      "Daska",
       "Desni"
     ]
   },
   {
     "id": "3802",
-    "name": "Lemeš (raonik) Regent DU S DW S 440 440 (levo)",
+    "name": "Raonik Regent DU S DW S 440 440 (levo)",
     "image": "/images/plugovi/3802.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -97,13 +97,13 @@
     "tags": [
       "Delovi za plugove",
       "Regent",
-      "Lemeš (raonik)",
+      "Raonik",
       "Levi"
     ]
   },
   {
     "id": "3482",
-    "name": "Plužna daska Rabe / RabeWerk HRP O 296 27020102 (levo)",
+    "name": "Daska Rabe / RabeWerk HRP O 296 27020102 (levo)",
     "image": "/images/plugovi/3482.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -114,13 +114,13 @@
     "tags": [
       "Delovi za plugove",
       "Rabe / RabeWerk",
-      "Plužna daska",
+      "Daska",
       "Levi"
     ]
   },
   {
     "id": "2146",
-    "name": "Lemeš (raonik) Landsberg / Pöttinger 925 131 160 (desno)",
+    "name": "Raonik Landsberg / Pöttinger 925 131 160 (desno)",
     "image": "/images/plugovi/2146.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -131,7 +131,7 @@
     "tags": [
       "Delovi za plugove",
       "Landsberg / Pöttinger",
-      "Lemeš (raonik)",
+      "Raonik",
       "Desni"
     ]
   },
@@ -154,7 +154,7 @@
   },
   {
     "id": "2592",
-    "name": "Plužna daska Lemken B B 40 344 1040 (desno)",
+    "name": "Daska Lemken B B 40 344 1040 (desno)",
     "image": "/images/plugovi/2592.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -165,7 +165,7 @@
     "tags": [
       "Delovi za plugove",
       "Lemken",
-      "Plužna daska",
+      "Daska",
       "Desni"
     ]
   },
@@ -256,7 +256,7 @@
   },
   {
     "id": "2277",
-    "name": "Dleto Landsberg / Pöttinger 925 260 110 (desno)",
+    "name": "Vrh raonika Landsberg / Pöttinger 925 260 110 (desno)",
     "image": "/images/plugovi/2277.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -267,13 +267,13 @@
     "tags": [
       "Delovi za plugove",
       "Landsberg / Pöttinger",
-      "Dleto",
+      "Vrh raonika",
       "Desni"
     ]
   },
   {
     "id": "2048",
-    "name": "Lajsna daske Kverneland 053387 (desno)",
+    "name": "Nastavak daske Kverneland 053387 (desno)",
     "image": "/images/plugovi/2048.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -284,7 +284,7 @@
     "tags": [
       "Delovi za plugove",
       "Kverneland",
-      "Lajsna daske",
+      "Nastavak daske",
       "Desni"
     ]
   },
@@ -307,7 +307,7 @@
   },
   {
     "id": "1777",
-    "name": "Lajsna daske Kuhn / Huard 648 102 (desno)",
+    "name": "Nastavak daske Kuhn / Huard 648 102 (desno)",
     "image": "/images/plugovi/1777.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -318,13 +318,13 @@
     "tags": [
       "Delovi za plugove",
       "Kuhn / Huard",
-      "Lajsna daske",
+      "Nastavak daske",
       "Desni"
     ]
   },
   {
     "id": "3258",
-    "name": "Držač odsecača Överum 84 022 (desno)",
+    "name": "Nosač deflektora Överum 84 022 (desno)",
     "image": "/images/plugovi/3258.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -341,7 +341,7 @@
   },
   {
     "id": "198",
-    "name": "Odsecač busena Vogel & Noot PK 805 102 (desno)",
+    "name": "Deflektor Vogel & Noot PK 805 102 (desno)",
     "image": "/images/plugovi/198.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -352,13 +352,13 @@
     "tags": [
       "Delovi za plugove",
       "Vogel & Noot",
-      "Odsecač busena",
+      "Deflektor",
       "Desni"
     ]
   },
   {
     "id": "3424",
-    "name": "Lemeš (raonik) Rabe / RabeWerk SSP OS 293 (levo)",
+    "name": "Raonik Rabe / RabeWerk SSP OS 293 (levo)",
     "image": "/images/plugovi/3424.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -369,7 +369,7 @@
     "tags": [
       "Delovi za plugove",
       "Rabe / RabeWerk",
-      "Lemeš (raonik)",
+      "Raonik",
       "Levi"
     ]
   },
@@ -386,13 +386,13 @@
     "tags": [
       "Delovi za plugove",
       "Landsberg / Pöttinger",
-      "Plužna daska",
+      "Daska",
       "Levi"
     ]
   },
   {
     "id": "2043",
-    "name": "Odsecač busena Kverneland 073300 (desno)",
+    "name": "Deflektor Kverneland 073300 (desno)",
     "image": "/images/plugovi/2043.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -403,7 +403,7 @@
     "tags": [
       "Delovi za plugove",
       "Kverneland",
-      "Odsecač busena",
+      "Deflektor",
       "Desni"
     ]
   }

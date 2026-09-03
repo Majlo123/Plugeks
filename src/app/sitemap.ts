@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/zatrazi-ponudu`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
-  // Kategorijske stranice — one nose pretrage tipa „lemeš za plug".
+  // Kategorijske stranice — one nose pretrage tipa „raonik za plug".
   const kategorije: MetadataRoute.Sitemap = [
     ...machineCategories().map((c) => ({
       url: `${BASE}/masine/${c.key}`,
