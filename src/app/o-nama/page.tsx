@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MapPin, Target, HeartHandshake, Sprout } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/Reveal";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
@@ -35,25 +34,17 @@ const values = [
 export default function ONamaPage() {
   return (
     <>
-      <PageHeader
-        breadcrumb="O nama"
-        title="Mašine kojima domaćini veruju"
-        description="Iz Žablja u srcu Vojvodine, već godinama opremamo poljoprivrednike širom Srbije i regiona proverenom mehanizacijom."
-        tone="harvest"
-        image="/images/about.jpg"
-      />
-
       {/* Priča + slika */}
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <span className="eyebrow">
               <span className="h-px w-6 bg-current" />
               Naša priča
             </span>
-            <h2 className="mt-4 text-3xl font-bold text-charcoal text-balance sm:text-4xl">
+            <h1 className="mt-4 text-3xl font-bold text-charcoal text-balance sm:text-4xl">
               Od poljoprivrednika — za poljoprivrednike
-            </h2>
+            </h1>
             <div className="mt-5 space-y-4 text-muted-foreground">
               <p>
                 PlugekS je nastao iz jednostavne ideje: poljoprivrednicima u Srbiji

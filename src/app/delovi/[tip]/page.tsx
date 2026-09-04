@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHeader } from "@/components/PageHeader";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { partTypes, getPartsByType } from "@/lib/products";
@@ -51,16 +50,19 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
           { naziv: tip.label, href: `/delovi/${tip.key}` },
         ]}
       />
-      <PageHeader
-        breadcrumb={tip.label}
-        title={`${tip.label} za plugove`}
-        description={`${tip.count} kataloških brojeva za plugove svih vodećih proizvođača. Recite nam marku i model pluga — pronaći ćemo odgovarajući deo i poslati cenu isti dan.`}
-        tone="steel"
-      />
-
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
-          <ListaProizvoda items={prikazani} />
+          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+            {tip.label} za plugove
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+            {tip.count} kataloških brojeva za plugove svih vodećih proizvođača. Recite nam
+            marku i model pluga — pronaći ćemo odgovarajući deo i poslati cenu isti dan.
+          </p>
+
+          <div className="mt-8">
+            <ListaProizvoda items={prikazani} />
+          </div>
 
           {ostali > 0 && (
             <p className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">

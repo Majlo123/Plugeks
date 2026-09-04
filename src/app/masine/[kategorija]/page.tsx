@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHeader } from "@/components/PageHeader";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { machineCategories, getMachinesByCategory } from "@/lib/products";
@@ -46,16 +45,20 @@ export default function KategorijaMasinaPage({ params }: { params: { kategorija:
           { naziv: kat.label, href: `/masine/${kat.key}` },
         ]}
       />
-      <PageHeader
-        breadcrumb={kat.label}
-        title={kat.label}
-        description={opis(kat.key)}
-        tone="field"
-      />
-
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
-          <ListaProizvoda items={getMachinesByCategory(kat.key)} />
+          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+            {kat.label}
+          </h1>
+          {opis(kat.key) ? (
+            <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+              {opis(kat.key)}
+            </p>
+          ) : null}
+
+          <div className="mt-8">
+            <ListaProizvoda items={getMachinesByCategory(kat.key)} />
+          </div>
 
           <nav className="mt-12 border-t border-border pt-6">
             <p className="text-sm font-semibold text-charcoal">Ostale mašine</p>

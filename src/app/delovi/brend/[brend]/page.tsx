@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHeader } from "@/components/PageHeader";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { partBrands, getPartsByBrand, partTypes } from "@/lib/products";
@@ -54,16 +53,19 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
           { naziv: brend.label, href: `/delovi/brend/${brend.key}` },
         ]}
       />
-      <PageHeader
-        breadcrumb={brend.label}
-        title={`Delovi za plugove ${brend.label}`}
-        description={`${brend.count} kataloških brojeva za plugove ${brend.label}. Ako niste sigurni koji deo vam treba, pošaljite oznaku pluga ili fotografiju — pronaći ćemo odgovarajući.`}
-        tone="steel"
-      />
-
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
-          <ListaProizvoda items={prikazani} />
+          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+            Delovi za plugove {brend.label}
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+            {brend.count} kataloških brojeva za plugove {brend.label}. Ako niste sigurni koji
+            deo vam treba, pošaljite oznaku pluga ili fotografiju — pronaći ćemo odgovarajući.
+          </p>
+
+          <div className="mt-8">
+            <ListaProizvoda items={prikazani} />
+          </div>
 
           {ostali > 0 && (
             <p className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">

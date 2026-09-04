@@ -147,39 +147,39 @@ export function ProizvodiClient() {
 
   return (
     <div>
-      {/* Vrsta proizvoda — prekidač i povratak na izbor */}
-      <div className="mb-8 flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          onClick={() => setParams({ vrsta: null, q: null })}
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-brand"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Nazad na izbor
-        </button>
-
-        <div className="ml-auto flex gap-2 rounded-full border border-border bg-white p-1">
-          {TYPES.map((key) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => chooseType(key)}
-              className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                key === type
-                  ? "bg-brand text-cream"
-                  : "text-foreground/70 hover:text-brand",
-              )}
-            >
-              {TYPE_META[key].label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Filteri */}
       <div className="rounded-2xl border border-border bg-white p-4 shadow-card sm:p-5">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Vrsta proizvoda — prekidač i povratak na izbor */}
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setParams({ vrsta: null, q: null })}
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-brand"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Nazad na izbor
+          </button>
+
+          <div className="ml-auto flex gap-2 rounded-full border border-border bg-white p-1">
+            {TYPES.map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => chooseType(key)}
+                className={cn(
+                  "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                  key === type
+                    ? "bg-brand text-cream"
+                    : "text-foreground/70 hover:text-brand",
+                )}
+              >
+                {TYPE_META[key].label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-4 border-t border-border pt-4 sm:grid-cols-2 lg:grid-cols-4">
           {FACETS[type].map((facet) => (
             <MultiSelect
               key={facet.key}
@@ -276,9 +276,9 @@ export function ProizvodiClient() {
 function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
   return (
     <div>
-      <h2 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+      <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
         Šta tražite?
-      </h2>
+      </h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">
         Izaberite da li vam treba kompletna mašina ili rezervni deo — filteri se
         prilagođavaju vašem izboru.

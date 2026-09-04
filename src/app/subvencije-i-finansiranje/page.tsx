@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
@@ -64,17 +63,19 @@ const benefits = {
 export default function SubvencijePage() {
   return (
     <>
-      <PageHeader
-        breadcrumb="Subvencije i finansiranje"
-        title="Do mašine lakše — uz subvencije i finansiranje"
-        description="Ne dozvolite da budžet bude prepreka. Pomažemo vam da iskoristite državne podsticaje i plaćate na rate prilagođene vašem gazdinstvu."
-        tone="harvest"
-        image="/images/galerija-2.jpg"
-      />
-
       {/* Dve glavne opcije */}
-      <section className="section bg-cream">
-        <div className="container grid gap-6 lg:grid-cols-2">
+      <section className="section bg-cream pt-28 md:pt-32">
+        <div className="container">
+          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+            Do mašine lakše — uz subvencije i finansiranje
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+            Ne dozvolite da budžet bude prepreka. Pomažemo vam da iskoristite državne
+            podsticaje i plaćate na rate prilagođene vašem gazdinstvu.
+          </p>
+        </div>
+
+        <div className="container mt-8 grid gap-6 lg:grid-cols-2">
           <Reveal>
             <div className="flex h-full flex-col rounded-3xl border border-border/90 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift md:p-10">
               <div className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-50 text-brand ring-1 ring-brand/20">

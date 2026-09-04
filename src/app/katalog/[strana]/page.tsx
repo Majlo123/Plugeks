@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHeader } from "@/components/PageHeader";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { katalogBrojStrana, katalogStrana, KATALOG_PO_STRANI, getAllProducts } from "@/lib/products";
 
@@ -39,16 +38,19 @@ export default function KatalogPage({ params }: { params: { strana: string } }) 
 
   return (
     <>
-      <PageHeader
-        breadcrumb="Katalog"
-        title={`Katalog — strana ${strana} od ${ukupno}`}
-        description={`Proizvodi ${prvi}–${prvi + items.length - 1} od ukupno ${getAllProducts().length}. Kliknite na naziv za detalje i zahtev za ponudu.`}
-        tone="steel"
-      />
-
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
-          <ListaProizvoda items={items} />
+          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+            Katalog — strana {strana} od {ukupno}
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+            Proizvodi {prvi}–{prvi + items.length - 1} od ukupno {getAllProducts().length}.
+            Kliknite na naziv za detalje i zahtev za ponudu.
+          </p>
+
+          <div className="mt-8">
+            <ListaProizvoda items={items} />
+          </div>
 
           <nav className="mt-12 flex items-center justify-between gap-4 border-t border-border pt-6 text-sm">
             {strana > 1 ? (

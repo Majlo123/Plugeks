@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, PhoneCall } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
 
@@ -43,17 +42,17 @@ export default function KontaktPage() {
 
   return (
     <>
-      <PageHeader
-        breadcrumb="Kontakt"
-        title="Javite se — odgovaramo isti dan"
-        description="Pozovite ili pišite na Viber. Za slanje upita i ponude posetite stranicu Zatraži ponudu."
-        tone="steel"
-        image="/images/galerija-1.jpg"
-      />
-
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container mx-auto max-w-2xl">
-          <Reveal>
+          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+            Javite se — odgovaramo isti dan
+          </h1>
+          <p className="mt-3 text-sm text-muted-foreground md:text-base">
+            Pozovite ili pišite na Viber. Za slanje upita i ponude posetite stranicu Zatraži
+            ponudu.
+          </p>
+
+          <Reveal className="mt-8">
             <div className="space-y-4">
               {channels.map((c) => {
                 const Icon = c.icon;

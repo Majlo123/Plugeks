@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Phone, PhoneCall } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
@@ -20,20 +19,12 @@ export default function ZatraziPonuduPage({
 
   return (
     <>
-      <PageHeader
-        breadcrumb="Zatraži ponudu"
-        title="Recite nam šta vam treba — mi šaljemo ponudu isti dan"
-        description="Popunite formu ili nas kontaktirajte direktno. Bez obaveze — preporučujemo najbolji model, cenu i način plaćanja."
-        tone="field"
-        image="/images/cta.jpg"
-      />
-
-      <section className="section bg-cream">
+      <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
           <div className="mx-auto max-w-2xl">
             <Reveal>
               <div className="rounded-3xl border border-border bg-white p-7 shadow-card md:p-9">
-                <h2 className="text-2xl font-bold text-charcoal">Zatraži ponudu</h2>
+                <h1 className="text-2xl font-bold text-charcoal">Zatraži ponudu</h1>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Popunite formu — javljamo se telefonom ili porukom u najkraćem roku.
                 </p>
