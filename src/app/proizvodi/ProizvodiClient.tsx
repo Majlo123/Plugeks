@@ -76,6 +76,7 @@ export function ProizvodiClient() {
   // sa odlaganjem — inače bi svaki taster pokretao navigaciju.
   const urlQuery = params.get("q") ?? "";
   const [query, setQuery] = useState(urlQuery);
+  const searchRowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setQuery(urlQuery), [urlQuery]);
 
@@ -193,12 +194,22 @@ export function ProizvodiClient() {
           ))}
         </div>
 
-        <div className="mt-4 flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center">
+        <div
+          ref={searchRowRef}
+          className="mt-4 flex scroll-mt-[4.65rem] flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center md:scroll-mt-[5.2rem]"
+        >
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => {
+                // Na telefonu tastatura pojede pola ekrana — popni red sa
+                // pretragom odmah ispod (fiksnog) headera da filteri iznad
+                // odu van ekrana i ostane mesta da se dole vide rezultati.
+                if (typeof window === "undefined" || window.innerWidth >= 768) return;
+                searchRowRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
               placeholder={
                 type === "delovi"
                   ? "Pretraga po nazivu, brendu ili kataloškom broju…"
