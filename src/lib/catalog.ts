@@ -12,6 +12,7 @@
  */
 
 import machinesJson from "@/data/machines.json";
+import trailersJson from "@/data/trailers.json";
 import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
 import popularJson from "@/data/popular.json";
@@ -33,7 +34,13 @@ const productImages: Record<string, string> = {
 
 /* ---------------------------------- Model ---------------------------------- */
 
-export type CatalogType = "masine" | "delovi";
+export type CatalogType = "masine" | "delovi" | "prikolice";
+
+/**
+ * Proizvođač auto-prikolica. Ako se program ikad zameni drugim dobavljačem,
+ * menja se ovde — naziv ide na kartice, u breadcrumb i u structured data.
+ */
+export const TRAILER_BRAND = { key: "vesta", label: "Vesta" } as const;
 
 export type CatalogItem = {
   id: string;
@@ -60,6 +67,12 @@ export type FacetDef = {
 
 export const FACETS: Record<CatalogType, FacetDef[]> = {
   masine: [{ key: "tip", label: "Tip mašine", placeholder: "Sve vrste mašina" }],
+  prikolice: [
+    { key: "tip", label: "Šta tražite", placeholder: "Prikolice i oprema" },
+    { key: "program", label: "Program", placeholder: "Svi programi" },
+    { key: "masa", label: "Najveća dozvoljena masa", placeholder: "Sve mase" },
+    { key: "osovine", label: "Broj osovina", placeholder: "Jedno- i dvoosovinske" },
+  ],
   delovi: [
     { key: "grupa", label: "Delovi za mašinu", placeholder: "Sve mašine" },
     { key: "brend", label: "Brend mašine", placeholder: "Svi brendovi" },
@@ -78,6 +91,12 @@ export const TYPE_META: Record<
       "Tanjirače, tanjirasti i bezoranični agregati, podrivači i valjci za obradu — kompletne mašine sa garancijom.",
     image: "/images/prikljucne.jpg",
   },
+  prikolice: {
+    label: "Auto-prikolice",
+    description:
+      "Prikolice od 500 do 3500 kg — otvorene i platforme, za vozila, mašine, plovila i motocikle. Uz njih i dodatna oprema: cerade, stranice, čekrci i točkovi.",
+    image: "/images/kategorije/prikolice.jpg",
+  },
   delovi: {
     label: "Rezervni delovi",
     description:
@@ -90,12 +109,12 @@ export const TYPE_META: Record<
 
 /**
  * Link ka katalogu za jednu kategoriju sa početne strane / iz futera.
- * Kategorija „delovi” vodi na katalog delova, sve ostale na mašine.
+ * „delovi” i „prikolice” su zasebne vrste kataloga, sve ostalo su tipovi mašina.
  */
 export function catalogHref(categoryKey: string): string {
-  return categoryKey === "delovi"
-    ? "/proizvodi?vrsta=delovi"
-    : `/proizvodi?vrsta=masine&tip=${categoryKey}`;
+  if (categoryKey === "delovi") return "/proizvodi?vrsta=delovi";
+  if (categoryKey === "prikolice") return "/proizvodi?vrsta=prikolice";
+  return `/proizvodi?vrsta=masine&tip=${categoryKey}`;
 }
 
 /** „Daska Överum” → „daska overum” (za pretragu bez dijakritike). */
@@ -159,6 +178,99 @@ export const machines: CatalogItem[] = (machinesJson as MachineRow[]).map((m) =>
   facets: { tip: m.subgroup },
   search: normalize(`${m.name} ${m.tagline} ${MACHINE_TYPE_LABELS[m.subgroup] ?? ""}`),
 }));
+
+/* ------------------------------ Auto-prikolice ----------------------------- */
+
+/** Red iz `trailers.json` — popunjava `npm run prikolice`. */
+type TrailerRow = {
+  id: string;
+  /** Prikolica ili dodatna oprema za prikolice — dele isti katalog. */
+  vrsta: "prikolica" | "oprema";
+  model: string;
+  name: string;
+  tagline: string;
+  /** Tehnički opis (samo oprema — ona nema tabelu specifikacije). */
+  note?: string;
+  image?: string;
+  facets: Record<string, string>;
+  specs: [string, string][];
+};
+
+// `specs` je u JSON-u običan niz nizova, pa ide preko `unknown` do parova.
+export const trailerRows = trailersJson as unknown as TrailerRow[];
+
+/**
+ * Programi prikolica. Uz oznaku ide i namena, jer „MARINE 1300” samo za sebe
+ * kupcu ne znači ništa — koristi se na kategorijskim stranicama i u opisima.
+ */
+export const TRAILER_PROGRAMS: Record<string, { oznaka: string; namena: string }> = {
+  uno: { oznaka: "UNO", namena: "osnovna prikolica sa stranicama" },
+  light: { oznaka: "LIGHT", namena: "otvorena prikolica sa stranicama, do 750 kg" },
+  plato: { oznaka: "PLATO", namena: "platforma bez stranica" },
+  cargo: { oznaka: "CARGO", namena: "veća prikolica sa kočionim sistemom" },
+  transporter: { oznaka: "TRANSPORTER", namena: "prevoz vozila" },
+  craft: { oznaka: "CRAFT", namena: "prevoz građevinskih mašina, sa rampama" },
+  marine: { oznaka: "MARINE", namena: "prevoz plovila" },
+  moto: { oznaka: "MOTO", namena: "prevoz motocikala" },
+};
+
+/** Grupe dodatne opreme — ključ nosi prefiks `oprema-` da se ne meša sa programima. */
+const TRAILER_ACCESSORY_GROUPS: Record<string, string> = {
+  "oprema-dodatne-stranice": "Dodatne stranice",
+  "oprema-cerade": "Cerade",
+  "oprema-konstrukcije-za-cerade": "Konstrukcije za cerade",
+  "oprema-nosaci-rezervnog-tocka-i-tockovi": "Nosači rezervnog točka i točkovi",
+  "oprema-potporni-tockovi-stabilizatori-i-stezaljke": "Potporni točkovi i stabilizatori",
+  "oprema-amortizeri-i-mehanizmi-za-kipovanje": "Amortizeri i mehanizmi za kipovanje",
+  "oprema-cekrci-i-nosaci-cekrka": "Čekrci i nosači čekrka",
+  "oprema-nosac-za-motocikl-i-bocne-trake-za-pricvrscivanje": "Nosači za motocikl i trake",
+  "oprema-ostalo": "Ostala oprema",
+};
+
+/**
+ * Prikolice i oprema. Fajl je mali (181 stavka, bez teksta opisa), pa za razliku
+ * od `parts.json` sme pravo u bundle — bez `loadParts()` odlaganja.
+ */
+export const trailers: CatalogItem[] = trailerRows.map((t) => ({
+  id: t.id,
+  type: "prikolice",
+  name: t.name,
+  tagline: t.tagline,
+  image: t.image,
+  facets: t.facets,
+  // „prikolica za auto”, „prikolica za čamac”, „vesta light 23”, „cerada” —
+  // narodni pojmovi ulaze u indeks pretrage iako se nigde ne prikazuju.
+  search: normalize(
+    [
+      t.name,
+      t.model,
+      t.tagline,
+      t.note ?? "",
+      TRAILER_BRAND.label,
+      TRAILER_PROGRAMS[t.facets.program]?.namena ?? "",
+      TRAILER_ACCESSORY_GROUPS[t.facets.program] ?? "",
+      "prikolica prikolice auto prikolica prikolica za auto",
+    ].join(" "),
+  ),
+}));
+
+/** Kratka oznaka za značku na kartici: „LIGHT”, „MARINE”, „Cerade”. */
+export const trailerBadge = (item: CatalogItem) =>
+  facetLabel("prikolice", "program", item.facets.program);
+
+/**
+ * Prikolice pre opreme dok korisnik nije ništa filtrirao — opreme ima skoro
+ * dvaput više, pa bi inače prvi ekran kataloga bio pun čekrka i blatobrana.
+ * Isti razlog i isti obrazac kao `popularFirst` kod delova.
+ */
+export function trailersFirst(items: CatalogItem[]): CatalogItem[] {
+  const prikolice: CatalogItem[] = [];
+  const oprema: CatalogItem[] = [];
+  for (const item of items) {
+    (item.facets.tip === "oprema" ? oprema : prikolice).push(item);
+  }
+  return [...prikolice, ...oprema];
+}
 
 /**
  * Stari (i narodni) nazivi tipova delova — ulaze SAMO u indeks pretrage, ne
@@ -291,9 +403,35 @@ const MACHINE_LABELS: Record<string, Record<string, string>> = {
   tip: MACHINE_TYPE_LABELS,
 };
 
+/**
+ * Oznake fasete prikolica. Mase se izvode iz samih podataka, pa novi model sa
+ * nekom drugom masom ne traži izmenu ove tabele.
+ */
+const TRAILER_LABELS: Record<string, Record<string, string>> = {
+  tip: { prikolica: "Prikolice", oprema: "Dodatna oprema" },
+  program: {
+    ...Object.fromEntries(
+      Object.entries(TRAILER_PROGRAMS).map(([key, p]) => [key, p.oznaka]),
+    ),
+    ...TRAILER_ACCESSORY_GROUPS,
+  },
+  masa: Object.fromEntries(
+    [...new Set(trailers.map((t) => t.facets.masa).filter(Boolean))].map((key) => [
+      key,
+      `${key} kg`,
+    ]),
+  ),
+  osovine: { jednoosovinske: "Jednoosovinska", dvoosovinske: "Dvoosovinska" },
+};
+
 /** Čitljiv naziv jedne vrednosti fasete, npr. („delovi”, „brend”, „lemken”) → „Lemken”. */
 export function facetLabel(type: CatalogType, facetKey: string, value: string): string {
-  const table = type === "masine" ? MACHINE_LABELS : PART_LABELS;
+  const table =
+    type === "masine"
+      ? MACHINE_LABELS
+      : type === "prikolice"
+        ? TRAILER_LABELS
+        : PART_LABELS;
   return table[facetKey]?.[value] ?? value;
 }
 

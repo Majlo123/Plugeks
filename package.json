@@ -10,7 +10,9 @@
     "lint": "next lint",
     "catalog": "node scripts/build-catalog.mjs",
     "slike": "node scripts/import-images.mjs",
-    "plugovi": "node scripts/import-plow-parts.mjs"
+    "plugovi": "node scripts/import-plow-parts.mjs",
+    "prikolice": "node scripts/import-trailers.mjs",
+    "slike:kadar": "python scripts/normalize_product_images.py"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",

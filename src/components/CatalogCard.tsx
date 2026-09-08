@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
 import { Button } from "@/components/ui/button";
-import { productPath, type CatalogItem } from "@/lib/catalog";
+import { productPath, TRAILER_BRAND, type CatalogItem } from "@/lib/catalog";
 
 const THUMB_SIZES = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
 
@@ -14,9 +14,14 @@ const THUMB_SIZES = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
 export function MachineCard({
   item,
   typeLabel,
+  kind = "masina",
+  brandLabel = "Rolland",
 }: {
   item: CatalogItem;
   typeLabel: string;
+  /** Prikolice koriste isti kadar 16:10 i isti raspored — vidi `TrailerCard`. */
+  kind?: "masina" | "prikolica" | "oprema";
+  brandLabel?: string;
 }) {
   const href = productPath(item);
   return (
@@ -26,10 +31,10 @@ export function MachineCard({
         <ProductThumb
           src={item.image}
           name={item.name}
-          kind="masina"
+          kind={kind}
           typeKey={item.facets.tip}
           code={item.id}
-          metaLabel="Rolland"
+          metaLabel={brandLabel}
           sizes={THUMB_SIZES}
           className="h-full w-full transition-transform duration-500 group-hover:scale-105"
         />
@@ -62,6 +67,18 @@ export function MachineCard({
   );
 }
 
+/** Auto-prikolica — ista kartica kao mašina, samo drugi brend i vrsta vizuala. */
+export function TrailerCard({ item, typeLabel }: { item: CatalogItem; typeLabel: string }) {
+  return (
+    <MachineCard
+      item={item}
+      typeLabel={typeLabel}
+      kind="prikolica"
+      brandLabel={TRAILER_BRAND.label}
+    />
+  );
+}
+
 /**
  * Rezervni deo — kartica u istom stilu kao mašina (na zahtev: „da se lepo sve
  * vidi"). Nosi oznake (brend / tip / strana); vizual je brendiran tile sa
@@ -72,7 +89,10 @@ export function PartCard({ item, tags }: { item: CatalogItem; tags: string[] }) 
   const badge = tags[0];
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
-      <Link href={href} className="relative block aspect-[4/3] overflow-hidden" aria-label={item.name}>
+      {/* Kvadrat, a ne 4:3 — Rolland fotografije delova su uspravne (472x630),
+          pa im je posle opsecanja bele sadržaj u proseku kvadratan. U položenom
+          kadru je `object-cover` sekao pola dela. */}
+      <Link href={href} className="relative block aspect-square overflow-hidden" aria-label={item.name}>
         <ProductThumb
           src={item.image}
           name={item.name}

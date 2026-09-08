@@ -3,8 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
-import { partTypes, getPartsByType } from "@/lib/products";
+import { partTypes, getPartsByType, partBrands, katBrojeva, uzBroj } from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
+import { SpisakJsonLd } from "@/components/SpisakJsonLd";
 
 /**
  * Stranica po tipu dela (raonik, daska, plaz…). Ovo su pojmovi koje
@@ -27,8 +28,8 @@ export function generateMetadata({ params }: { params: { tip: string } }): Metad
   if (!tip) return {};
 
   return {
-    title: `${tip.label} za plugove — ${tip.count} delova`,
-    description: `${tip.label} za plugove svih vodećih proizvođača — Lemken, Kuhn, Kverneland, Rabe, Vogel & Noot, Pöttinger i drugi. ${tip.count} kataloških brojeva na stanju ili po porudžbini. Zatražite ponudu, javljamo se isti dan.`,
+    title: `${tip.label} za plugove — ${tip.count} ${uzBroj(tip.count, "deo", "dela", "delova")}`,
+    description: `${tip.label} za plugove svih vodećih proizvođača — Lemken, Kuhn, Kverneland, Rabe, Vogel & Noot, Pöttinger i drugi. ${katBrojeva(tip.count)} na stanju ili po porudžbini. Zatražite ponudu, javljamo se isti dan.`,
     alternates: { canonical: `/delovi/${tip.key}` },
     keywords: [tip.label, `${tip.label} za plug`, "rezervni delovi za plugove", "PlugekS"],
   };
@@ -47,8 +48,13 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
       <PutanjaJsonLd
         stavke={[
           { naziv: "Proizvodi", href: "/proizvodi" },
-          { naziv: tip.label, href: `/delovi/${tip.key}` },
+          { naziv: `${tip.label} za plugove`, href: `/delovi/${tip.key}` },
         ]}
+      />
+      <SpisakJsonLd
+        naziv={`${tip.label} za plugove`}
+        stavke={prikazani}
+        ukupno={svi.length}
       />
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
@@ -56,7 +62,7 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
             {tip.label} za plugove
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
-            {tip.count} kataloških brojeva za plugove svih vodećih proizvođača. Recite nam
+            {katBrojeva(tip.count)} za plugove svih vodećih proizvođača. Recite nam
             marku i model pluga — pronaći ćemo odgovarajući deo i poslati cenu isti dan.
           </p>
 
@@ -75,7 +81,22 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
           )}
 
           <nav className="mt-12 border-t border-border pt-6">
-            <p className="text-sm font-semibold text-charcoal">Ostali tipovi delova</p>
+            {/* Marke su ovde zato što se „raonik" i „raonik za Lemken" traže kao
+                dva različita upita — svaka strana mora da vodi na onu drugu. */}
+            <p className="text-sm font-semibold text-charcoal">
+              {tip.label} po marki pluga
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              {partBrands().map((b) => (
+                <li key={b.key}>
+                  <Link href={`/delovi/brend/${b.key}`} className="text-brand hover:underline">
+                    {tip.label} {b.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-8 text-sm font-semibold text-charcoal">Ostali tipovi delova</p>
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               {partTypes()
                 .filter((t) => t.key !== tip.key)

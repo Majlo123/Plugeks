@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import {
   ArrowRight,
   ChevronRight,
+  Caravan,
   Check,
   Cog,
   Wrench,
@@ -25,8 +26,11 @@ import {
   machineDescription,
   machineHighlights,
   partDescription,
+  trailerDescription,
+  trailerHighlights,
   type Product,
 } from "@/lib/products";
+import { TRAILER_BRAND } from "@/lib/catalog";
 
 const SITE_URL = "https://plugeks.com";
 
@@ -50,10 +54,23 @@ const abs = (path: string) => `${SITE_URL}${path}`;
 const quoteHref = (p: Product) =>
   `/zatrazi-ponudu?proizvod=${encodeURIComponent(p.name)}`;
 
-const catalogHref = (p: Product) =>
+const catalogHref = (p: Product) => {
+  if (p.kind === "masina")
+    return `/proizvodi?vrsta=masine${p.typeKey ? `&tip=${p.typeKey}` : ""}`;
+  if (p.kind === "prikolica" || p.kind === "oprema")
+    return `/proizvodi?vrsta=prikolice&tip=${p.kind === "oprema" ? "oprema" : "prikolica"}${
+      p.typeKey ? `&program=${p.typeKey}` : ""
+    }`;
+  return `/proizvodi?vrsta=delovi${p.brandKey ? `&brend=${p.brandKey}` : ""}`;
+};
+
+/** Jedan izvor opisnog teksta — koristi ga i metadata, i JSON-LD, i sama stranica. */
+const opisProizvoda = (p: Product) =>
   p.kind === "masina"
-    ? `/proizvodi?vrsta=masine${p.typeKey ? `&tip=${p.typeKey}` : ""}`
-    : `/proizvodi?vrsta=delovi${p.brandKey ? `&brend=${p.brandKey}` : ""}`;
+    ? machineDescription(p)
+    : p.kind === "deo"
+      ? partDescription(p)
+      : trailerDescription(p);
 
 /* ------------------------------- Metadata --------------------------------- */
 
@@ -69,11 +86,13 @@ export function generateMetadata({
   const title =
     p.kind === "masina"
       ? `${p.name} — Rolland`
-      : `${p.name} — rezervni deo`;
+      : p.kind === "deo"
+        ? `${p.name} — rezervni deo`
+        : `${p.name} — ${TRAILER_BRAND.label}`;
   const description =
-    p.kind === "masina"
-      ? `${machineDescription(p).slice(0, 155)}`
-      : `${p.name}. ${p.brandLabel && p.brandKey !== "univerzalno" ? `Za mašine ${p.brandLabel}. ` : ""}Zatražite ponudu — cena i rok isporuke isti dan. PlugekS, isporuka širom Srbije.`;
+    p.kind === "deo"
+      ? `${p.name}. ${p.brandLabel && p.brandKey !== "univerzalno" ? `Za mašine ${p.brandLabel}. ` : ""}Zatražite ponudu — cena i rok isporuke isti dan. PlugekS, isporuka širom Srbije.`
+      : opisProizvoda(p).slice(0, 155);
 
   const ogImage = p.image ? abs(p.image) : abs("/og.jpg");
 
@@ -101,7 +120,7 @@ function ProductJsonLd({ p }: { p: Product }) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: p.name,
-    description: p.kind === "masina" ? machineDescription(p) : partDescription(p),
+    description: opisProizvoda(p),
     category: p.groupLabel,
     // Slika u structured data samo kad postoji PRAVA fotografija proizvoda.
     ...(p.image ? { image: [abs(p.image)] } : {}),
@@ -194,7 +213,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   priority
                   className={cn(
                     "w-full",
-                    p.kind === "masina" ? "aspect-[16/10]" : "aspect-[4/3]",
+                    p.kind === "deo" ? "aspect-square" : "aspect-[16/10]",
                   )}
                 />
               </div>
@@ -204,7 +223,13 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <div className="flex flex-col">
               <div className="flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
-                  {p.kind === "masina" ? <Cog className="h-3.5 w-3.5" /> : <Wrench className="h-3.5 w-3.5" />}
+                  {p.kind === "masina" ? (
+                    <Cog className="h-3.5 w-3.5" />
+                  ) : p.kind === "prikolica" ? (
+                    <Caravan className="h-3.5 w-3.5" />
+                  ) : (
+                    <Wrench className="h-3.5 w-3.5" />
+                  )}
                   {p.groupLabel}
                 </span>
                 {p.brandLabel && p.brandKey !== "univerzalno" ? (
@@ -222,21 +247,25 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               ) : null}
 
               <p className="mt-4 leading-relaxed text-foreground/85">
-                {p.kind === "masina" ? machineDescription(p) : partDescription(p)}
+                {opisProizvoda(p)}
               </p>
 
-              {p.kind === "masina" ? (
+              {p.kind === "deo" ? null : (
                 <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                  {machineHighlights(p).map((h) => (
+                  {(p.kind === "masina" ? machineHighlights(p) : trailerHighlights(p)).map((h) => (
                     <li key={h} className="flex items-start gap-2 text-sm text-foreground/85">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                       {h}
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <SpecTable p={p} />
               )}
+
+              {/* Prikolice imaju punu fabričku specifikaciju, delovi kataloške
+                  podatke. Mašine nemaju tabelu (brojke zavise od konfiguracije i
+                  dogovaraju se uz ponudu), a oprema nosi svoj tehnički opis —
+                  njeni fabrički atributi opisuju prikolicu, ne sam komad. */}
+              {p.kind === "deo" || p.kind === "prikolica" ? <SpecTable p={p} /> : null}
 
               {/* CTA */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -274,13 +303,22 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 /* ------------------------------ Podkomponente ----------------------------- */
 
 function SpecTable({ p }: { p: Product }) {
-  const rows: [string, string][] = [
-    ["Kataloški broj", p.id],
-    ["Tip dela", p.typeLabel ?? "—"],
-    ["Brend mašine", p.brandKey && p.brandKey !== "univerzalno" ? p.brandLabel! : "Univerzalno / bez oznake"],
-    ...(p.sideLabel ? ([["Strana ugradnje", p.sideLabel]] as [string, string][]) : []),
-    ["Kategorija", p.groupLabel],
-  ];
+  // Prikolice nose fabričku specifikaciju (`specs`) — delovi je nemaju, pa im se
+  // tabela sastavlja od kataloških podataka.
+  const rows: [string, string][] = p.specs?.length
+    ? [["Model", p.model ?? p.name], ...p.specs, ["Kataloški broj", p.id]]
+    : [
+        ["Kataloški broj", p.id],
+        ["Tip dela", p.typeLabel ?? "—"],
+        [
+          "Brend mašine",
+          p.brandKey && p.brandKey !== "univerzalno"
+            ? p.brandLabel!
+            : "Univerzalno / bez oznake",
+        ],
+        ...(p.sideLabel ? ([["Strana ugradnje", p.sideLabel]] as [string, string][]) : []),
+        ["Kategorija", p.groupLabel],
+      ];
   return (
     <dl className="mt-6 overflow-hidden rounded-2xl border border-border bg-white">
       {rows.map(([k, v], i) => (
@@ -303,7 +341,13 @@ function RelatedGrid({ p }: { p: Product }) {
   return (
     <section className="mt-16">
       <h2 className="font-display text-2xl font-bold text-charcoal">
-        {p.kind === "masina" ? "Slične mašine" : "Slični delovi"}
+        {p.kind === "masina"
+          ? "Slične mašine"
+          : p.kind === "prikolica"
+            ? "Slične prikolice"
+            : p.kind === "oprema"
+              ? "Slična oprema"
+              : "Slični delovi"}
       </h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {related.map((r) => (
@@ -322,7 +366,7 @@ function RelatedGrid({ p }: { p: Product }) {
               sizes="(max-width: 640px) 50vw, 25vw"
               className={cn(
                 "w-full",
-                r.kind === "masina" ? "aspect-[16/10]" : "aspect-[4/3]",
+                r.kind === "deo" ? "aspect-square" : "aspect-[16/10]",
               )}
             />
             <div className="flex flex-1 flex-col p-3">

@@ -13,6 +13,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Scissors,
+  Caravan,
   Cog,
   Tractor,
   Layers,
@@ -37,6 +38,7 @@ export type CategoryKey =
   | "agregati"
   | "podrivaci"
   | "valjci"
+  | "prikolice"
   | "delovi";
 
 export type Category = {
@@ -98,6 +100,16 @@ export const categories: Category[] = [
     icon: Scissors,
     tone: "steel",
     image: "/images/kategorije/valjci.jpg",
+  },
+  {
+    key: "prikolice",
+    label: "Auto-prikolice",
+    short: "Auto-prikolice",
+    description:
+      "Osam programa od 500 do 3500 kg — otvorene prikolice i platforme, za prevoz vozila, građevinskih mašina, plovila i motocikala. Uz njih i dodatna oprema.",
+    icon: Caravan,
+    tone: "steel",
+    image: "/images/kategorije/prikolice.jpg",
   },
   {
     key: "delovi",

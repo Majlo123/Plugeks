@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 type ThumbProps = {
   src?: string;
   name: string;
-  kind?: "masina" | "deo";
+  kind?: "masina" | "deo" | "prikolica" | "oprema";
   /** Zadržani zbog poziva iz kartica — trenutno se ne koriste za izbor slike. */
   typeKey?: string;
   groupKey?: string;
@@ -53,7 +53,9 @@ export function ProductThumb({
           unoptimized
           className="object-cover"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
+        {/* Bez zatamnjenja preko dna: fotografije proizvoda su na beloj podlozi,
+            pa se gradijent video kao siva mrlja. Značka ima svoju krem podlogu i
+            čita se i bez njega. */}
         <span className="pointer-events-none absolute bottom-2 left-2 inline-flex items-center rounded-md bg-cream/90 px-1.5 py-1 shadow-sm ring-1 ring-black/5 backdrop-blur-sm">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo-mark.png" alt="" aria-hidden className="h-3 w-auto sm:h-3.5" />

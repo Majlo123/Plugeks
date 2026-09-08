@@ -16,7 +16,13 @@ import packedParts from "@/data/parts.json";
 import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
 import { categories } from "@/lib/data";
-import { productSlug, idFromSlug } from "@/lib/catalog";
+import {
+  productSlug,
+  idFromSlug,
+  trailerRows,
+  TRAILER_BRAND,
+  TRAILER_PROGRAMS,
+} from "@/lib/catalog";
 
 // Ručne slike mašina gaze generisanu mapu — vidi komentar u lib/catalog.ts.
 const productImages: Record<string, string> = {
@@ -26,7 +32,7 @@ const productImages: Record<string, string> = {
 
 /* ---------------------------------- Model ---------------------------------- */
 
-export type ProductKind = "masina" | "deo";
+export type ProductKind = "masina" | "deo" | "prikolica" | "oprema";
 
 export type Product = {
   kind: ProductKind;
@@ -47,7 +53,43 @@ export type Product = {
   brandLabel?: string;
   sideKey?: string;
   sideLabel?: string;
+  /** Fabrička oznaka modela bez naše reči ispred („LIGHT 23 DA"). */
+  model?: string;
+  /** Tehnička specifikacija — [naziv, vrednost], redosled je i redosled prikaza. */
+  specs?: [string, string][];
+  /** Tehnički opis komada opreme (marka, nosivost, materijal) — vidi `trailers.json`. */
+  note?: string;
 };
+
+/* -------------------------------- Jezik ----------------------------------- */
+
+/**
+ * Kongruencija imenice uz broj u srpskom: 1 → „kataloški broj", 2–4 →
+ * „kataloška broja", ostalo → „kataloških brojeva". Izuzetak su 11–14, koji uz
+ * sebe uvek nose množinu („13 brojeva", ne „13 broja").
+ *
+ * Postoji zato što se brojevi na kategorijskim stranicama ispisuju iz podataka,
+ * pa bi fiksni oblik dao „323 kataloških brojeva" umesto „323 kataloška broja" —
+ * sitnica koju čitalac odmah primeti i koja stranicu čini automatski
+ * generisanom, što je i za posetioca i za Google loš signal.
+ */
+export function uzBroj(
+  n: number,
+  jednina: string,
+  paucal: string,
+  mnozina: string,
+): string {
+  const poslednja = n % 10;
+  const poslednje_dve = n % 100;
+  if (poslednje_dve >= 11 && poslednje_dve <= 14) return mnozina;
+  if (poslednja === 1) return jednina;
+  if (poslednja >= 2 && poslednja <= 4) return paucal;
+  return mnozina;
+}
+
+/** Najčešći slučaj na kategorijskim stranicama. */
+export const katBrojeva = (n: number) =>
+  `${n} ${uzBroj(n, "kataloški broj", "kataloška broja", "kataloških brojeva")}`;
 
 /* ------------------------------- Slug helpers ------------------------------ */
 
@@ -93,6 +135,36 @@ function buildMachine(m: MachineRow): Product {
     typeLabel: MACHINE_TYPE_LABELS[m.subgroup] ?? "Mašina",
     brandKey: "rolland",
     brandLabel: "Rolland",
+  };
+}
+
+/* ------------------------ Auto-prikolice i njihova oprema ------------------ */
+
+/**
+ * Prikolica i dodatna oprema dele isti katalog (`vrsta=prikolice`), ali su
+ * različite vrste proizvoda: prikolica ima tabelu specifikacije, komad opreme
+ * ima tehnički opis i podatak na koju grupu prikolica ide.
+ */
+function buildTrailer(t: (typeof trailerRows)[number]): Product {
+  const oprema = t.vrsta === "oprema";
+  const program = TRAILER_PROGRAMS[t.facets.program];
+
+  return {
+    kind: oprema ? "oprema" : "prikolica",
+    id: t.id,
+    slug: productSlug(t.name, t.id),
+    name: t.name,
+    model: t.model,
+    tagline: t.tagline,
+    note: t.note,
+    image: t.image,
+    groupKey: oprema ? "oprema-prikolice" : "prikolice",
+    groupLabel: oprema ? "Oprema za prikolice" : "Auto-prikolice",
+    typeKey: t.facets.program,
+    typeLabel: program?.oznaka ?? t.tagline,
+    brandKey: TRAILER_BRAND.key,
+    brandLabel: TRAILER_BRAND.label,
+    specs: t.specs,
   };
 }
 
@@ -146,10 +218,11 @@ function build() {
   if (cache) return cache;
 
   const machines = (machinesJson as MachineRow[]).map(buildMachine);
+  const prikolice = trailerRows.map(buildTrailer);
   const tables = packedParts as unknown as PackedParts;
   const parts = tables.items.map((row) => buildPart(row, tables));
 
-  const all = [...machines, ...parts];
+  const all = [...machines, ...prikolice, ...parts];
   const byId = new Map<string, Product>();
   const bySlug = new Map<string, Product>();
   for (const p of all) {
@@ -169,14 +242,21 @@ export function getMachines(): Product[] {
   return build().all.filter((p) => p.kind === "masina");
 }
 
+export function getTrailers(): Product[] {
+  return build().all.filter((p) => p.kind === "prikolica");
+}
+
+export function getTrailerAccessories(): Product[] {
+  return build().all.filter((p) => p.kind === "oprema");
+}
+
 /**
  * Proizvodi koji imaju PRAVU fotografiju (a ne ilustraciju kategorije) — za
  * image sitemap. Prazno dok se ne popuni `public/images/rolland/` + images.json
  * (vidi `npm run slike`).
  */
 export function getProductsWithPhotos(): Product[] {
-  const realIds = new Set(Object.keys(productImages));
-  return build().all.filter((p) => realIds.has(p.id));
+  return build().all.filter((p) => Boolean(p.image));
 }
 
 /** Traži po canonical slug-u; ako se ne poklopi, pokušava po id-u iz slug-a. */
@@ -266,6 +346,150 @@ export function machineHighlights(p: Product): string[] {
   return [...(byType[p.typeKey ?? ""] ?? []), ...common];
 }
 
+/* ------------------------- Auto-prikolice — tekst ------------------------- */
+
+/** Vrednost iz specifikacije po nazivu reda: („Nosivost”) → „610 kg”. */
+const spec = (p: Product, naziv: string) => p.specs?.find(([k]) => k === naziv)?.[1];
+
+/** Broj kilograma iz reda specifikacije: „750 kg” → 750. */
+const kilogrami = (v?: string) => Number(String(v ?? "").replace(/\D/g, "")) || 0;
+
+/** Preko 750 kg prikolica traži B+E (ili B96) — to se ne sme prećutati. */
+const B_KATEGORIJA = 750;
+
+/**
+ * Genitiv materijala, da rečenica ostane pismena („pocinkovani lim” →
+ * „od pocinkovanog lima”). Nepoznat materijal se ne deklinuje nasumično nego
+ * ispiše kao stavka — bolje suvo nego pogrešno.
+ */
+const MATERIJAL_GENITIV: Record<string, string> = {
+  "pocinkovani lim": "pocinkovanog lima",
+  "vodootporni šper": "vodootporne šperploče",
+  "laminirana šperploča": "laminirane šperploče",
+  "toplo cinkovani perforirani lim": "toplo cinkovanog perforiranog lima",
+  aluminijum: "aluminijuma",
+};
+
+function recenicaMaterijala(uvod: string, stavka: string, vrednost: string): string {
+  const genitiv = MATERIJAL_GENITIV[vrednost.toLowerCase()];
+  return genitiv ? `${uvod} od ${genitiv}.` : `${stavka}: ${vrednost.toLowerCase()}.`;
+}
+
+/** Rečenica o nameni serije — „za prevoz plovila”, „platforma bez stranica”… */
+const NAMENA: Record<string, string> = {
+  uno: "Otvorena prikolica sa stranicama, za svakodnevni prevoz oko kuće i bašte.",
+  light: "Otvorena prikolica sa stranicama, za građevinski materijal, alat i kabastu robu.",
+  plato: "Platforma bez stranica — teret se utovaruje sa svih strana i vezuje za pod.",
+  cargo: "Veća prikolica sa kočionim sistemom, za teži i kabastiji teret.",
+  transporter: "Prikolica za prevoz vozila, sa rampama za navoz.",
+  craft: "Prikolica za prevoz građevinskih mašina — bagera, mini utovarivača i sličnog, sa rampama za navoz.",
+  marine: "Prikolica za prevoz plovila, sa podesivim ležištima i vodilicama za spuštanje u vodu.",
+  moto: "Prikolica za prevoz motocikala, sa vodilicom točka i tačkama za vezivanje.",
+};
+
+/**
+ * Opis prikolice se sastavlja iz njene specifikacije — bez izmišljanja brojki i
+ * bez preuzimanja marketinškog teksta sa proizvođačevog sajta.
+ */
+export function trailerDescription(p: Product): string {
+  if (p.kind === "oprema") return accessoryDescription(p);
+
+  const masa = spec(p, "Najveća dozvoljena masa");
+  const dvoosovinska = spec(p, "Broj osovina") === "2";
+  const prostor =
+    spec(p, "Tovarni prostor (D × Š × V)") ?? spec(p, "Tovarni prostor (D × Š)");
+  const nosivost = spec(p, "Nosivost");
+  const stranice = spec(p, "Materijal stranica");
+  const pod = spec(p, "Materijal poda");
+  const kiper = spec(p, "Kiper (nagibni sanduk)") ?? "";
+  const kocnice = spec(p, "Kočioni sistem") ?? "";
+  const doB = kilogrami(masa) <= B_KATEGORIJA;
+
+  return [
+    `${p.name} je ${dvoosovinska ? "dvoosovinska" : "jednoosovinska"} prikolica${
+      masa ? ` najveće dozvoljene mase ${masa}` : ""
+    }.`,
+    // Vozačka kategorija zavisi od mase — do 750 kg je B, preko toga se gleda i
+    // masa skupa, pa se ništa ne tvrdi umesto kupca.
+    masa
+      ? doB
+        ? "Do 750 kg vuče se i sa B kategorijom, bez dodatne dozvole."
+        : "Preko 750 kg je potrebna B+E kategorija (ili B96) — proverite i dozvoljenu masu skupa za vaše vozilo."
+      : null,
+    NAMENA[p.typeKey ?? ""] ?? null,
+    prostor && nosivost ? `Tovarni prostor je ${prostor}, a nosivost ${nosivost}.` : null,
+    stranice ? recenicaMaterijala("Stranice su", "Materijal stranica", stranice) : null,
+    pod ? recenicaMaterijala("Pod je", "Materijal poda", pod) : null,
+    /sa kočionim/i.test(kocnice)
+      ? "Osovina je sa kočionim sistemom, pa se skup zaustavlja kraće i mirnije."
+      : null,
+    dvoosovinska
+      ? "Dvoosovinska konstrukcija mirnije se ponaša na putu i manje je osetljiva na raspored tereta."
+      : null,
+    /^da$/i.test(kiper)
+      ? "Sanduk je nagibni (kiper), pa se rasuti materijal istovaruje bez prebacivanja."
+      : /opciono/i.test(kiper)
+        ? "Nagibni sanduk (kiper) se ugrađuje kao opcija."
+        : null,
+    /BOX/i.test(p.model ?? "")
+      ? "Poklopac zatvara tovarni prostor, pa teret ostaje suv i van pogleda."
+      : null,
+    "Konstrukcija je pocinkovana — ne rđa i lako se pere. Javite nam šta najčešće prevozite i preporučujemo model i izvedbu.",
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+/**
+ * Opis komada opreme. Oprema nema tabelu specifikacije, nego jednu tehničku
+ * rečenicu sa izvora (marka, nosivost, materijal) — ona se prenosi kao podatak
+ * o proizvodu, a mi dodajemo šta kupac treba da nam javi.
+ */
+function accessoryDescription(p: Product): string {
+  // Izvor često izostavi tačku na kraju („…visina ograde - 370 mm”), pa bi se
+  // naša rečenica slepila za njegovu.
+  const uvod = p.note?.trim();
+  return [
+    uvod ? (/[.!?]$/.test(uvod) ? uvod : `${uvod}.`) : null,
+    `Originalna dodatna oprema ${TRAILER_BRAND.label} za prikolice. Recite nam model prikolice i potvrđujemo kompatibilnost, cenu i rok isporuke.`,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+/** Ključne stavke prikolice — sve redom iz specifikacije, bez ulepšavanja. */
+export function trailerHighlights(p: Product): string[] {
+  if (p.kind === "oprema") {
+    return [
+      `Originalna oprema ${TRAILER_BRAND.label}`,
+      "Kompatibilnost potvrđujemo po modelu prikolice",
+      "Isporuka širom Srbije i regiona",
+    ];
+  }
+
+  const kiper = spec(p, "Kiper (nagibni sanduk)") ?? "";
+  const masa = spec(p, "Najveća dozvoljena masa");
+  const nosivost = spec(p, "Nosivost");
+  const doB = kilogrami(masa) <= B_KATEGORIJA;
+
+  return [
+    masa
+      ? `Ukupna masa ${masa}${doB ? " — vuče se sa B kategorijom" : " — traži B+E kategoriju"}`
+      : null,
+    nosivost ? `Nosivost ${nosivost}` : null,
+    spec(p, "Broj osovina") === "2" ? "Dvoosovinska — stabilnija na putu" : null,
+    /sa kočionim/i.test(spec(p, "Kočioni sistem") ?? "") ? "Osovina sa kočnicom" : null,
+    /^da$/i.test(kiper)
+      ? "Nagibni sanduk (kiper) u standardu"
+      : /opciono/i.test(kiper)
+        ? "Nagibni sanduk (kiper) kao opcija"
+        : null,
+    "Pocinkovana konstrukcija — zaštita od korozije",
+    "Garancija i obezbeđeni rezervni delovi",
+    "Isporuka širom Srbije i regiona",
+  ].filter((h): h is string => Boolean(h));
+}
+
 const GROUP_CONTEXT: Record<string, string> = {
   "delovi-plugovi": "plugove",
   "delovi-agregati": "agregate i grubere",
@@ -340,14 +564,47 @@ export function machineCategories(): Kategorija[] {
   return prebroj(getMachines(), (p) => p.typeKey, (p) => p.typeLabel);
 }
 
+/**
+ * Kategorije prikolica — po programu (LIGHT, PLATO, MARINE…). To su i naslovi
+ * kategorijskih stranica: kupac traži „prikolicu za čamac”, ne „jednoosovinsku”.
+ * Kartica u katalogu i dalje nosi samo kratku oznaku programa.
+ */
+export function trailerCategories(): Kategorija[] {
+  return prebroj(
+    getTrailers(),
+    (p) => p.typeKey,
+    (p) => `Prikolice ${TRAILER_PROGRAMS[p.typeKey ?? ""]?.oznaka ?? ""}`.trim(),
+  );
+}
+
+/** Grupe dodatne opreme (Cerade, Čekrci…) — isti obrazac kao kategorije. */
+export function trailerAccessoryGroups(): Kategorija[] {
+  return prebroj(getTrailerAccessories(), (p) => p.typeKey, (p) => p.typeLabel);
+}
+
 export const getPartsByType = (typeKey: string) =>
   getParts().filter((p) => p.typeKey === typeKey);
 
 export const getPartsByBrand = (brandKey: string) =>
   getParts().filter((p) => p.brandKey === brandKey);
 
+/**
+ * Tipovi delova koji za datu marku zaista postoje, sa brojem komada. Od ovoga
+ * se na stranici marke sastavlja uvodni pasus — bez izmišljanja, samo ono što
+ * je u katalogu. Stranica sa jednom rečenicom i spiskom linkova je za Google
+ * „thin content"; ovo joj daje sadržaj koji nijedna druga stranica nema.
+ */
+export const partTypesForBrand = (brandKey: string): Kategorija[] =>
+  prebroj(getPartsByBrand(brandKey), (p) => p.typeKey, (p) => p.typeLabel);
+
 export const getMachinesByCategory = (typeKey: string) =>
   getMachines().filter((p) => p.typeKey === typeKey);
+
+/** Radi i za program prikolica („light") i za grupu opreme („oprema-cerade"). */
+export const getTrailersByType = (typeKey: string) =>
+  build().all.filter(
+    (p) => (p.kind === "prikolica" || p.kind === "oprema") && p.typeKey === typeKey,
+  );
 
 /** Koliko proizvoda ide na jednu stranu kataloškog indeksa. */
 export const KATALOG_PO_STRANI = 120;

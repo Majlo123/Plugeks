@@ -5,6 +5,8 @@ import {
   partTypes,
   partBrands,
   machineCategories,
+  trailerCategories,
+  trailerAccessoryGroups,
   katalogBrojStrana,
 } from "@/lib/products";
 
@@ -37,6 +39,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    ...trailerCategories().map((c) => ({
+      url: `${BASE}/prikolice/${c.key}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...trailerAccessoryGroups().map((c) => ({
+      url: `${BASE}/prikolice/${c.key}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     ...partTypes().map((t) => ({
       url: `${BASE}/delovi/${t.key}`,
       lastModified: now,
@@ -66,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE}${productHref(p)}`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: p.kind === "masina" ? 0.8 : 0.5,
+    priority: p.kind === "deo" ? 0.5 : 0.8,
   }));
 
   return [...staticRoutes, ...kategorije, ...katalog, ...products];

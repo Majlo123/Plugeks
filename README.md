@@ -89,11 +89,12 @@ Promena ovde se odražava na **celom sajtu** (header, footer, dugmad, JSON-LD).
 
 ### 3) Katalog sa rolland.pl → `npm run catalog`
 
-Katalog na `/proizvodi` ima dva dela:
+Katalog na `/proizvodi` ima tri dela:
 
 | Deo | Izvor | Fajl |
 | --- | --- | --- |
 | Mašine (23) | `src/lib/data.ts` (PlugekS) + Rolland | `src/data/machines.json` |
+| Auto-prikolice (65) + oprema (116) | Vesta, `npm run prikolice` (odeljak 6) | `src/data/trailers.json` |
 | Rezervni delovi (4.644) | Rolland | `src/data/parts.json` |
 
 Rolland deo se generiše iz njihovog `sitemap.xml` — jedine stranice koja nije iza
@@ -160,6 +161,114 @@ na `/proizvodi` **pre filtriranja** (prvi ekran i početni redosled rezultata).
 
 Ako se njihov spisak promeni, `--report` ispiše koje naslove nismo uspeli da
 povežemo (najčešće zato što taj kataloški broj ne postoji u našem katalogu).
+
+### 6) Auto-prikolice → `npm run prikolice`
+
+Treća vrsta u katalogu (uz mašine i delove) su auto-prikolice Vesta — **ceo
+program, svih 8 serija**, plus dodatna oprema:
+
+| Serija | Šta je | Modela |
+| --- | --- | ---: |
+| UNO | osnovna prikolica sa stranicama | 1 |
+| LIGHT | otvorena prikolica do 750 kg | 21 |
+| PLATO | platforma bez stranica | 15 |
+| CARGO | veća prikolica sa kočnicom | 8 |
+| TRANSPORTER | za prevoz vozila, sa rampama | 6 |
+| CRAFT | za građevinske mašine, sa rampama | 3 |
+| MARINE | za plovila | 8 |
+| MOTO | za motocikle | 3 |
+| **Dodatna oprema** | cerade, stranice, čekrci, točkovi, kip mehanizmi… | **116** |
+
+```bash
+npm run prikolice     # 1) podaci + sirovi originali u data/vesta-originals/
+npm run slike:kadar   # 2) slike za sajt u public/images/prikolice/
+```
+
+Drugi korak je obavezan. Sirove fotografije sa izvora dolaze u **50 različitih
+formata** (od 157x73 do 2560x1696) i sa **25–100% praznine u kadru**, pa bi u
+mreži kartica jedna prikolica ispunila karticu, a druga plutala kao tačka.
+`scripts/normalize_product_images.py` (Pillow) iseca belu marginu, skalira
+proizvod na isti udeo kadra i centrira ga na belom platnu **1200x750** (16:10,
+isti odnos kao kartica) — vidi odeljak 7. Tri fotografije opreme ostaju mekše
+jer im je original sitan; skripta ih prijavi na kraju.
+
+Podaci: spisak se čita iz `product-sitemap`-a, **ne iz liste kategorija** — njihova
+paginacija je polomljena (LIGHT strane 3 i 4 vraćaju 404, pa se kroz sajt vidi
+12 od 21 modela). Tehnički podaci i fotografije dolaze iz JSON-LD-a svake
+stranice proizvoda.
+
+Skripta piše:
+
+| Fajl | Šta je unutra |
+| --- | --- |
+| `src/data/trailers.json` | 181 stavka — naziv, fasete (tip / program / masa / osovine) i fabrička specifikacija |
+| `data/vesta-originals/{slug}.jpg` | sirova fotografija sa izvora (gitignored) |
+| `public/images/prikolice/{slug}.jpg` | normalizovana slika za sajt, 1200x750 |
+
+Kataloški brojevi kreću od **9001** za prikolice i **9501** za opremu (Rolland
+program staje na 4790), pa se ne sudaraju sa postojećim proizvodima. Fotografije
+se imenuju po slug-u sa izvora, a ne po kataloškom broju — tako novi model, koji
+pomera id-eve, ne pomeša slike sa proizvodima.
+
+Skripta usput čisti zaostatke sa izvora: `-copy` slugove (WordPress kopije),
+dva ručno navedena duplikata i stavke koje su identične po nazivu, opisu i
+fotografiji. Ono što i posle toga deli naziv su stvarno različiti komadi, pa
+dobijaju sufiks `(varijanta 2)`.
+
+Šta skripta **namerno ne prenosi**:
+
+- **cene** — PlugekS radi po upitu, pa bi tuđi cenovnik bio netačan;
+- **marketinški tekst uz prikolice** — opis svakog modela se sastavlja iz njegove
+  specifikacije, u `trailerDescription()` (`src/lib/products.ts`);
+- **specifikaciju uz opremu** — fabrički atributi tamo opisuju *prikolicu na koju
+  komad ide* (nosivost, broj osovina), pa bi tabela zavarala. Oprema zato nosi
+  samo svoj tehnički opis (`note`) — marku, nosivost i materijal.
+
+> **Vozačka kategorija:** prikolice idu od 500 do 3500 kg. Tvrdnja „vuče se sa B
+> kategorijom" se ispisuje **samo** do 750 kg; preko toga opis traži B+E (ili
+> B96) i upućuje na proveru dozvoljene mase skupa. Ako se granica menja, to je
+> `B_KATEGORIJA` u `src/lib/products.ts`.
+
+> **Fotografije** su proizvođačeve, čiste i bez žiga, ali su i dalje tuđe — zato
+> `/images/prikolice/` ide sa `X-Robots-Tag: noindex` (isto kao Rolland slike,
+> vidi `next.config.mjs`) i ne ulazi u `image-sitemap.xml`. Kad dobiješ svoje
+> fotografije ili media paket, ukloni to pravilo.
+
+### 7) Kadar fotografija proizvoda → `npm run slike:kadar`
+
+Kartica proizvoda prikazuje sliku sa `object-cover`, dakle **opseca sve što ne
+staje u njen odnos stranica**. Izvorne fotografije to ne poštuju:
+
+| Folder | Original | Problem |
+| --- | --- | --- |
+| `public/images/rolland/` | 472x630 i 599x800, **uspravno** | kartica dela je bila položena — pola dela je odlazilo van kadra |
+| `public/images/plugovi/` | kvadrat 440x440, sadržaj od 32% do 95% kadra | crteži različite veličine u istoj mreži |
+| `public/images/prikolice/` | 50 formata, od 157x73 do 2560x1696 | jedna prikolica ispuni karticu, druga pluta kao tačka |
+
+```bash
+npm run slike:kadar                  # sve
+npm run slike:kadar -- delovi        # samo jedan posao
+npm run slike:kadar -- --dry         # samo izveštaj
+```
+
+Skripta ne opseca nego radi suprotno: iseče proizvod iz bele pozadine, skalira
+ga na **uvek isti udeo kadra** i centrira na belom platnu tačnog odnosa
+(delovi **600x600**, prikolice **1200x750**). Tada `object-cover` nema šta da
+opseče. Kartica dela je zato i prešla sa 4:3 na kvadrat — sadržaj Rolland
+fotografija je posle opsecanja bele u proseku kvadratan (medijana odnosa 0,97).
+
+Slika koja je već u ciljnom formatu se **preskoči**, pa ponovljeno pokretanje ne
+gubi kvalitet na ponovnom JPEG kodiranju. Pokreće se **posle**
+`build_product_images.py`, jer taj upisuje sirove originale.
+
+Rolland fotografije usput gube i **ROLLAND zaglavlje** — traku sa logom iznad
+samog dela, koja je uzimala oko četvrtine kadra. Traži se povezana celina koja
+je cela iznad proizvoda i u gornjoj trećini kadra; ako je nema, slika se ne
+dira. Poluprovidni **žig preko samog dela ostaje**.
+
+> **Šta skripta ne dira:** boje i `public/images/masine/` — te su ručno
+> pripremljene i već su tačno 900x563 (16:10). Kad dobiješ media paket bez žiga,
+> ubaci fajlove u `data/rolland-originals/` i pokreni `npm run slike:kadar`.
 
 ---
 

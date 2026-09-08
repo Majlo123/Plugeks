@@ -1,0 +1,5994 @@
+[
+  {
+    "id": "9001",
+    "vrsta": "prikolica",
+    "model": "UNO 20",
+    "name": "Auto-prikolica UNO 20",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,0 × 1,0 m",
+    "image": "/images/prikolice/uno-20.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "uno",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "632 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "118 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2002 × 1038 × 300 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "2859 × 1458 × 816 mm"
+      ],
+      [
+        "Visina utovara",
+        "512 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9002",
+    "vrsta": "prikolica",
+    "model": "LIGHT 15",
+    "name": "Auto-prikolica LIGHT 15",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 1,5 × 1,1 m",
+    "image": "/images/prikolice/light-15.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "610 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "140 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "1519 × 1130 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "2637 × 1580 × 900 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9003",
+    "vrsta": "prikolica",
+    "model": "LIGHT 17",
+    "name": "Auto-prikolica LIGHT 17",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 1,7 × 1,1 m",
+    "image": "/images/prikolice/light-17.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "606 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "144 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "1719 × 1130 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "2837 × 1590 × 903 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9004",
+    "vrsta": "prikolica",
+    "model": "LIGHT 20",
+    "name": "Auto-prikolica LIGHT 20",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,0 × 1,3 m",
+    "image": "/images/prikolice/light-20.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "587 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "163 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2019 × 1310 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3137 × 1760 × 900 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9005",
+    "vrsta": "prikolica",
+    "model": "LIGHT 20 box",
+    "name": "Auto-prikolica LIGHT 20 box",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,0 × 1,3 m",
+    "image": "/images/prikolice/light-20-box.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "510 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "240 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2019 × 1310 × 568 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3137 × 1770 × 1185 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9006",
+    "vrsta": "prikolica",
+    "model": "LIGHT 20 W",
+    "name": "Auto-prikolica LIGHT 20 W",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,0 × 1,3 m",
+    "image": "/images/prikolice/light-20-w.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "568 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "182 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2020 × 1310 × 386 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3135 × 1760 × 912 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9007",
+    "vrsta": "prikolica",
+    "model": "LIGHT 23",
+    "name": "Auto-prikolica LIGHT 23",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,3 × 1,3 m",
+    "image": "/images/prikolice/light-23.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "579 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "171 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2319 × 1310 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3430 × 1760 × 900 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9008",
+    "vrsta": "prikolica",
+    "model": "LIGHT 23 DA",
+    "name": "Auto-prikolica LIGHT 23 DA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 2,3 × 1,3 m",
+    "image": "/images/prikolice/light-23-da.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "522 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "228 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2319 × 1310 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3435 × 1824 × 903 mm"
+      ],
+      [
+        "Visina utovara",
+        "533 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Opciono"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9009",
+    "vrsta": "prikolica",
+    "model": "LIGHT 23 W",
+    "name": "Auto-prikolica LIGHT 23 W",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,3 × 1,3 m",
+    "image": "/images/prikolice/light-23-w.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "560 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "190 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2319 × 1302 × 387 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3427 × 1760 × 911 mm"
+      ],
+      [
+        "Visina utovara",
+        "528 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9010",
+    "vrsta": "prikolica",
+    "model": "LIGHT 23 WDA",
+    "name": "Auto-prikolica LIGHT 23 WDA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 2,3 × 1,3 m",
+    "image": "/images/prikolice/light-23-wda.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "502 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "248 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2319 × 1302 × 387 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3427 × 1850 × 915 mm"
+      ],
+      [
+        "Visina utovara",
+        "528 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Opciono"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9011",
+    "vrsta": "prikolica",
+    "model": "LIGHT 25",
+    "name": "Auto-prikolica LIGHT 25",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,5 × 1,4 m",
+    "image": "/images/prikolice/light-25.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "566 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "184 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2519 × 1354 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3718 × 1804 × 898 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9012",
+    "vrsta": "prikolica",
+    "model": "LIGHT 25 DA",
+    "name": "Auto-prikolica LIGHT 25 DA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 2,5 × 1,4 m",
+    "image": "/images/prikolice/light-25-da.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "520 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "230 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2521 × 1354 × 373 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3718 × 1894 × 899 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Opciono"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9013",
+    "vrsta": "prikolica",
+    "model": "LIGHT 25 W",
+    "name": "Auto-prikolica LIGHT 25 W",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,5 × 1,4 m",
+    "image": "/images/prikolice/light-25-w.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "550 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "200 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2519 × 1355 × 386 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3716 × 1804 × 910 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9014",
+    "vrsta": "prikolica",
+    "model": "LIGHT 25 WDA",
+    "name": "Auto-prikolica LIGHT 25 WDA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 2,5 × 1,4 m",
+    "image": "/images/prikolice/light-25-wda.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "502 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "248 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2519 × 1356 × 386 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3716 × 1894 × 911 mm"
+      ],
+      [
+        "Visina utovara",
+        "530 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Opciono"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9015",
+    "vrsta": "prikolica",
+    "model": "LIGHT 26 H",
+    "name": "Auto-prikolica LIGHT 26 H",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,7 × 1,5 m",
+    "image": "/images/prikolice/light-26-h.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "490 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "260 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2659 × 1504 × 374 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4098 × 1627 × 1089 mm"
+      ],
+      [
+        "Visina utovara",
+        "715 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9016",
+    "vrsta": "prikolica",
+    "model": "LIGHT 26 HDA",
+    "name": "Auto-prikolica LIGHT 26 HDA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 2,7 × 1,5 m",
+    "image": "/images/prikolice/light-26-hda.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "466 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "284 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2665 × 1502 × 375 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4098 × 1627 × 1089 mm"
+      ],
+      [
+        "Visina utovara",
+        "708 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9017",
+    "vrsta": "prikolica",
+    "model": "LIGHT 30",
+    "name": "Auto-prikolica LIGHT 30",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/light-30.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "528 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "222 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3003 × 1514 × 374 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4359 × 1974 × 911 mm"
+      ],
+      [
+        "Visina utovara",
+        "541 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9018",
+    "vrsta": "prikolica",
+    "model": "LIGHT 30 DA",
+    "name": "Auto-prikolica LIGHT 30 DA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/light-30-da.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "472 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "278 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3003 × 1514 × 374 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4359 × 2054 × 912 mm"
+      ],
+      [
+        "Visina utovara",
+        "541 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9019",
+    "vrsta": "prikolica",
+    "model": "LIGHT Lajt 30 H",
+    "name": "Auto-prikolica LIGHT Lajt 30 H",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/light-30-h.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "474 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "276 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3017 × 1504 × 374 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4455 × 1627 × 1089 mm"
+      ],
+      [
+        "Visina utovara",
+        "715 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9020",
+    "vrsta": "prikolica",
+    "model": "LIGHT 30 HDA",
+    "name": "Auto-prikolica LIGHT 30 HDA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/light-30-hda.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "450 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "300 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3017 × 1502 × 375 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4456 × 1627 × 1082 mm"
+      ],
+      [
+        "Visina utovara",
+        "708 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Pocinkovani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9021",
+    "vrsta": "prikolica",
+    "model": "LIGHT 30 W",
+    "name": "Auto-prikolica LIGHT 30 W",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/light-30-w.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "518 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "232 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3005 × 1507 × 384 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4355 × 1974 × 921 mm"
+      ],
+      [
+        "Visina utovara",
+        "541 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9022",
+    "vrsta": "prikolica",
+    "model": "LIGHT Svetlo 30 WDA",
+    "name": "Auto-prikolica LIGHT Svetlo 30 WDA",
+    "tagline": "Dvoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/light-30-wda.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "light",
+      "masa": "750",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "435 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "315 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3005 × 1507 × 384 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4355 × 2054 × 922 mm"
+      ],
+      [
+        "Visina utovara",
+        "524 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Opciono"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9023",
+    "vrsta": "prikolica",
+    "model": "PLATO 2513",
+    "name": "Prikolica platforma PLATO 2513",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,5 × 1,3 m",
+    "image": "/images/prikolice/plato-2513.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "544 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "206 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "2541 × 1301 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3887 × 1777 × 693/939 mm"
+      ],
+      [
+        "Visina utovara",
+        "426 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9024",
+    "vrsta": "prikolica",
+    "model": "PLATO 2513B",
+    "name": "Prikolica platforma PLATO 2513B",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 2,5 × 1,3 m",
+    "image": "/images/prikolice/plato-2513b.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1044 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "256 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "2541 × 1301 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3951 × 1777 × 698/944 mm"
+      ],
+      [
+        "Visina utovara",
+        "432 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9025",
+    "vrsta": "prikolica",
+    "model": "PLATO 2617",
+    "name": "Prikolica platforma PLATO 2617",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 2,6 × 1,7 m",
+    "image": "/images/prikolice/plato-2617.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1023 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "277 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "2630 × 1670 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3995 × 1730 × 750 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/55 R10C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9026",
+    "vrsta": "prikolica",
+    "model": "PLATO 3015",
+    "name": "Prikolica platforma PLATO 3015",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/plato-3015.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "520 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "230 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3041 × 1501 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4387 × 1977 × 693/939 mm"
+      ],
+      [
+        "Visina utovara",
+        "426 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9027",
+    "vrsta": "prikolica",
+    "model": "PLATO 3017",
+    "name": "Prikolica platforma PLATO 3017",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 3,0 × 1,7 m",
+    "image": "/images/prikolice/plato-3017.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "504 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "246 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3041 × 1701 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4388 × 2177 × 693/939 mm"
+      ],
+      [
+        "Visina utovara",
+        "426 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9028",
+    "vrsta": "prikolica",
+    "model": "PLATO 3117-2.0-10C",
+    "name": "Prikolica platforma PLATO 3117-2.0-10C",
+    "tagline": "Dvoosovinska, 2000 kg, tovarni prostor 3,1 × 1,7 m",
+    "image": "/images/prikolice/plato-3117-2-0-10c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2000",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1612 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "388 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3098 × 1670 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4462 × 1730 × 998 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/55 R10C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9029",
+    "vrsta": "prikolica",
+    "model": "PLATO 3117-2.0-13C",
+    "name": "Prikolica platforma PLATO 3117-2.0-13C",
+    "tagline": "Dvoosovinska, 2000 kg, tovarni prostor 3,1 × 1,7 m",
+    "image": "/images/prikolice/plato-3117-2-0-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2000",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1598 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "402 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3098 × 1670 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4462 × 1730 × 1014 mm"
+      ],
+      [
+        "Visina utovara",
+        "680 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9030",
+    "vrsta": "prikolica",
+    "model": "PLATO 3519-2.00-10C",
+    "name": "Prikolica platforma PLATO 3519-2.00-10C",
+    "tagline": "Dvoosovinska, 2000 kg, tovarni prostor 3,5 × 1,9 m",
+    "image": "/images/prikolice/plato-3519-2-00-10c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2000",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1582 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "418 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3450 × 1870 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4810 × 1930 × 999 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/55 R10C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9031",
+    "vrsta": "prikolica",
+    "model": "PLATO 3519-2.00-13C",
+    "name": "Prikolica platforma PLATO 3519-2.00-13C",
+    "tagline": "Dvoosovinska, 2000 kg, tovarni prostor 3,5 × 1,9 m",
+    "image": "/images/prikolice/plato-3519-2-00-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2000",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1568 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "432 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3450 × 1870 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4810 × 1930 × 1014 mm"
+      ],
+      [
+        "Visina utovara",
+        "680 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9032",
+    "vrsta": "prikolica",
+    "model": "PLATO 3519-2.50-13C",
+    "name": "Prikolica platforma PLATO 3519-2.50-13C",
+    "tagline": "Dvoosovinska, 2500 kg, tovarni prostor 3,5 × 1,9 m",
+    "image": "/images/prikolice/plato-3519-2-50-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2058 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "442 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3450 × 1870 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4797 × 1930 × 997 mm"
+      ],
+      [
+        "Visina utovara",
+        "680 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9033",
+    "vrsta": "prikolica",
+    "model": "PLATO 4119-2.00-10C",
+    "name": "Prikolica platforma PLATO 4119-2.00-10C",
+    "tagline": "Dvoosovinska, 2000 kg, tovarni prostor 4,0 × 1,9 m",
+    "image": "/images/prikolice/plato-4119-2-00-10c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2000",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1558 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "442 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4050 × 1870 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5410 × 1930 × 999 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50 R10C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9034",
+    "vrsta": "prikolica",
+    "model": "PLATO 4120-2.50-13C",
+    "name": "Prikolica platforma PLATO 4120-2.50-13C",
+    "tagline": "Dvoosovinska, 2500 kg, tovarni prostor 4,0 × 2,0 m",
+    "image": "/images/prikolice/plato-4120-2-50-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2002 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "498 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4050 × 2020 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5397 × 2080 × 997 mm"
+      ],
+      [
+        "Visina utovara",
+        "680 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9035",
+    "vrsta": "prikolica",
+    "model": "PLATO 4120-2.70-10C",
+    "name": "Prikolica platforma PLATO 4120-2.70-10C",
+    "tagline": "Dvoosovinska, 2700 kg, tovarni prostor 4,0 × 2,0 m",
+    "image": "/images/prikolice/plato-4120-2-70-10c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "2700",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2216 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "484 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2700 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4050 × 2020 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5397 × 2080 × 997 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50 R10C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9036",
+    "vrsta": "prikolica",
+    "model": "PLATO 4120-3.5-13C",
+    "name": "Prikolica platforma PLATO 4120-3.5-13C",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 4,0 × 2,0 m",
+    "image": "/images/prikolice/plato-4120-3-5-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2912 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "588 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4050 × 2020 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5425 × 2080 × 1014 mm"
+      ],
+      [
+        "Visina utovara",
+        "620 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1850 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9037",
+    "vrsta": "prikolica",
+    "model": "PLATO 6121.2-3.5-14C",
+    "name": "Prikolica platforma PLATO 6121.2-3.5-14C",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 6,1 × 2,1 m",
+    "image": "/images/prikolice/plato-6121-2-3-5-14c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "plato",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2737 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "763 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "6100 × 2140 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "7475 × 2218 × 1007 mm"
+      ],
+      [
+        "Visina utovara",
+        "745 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1850 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9038",
+    "vrsta": "prikolica",
+    "model": "CARGO 25W-1.30",
+    "name": "Auto-prikolica CARGO 25W-1.30",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 2,5 × 1,4 m",
+    "image": "/images/prikolice/cargo-25w-1-30.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1022 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "278 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2511 × 1353 × 385 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3933 × 1870 × 906 mm"
+      ],
+      [
+        "Visina utovara",
+        "526 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9039",
+    "vrsta": "prikolica",
+    "model": "CARGO 25W-1.70",
+    "name": "Auto-prikolica CARGO 25W-1.70",
+    "tagline": "Dvoosovinska, 1700 kg, tovarni prostor 2,5 × 1,4 m",
+    "image": "/images/prikolice/cargo-25w-1-70.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "1700",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1362 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "338 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1700 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2511 × 1353 × 385 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3933 × 1870 × 911 mm"
+      ],
+      [
+        "Visina utovara",
+        "526 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "900 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9040",
+    "vrsta": "prikolica",
+    "model": "CARGO 30-1.30",
+    "name": "Auto-prikolica CARGO 30-1.30",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 3,0 × 1,5 m",
+    "image": "/images/prikolice/cargo-30-1-30.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "988 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "312 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3003 × 1514 × 370 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4417 × 2034 × 903 mm"
+      ],
+      [
+        "Visina utovara",
+        "529 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165R13C"
+      ],
+      [
+        "Materijal poda",
+        "Laminirana šperploča"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9041",
+    "vrsta": "prikolica",
+    "model": "CARGO 2617",
+    "name": "Auto-prikolica CARGO 2617",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 2,6 × 1,7 m",
+    "image": "/images/prikolice/cargo-2617.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "982 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "318 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "2630 × 1670 × 300 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3995 × 1747 × 882 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/55 R10C"
+      ],
+      [
+        "Materijal poda",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9042",
+    "vrsta": "prikolica",
+    "model": "CARGO 4120-2.7-10C",
+    "name": "Auto-prikolica CARGO 4120-2.7-10C",
+    "tagline": "Dvoosovinska, 2700 kg, tovarni prostor 4,0 × 2,0 m",
+    "image": "/images/prikolice/cargo-4120-2-7-10c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "2700",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2152 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "548 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2700 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "4050 × 2020 × 400 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5399 × 2097 × 985 mm"
+      ],
+      [
+        "Visina utovara",
+        "569 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/55 R10C"
+      ],
+      [
+        "Materijal stranica",
+        "Aluminijum"
+      ],
+      [
+        "Materijal poda",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Da"
+      ]
+    ]
+  },
+  {
+    "id": "9043",
+    "vrsta": "prikolica",
+    "model": "CARGO 4120-3.5-14C",
+    "name": "Auto-prikolica CARGO 4120-3.5-14C",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 4,0 × 2,0 m",
+    "image": "/images/prikolice/cargo-4120-3-5-14c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2808 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "692 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "4050 × 2020 × 400 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5425 × 2097 × 1158 mm"
+      ],
+      [
+        "Visina utovara",
+        "745 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1850 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Materijal stranica",
+        "Aluminijum"
+      ],
+      [
+        "Materijal poda",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9044",
+    "vrsta": "prikolica",
+    "model": "CARGO 6121.2-3.5-13C",
+    "name": "Auto-prikolica CARGO 6121.2-3.5-13C",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 6,1 × 2,1 m",
+    "image": "/images/prikolice/cargo-6121-2-3-5-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2670 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "830 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "6100 × 2140 × 400 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "7475 × 2236 × 1033 mm"
+      ],
+      [
+        "Visina utovara",
+        "620 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1850 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50 R13C"
+      ],
+      [
+        "Materijal stranica",
+        "Aluminijum"
+      ],
+      [
+        "Materijal poda",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9045",
+    "vrsta": "prikolica",
+    "model": "CARGO 6121.3-3.5-13C",
+    "name": "Auto-prikolica CARGO 6121.3-3.5-13C",
+    "tagline": "Jednoosovinska, 3500 kg, tovarni prostor 6,1 × 2,1 m",
+    "image": "/images/prikolice/cargo-6121-3-3-5-13c.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "cargo",
+      "masa": "3500",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2620 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "880 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "6100 × 2140 × 400 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "7475 × 2236 × 1033 mm"
+      ],
+      [
+        "Visina utovara",
+        "620 mm"
+      ],
+      [
+        "Broj osovina",
+        "3"
+      ],
+      [
+        "Nosivost po osovini",
+        "1850 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50 R13C"
+      ],
+      [
+        "Materijal stranica",
+        "Aluminijum"
+      ],
+      [
+        "Materijal poda",
+        "Vodootporni šper"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9046",
+    "vrsta": "prikolica",
+    "model": "TRANSPORTER 42-2.0G",
+    "name": "Prikolica za vozila TRANSPORTER 42-2.0G",
+    "tagline": "Dvoosovinska, 2000 kg, tovarni prostor 4,2 × 2,0 m",
+    "image": "/images/prikolice/transporter-42-2-0g.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "transporter",
+      "masa": "2000",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1424 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "576 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4150 × 2050 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5830 × 2060 × 1010 mm"
+      ],
+      [
+        "Visina utovara",
+        "540/700 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165R13C"
+      ],
+      [
+        "Materijal poda",
+        "Toplo cinkovani perforirani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9047",
+    "vrsta": "prikolica",
+    "model": "TRANSPORTER 45-2.7G",
+    "name": "Prikolica za vozila TRANSPORTER 45-2.7G",
+    "tagline": "Dvoosovinska, 2700 kg, tovarni prostor 4,5 × 2,0 m",
+    "image": "/images/prikolice/transporter-45-2-7g.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "transporter",
+      "masa": "2700",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2030 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "670 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2700 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4500 × 2050 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "6160 × 2080 × 1030 mm"
+      ],
+      [
+        "Visina utovara",
+        "600/760 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Materijal poda",
+        "Toplo cinkovani perforirani lim"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9048",
+    "vrsta": "prikolica",
+    "model": "TRANSPORTER 45-3.5G",
+    "name": "Prikolica za vozila TRANSPORTER 45-3.5G",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 4,5 × 2,0 m",
+    "image": "/images/prikolice/transporter-45-3-5g.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "transporter",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2756 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "744 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4500 × 2050 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "6190 × 2080 × 1030 mm"
+      ],
+      [
+        "Visina utovara",
+        "600/760 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Materijal poda",
+        "Toplo cinkovani perforirani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9049",
+    "vrsta": "prikolica",
+    "model": "TRANSPORTER 50-3.5",
+    "name": "Prikolica za vozila TRANSPORTER 50-3.5",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 5,0 × 2,0 m",
+    "image": "/images/prikolice/transporter-50-3-5.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "transporter",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2675 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "825 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "5000 × 2050 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "6698 × 2068 × 1020 mm"
+      ],
+      [
+        "Visina utovara",
+        "613 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50 R13C"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Materijal poda",
+        "Toplo cinkovani perforirani lim"
+      ]
+    ]
+  },
+  {
+    "id": "9050",
+    "vrsta": "prikolica",
+    "model": "TRANSPORTER 50-3.5G",
+    "name": "Prikolica za vozila TRANSPORTER 50-3.5G",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 5,0 × 2,0 m",
+    "image": "/images/prikolice/transporter-50-3-5g.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "transporter",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2718 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "782 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "5000 × 2050 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "6690 × 2080 × 1030 mm"
+      ],
+      [
+        "Visina utovara",
+        "600/760 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Materijal poda",
+        "Toplo cinkovani perforirani lim"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ]
+    ]
+  },
+  {
+    "id": "9051",
+    "vrsta": "prikolica",
+    "model": "TRANSPORTER 85-3.5.3",
+    "name": "Prikolica za vozila TRANSPORTER 85-3.5.3",
+    "tagline": "Jednoosovinska, 3500 kg, tovarni prostor 8,5 × 2,1 m",
+    "image": "/images/prikolice/transporter-85-3-5-3.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "transporter",
+      "masa": "3500",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2547 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "953 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "8500 × 2100 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "9967 × 2100 × 1052 mm"
+      ],
+      [
+        "Visina utovara",
+        "641 mm"
+      ],
+      [
+        "Broj osovina",
+        "3"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50 R13C"
+      ],
+      [
+        "Materijal stranica",
+        "Vodootporni šper"
+      ],
+      [
+        "Materijal poda",
+        "Toplo cinkovani perforirani lim"
+      ]
+    ]
+  },
+  {
+    "id": "9052",
+    "vrsta": "prikolica",
+    "model": "CRAFT 3016-2.7",
+    "name": "Prikolica za mašine CRAFT 3016-2.7",
+    "tagline": "Dvoosovinska, 2700 kg, tovarni prostor 3,0 × 1,6 m",
+    "image": "/images/prikolice/craft-3016-2-7.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "craft",
+      "masa": "2700",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2010 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "690 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2700 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3003 × 1600 × 180 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4836 × 2100 × 2268 mm"
+      ],
+      [
+        "Visina utovara",
+        "510 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50R13C"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9053",
+    "vrsta": "prikolica",
+    "model": "CRAFT 3016-3.5",
+    "name": "Prikolica za mašine CRAFT 3016-3.5",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 3,0 × 1,6 m",
+    "image": "/images/prikolice/craft-3016-3-5.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "craft",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2750 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "750 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3003 × 1600 × 180 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4869 × 2100 × 2273 mm"
+      ],
+      [
+        "Visina utovara",
+        "510 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50R13C"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9054",
+    "vrsta": "prikolica",
+    "model": "CRAFT Kraft 4018-3.5.2",
+    "name": "Prikolica za mašine CRAFT Kraft 4018-3.5.2",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 3,9 × 1,8 m",
+    "image": "/images/prikolice/craft-4018-3-5-2.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "craft",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2607 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "893 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š × V)",
+        "3946 × 1800 × 180 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5809 × 2308 × 2270 mm"
+      ],
+      [
+        "Visina utovara",
+        "510 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195/50R13C"
+      ],
+      [
+        "Kiper (nagibni sanduk)",
+        "Ne"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9055",
+    "vrsta": "prikolica",
+    "model": "MARINE 750",
+    "name": "Prikolica za plovila MARINE 750",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 5,5 × 1,8 m",
+    "image": "/images/prikolice/marine-750.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "532 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "218 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "5500 × 1800 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5405-5905 × 1818 × 1279 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Ležište za plovilo",
+        "Roleri"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9056",
+    "vrsta": "prikolica",
+    "model": "MARINE 1000",
+    "name": "Prikolica za plovila MARINE 1000",
+    "tagline": "Jednoosovinska, 1000 kg, tovarni prostor 5,5 × 1,8 m",
+    "image": "/images/prikolice/marine-1000.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "1000",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "691 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "309 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1000 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "4500-5500 × 1818 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5247-5992 × 1820 × 1280 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1050 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165 R13C"
+      ],
+      [
+        "Ležište za plovilo",
+        "Roleri"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9057",
+    "vrsta": "prikolica",
+    "model": "MARINE 1300",
+    "name": "Prikolica za plovila MARINE 1300",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 6,3 × 2,1 m",
+    "image": "/images/prikolice/marine-1300.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "944 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "356 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "5405-6300 × 2098 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "6472-7192 × 2098 × 1280 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165R13C"
+      ],
+      [
+        "Ležište za plovilo",
+        "Roleri"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9058",
+    "vrsta": "prikolica",
+    "model": "MARINE 1800",
+    "name": "Prikolica za plovila MARINE 1800",
+    "tagline": "Jednoosovinska, 1800 kg, tovarni prostor 6,6 × 2,3 m",
+    "image": "/images/prikolice/marine-1800.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "1800",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "1375 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "425 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1800 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "5552-6552 × 2320 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "6592-7275 × 2320 × 1332 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Ležište za plovilo",
+        "Roleri"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9059",
+    "vrsta": "prikolica",
+    "model": "MARINE 2700",
+    "name": "Prikolica za plovila MARINE 2700",
+    "tagline": "Dvoosovinska, 2700 kg, tovarni prostor 7,7 × 2,5 m",
+    "image": "/images/prikolice/marine-2700.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "2700",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2046 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "654 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "2700 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "6962-7662 × 2530 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "7770-8454 × 2530 × 1634 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "185R14C"
+      ],
+      [
+        "Ležište za plovilo",
+        "Roleri"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9060",
+    "vrsta": "prikolica",
+    "model": "MARINE 3500",
+    "name": "Prikolica za plovila MARINE 3500",
+    "tagline": "Dvoosovinska, 3500 kg, tovarni prostor 8,6 × 2,5 m",
+    "image": "/images/prikolice/marine-3500.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "3500",
+      "osovine": "dvoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "2682 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "818 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "3500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "7630-8630 × 2530 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "8910-9589 × 2530 × 1643 mm"
+      ],
+      [
+        "Broj osovina",
+        "2"
+      ],
+      [
+        "Nosivost po osovini",
+        "1800 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "195R14C"
+      ],
+      [
+        "Ležište za plovilo",
+        "Roleri"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9061",
+    "vrsta": "prikolica",
+    "model": "MARINE Jet",
+    "name": "Prikolica za plovila MARINE Jet",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 3,7 × 1,6 m",
+    "image": "/images/prikolice/marine-jet.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "600 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "150 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3052-3685 × 1598 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "4096-4496 × 1658 × 800 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9062",
+    "vrsta": "prikolica",
+    "model": "MARINE JET Duo",
+    "name": "Prikolica za plovila MARINE JET Duo",
+    "tagline": "Jednoosovinska, 1300 kg, tovarni prostor 3,7 × 2,4 m",
+    "image": "/images/prikolice/marine-jet-duo.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "marine",
+      "masa": "1300",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "952 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "348 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "1300 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "3680 × 2442 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "5184-5384 × 2442 × 805 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "1350 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Sa kočionim sistemom"
+      ],
+      [
+        "Točkovi",
+        "165R13C"
+      ],
+      [
+        "Ležište za plovilo",
+        "Klizači"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "13-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9063",
+    "vrsta": "prikolica",
+    "model": "MOTO 500",
+    "name": "Prikolica za motocikle MOTO 500",
+    "tagline": "Jednoosovinska, 500 kg, tovarni prostor 2,1 × 1,5 m",
+    "image": "/images/prikolice/moto-500.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "moto",
+      "masa": "500",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "364 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "132 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "500 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "2150 × 1458 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3001 × 1540 × 898 mm"
+      ],
+      [
+        "Visina utovara",
+        "541 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Mesta za motocikl",
+        "1"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9064",
+    "vrsta": "prikolica",
+    "model": "MOTO 650",
+    "name": "Prikolica za motocikle MOTO 650",
+    "tagline": "Jednoosovinska, 650 kg, tovarni prostor 2,1 × 1,5 m",
+    "image": "/images/prikolice/moto-650.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "moto",
+      "masa": "650",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "505 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "145 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "650 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "2150 × 1458 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3001 × 1540 × 899 mm"
+      ],
+      [
+        "Visina utovara",
+        "541 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Mesta za motocikl",
+        "2"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9065",
+    "vrsta": "prikolica",
+    "model": "MOTO 750",
+    "name": "Prikolica za motocikle MOTO 750",
+    "tagline": "Jednoosovinska, 750 kg, tovarni prostor 2,1 × 1,5 m",
+    "image": "/images/prikolice/moto-750.jpg",
+    "facets": {
+      "tip": "prikolica",
+      "program": "moto",
+      "masa": "750",
+      "osovine": "jednoosovinske"
+    },
+    "specs": [
+      [
+        "Nosivost",
+        "582 kg"
+      ],
+      [
+        "Masa prazne prikolice",
+        "160 kg"
+      ],
+      [
+        "Najveća dozvoljena masa",
+        "750 kg"
+      ],
+      [
+        "Tovarni prostor (D × Š)",
+        "2150 × 1458 mm"
+      ],
+      [
+        "Spoljne dimenzije (D × Š × V)",
+        "3001 × 1540 × 900 mm"
+      ],
+      [
+        "Visina utovara",
+        "541 mm"
+      ],
+      [
+        "Broj osovina",
+        "1"
+      ],
+      [
+        "Nosivost po osovini",
+        "750 kg"
+      ],
+      [
+        "Kočioni sistem",
+        "Bez kočionog sistema"
+      ],
+      [
+        "Točkovi",
+        "155/80 R13"
+      ],
+      [
+        "Mesta za motocikl",
+        "3"
+      ],
+      [
+        "Zaštita površine",
+        "Cink"
+      ],
+      [
+        "Utikač",
+        "7-pin"
+      ]
+    ]
+  },
+  {
+    "id": "9501",
+    "vrsta": "oprema",
+    "model": "Dodatna ograda za plato",
+    "name": "Dodatna ograda za plato",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatna ograda za plato prikolice, izrađena od pocinkovane čelične cevi, pruža dodatnu sigurnost prilikom transporta tereta. Zadnji deo ograde je prilagodljiv i može se uzdužno pomerati i fiksirati u položaju koji vam odgovara, omogućavajući fleksibilnost u osiguravanju različitih vrsta i dimenzija tereta.",
+    "image": "/images/prikolice/dodatna-ograda-za-plato.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9502",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 15",
+    "name": "Dodatni red stranica 15",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-15.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9503",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 17",
+    "name": "Dodatni red stranica 17",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-17.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9504",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 20 (DA)",
+    "name": "Dodatni red stranica 20 (DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-20-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9505",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 23 (DA)",
+    "name": "Dodatni red stranica 23 (DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-23-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9506",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 25 (DA)",
+    "name": "Dodatni red stranica 25 (DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-25-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9507",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 25 (DA)",
+    "name": "Dodatni red stranica 25 (DA) (varijanta 2)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-25-da-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9508",
+    "vrsta": "oprema",
+    "model": "Dodatni red stranica 30",
+    "name": "Dodatni red stranica 30",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet pocinkovanih dodatnih stranica, visine 370 mm, povećava zapreminu tovarnog prostora dva puta.",
+    "image": "/images/prikolice/dodatni-red-stranica-30.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9509",
+    "vrsta": "oprema",
+    "model": "Ispuna poda između gazišta Transporter 50-3.5",
+    "name": "Ispuna poda između gazišta Transporter 50-3.5",
+    "tagline": "Dodatne stranice",
+    "note": "Lagana i izdržljiva platforma od suzastog lima za autoprikolice.. Obezbeđuje protivkliznu površinu i povećava bezbednost i fleksibilnost pri utovaru. Jednostavna za montažu i demontažu.",
+    "image": "/images/prikolice/ispuna-poda-izmedju-gazista-transporter-50-3-5.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9510",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 17",
+    "name": "Mrežasta ograda 17",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-17.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9511",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 20 (W, DA, WDA)",
+    "name": "Mrežasta ograda 20 (W, DA, WDA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-20-w-da-wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9512",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 20W",
+    "name": "Mrežasta ograda 20W",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde.Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-20w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9513",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 23 (DA)",
+    "name": "Mrežasta ograda 23 (DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde.Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-23-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9514",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 23W",
+    "name": "Mrežasta ograda 23W",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde.Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-23w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9515",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 23W(DA)",
+    "name": "Mrežasta ograda 23W(DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-23wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9516",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 25 (DA)",
+    "name": "Mrežasta ograda 25 (DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-25-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9517",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 25W(DA)",
+    "name": "Mrežasta ograda 25W(DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-25wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9518",
+    "vrsta": "oprema",
+    "model": "Mrežasta ograda 30",
+    "name": "Mrežasta ograda 30",
+    "tagline": "Dodatne stranice",
+    "note": "Komplet toplo pocinkovane mrežaste ograde, izrađene od zatvorenih čeličnih profila i ispunjene metalnom žicom, međusobno zavarenih spojeva. Montira se na standardne stranice. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 500 mm",
+    "image": "/images/prikolice/mrezasta-ograda-30.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9519",
+    "vrsta": "oprema",
+    "model": "Noseća Ispuna Poda",
+    "name": "Noseća Ispuna Poda",
+    "tagline": "Dodatne stranice",
+    "note": "Čvrsta i izdržljiva ispuna sredine platforme od vodootporne neklizajuće laminatne ploče. Povećava površinu tovarnog prostora, omogućavajući prevoz različitih vrsta tereta. A robust and long-lasting central platform infill made from waterproof, non-slip laminated board. It expands the usable cargo area, providing greater flexibility and enabling the transport of a wide range of loads.",
+    "image": "/images/prikolice/noseca-ispuna-poda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9520",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 17",
+    "name": "Perforirana stranica 17",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-17.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9521",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 20 (W, DA, WDA)",
+    "name": "Perforirana stranica 20 (W, DA, WDA)",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-20-w-da-wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9522",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 20W",
+    "name": "Perforirana stranica 20W",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-20w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9523",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 23 (DA)",
+    "name": "Perforirana stranica 23 (DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-23-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9524",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 23W",
+    "name": "Perforirana stranica 23W",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-23w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9525",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 23W(DA)",
+    "name": "Perforirana stranica 23W(DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-23wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9526",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 25W(DA)",
+    "name": "Perforirana stranica 25W(DA)",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-25wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9527",
+    "vrsta": "oprema",
+    "model": "Perforirana stranica 30",
+    "name": "Perforirana stranica 30",
+    "tagline": "Dodatne stranice",
+    "note": "Dodatne perforirane stranice, izrađene od pocinkovanog čeličnog lima. Postoji mogućnost nezavisnog otvaranja prednje i zadnje strane ograde. Visina ograde - 370 mm",
+    "image": "/images/prikolice/perforirana-stranica-30.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-dodatne-stranice"
+    },
+    "specs": []
+  },
+  {
+    "id": "9528",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 15",
+    "name": "Ceradna prekrivka 15",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-15.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9529",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 17",
+    "name": "Ceradna prekrivka 17",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-17.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9530",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 20 (DA)",
+    "name": "Ceradna prekrivka 20 (DA)",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-20-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9531",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 20W",
+    "name": "Ceradna prekrivka 20W",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-20w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9532",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 23 (DA)",
+    "name": "Ceradna prekrivka 23 (DA)",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-23-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9533",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 23W",
+    "name": "Ceradna prekrivka 23W",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-23w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9534",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 23W(DA)",
+    "name": "Ceradna prekrivka 23W(DA)",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-23wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9535",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 25 (DA)",
+    "name": "Ceradna prekrivka 25 (DA)",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-25-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9536",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka 25W(DA)",
+    "name": "Ceradna prekrivka 25W(DA)",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-25wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9537",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka UNO 20",
+    "name": "Ceradna prekrivka UNO 20",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom.",
+    "image": "/images/prikolice/ceradna-prekrivka-uno-20.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9538",
+    "vrsta": "oprema",
+    "model": "Ceradna prekrivka za cargo 25W-1.7",
+    "name": "Ceradna prekrivka za cargo 25W-1.7",
+    "tagline": "Cerade",
+    "note": "Vodootporna cerada, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom. dimenzije 2511x1353 mm",
+    "image": "/images/prikolice/ceradna-prekrivka-za-cargo-25w-1-7.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9539",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 15",
+    "name": "Arnjevi i cerada 15",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-15.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9540",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 17",
+    "name": "Arnjevi i cerada 17",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-17.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9541",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 20 (DA)",
+    "name": "Arnjevi i cerada 20 (DA)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-20-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9542",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 20W",
+    "name": "Arnjevi i cerada 20W",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-20w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9543",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 23 (DA)",
+    "name": "Arnjevi i cerada 23 (DA)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-23-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9544",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 23W",
+    "name": "Arnjevi i cerada 23W",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-23w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9545",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 23W(DA)",
+    "name": "Arnjevi i cerada 23W(DA)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-23wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9546",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 25 (DA)",
+    "name": "Arnjevi i cerada 25 (DA)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-25-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9547",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 25W(DA)",
+    "name": "Arnjevi i cerada 25W(DA)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-25wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9548",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 30",
+    "name": "Arnjevi i cerada 30",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-30.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9549",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 30",
+    "name": "Arnjevi i cerada 30 (varijanta 2)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-30-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9550",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada 30W(DA)",
+    "name": "Arnjevi i cerada 30W(DA)",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1150 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-30wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9551",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada UNO 20",
+    "name": "Arnjevi i cerada UNO 20",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1140 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-uno-20.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9552",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada za cargo 25W-1.7",
+    "name": "Arnjevi i cerada za cargo 25W-1.7",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži:",
+    "image": "/images/prikolice/arnjevi-i-cerada-za-cargo-25w-1-7.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9553",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada za cargo – 1020",
+    "name": "Arnjevi i cerada za cargo – 1020",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži:",
+    "image": "/images/prikolice/arnjevi-i-cerada-za-cargo-1020.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9554",
+    "vrsta": "oprema",
+    "model": "Arnjevi i cerada za cargo – 1150",
+    "name": "Arnjevi i cerada za cargo – 1150",
+    "tagline": "Konstrukcije za cerade",
+    "note": "Komplet sadrži: vodootpornu ceradu, sa dvostranom PVC impregnacijom (gustine od 600-630 g/m2), koja poseduje ugrađene metalne alke sa galvanskom zaštitom montažne arnjeve, izrađene od pocinkovanog čeličnog profila, međusobno povezane vijčanim vezama Unutrašnja visina od poda prikolice – 1150 mm",
+    "image": "/images/prikolice/arnjevi-i-cerada-za-cargo-1150.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-konstrukcije-za-cerade"
+    },
+    "specs": []
+  },
+  {
+    "id": "9555",
+    "vrsta": "oprema",
+    "model": "Blatobrani od nerđajućeg čelika",
+    "name": "Blatobrani od nerđajućeg čelika",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Metalni blatobrani, izrađeni od nerđajućeg čelika, korozivno otporni na slanu i slatku vodu. Cena je za jedan komad.",
+    "image": "/images/prikolice/blatobrani-od-nerdajuceg-celika.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9556",
+    "vrsta": "oprema",
+    "model": "Blatobrani od nerđajućeg čelika",
+    "name": "Blatobrani od nerđajućeg čelika (varijanta 2)",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Metalni blatobrani, izrađeni od nerđajućeg čelika, korozivno otporni na slanu i slatku vodu. Cena je za jedan komad.",
+    "image": "/images/prikolice/blatobrani-od-nerdajuceg-celika-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9557",
+    "vrsta": "oprema",
+    "model": "Platforma iznad rude",
+    "name": "Platforma iznad rude",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Dodatna platforma izrađena od pocinkovanog čelika, služi kao nosač kašike ili drugih elemenata radne mašine.",
+    "image": "/images/prikolice/platforma-iznad-rude.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9558",
+    "vrsta": "oprema",
+    "model": "Rezervni točak 195R13C sa nosačem za Transporter",
+    "name": "Rezervni točak 195R13C sa nosačem za Transporter",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 195R13C",
+    "image": "/images/prikolice/rezervni-tocak-195r13c-sa-nosacem-za-transporter.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9559",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem",
+    "name": "Rezervni točak sa nosačem",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju ispod platforme prikolice, jednostavne montaže/demontaže točak 155/80R13",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9560",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem Craft",
+    "name": "Rezervni točak sa nosačem Craft",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže točak 195/50R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-craft.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9561",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem Marine",
+    "name": "Rezervni točak sa nosačem Marine",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju na vučnu rudu prikolice, jednostavne montaže/demontaže točak 165R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-marine.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9562",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem Marine 2",
+    "name": "Rezervni točak sa nosačem Marine 2",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju na vučnu rudu prikolice, jednostavne montaže/demontaže točak 185R14C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-marine-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9563",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem Marine 3",
+    "name": "Rezervni točak sa nosačem Marine 3",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju na vučnu rudu prikolice, jednostavne montaže/demontaže točak 195R14C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-marine-3.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9564",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem na rudi",
+    "name": "Rezervni točak sa nosačem na rudi",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju na rudu prikolice, jednostavne montaže/demontaže točak 155/80R13",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-na-rudi.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9565",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem W(DA)",
+    "name": "Rezervni točak sa nosačem W(DA)",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju ispod platforme prikolice, jednostavne montaže/demontaže točak 155/80R13",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9566",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za cargo, 165 R13C",
+    "name": "Rezervni točak sa nosačem za cargo, 165 R13C",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "pocinkovani nosač rezervnog točka za ugradnju ispod platforme prikolice, jednostavne montaže/demontažei točak 165 R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-cargo-165-r13c.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9567",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za cargo, 165 R13C",
+    "name": "Rezervni točak sa nosačem za cargo, 165 R13C (varijanta 2)",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju ispod platforme prikolice, jednostavne montaže/demontaže točak 165 R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-cargo-165-r13c-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9568",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za Moto",
+    "name": "Rezervni točak sa nosačem za Moto",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju ispod platforme prikolice, jednostavne montaže/demontaže točak 155/80R13",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-moto.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9569",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za plato, 155/80 R13",
+    "name": "Rezervni točak sa nosačem za plato, 155/80 R13",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Komplet sadrži: pocinkovani nosač rezervnog točka za ugradnju na rudu prikolice, jednostavne montaže/demontaže točak 155/80R13",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-plato-155-80-r13.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9570",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za plato, 165 R13C",
+    "name": "Rezervni točak sa nosačem za plato, 165 R13C",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 165 R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-plato-165-r13c.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9571",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za plato, 195/55 R10C",
+    "name": "Rezervni točak sa nosačem za plato, 195/55 R10C",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 195/55 R10C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-plato-195-55-r10c.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9572",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za plato, 195 R10C",
+    "name": "Rezervni točak sa nosačem za plato, 195 R10C",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 195 R10C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-plato-195-r10c.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9573",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za plato, 195 R13C",
+    "name": "Rezervni točak sa nosačem za plato, 195 R13C",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 195 R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-plato-195-r13c.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9574",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za Transporter",
+    "name": "Rezervni točak sa nosačem za Transporter",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 165R13C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-transporter.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9575",
+    "vrsta": "oprema",
+    "model": "Rezervni točak sa nosačem za Transporter 185R14C",
+    "name": "Rezervni točak sa nosačem za Transporter 185R14C",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Pocinkovani nosač rezervnog točka za montažu na šasiju prikolice, jednostavne montaže/demontaže i točak 185R14C",
+    "image": "/images/prikolice/rezervni-tocak-sa-nosacem-za-transporter-185r14c.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9576",
+    "vrsta": "oprema",
+    "model": "Vodootporna osovina",
+    "name": "Vodootporna osovina",
+    "tagline": "Nosači rezervnog točka i točkovi",
+    "note": "Torziona osovina marke Knott, kod koje su svi elementi toplo pocinkovani, uključujući i glavčine i oscilirajuća ramena. Glavčine su kompletno zaptivene i opremljene konusnim ležajevima, koji su uljno podmazani. Nivo ulja se može kontrolisati kroz prozirni poklopac na glavčini. Po potrebi je potrebno dolivati ulje.",
+    "image": "/images/prikolice/vodootporna-osovina.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosaci-rezervnog-tocka-i-tockovi"
+    },
+    "specs": []
+  },
+  {
+    "id": "9577",
+    "vrsta": "oprema",
+    "model": "Amortizeri za osovine za Transporter",
+    "name": "Amortizeri za osovine za Transporter",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Dodatni amortizer marke KNOTT, koji se vezuje na vešanje osovine (2 kom. na svaku osovinu), pruža agilnije i mekše ogibljenje, pri različitim opterećenjima prikolice.",
+    "image": "/images/prikolice/amortizeri-za-osovine-za-transporter.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9578",
+    "vrsta": "oprema",
+    "model": "Potporni točak ATK60",
+    "name": "Potporni točak ATK60",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovani potporni točak (ø 60mm), sa aksijalnim ležajem, u kompletu sa obujmicom, brenda KNOTT.",
+    "image": "/images/prikolice/potporni-tocak-atk60.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9579",
+    "vrsta": "oprema",
+    "model": "Potporni točak TK48",
+    "name": "Potporni točak TK48",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovi potporni točak (ø 48mm), sa aksijalnim ležajem, u kompletu sa obujmicom, brenda KNOTT. Podesiv po visini, osigurava horizontalni položaj prikolice i olakšava njeno kretanje bez vučnog vozila. Statičko opterećenje – do 150 kg Dinamičko opterećenje – do 90 kg",
+    "image": "/images/prikolice/potporni-tocak-tk48.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9580",
+    "vrsta": "oprema",
+    "model": "Potporni točak TK60",
+    "name": "Potporni točak TK60",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovi potporni točak (ø 60mm), sa aksijalnim ležajem, bez obujmice, brenda KNOTT. Podesiv po visini, osigurava horizontalni položaj prikolice i olakšava njeno kretanje bez vučnog vozila. Statičko opterećenje – do 250 kg Dinamičko opterećenje – do 190 kg",
+    "image": "/images/prikolice/potporni-tocak-tk60.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9581",
+    "vrsta": "oprema",
+    "model": "Potporni točak TK60",
+    "name": "Potporni točak TK60 (varijanta 2)",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovi potporni točak (ø 60mm), sa aksijalnim ležajem, bez obujmice, brenda KNOTT. Podesiv po visini, osigurava horizontalni položaj prikolice i olakšava njeno kretanje bez vučnog vozila. Statičko opterećenje – do 250 kg Dinamičko opterećenje – do 190 kg",
+    "image": "/images/prikolice/potporni-tocak-tk60-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9582",
+    "vrsta": "oprema",
+    "model": "Rampe i kaseta za plato",
+    "name": "Rampe i kaseta za plato",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Ojačana pocinkovana rampa izrađena od kvalitetnog čelika, perforirana površina sprečava proklizavanje vozila prilikom navoza na autoprikolicu. Mesto na šasiji je predviđeno za odlaganje rampi u transportni položaj",
+    "image": "/images/prikolice/rampe-i-kaseta-za-plato.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9583",
+    "vrsta": "oprema",
+    "model": "Rampe za navoz Light",
+    "name": "Rampe za navoz Light",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Ojačane pocinkovane rampe izrađene od kvalitetnog čelika, perforirana površina sprečava proklizavanje vozila prilikom navoza na autoprikolicu. Set sadrži dve rampe, koje imaju kombinovanu nosivost od 400kg.",
+    "image": "/images/prikolice/rampe-za-navoz-light.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9584",
+    "vrsta": "oprema",
+    "model": "Rampe za navoz LightW",
+    "name": "Rampe za navoz LightW",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Ojačane pocinkovane rampe izrađene od kvalitetnog čelika, perforirana površina sprečava proklizavanje vozila prilikom navoza na autoprikolicu. Set sadrži dve rampe, koje imaju kombinovanu nosivost od 400kg.",
+    "image": "/images/prikolice/rampe-za-navoz-lightw.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9585",
+    "vrsta": "oprema",
+    "model": "Set stabilizatora Light",
+    "name": "Set stabilizatora Light",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovani potporni stabilizator (ø 48mm), u kompletu sa obujmicom, za ugradnju na šasiju prikolice. Obezbeđuje stabilnost tokom utovara i istovara. Statička nosivost – do 200 kg Set sadrži dva stabilizatora sa steznim obujmicama (komplet za jednu prikolicu)",
+    "image": "/images/prikolice/set-stabilizatora-light.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9586",
+    "vrsta": "oprema",
+    "model": "Set stabilizatora Light W",
+    "name": "Set stabilizatora Light W",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovani potporni stabilizator (ø 48mm), u kompletu sa obujmicom, za ugradnju na šasiju prikolice. Obezbeđuje stabilnost tokom utovara i istovara. Statička nosivost – do 200 kg Set sadrži dva stabilizatora sa steznim obujmicama (komplet za jednu prikolicu)",
+    "image": "/images/prikolice/set-stabilizatora-light-w.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9587",
+    "vrsta": "oprema",
+    "model": "Sigurnosni podupirači",
+    "name": "Sigurnosni podupirači",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Polimerni sigurnosni podupirači sa nosačem (2kom), služe za postavljanje pod točkove prikolice, radi dodatnog osiguranja prilikom parkiranja.",
+    "image": "/images/prikolice/sigurnosni-podupiraci.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9588",
+    "vrsta": "oprema",
+    "model": "Stabilizatori za cargo",
+    "name": "Stabilizatori za cargo",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovani potporni stabilizator (ø 48mm), u kompletu sa obujmicom, za ugradnju na šasiju prikolice. Obezbeđuje stabilnost tokom utovara i istovara. Statička nosivost – do 200 kg Set sadrži dva stabilizatora sa steznim obujmicama (komplet za jednu prikolicu)",
+    "image": "/images/prikolice/stabilizatori-za-cargo.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9589",
+    "vrsta": "oprema",
+    "model": "Stabilizatori za cargo",
+    "name": "Stabilizatori za cargo (varijanta 2)",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovani potporni stabilizator (ø 48mm), u kompletu sa obujmicom, za ugradnju na šasiju prikolice. Obezbeđuje stabilnost tokom utovara i istovara. Statička nosivost – do 200 kg Set sadrži dva stabilizatora sa steznim obujmicama (komplet za jednu prikolicu)",
+    "image": "/images/prikolice/stabilizatori-za-cargo-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9590",
+    "vrsta": "oprema",
+    "model": "Stabilizatori za plato",
+    "name": "Stabilizatori za plato",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Pocinkovani potporni stabilizator (ø 48mm), u kompletu sa obujmicom, za ugradnju na šasiju prikolice. Obezbeđuje stabilnost tokom utovara i istovara. Statička nosivost – do 200 kg Set sadrži dva stabilizatora sa steznim obujmicama (komplet za jednu prikolicu)",
+    "image": "/images/prikolice/stabilizatori-za-plato.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9591",
+    "vrsta": "oprema",
+    "model": "Vučna ruda podesive visine",
+    "name": "Vučna ruda podesive visine",
+    "tagline": "Potporni točkovi i stabilizatori",
+    "note": "Knott KHD vučna ruda podesive visine omogućuje spajanje prikolice za teretna vučna vozila. Spajanje vučnog oka (DIN40) na rudi sa puferom na kamionu, može biti na visini od 40 do 100cm. Ova ruda ima veoma udobno i jednostavno rukovanje, kao j bezstepeno podešavanje visine pomoću jedne ručke. Svi delovi mehanizma i svi delovi sistema naletne kočnice, efikasno su skriveni i zaštićeni unutar vučne poluge.",
+    "image": "/images/prikolice/vucna-ruda-podesive-visine.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-potporni-tockovi-stabilizatori-i-stezaljke"
+    },
+    "specs": []
+  },
+  {
+    "id": "9592",
+    "vrsta": "oprema",
+    "model": "Amortizer kipovanja",
+    "name": "Amortizer kipovanja",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Komplet gasnog amortizera sa prihvatnim elementima, za ugradnju na šasiju prikolice. Omogućava meko i amortizovano kipovanje platforme prikolice.",
+    "image": "/images/prikolice/amortizer-kipovanja.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9593",
+    "vrsta": "oprema",
+    "model": "Amortizeri osovine",
+    "name": "Amortizeri osovine",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Dodatni amortizer marke KNOTT, koji se vezuje na vešanje osovine (2 kom. na svaku osovinu), pruža agilnije i mekše ogibljenje, pri različitim opterećenjima prikolice.",
+    "image": "/images/prikolice/amortizeri-osovine.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9594",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam",
+    "name": "Kip mehanizam",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice LIGHT.",
+    "image": "/images/prikolice/kip-mehanizam.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9595",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam DA",
+    "name": "Kip mehanizam DA",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice LIGHT i kip zakačka sa sigurnosnim osiguračem.",
+    "image": "/images/prikolice/kip-mehanizam-da.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9596",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam W(DA)",
+    "name": "Kip mehanizam W(DA)",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice LIGHT.",
+    "image": "/images/prikolice/kip-mehanizam-wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9597",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam za cargo",
+    "name": "Kip mehanizam za cargo",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice Cargo i kip zakačke sa sigurnosnim osiguračem.",
+    "image": "/images/prikolice/kip-mehanizam-za-cargo.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9598",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam za cargo",
+    "name": "Kip mehanizam za cargo (varijanta 2)",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice Cargo i kip zakačke sa sigurnosnim osiguračem.",
+    "image": "/images/prikolice/kip-mehanizam-za-cargo-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9599",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam za plato",
+    "name": "Kip mehanizam za plato",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice Plato.",
+    "image": "/images/prikolice/kip-mehanizam-za-plato.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9600",
+    "vrsta": "oprema",
+    "model": "LED svetlosna signalizacija",
+    "name": "LED svetlosna signalizacija",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Komplet se sastoji od lampi LED tehnologije zadnje signalizacije i prednjih gabaritnih svetala, brenda Aspöck.",
+    "image": "/images/prikolice/led-svetlosna-signalizacija.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9601",
+    "vrsta": "oprema",
+    "model": "Kip mehanizam 30W(DA)",
+    "name": "Kip mehanizam 30W(DA)",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Pocinkovani potporni kip mehanizam, sa aksijalnim ležajem i ručkom za podešavanje ugla nagiba prikolica. U komplet ulaze vezni elementi za montažu na prikolice LIGHT.",
+    "image": "/images/prikolice/tipping-mechanism-30wda.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9602",
+    "vrsta": "oprema",
+    "model": "Zadnja demontažna stranica",
+    "name": "Zadnja demontažna stranica",
+    "tagline": "Amortizeri i mehanizmi za kipovanje",
+    "note": "Dodatna zadnja stranica, izrađena od pocinkovanog lima, opremljena zakačkama za fiksiranje, služi za dodatno osiguranje tereta.",
+    "image": "/images/prikolice/zadnja-demontazna-stranica.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-amortizeri-i-mehanizmi-za-kipovanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9603",
+    "vrsta": "oprema",
+    "model": "Čekrk",
+    "name": "Čekrk",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Čekrk, za utovar kvadova, motornih sanki i druge opreme na prikolicu. Nosivost 450kg. Montira se na nosač koja nije u ovoj ponudi.",
+    "image": "/images/prikolice/cekrk.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9604",
+    "vrsta": "oprema",
+    "model": "Čekrk",
+    "name": "Čekrk (varijanta 2)",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Čekrk sa nosačem marke KNOTT, statičke nosivosti 1150kg, opremljen čeličnim užetom i alkom za kačenje.",
+    "image": "/images/prikolice/cekrk-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9605",
+    "vrsta": "oprema",
+    "model": "Čekrk sa nosačem za LIGHT prikolice",
+    "name": "Čekrk sa nosačem za LIGHT prikolice",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Čekrk sa nosačem od pocinkovanog čelika, za utovar kvadova, motornih sanki i druge opreme na prikolicu. Montira se na vučnu rudu prikolice",
+    "image": "/images/prikolice/cekrk-sa-nosacem-za-light-prikolice.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9606",
+    "vrsta": "oprema",
+    "model": "Čekrk sa nosačem za LIGHT W prikolice",
+    "name": "Čekrk sa nosačem za LIGHT W prikolice",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Čekrk sa nosačem od pocinkovanog čelika, za utovar kvadova, motornih sanki i druge opreme na prikolicu. Montira se na vučnu rudu prikolice.",
+    "image": "/images/prikolice/cekrk-sa-nosacem-za-light-w-prikolice.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9607",
+    "vrsta": "oprema",
+    "model": "Čekrk sa nosačem za plato",
+    "name": "Čekrk sa nosačem za plato",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Čekrk sa nosačem marke KNOTT, statičke nosivosti 450 kg, opremljen čeličnim užetom i alkom za kačenje",
+    "image": "/images/prikolice/cekrk-sa-nosacem-za-plato.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9608",
+    "vrsta": "oprema",
+    "model": "Čekrk za transporter",
+    "name": "Čekrk za transporter",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Čekrk sa nosačem marke KNOTT, statičke nosivosti 1150kg, opremljen čeličnim užetom i alkom za kačenje.",
+    "image": "/images/prikolice/cekrk-za-transporter.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9609",
+    "vrsta": "oprema",
+    "model": "Električni čekrk sa akumulatorom",
+    "name": "Električni čekrk sa akumulatorom",
+    "tagline": "Čekrci i nosači čekrka",
+    "note": "Električni čekrk marke ROCK nosivosti 1600 kg (radni napon: 12V, izlazna snaga: 2,3 kW), opremljen je daljinskom komandom i baterijom 45Ah.",
+    "image": "/images/prikolice/elektricni-cekrk-sa-akumulatorom.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-cekrci-i-nosaci-cekrka"
+    },
+    "specs": []
+  },
+  {
+    "id": "9610",
+    "vrsta": "oprema",
+    "model": "Kočione sajle od nerđajućeg čelika",
+    "name": "Kočione sajle od nerđajućeg čelika",
+    "tagline": "Nosači za motocikl i trake",
+    "note": "Sajle kočionog sistema, marke Knott, izrađene od nerđajućeg čelika, omogućavaju potapanje prikolice u slanu vodu prilikom porinuća.",
+    "image": "/images/prikolice/kocione-sajle-od-nerdajuceg-celika.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosac-za-motocikl-i-bocne-trake-za-pricvrscivanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9611",
+    "vrsta": "oprema",
+    "model": "Nosač motocikla",
+    "name": "Nosač motocikla",
+    "tagline": "Nosači za motocikl i trake",
+    "note": "Pocinkovani čelični nosač prednjeg točka motocikla za montažu na podprikolice. Podesiv prihvat omogućava da pričvrstite točkove radijusa od 240 – 360mm.",
+    "image": "/images/prikolice/nosac-motocikla.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosac-za-motocikl-i-bocne-trake-za-pricvrscivanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9612",
+    "vrsta": "oprema",
+    "model": "Priveznica Zadnje Stranice",
+    "name": "Priveznica Zadnje Stranice",
+    "tagline": "Nosači za motocikl i trake",
+    "note": "Čelično granično pocinkovano uže (2 komada) zadnje stranice prikolice. Omogućava pozicioniranje zadnje stranice u horizontalni položaj prilikom otvaranja i prilikom transporta tereta koji premašuje utovarne dimenzije prikolice. Uže je obezbeđeno dodatnom alkom, za brzu demontažu.",
+    "image": "/images/prikolice/priveznica-zadnje-stranice.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-nosac-za-motocikl-i-bocne-trake-za-pricvrscivanje"
+    },
+    "specs": []
+  },
+  {
+    "id": "9613",
+    "vrsta": "oprema",
+    "model": "Ispuna poda između gazišta za Transporter 85-3.5",
+    "name": "Ispuna poda između gazišta za Transporter 85-3.5",
+    "tagline": "Ostala oprema",
+    "note": "Lagana i izdržljiva aluminijumska platforma za autoprikolice. Obezbeđuje protivkliznu površinu i povećava bezbednost i fleksibilnost pri utovaru. Jednostavna za montažu i demontažu. Lightweight and durable aluminum loading platform for car trailers. Provides a non-slip surface and increases loading versatility and safety. Easy to install and remove.",
+    "image": "/images/prikolice/ispuna-poda-izmedju-gazista-za-transporter-85-3-5.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-ostalo"
+    },
+    "specs": []
+  },
+  {
+    "id": "9614",
+    "vrsta": "oprema",
+    "model": "Rampe za navoz za Transporter",
+    "name": "Rampe za navoz za Transporter",
+    "tagline": "Ostala oprema",
+    "note": "Ojačana pocinkovana rampa izrađena od kvalitetnog čelika, perforirana površina sprečava proklizavanje vozila prilikom navoza na autoprikolicu. Mesto na šasiji je predviđeno za odlaganje rampi u transportni položaj.",
+    "image": "/images/prikolice/rampe-za-navoz-za-transporter.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-ostalo"
+    },
+    "specs": []
+  },
+  {
+    "id": "9615",
+    "vrsta": "oprema",
+    "model": "Rampe za navoz za Transporter #2",
+    "name": "Rampe za navoz za Transporter #2",
+    "tagline": "Ostala oprema",
+    "note": "Ојачана поцинкована рампа од висококвалитетног челика, перфорирана површина спречава проклизавање возила при утовару на ауто-приколицу. На шасији је обезбеђен простор за одлагање рампи у транспортном положају.",
+    "image": "/images/prikolice/rampe-za-navoz-za-transporter-2.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-ostalo"
+    },
+    "specs": []
+  },
+  {
+    "id": "9616",
+    "vrsta": "oprema",
+    "model": "Skije za prihvat plovila",
+    "name": "Skije za prihvat plovila",
+    "tagline": "Ostala oprema",
+    "note": "Mobilne skije za prihvat plovila su izrađene od čeličnog toplopocinkovanog lima, obloženog polimernom navlakom. Mogu se instalirati na bilo kom mestu preko okvira, imaju podesivi ugao nagiba i podesivu visinu. Ovo vam omogućava da ih postavite u najpogodniji položaj , a takođe i postavite plovilo što je niže moguće, čime se obezbeđuje stabilnost prikolice prilikom kretanja i porinuća plovila u vodu na manjim dubinama.Prilikom transporta i skladištenja plovila na prikolici, skije vam omogućavaju da ravnomerno rasporedite masu opreme i smanjite pritisak na trup plovila. *Pri konfiguraciji kupovine prikolice je ovaj artikal besplatan. Vanredne porudžbine se naplaćuju.",
+    "image": "/images/prikolice/skije-za-prihvat-plovila.jpg",
+    "facets": {
+      "tip": "oprema",
+      "program": "oprema-ostalo"
+    },
+    "specs": []
+  }
+]

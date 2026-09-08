@@ -129,7 +129,7 @@ export const NAME_PREFIXES = [
 export const BRANDS = [
   // Složeni brendovi — moraju biti pre pojedinačnih tokena.
   // „Werk” bez „rabe” u slug-u (MU, KU, KSU, GWR serije) je isti proizvođač — Rabe Werk.
-  { key: "rabe-werk", label: "Rabe / RabeWerk", match: ["rabe-werk", "rabe", "werk"] },
+  { key: "rabe-werk", label: "Rabewerk", match: ["rabe-werk", "rabe", "werk"] },
   { key: "landsberg-pottinger", label: "Landsberg / Pöttinger", match: ["landsberg-pottinger"] },
   { key: "dowdeswell-ransomes", label: "Dowdeswell / Ransomes", match: ["dowdeswell-ransomes"] },
   { key: "agrolux-fiskars", label: "Agrolux / Fiskars", match: ["agrolux-fiskars"] },

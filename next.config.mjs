@@ -22,6 +22,13 @@ const nextConfig = {
         source: "/images/rolland/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
       },
+      {
+        // Isto i za fotografije prikolica: to su proizvođačevi studijski
+        // snimci, pa stoje na karticama, ali se ne prijavljuju Google Images
+        // dok se ne zamene sopstvenim fotografijama.
+        source: "/images/prikolice/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
     ];
   },
 };

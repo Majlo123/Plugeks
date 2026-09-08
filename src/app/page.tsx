@@ -3,6 +3,7 @@ import { UspBar } from "@/components/sections/UspBar";
 import { Kategorije } from "@/components/sections/Kategorije";
 import { ProizvodiPreview } from "@/components/sections/ProizvodiPreview";
 import { DeloviPreview } from "@/components/sections/DeloviPreview";
+import { PrikolicePreview } from "@/components/sections/PrikolicePreview";
 import { Akcije } from "@/components/sections/Akcije";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 
@@ -16,6 +17,7 @@ export default function HomePage() {
       <UspBar />
       <DeloviPreview />
       <ProizvodiPreview />
+      <PrikolicePreview />
       <Kategorije />
       <Akcije />
       <KontaktCTA />
