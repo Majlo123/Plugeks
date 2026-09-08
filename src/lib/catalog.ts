@@ -109,11 +109,13 @@ export const TYPE_META: Record<
 
 /**
  * Link ka katalogu za jednu kategoriju sa početne strane / iz futera.
- * „delovi” i „prikolice” su zasebne vrste kataloga, sve ostalo su tipovi mašina.
+ * Prikolice imaju svoju stranicu sa pločicama (`/prikolice`) — tamo se bira po
+ * slici, a filteri dolaze tek unutar programa. Delovi su zasebna vrsta
+ * kataloga, sve ostalo su tipovi mašina.
  */
 export function catalogHref(categoryKey: string): string {
   if (categoryKey === "delovi") return "/proizvodi?vrsta=delovi";
-  if (categoryKey === "prikolice") return "/proizvodi?vrsta=prikolice";
+  if (categoryKey === "prikolice") return "/prikolice";
   return `/proizvodi?vrsta=masine&tip=${categoryKey}`;
 }
 
@@ -202,16 +204,55 @@ export const trailerRows = trailersJson as unknown as TrailerRow[];
 /**
  * Programi prikolica. Uz oznaku ide i namena, jer „MARINE 1300” samo za sebe
  * kupcu ne znači ništa — koristi se na kategorijskim stranicama i u opisima.
+ *
+ * `kratko` je ista informacija u tri-četiri reči, za pločice na `/prikolice`:
+ * tamo kupac bira po fotografiji („treba mi za čamac”), pa mu ispod slike stoji
+ * samo potvrda da je pogodio, a ne cela rečenica.
  */
-export const TRAILER_PROGRAMS: Record<string, { oznaka: string; namena: string }> = {
-  uno: { oznaka: "UNO", namena: "osnovna prikolica sa stranicama" },
-  light: { oznaka: "LIGHT", namena: "otvorena prikolica sa stranicama, do 750 kg" },
-  plato: { oznaka: "PLATO", namena: "platforma bez stranica" },
-  cargo: { oznaka: "CARGO", namena: "veća prikolica sa kočionim sistemom" },
-  transporter: { oznaka: "TRANSPORTER", namena: "prevoz vozila" },
-  craft: { oznaka: "CRAFT", namena: "prevoz građevinskih mašina, sa rampama" },
-  marine: { oznaka: "MARINE", namena: "prevoz plovila" },
-  moto: { oznaka: "MOTO", namena: "prevoz motocikala" },
+export const TRAILER_PROGRAMS: Record<
+  string,
+  { oznaka: string; namena: string; kratko: string }
+> = {
+  uno: {
+    oznaka: "UNO",
+    namena: "osnovna prikolica sa stranicama",
+    kratko: "Osnovna, sa stranicama",
+  },
+  light: {
+    oznaka: "LIGHT",
+    namena: "otvorena prikolica sa stranicama, do 750 kg",
+    kratko: "Za svakodnevni prevoz, do 750 kg",
+  },
+  plato: {
+    oznaka: "PLATO",
+    namena: "platforma bez stranica",
+    kratko: "Ravna platforma, za duži teret",
+  },
+  cargo: {
+    oznaka: "CARGO",
+    namena: "veća prikolica sa kočionim sistemom",
+    kratko: "Veći teret, sa kočnicama",
+  },
+  transporter: {
+    oznaka: "TRANSPORTER",
+    namena: "prevoz vozila",
+    kratko: "Za prevoz automobila",
+  },
+  craft: {
+    oznaka: "CRAFT",
+    namena: "prevoz građevinskih mašina, sa rampama",
+    kratko: "Za mašine, sa rampama",
+  },
+  marine: {
+    oznaka: "MARINE",
+    namena: "prevoz plovila",
+    kratko: "Za čamac i jet-ski",
+  },
+  moto: {
+    oznaka: "MOTO",
+    namena: "prevoz motocikala",
+    kratko: "Za motocikl i kvad",
+  },
 };
 
 /** Grupe dodatne opreme — ključ nosi prefiks `oprema-` da se ne meša sa programima. */
@@ -421,7 +462,8 @@ const TRAILER_LABELS: Record<string, Record<string, string>> = {
       `${key} kg`,
     ]),
   ),
-  osovine: { jednoosovinske: "Jednoosovinska", dvoosovinske: "Dvoosovinska" },
+  // Množina — ovo su nazivi filtera („Jednoosovinske”), a ne opis jednog modela.
+  osovine: { jednoosovinske: "Jednoosovinske", dvoosovinske: "Dvoosovinske" },
 };
 
 /** Čitljiv naziv jedne vrednosti fasete, npr. („delovi”, „brend”, „lemken”) → „Lemken”. */

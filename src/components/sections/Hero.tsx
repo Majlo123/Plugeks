@@ -99,7 +99,7 @@ export function Hero() {
               </Link>
 
               <Link
-                href="/proizvodi?vrsta=prikolice"
+                href="/prikolice"
                 className="group inline-flex h-[3.75rem] w-full items-center justify-between gap-3 rounded-full bg-cream pl-7 pr-3 text-[1.0625rem] font-semibold tracking-[-0.01em] text-brand shadow-[0_14px_34px_-14px_rgba(16,20,17,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_40px_-14px_rgba(16,20,17,0.75)] sm:w-auto sm:pl-8 sm:text-lg"
               >
                 <span className="inline-flex items-center gap-2.5">

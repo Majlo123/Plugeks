@@ -1,25 +1,34 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { trailers, trailerBadge } from "@/lib/catalog";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { TrailerCard } from "@/components/CatalogCard";
+import { Plocica } from "@/components/Plocica";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
+import { TRAILER_PROGRAMS } from "@/lib/catalog";
+import { trailerCategories, getTrailersByType, uzBroj } from "@/lib/products";
 
 /**
- * Vitrina auto-prikolica — po jedan model iz svakog programa (UNO, LIGHT, PLATO,
- * CARGO, TRANSPORTER, CRAFT, MARINE, MOTO). Kupac prvo bira namenu („treba mi za
- * čamac”), pa tek onda veličinu, a pun spisak izvedbi je u katalogu.
+ * Vitrina auto-prikolica — po jedna pločica za svaki program (UNO, LIGHT,
+ * PLATO, CARGO, TRANSPORTER, CRAFT, MARINE, MOTO), sa fotografijom.
+ *
+ * Namerno vodi na program, a ne na pojedinačan model: kupac prvo prepozna po
+ * slici šta mu treba („treba mi za čamac”), pa tek unutra bira broj osovina i
+ * nosivost. Isti izbor stoji i na `/prikolice`, pa se koristi ista pločica.
  */
-const poProgramu = new Map<string, (typeof trailers)[number]>();
-for (const t of trailers) {
-  if (t.facets.tip !== "prikolica") continue;
-  if (!poProgramu.has(t.facets.program)) poProgramu.set(t.facets.program, t);
-}
-const featured = [...poProgramu.values()].slice(0, 8);
+const programi = trailerCategories().map((p) => {
+  // Prva prikolica programa je i njegov „portret" — sve imaju fotografiju.
+  const naslovna = getTrailersByType(p.key)[0];
+  return {
+    ...p,
+    oznaka: TRAILER_PROGRAMS[p.key]?.oznaka ?? p.label,
+    kratko: TRAILER_PROGRAMS[p.key]?.kratko,
+    slika: naslovna?.image,
+    alt: naslovna?.name ?? p.label,
+  };
+});
 
 export function PrikolicePreview() {
-  if (featured.length === 0) return null;
+  if (programi.length === 0) return null;
 
   return (
     // Sekcija ispod (Kategorije) je takođe krem — tanka linija ih razdvaja.
@@ -29,10 +38,10 @@ export function PrikolicePreview() {
           <SectionHeading
             eyebrow="Novo u ponudi"
             title="Auto-prikolice od 500 do 3500 kg"
-            description="Osam programa — otvorene prikolice i platforme, za prevoz vozila, građevinskih mašina, plovila i motocikala. Uz njih i dodatna oprema: cerade, stranice, čekrci i točkovi."
+            description="Izaberite prikolicu po slici — za svakodnevni prevoz, za automobil, građevinsku mašinu, čamac ili motocikl. Broj osovina i nosivost birate unutra."
           />
           <Button asChild variant="outline" size="md" className="hidden shrink-0 sm:inline-flex">
-            <Link href="/proizvodi?vrsta=prikolice">
+            <Link href="/prikolice">
               Sve prikolice
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -40,16 +49,23 @@ export function PrikolicePreview() {
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {featured.map((t, i) => (
-            <Reveal key={t.id} delay={(i % 4) * 0.06}>
-              <TrailerCard item={t} typeLabel={trailerBadge(t)} />
+          {programi.map((p, i) => (
+            <Reveal key={p.key} delay={(i % 4) * 0.06}>
+              <Plocica
+                href={`/prikolice/${p.key}`}
+                naslov={p.oznaka}
+                podnaslov={p.kratko}
+                broj={`${p.count} ${uzBroj(p.count, "model", "modela", "modela")}`}
+                slika={p.slika}
+                alt={p.alt}
+              />
             </Reveal>
           ))}
         </div>
 
         <div className="mt-8 text-center sm:hidden">
           <Button asChild variant="outline" size="md" className="w-full">
-            <Link href="/proizvodi?vrsta=prikolice">
+            <Link href="/prikolice">
               Pogledaj sve prikolice
               <ArrowRight className="h-4 w-4" />
             </Link>

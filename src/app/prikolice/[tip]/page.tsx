@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ListaProizvoda } from "@/components/ListaProizvoda";
+import { ArrowLeft } from "lucide-react";
+import { PrikoliceFilter } from "@/components/PrikoliceFilter";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import {
   trailerCategories,
@@ -15,9 +16,10 @@ import { SpisakJsonLd } from "@/components/SpisakJsonLd";
 
 /**
  * Stranica po programu prikolica (LIGHT, PLATO, MARINE…) i po grupi dodatne
- * opreme (Cerade, Čekrci…). Isti razlog postojanja kao `/masine/[kategorija]`:
- * katalog na `/proizvodi` je klijentski, pa bez ovoga nijedna prikolica ne bi
- * imala interni link u serverski generisanom HTML-u.
+ * opreme (Cerade, Čekrci…) — drugi korak posle pločica na `/prikolice`.
+ *
+ * Ovde su i kartice sa slikom i filteri, ali samo oni koji u ovom programu
+ * zaista nose izbor (osovine, najveća masa) — vidi `PrikoliceFilter`.
  */
 
 const svePrikolice = () => trailerCategories();
@@ -83,8 +85,7 @@ export default function TipPrikolicePage({ params }: { params: { tip: string } }
     <>
       <PutanjaJsonLd
         stavke={[
-          { naziv: "Proizvodi", href: "/proizvodi" },
-          { naziv: "Auto-prikolice", href: "/proizvodi?vrsta=prikolice" },
+          { naziv: "Auto-prikolice", href: "/prikolice" },
           { naziv: kat.label, href: `/prikolice/${kat.key}` },
         ]}
       />
@@ -95,7 +96,15 @@ export default function TipPrikolicePage({ params }: { params: { tip: string } }
       />
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
-          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+          <Link
+            href="/prikolice"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-brand"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Sve prikolice
+          </Link>
+
+          <h1 className="mt-4 font-display text-2xl font-bold text-charcoal md:text-3xl">
             {kat.label}
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
@@ -103,7 +112,7 @@ export default function TipPrikolicePage({ params }: { params: { tip: string } }
           </p>
 
           <div className="mt-8">
-            <ListaProizvoda items={getTrailersByType(kat.key)} />
+            <PrikoliceFilter program={kat.key} />
           </div>
 
           <nav className="mt-12 border-t border-border pt-6">
@@ -134,17 +143,6 @@ export default function TipPrikolicePage({ params }: { params: { tip: string } }
                 </li>
               ))}
             </ul>
-
-            <p className="mt-6 text-sm text-muted-foreground">
-              Ili otvorite{" "}
-              <Link
-                href="/proizvodi?vrsta=prikolice"
-                className="font-medium text-brand hover:underline"
-              >
-                ceo katalog prikolica i opreme
-              </Link>
-              .
-            </p>
           </nav>
         </div>
       </section>

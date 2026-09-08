@@ -16,6 +16,7 @@ import packedParts from "@/data/parts.json";
 import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
 import { categories } from "@/lib/data";
+import { uzBroj } from "@/lib/brojevi";
 import {
   productSlug,
   idFromSlug,
@@ -72,20 +73,11 @@ export type Product = {
  * pa bi fiksni oblik dao „323 kataloških brojeva" umesto „323 kataloška broja" —
  * sitnica koju čitalac odmah primeti i koja stranicu čini automatski
  * generisanom, što je i za posetioca i za Google loš signal.
+ *
+ * Sama funkcija je u `lib/brojevi.ts` (klijent-safe), ovde se samo re-exportuje
+ * da pozivi sa kategorijskih stranica ostanu nepromenjeni.
  */
-export function uzBroj(
-  n: number,
-  jednina: string,
-  paucal: string,
-  mnozina: string,
-): string {
-  const poslednja = n % 10;
-  const poslednje_dve = n % 100;
-  if (poslednje_dve >= 11 && poslednje_dve <= 14) return mnozina;
-  if (poslednja === 1) return jednina;
-  if (poslednja >= 2 && poslednja <= 4) return paucal;
-  return mnozina;
-}
+export { uzBroj };
 
 /** Najčešći slučaj na kategorijskim stranicama. */
 export const katBrojeva = (n: number) =>
@@ -141,7 +133,7 @@ function buildMachine(m: MachineRow): Product {
 /* ------------------------ Auto-prikolice i njihova oprema ------------------ */
 
 /**
- * Prikolica i dodatna oprema dele isti katalog (`vrsta=prikolice`), ali su
+ * Prikolica i dodatna oprema dele istu granu sajta (`/prikolice`), ali su
  * različite vrste proizvoda: prikolica ima tabelu specifikacije, komad opreme
  * ima tehnički opis i podatak na koju grupu prikolica ide.
  */

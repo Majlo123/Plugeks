@@ -16,25 +16,27 @@ import {
   machines,
   popularFirst,
   popularParts,
-  trailers,
-  trailerBadge,
-  trailersFirst,
   type CatalogItem,
   type CatalogType,
 } from "@/lib/catalog";
 import { MultiSelect } from "@/components/ui/multi-select";
-import { MachineCard, PartCard, TrailerCard } from "@/components/CatalogCard";
+import { MachineCard, PartCard } from "@/components/CatalogCard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const PAGE_SIZE = 24;
-const TYPES: CatalogType[] = ["masine", "prikolice", "delovi"];
+/**
+ * Prikolica ovde NEMA: one imaju svoju stranicu sa pločicama (`/prikolice`),
+ * gde se bira po slici, pa tek unutar programa po broju osovina. Ovaj katalog
+ * ostaje na mašinama i delovima, gde faseta zaista ima smisla.
+ */
+type KatalogVrsta = Extract<CatalogType, "masine" | "delovi">;
+const TYPES: KatalogVrsta[] = ["masine", "delovi"];
 const TYPE_ICONS = { masine: Cog, prikolice: Caravan, delovi: Wrench } as const;
 const TYPE_TONES = { masine: "field", prikolice: "harvest", delovi: "steel" } as const;
-/** Jednina/množina u brojaču rezultata („Prikazano 12 od 21 prikolice”). */
+/** Jednina/množina u brojaču rezultata („Prikazano 12 od 21 mašine”). */
 const TYPE_COUNT_LABEL = {
   masine: "mašina",
-  prikolice: "prikolica",
   delovi: "delova",
 } as const;
 
@@ -45,9 +47,8 @@ export function ProizvodiClient() {
   const router = useRouter();
   const params = useSearchParams();
 
-  const type = TYPES.includes(params.get("vrsta") as CatalogType)
-    ? (params.get("vrsta") as CatalogType)
-    : null;
+  const izabrana = params.get("vrsta") as KatalogVrsta | null;
+  const type = izabrana && TYPES.includes(izabrana) ? izabrana : null;
   const selection = useMemo(() => {
     if (!type) return {};
     return Object.fromEntries(
@@ -142,7 +143,6 @@ export function ProizvodiClient() {
 
   const items = useMemo(() => {
     if (type === "delovi") return parts ?? [];
-    if (type === "prikolice") return trailers;
     return machines;
   }, [type, parts]);
   const results = useMemo(() => {
@@ -150,10 +150,8 @@ export function ProizvodiClient() {
     if (query) return found;
     // Katalog delova otvara najtraženijim komadima (isti oni sa početne strane)
     // — inače bi prvih 24 rezultata bili prosto delovi sa najvećim id-em, bez
-    // fotografije. Katalog prikolica isto tako otvara prikolicama, jer dodatne
-    // opreme ima skoro dvaput više. Kad korisnik kuca u pretragu, ne diramo red.
+    // fotografije. Kad korisnik kuca u pretragu, ne diramo red.
     if (type === "delovi") return popularFirst(found);
-    if (type === "prikolice") return trailersFirst(found);
     return found;
   }, [items, selection, query, type]);
 
@@ -232,9 +230,7 @@ export function ProizvodiClient() {
               placeholder={
                 type === "delovi"
                   ? "Pretraga po nazivu, brendu ili kataloškom broju…"
-                  : type === "prikolice"
-                    ? "Pretraga po modelu prikolice…"
-                    : "Pretraga po nazivu mašine…"
+                  : "Pretraga po nazivu mašine…"
               }
               className="h-12 w-full rounded-xl border border-input bg-white pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-ring"
             />
@@ -305,6 +301,13 @@ export function ProizvodiClient() {
 /*                            Korak 1 — izbor vrste                           */
 /* -------------------------------------------------------------------------- */
 
+/** Prikolice su i dalje ovde na izboru, ali vode na svoju stranicu sa pločicama. */
+const PICKER: { key: CatalogType; href?: string }[] = [
+  { key: "masine" },
+  { key: "prikolice", href: "/prikolice" },
+  { key: "delovi" },
+];
+
 function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
   return (
     <div>
@@ -313,24 +316,18 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
       </h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">
         Izaberite da li vam treba kompletna mašina, auto-prikolica ili rezervni
-        deo — filteri se prilagođavaju vašem izboru.
+        deo — dalje vas vodi samo ono što je za taj izbor bitno.
       </p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {TYPES.map((key) => {
+        {PICKER.map(({ key, href }) => {
           const meta = TYPE_META[key];
           const Icon = TYPE_ICONS[key];
-          return (
-            <button
-              key={key}
-              type="button"
-              onClick={() => onChoose(key)}
-              aria-label={`Prikaži katalog — ${meta.label}`}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift"
-            >
+          // Sve tri kartice nose isti vizual — obojen gradijent sa ikonicom
+          // vrste; fotografija bi jednu izdvojila iz reda.
+          const sadrzaj = (
+            <>
               <div className="relative aspect-[16/9] overflow-hidden">
-                {/* Sve tri kartice nose isti vizual — obojen gradijent sa
-                    ikonicom vrste; fotografija bi jednu izdvojila iz reda. */}
                 <MediaPlaceholder
                   tone={TYPE_TONES[key]}
                   icon={Icon}
@@ -344,6 +341,24 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
                 </span>
               </div>
               <p className="p-5 text-sm text-muted-foreground">{meta.description}</p>
+            </>
+          );
+          const stil =
+            "group relative block overflow-hidden rounded-2xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift";
+
+          return href ? (
+            <Link key={key} href={href} aria-label={`Otvori ${meta.label}`} className={stil}>
+              {sadrzaj}
+            </Link>
+          ) : (
+            <button
+              key={key}
+              type="button"
+              onClick={() => onChoose(key)}
+              aria-label={`Prikaži katalog — ${meta.label}`}
+              className={stil}
+            >
+              {sadrzaj}
             </button>
           );
         })}
@@ -437,10 +452,6 @@ function Results({
         >
           {type === "masine" ? (
             <MachineCard item={item} typeLabel={labelsFor(item)[0] ?? "Mašina"} />
-          ) : type === "prikolice" ? (
-            // Značka je uvek oznaka programa („LIGHT”, „MARINE”, „Cerade”) — ona
-            // nosi najviše informacije, bez obzira po čemu je filtrirano.
-            <TrailerCard item={item} typeLabel={trailerBadge(item)} />
           ) : (
             <PartCard item={item} tags={labelsFor(item)} />
           )}

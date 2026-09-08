@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE}`, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${BASE}/proizvodi`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/prikolice`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/subvencije-i-finansiranje`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/o-nama`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/kontakt`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },

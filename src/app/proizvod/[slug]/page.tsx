@@ -57,12 +57,28 @@ const quoteHref = (p: Product) =>
 const catalogHref = (p: Product) => {
   if (p.kind === "masina")
     return `/proizvodi?vrsta=masine${p.typeKey ? `&tip=${p.typeKey}` : ""}`;
-  if (p.kind === "prikolica" || p.kind === "oprema")
-    return `/proizvodi?vrsta=prikolice&tip=${p.kind === "oprema" ? "oprema" : "prikolica"}${
-      p.typeKey ? `&program=${p.typeKey}` : ""
-    }`;
   return `/proizvodi?vrsta=delovi${p.brandKey ? `&brend=${p.brandKey}` : ""}`;
 };
+
+/**
+ * Putanja iznad proizvoda (bez „Početna" i bez samog proizvoda).
+ *
+ * Prikolice imaju svoju granu — `/prikolice` → program — pa ne prolaze kroz
+ * opšti katalog: kupac koji se vraća korak nazad završi u spisku modela iz
+ * kog je i došao, a ne u fasetama koje za prikolice više ne postoje.
+ */
+const putanja = (p: Product): { naziv: string; href: string }[] =>
+  p.kind === "prikolica" || p.kind === "oprema"
+    ? [
+        { naziv: "Auto-prikolice", href: "/prikolice" },
+        ...(p.typeKey
+          ? [{ naziv: p.typeLabel ?? p.groupLabel, href: `/prikolice/${p.typeKey}` }]
+          : []),
+      ]
+    : [
+        { naziv: "Proizvodi", href: "/proizvodi" },
+        { naziv: p.groupLabel, href: catalogHref(p) },
+      ];
 
 /** Jedan izvor opisnog teksta — koristi ga i metadata, i JSON-LD, i sama stranica. */
 const opisProizvoda = (p: Product) =>
@@ -140,19 +156,24 @@ function ProductJsonLd({ p }: { p: Product }) {
     },
   };
 
+  const iznad = putanja(p);
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Početna", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Proizvodi", item: abs("/proizvodi") },
+      ...iznad.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: s.naziv,
+        item: abs(s.href),
+      })),
       {
         "@type": "ListItem",
-        position: 3,
-        name: p.groupLabel,
-        item: abs(catalogHref(p)),
+        position: iznad.length + 2,
+        name: p.name,
+        item: abs(`/proizvod/${p.slug}`),
       },
-      { "@type": "ListItem", position: 4, name: p.name, item: abs(`/proizvod/${p.slug}`) },
     ],
   };
 
@@ -187,10 +208,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           {/* Breadcrumb */}
           <nav className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
             <Link href="/" className="hover:text-brand">Početna</Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <Link href="/proizvodi" className="hover:text-brand">Proizvodi</Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <Link href={catalogHref(p)} className="hover:text-brand">{p.groupLabel}</Link>
+            {putanja(p).map((s) => (
+              <span key={s.href} className="flex items-center gap-1.5">
+                <ChevronRight className="h-3.5 w-3.5" />
+                <Link href={s.href} className="hover:text-brand">
+                  {s.naziv}
+                </Link>
+              </span>
+            ))}
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="font-medium text-charcoal">{p.name}</span>
           </nav>

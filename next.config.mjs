@@ -9,6 +9,28 @@ const nextConfig = {
       { protocol: "https", hostname: "images.pexels.com" },
     ],
   },
+  async redirects() {
+    return [
+      // Prikolice su iz opšteg kataloga preseljene na `/prikolice` (izbor po
+      // slici umesto fasete). Stari linkovi — iz Google-a, zapamćeni, deljeni —
+      // vode na istu ponudu: ako nose program, pravo u njega.
+      {
+        source: "/proizvodi",
+        has: [
+          { type: "query", key: "vrsta", value: "prikolice" },
+          { type: "query", key: "program", value: "(?<program>[a-z0-9-]+)" },
+        ],
+        destination: "/prikolice/:program",
+        permanent: true,
+      },
+      {
+        source: "/proizvodi",
+        has: [{ type: "query", key: "vrsta", value: "prikolice" }],
+        destination: "/prikolice",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
