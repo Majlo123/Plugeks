@@ -327,29 +327,47 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
           // vrste; fotografija bi jednu izdvojila iz reda.
           const sadrzaj = (
             <>
-              <div className="relative aspect-[16/9] overflow-hidden">
-                <MediaPlaceholder
-                  tone={TYPE_TONES[key]}
-                  icon={Icon}
-                  iconClassName="h-6 w-6 sm:h-12 sm:w-12"
-                  sizes="(max-width: 640px) 33vw, (max-width: 1024px) 50vw, 33vw"
-                  className="h-full w-full transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent" />
-                <span className="absolute bottom-1.5 left-2 flex items-center gap-1 text-cream sm:bottom-4 sm:left-5 sm:gap-2.5">
-                  <Icon className="h-3.5 w-3.5 sm:h-6 sm:w-6" strokeWidth={1.6} aria-hidden />
-                  <span className="font-display text-[0.72rem] font-bold leading-tight sm:text-xl">
-                    {meta.label}
+              {/* Telefon — kompaktna pločica: sve tri staju u jedan red, pa
+                  ostaje samo ono što nosi izbor (ikonica i naziv). Opis bi se u
+                  trećini širine prelomio u pet redova i pojeo ekran. */}
+              <span className="flex flex-1 flex-col sm:hidden">
+                <span className="relative block aspect-[4/3] overflow-hidden">
+                  <MediaPlaceholder
+                    tone={TYPE_TONES[key]}
+                    icon={Icon}
+                    iconClassName="h-7 w-7"
+                    sizes="33vw"
+                    className="h-full w-full"
+                  />
+                </span>
+                <span className="flex flex-1 items-center justify-center px-1.5 py-2 text-center font-display text-[0.72rem] font-bold leading-tight text-charcoal">
+                  {meta.label}
+                </span>
+              </span>
+
+              {/* Tablet i desktop — pun vizual sa opisom. */}
+              <span className="hidden sm:block">
+                <span className="relative block aspect-[16/9] overflow-hidden">
+                  <MediaPlaceholder
+                    tone={TYPE_TONES[key]}
+                    icon={Icon}
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                    className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent" />
+                  <span className="absolute bottom-4 left-5 flex items-center gap-2.5 text-cream">
+                    <Icon className="h-6 w-6" strokeWidth={1.6} aria-hidden />
+                    <span className="font-display text-xl font-bold">{meta.label}</span>
                   </span>
                 </span>
-              </div>
-              <p className="line-clamp-2 p-2 text-[0.7rem] leading-snug text-muted-foreground sm:line-clamp-none sm:p-5 sm:text-sm">
-                {meta.description}
-              </p>
+                <span className="block p-5 text-sm text-muted-foreground">
+                  {meta.description}
+                </span>
+              </span>
             </>
           );
           const stil =
-            "group relative block overflow-hidden rounded-xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift sm:rounded-2xl";
+            "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift sm:rounded-2xl";
 
           return href ? (
             <Link key={key} href={href} aria-label={`Otvori ${meta.label}`} className={stil}>
