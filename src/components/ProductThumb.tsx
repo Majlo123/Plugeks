@@ -26,6 +26,16 @@ type ThumbProps = {
   sizes?: string;
   priority?: boolean;
   className?: string;
+  /**
+   * Boja podloge kartice (npr. `bg-bone`). Kad se prosledi, fotografija se
+   * stapa sa njom preko `mix-blend-multiply`.
+   *
+   * ZAŠTO: bela pozadina je kod studijskih snimaka ubačena u sam JPEG, pa se na
+   * obojenoj kartici videla kao beo pravougaonik zalepljen na vrh. `multiply`
+   * belu (255) pomnoži podlogom i dobije tačno podlogu, dok sama prikolica —
+   * siva, plava, crna — ostaje nepromenjena.
+   */
+  podloga?: string;
 };
 
 export function ProductThumb({
@@ -36,11 +46,12 @@ export function ProductThumb({
   sizes = "(max-width: 640px) 50vw, 25vw",
   priority = false,
   className,
+  podloga,
 }: ThumbProps) {
   /* --- Prava fotografija --- */
   if (src) {
     return (
-      <div className={cn("relative overflow-hidden bg-muted", className)}>
+      <div className={cn("relative overflow-hidden", podloga ?? "bg-muted", className)}>
         <Image
           src={src}
           alt={`${name} | PlugekS`}
@@ -51,12 +62,18 @@ export function ProductThumb({
           // ne donosi ništa — a 3824 slike bi progutale mesečnu kvotu hostinga
           // za transformacije. Hero/kategorijske slike (0.6–1.8MB) je zadržavaju.
           unoptimized
-          className="object-cover"
+          className={cn("object-cover", podloga && "mix-blend-multiply")}
         />
         {/* Bez zatamnjenja preko dna: fotografije proizvoda su na beloj podlozi,
-            pa se gradijent video kao siva mrlja. Značka ima svoju krem podlogu i
-            čita se i bez njega. */}
-        <span className="pointer-events-none absolute bottom-2 left-2 inline-flex items-center rounded-md bg-cream/90 px-1.5 py-1 shadow-sm ring-1 ring-black/5 backdrop-blur-sm">
+            pa se gradijent video kao siva mrlja. Značka ima svoju podlogu i
+            čita se i bez njega — na obojenoj kartici to je ista ta boja, pa
+            značka nestane u pozadini, a i dalje zaklanja sliku ako se preklope. */}
+        <span
+          className={cn(
+            "pointer-events-none absolute bottom-2 left-2 inline-flex items-center rounded-md px-1.5 py-1",
+            podloga ?? "bg-cream/90 shadow-sm ring-1 ring-black/5 backdrop-blur-sm",
+          )}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo-mark.png" alt="" aria-hidden className="h-3 w-auto sm:h-3.5" />
         </span>

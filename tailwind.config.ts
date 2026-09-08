@@ -24,6 +24,10 @@ const config: Config = {
           50: "#EAF3EB",
         },
         cream: "#FAFAF7", // topla off-white
+        // Prljavo bela — podloga kartica prikolica. Kartica se odvaja od krem
+        // strane, a ostaje dovoljno svetla da se bela pozadina fotografije
+        // proizvoda ne vidi kao zaseban beli pravougaonik u njoj.
+        bone: "#EFF0EA",
         charcoal: "#101411", // ugljeno za tamne sekcije
         accent: {
           DEFAULT: "#E0A106", // amber CTA

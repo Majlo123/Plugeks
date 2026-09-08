@@ -54,7 +54,7 @@ export default function PrikolicePage() {
             Izaberite vrstu prikolice — unutra birate broj osovina i nosivost.
           </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {programi.map((p) => {
               const program = TRAILER_PROGRAMS[p.key];
               // Prva prikolica programa je i njegov „portret" — sve imaju
@@ -83,7 +83,7 @@ export default function PrikolicePage() {
               rezervni delovi — originalna oprema uz svaki program.
             </p>
 
-            <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
               {oprema.map((g) => {
                 const naslovna = getTrailersByType(g.key)[0];
                 return (

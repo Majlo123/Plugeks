@@ -48,7 +48,7 @@ export function PrikolicePreview() {
           </Button>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {programi.map((p, i) => (
             <Reveal key={p.key} delay={(i % 4) * 0.06}>
               <Plocica

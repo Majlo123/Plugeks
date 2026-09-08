@@ -34,24 +34,28 @@ export function Plocica({
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lift"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-bone shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lift"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <ProductThumb
           src={slika}
           name={alt}
           kind="prikolica"
+          podloga="bg-bone"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="h-full w-full transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
       <div className="flex flex-1 flex-col p-4">
+        {/* `TRANSPORTER` je jedna reč od 11 slova: u koloni na uskom telefonu
+            izlazila je van kartice, pa naslov tamo ide za stepenicu manji, a
+            `break-words` čuva i od dužih naziva opreme. */}
         <h3
           className={
             sitno
-              ? "text-sm font-semibold leading-snug text-charcoal"
-              : "font-display text-lg font-bold leading-tight text-charcoal"
+              ? "text-sm font-semibold leading-snug text-charcoal break-words"
+              : "font-display text-[0.95rem] font-bold leading-tight text-charcoal break-words min-[400px]:text-lg"
           }
         >
           {naslov}

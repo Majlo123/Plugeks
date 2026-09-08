@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
 import { Button } from "@/components/ui/button";
 import { productPath, TRAILER_BRAND, type CatalogItem } from "@/lib/catalog";
+import { cn } from "@/lib/utils";
 
 const THUMB_SIZES = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
 
@@ -16,16 +17,24 @@ export function MachineCard({
   typeLabel,
   kind = "masina",
   brandLabel = "Rolland",
+  podloga = "bg-white",
 }: {
   item: CatalogItem;
   typeLabel: string;
   /** Prikolice koriste isti kadar 16:10 i isti raspored — vidi `TrailerCard`. */
   kind?: "masina" | "prikolica" | "oprema";
   brandLabel?: string;
+  /** Boja podloge kartice; prikolice idu na prljavo belu (vidi `TrailerCard`). */
+  podloga?: string;
 }) {
   const href = productPath(item);
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+    <article
+      className={cn(
+        "group flex h-full flex-col overflow-hidden rounded-2xl border border-border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift",
+        podloga,
+      )}
+    >
       {/* 16:10 — isti kadar kao slike mašina, pa se cela mašina vidi bez opsecanja. */}
       <Link href={href} className="relative block aspect-[16/10] overflow-hidden" aria-label={item.name}>
         <ProductThumb
@@ -36,6 +45,7 @@ export function MachineCard({
           code={item.id}
           metaLabel={brandLabel}
           sizes={THUMB_SIZES}
+          podloga={podloga}
           className="h-full w-full transition-transform duration-500 group-hover:scale-105"
         />
         <span className="absolute right-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[0.72rem] font-medium text-cream backdrop-blur-sm">
@@ -49,8 +59,12 @@ export function MachineCard({
             {item.name}
           </Link>
         </h3>
+        {/* Bez `line-clamp`: na uskom telefonu se opis prikolice („Jednoosovinska,
+            750 kg, tovarni prostor 2,5 × 1,3 m") prelama u četiri reda, pa je
+            skraćivanje na dva sakrivalo tačno onaj podatak zbog kog kupac i
+            gleda karticu. Dugme ostaje poravnato jer ga `flex-1` gura na dno. */}
         {item.tagline ? (
-          <p className="mt-1 line-clamp-2 text-[0.85rem] text-muted-foreground">
+          <p className="mt-1 text-[0.85rem] leading-snug text-muted-foreground">
             {item.tagline}
           </p>
         ) : null}
@@ -67,7 +81,10 @@ export function MachineCard({
   );
 }
 
-/** Auto-prikolica — ista kartica kao mašina, samo drugi brend i vrsta vizuala. */
+/**
+ * Auto-prikolica — ista kartica kao mašina, samo drugi brend, vrsta vizuala i
+ * prljavo bela podloga, ista kao na pločicama programa (vidi `Plocica`).
+ */
 export function TrailerCard({ item, typeLabel }: { item: CatalogItem; typeLabel: string }) {
   return (
     <MachineCard
@@ -75,6 +92,7 @@ export function TrailerCard({ item, typeLabel }: { item: CatalogItem; typeLabel:
       typeLabel={typeLabel}
       kind="prikolica"
       brandLabel={TRAILER_BRAND.label}
+      podloga="bg-bone"
     />
   );
 }
