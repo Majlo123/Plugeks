@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { Plocica } from "@/components/Plocica";
@@ -46,7 +47,15 @@ export default function PrikolicePage() {
 
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
-          <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
+          <Link
+            href="/proizvodi"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-brand"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Svi proizvodi
+          </Link>
+
+          <h1 className="mt-4 font-display text-2xl font-bold text-charcoal md:text-3xl">
             Auto-prikolice
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">

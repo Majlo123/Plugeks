@@ -25,6 +25,7 @@ const tones: Record<ImageTone, string> = {
 type Props = {
   tone?: ImageTone;
   icon?: LucideIcon;
+  iconClassName?: string;
   label?: string;
   className?: string;
   src?: string;
@@ -38,6 +39,7 @@ type Props = {
 export function MediaPlaceholder({
   tone = "field",
   icon: Icon = ImageIcon,
+  iconClassName = "h-12 w-12",
   label,
   className,
   src,
@@ -71,7 +73,7 @@ export function MediaPlaceholder({
           {/* svetlosni odsjaj */}
           <div className="pointer-events-none absolute -left-1/4 -top-1/3 h-2/3 w-2/3 rounded-full bg-white/10 blur-3xl" />
           <div className="relative z-10 flex flex-col items-center gap-3 px-6 text-center text-cream/90">
-            <Icon className="h-12 w-12 opacity-80" strokeWidth={1.4} aria-hidden />
+            <Icon className={cn(iconClassName, "opacity-80")} strokeWidth={1.4} aria-hidden />
             {label ? (
               <span className="max-w-[14rem] text-sm font-medium text-cream/80">
                 {label}

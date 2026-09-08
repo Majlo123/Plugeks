@@ -319,7 +319,7 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
         deo — dalje vas vodi samo ono što je za taj izbor bitno.
       </p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-3 gap-2.5 sm:gap-5">
         {PICKER.map(({ key, href }) => {
           const meta = TYPE_META[key];
           const Icon = TYPE_ICONS[key];
@@ -331,20 +331,25 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
                 <MediaPlaceholder
                   tone={TYPE_TONES[key]}
                   icon={Icon}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  iconClassName="h-6 w-6 sm:h-12 sm:w-12"
+                  sizes="(max-width: 640px) 33vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent" />
-                <span className="absolute bottom-4 left-5 flex items-center gap-2.5 text-cream">
-                  <Icon className="h-6 w-6" strokeWidth={1.6} aria-hidden />
-                  <span className="font-display text-xl font-bold">{meta.label}</span>
+                <span className="absolute bottom-1.5 left-2 flex items-center gap-1 text-cream sm:bottom-4 sm:left-5 sm:gap-2.5">
+                  <Icon className="h-3.5 w-3.5 sm:h-6 sm:w-6" strokeWidth={1.6} aria-hidden />
+                  <span className="font-display text-[0.72rem] font-bold leading-tight sm:text-xl">
+                    {meta.label}
+                  </span>
                 </span>
               </div>
-              <p className="p-5 text-sm text-muted-foreground">{meta.description}</p>
+              <p className="line-clamp-2 p-2 text-[0.7rem] leading-snug text-muted-foreground sm:line-clamp-none sm:p-5 sm:text-sm">
+                {meta.description}
+              </p>
             </>
           );
           const stil =
-            "group relative block overflow-hidden rounded-2xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift";
+            "group relative block overflow-hidden rounded-xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift sm:rounded-2xl";
 
           return href ? (
             <Link key={key} href={href} aria-label={`Otvori ${meta.label}`} className={stil}>
