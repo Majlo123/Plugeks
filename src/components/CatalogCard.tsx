@@ -17,14 +17,14 @@ export function MachineCard({
   typeLabel,
   kind = "masina",
   brandLabel = "Rolland",
-  podloga = "bg-white",
+  podloga = "bg-bone",
 }: {
   item: CatalogItem;
   typeLabel: string;
   /** Prikolice koriste isti kadar 16:10 i isti raspored — vidi `TrailerCard`. */
   kind?: "masina" | "prikolica" | "oprema";
   brandLabel?: string;
-  /** Boja podloge kartice; prikolice idu na prljavo belu (vidi `TrailerCard`). */
+  /** Boja podloge kartice — prljavo bela na svim karticama proizvoda. */
   podloga?: string;
 }) {
   const href = productPath(item);
@@ -81,10 +81,7 @@ export function MachineCard({
   );
 }
 
-/**
- * Auto-prikolica — ista kartica kao mašina, samo drugi brend, vrsta vizuala i
- * prljavo bela podloga, ista kao na pločicama programa (vidi `Plocica`).
- */
+/** Auto-prikolica — ista kartica kao mašina, samo drugi brend i vrsta vizuala. */
 export function TrailerCard({ item, typeLabel }: { item: CatalogItem; typeLabel: string }) {
   return (
     <MachineCard
@@ -92,7 +89,6 @@ export function TrailerCard({ item, typeLabel }: { item: CatalogItem; typeLabel:
       typeLabel={typeLabel}
       kind="prikolica"
       brandLabel={TRAILER_BRAND.label}
-      podloga="bg-bone"
     />
   );
 }
@@ -106,7 +102,7 @@ export function PartCard({ item, tags }: { item: CatalogItem; tags: string[] }) 
   const href = productPath(item);
   const badge = tags[0];
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-bone shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
       {/* Kvadrat, a ne 4:3 — Rolland fotografije delova su uspravne (472x630),
           pa im je posle opsecanja bele sadržaj u proseku kvadratan. U položenom
           kadru je `object-cover` sekao pola dela. */}
@@ -120,6 +116,7 @@ export function PartCard({ item, tags }: { item: CatalogItem; tags: string[] }) 
           code={item.id}
           metaLabel={badge}
           sizes={THUMB_SIZES}
+          podloga="bg-bone"
           className="h-full w-full transition-transform duration-500 group-hover:scale-105"
         />
       </Link>

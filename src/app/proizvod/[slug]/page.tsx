@@ -223,7 +223,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Vizual */}
             <div>
-              <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-card">
+              <div className="overflow-hidden rounded-3xl border border-border bg-bone shadow-card">
                 <ProductThumb
                   src={p.image}
                   name={p.name}
@@ -231,6 +231,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   typeKey={p.typeKey}
                   groupKey={p.groupKey}
                   code={p.id}
+                  podloga="bg-bone"
                   metaLabel={
                     p.brandLabel && p.brandKey !== "univerzalno" ? p.brandLabel : p.typeLabel
                   }
@@ -379,7 +380,7 @@ function RelatedGrid({ p }: { p: Product }) {
           <Link
             key={r.id}
             href={productHref(r)}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all hover:-translate-y-1 hover:shadow-lift"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bone shadow-card transition-all hover:-translate-y-1 hover:shadow-lift"
           >
             <ProductThumb
               src={r.image}
@@ -389,6 +390,7 @@ function RelatedGrid({ p }: { p: Product }) {
               groupKey={r.groupKey}
               code={r.id}
               sizes="(max-width: 640px) 50vw, 25vw"
+              podloga="bg-bone"
               className={cn(
                 "w-full",
                 r.kind === "deo" ? "aspect-square" : "aspect-[16/10]",

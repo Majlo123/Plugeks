@@ -32,7 +32,7 @@ export function Kategorije() {
               <Reveal key={c.key} delay={(i % 3) * 0.07}>
                 <Link
                   href={catalogHref(c.key)}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lift"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-bone shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lift"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <MediaPlaceholder

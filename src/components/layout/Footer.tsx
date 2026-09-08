@@ -4,14 +4,6 @@ import { Logo } from "@/components/Logo";
 import { nav, site } from "@/lib/site";
 import { categories } from "@/lib/data";
 import { catalogHref } from "@/lib/catalog";
-import {
-  machineCategories,
-  trailerCategories,
-  trailerAccessoryGroups,
-  partBrands,
-  partTypes,
-  katalogBrojStrana,
-} from "@/lib/products";
 
 export function Footer() {
   return (
@@ -128,123 +120,6 @@ export function Footer() {
               </span>
             </li>
           </ul>
-        </div>
-      </div>
-
-      {/*
-        Kategorijske stranice kao obični linkovi, sa svake strane sajta.
-
-        ZAŠTO OVDE: katalog na `/proizvodi` je klijentska komponenta i u
-        serverski generisanom HTML-u nema nijedan link ka proizvodu. Ove strane
-        su ranije visile na jednom bloku na dnu `/proizvodi`; kad je taj blok
-        uklonjen, ostale bi samo u sitemap-u, bez ijednog internog linka — što
-        Google po pravilu ostavlja u „Discovered – currently not indexed".
-        Iz futera ih sada vidi sa svake strane, što je i jače nego pre.
-      */}
-      <div className="border-t border-white/10">
-        <div className="container py-8 text-[0.8rem]">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div>
-              <h3 className="font-semibold uppercase tracking-wider text-cream/90">
-                Mašine po tipu
-              </h3>
-              <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5">
-                {machineCategories().map((c) => (
-                  <li key={c.key}>
-                    <Link
-                      href={`/masine/${c.key}`}
-                      className="text-cream/55 transition-colors hover:text-cream"
-                    >
-                      {c.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold uppercase tracking-wider text-cream/90">
-                Auto-prikolice po programu
-              </h3>
-              <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5">
-                {trailerCategories().map((c) => (
-                  <li key={c.key}>
-                    <Link
-                      href={`/prikolice/${c.key}`}
-                      className="text-cream/55 transition-colors hover:text-cream"
-                    >
-                      {c.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold uppercase tracking-wider text-cream/90">
-                Oprema za prikolice
-              </h3>
-              <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5">
-                {trailerAccessoryGroups().map((c) => (
-                  <li key={c.key}>
-                    <Link
-                      href={`/prikolice/${c.key}`}
-                      className="text-cream/55 transition-colors hover:text-cream"
-                    >
-                      {c.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/*
-            Delovi po marki i po tipu — ista logika kao mašine i prikolice iznad.
-            Bez ovoga bi 64 stranice marki i 30+ stranica tipova ostale samo u
-            sitemap-u, bez ijednog internog linka.
-          */}
-          <div className="mt-8 border-t border-white/10 pt-8">
-            <h3 className="font-semibold uppercase tracking-wider text-cream/90">
-              Delovi po marki pluga
-            </h3>
-            <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5">
-              {partBrands().map((b) => (
-                <li key={b.key}>
-                  <Link
-                    href={`/delovi/brend/${b.key}`}
-                    className="text-cream/55 transition-colors hover:text-cream"
-                  >
-                    {b.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="mt-6 font-semibold uppercase tracking-wider text-cream/90">
-              Delovi po tipu
-            </h3>
-            <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1.5">
-              {partTypes().map((t) => (
-                <li key={t.key}>
-                  <Link
-                    href={`/delovi/${t.key}`}
-                    className="text-cream/55 transition-colors hover:text-cream"
-                  >
-                    {t.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <p className="mt-6 text-cream/45">
-            Ili prelistajte{" "}
-            <Link href="/katalog/1" className="text-cream/70 underline-offset-4 hover:underline">
-              kompletan katalog
-            </Link>{" "}
-            — sve na {katalogBrojStrana()} strana.
-          </p>
         </div>
       </div>
 

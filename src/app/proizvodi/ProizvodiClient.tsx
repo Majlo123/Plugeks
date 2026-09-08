@@ -367,7 +367,7 @@ function TypePicker({ onChoose }: { onChoose: (type: CatalogType) => void }) {
             </>
           );
           const stil =
-            "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-white text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift sm:rounded-2xl";
+            "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-bone text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lift sm:rounded-2xl";
 
           return href ? (
             <Link key={key} href={href} aria-label={`Otvori ${meta.label}`} className={stil}>
