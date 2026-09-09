@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Globe } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Globe, Map } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { nav, site } from "@/lib/site";
 import { categories } from "@/lib/data";
@@ -34,6 +34,27 @@ export function Footer() {
               className="grid h-10 w-10 place-items-center rounded-full bg-white/5 text-cream/80 transition-colors hover:bg-brand hover:text-cream"
             >
               <Instagram className="h-5 w-5" />
+            </a>
+            <a
+              href={site.socials.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="grid h-10 w-10 place-items-center rounded-full bg-white/5 text-cream/80 transition-colors hover:bg-brand hover:text-cream"
+            >
+              {/* lucide-react nema brend ikonicu za TikTok — crta se ručno. */}
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+                <path d="M16.6 5.82c-1.02-.88-1.6-2.15-1.6-3.5h-3.13v14.02c0 1.56-1.27 2.83-2.83 2.83a2.83 2.83 0 0 1-.02-5.66c.29 0 .58.05.85.13V10.5a6.03 6.03 0 0 0-.83-.06 6.03 6.03 0 0 0 0 12.06 6.03 6.03 0 0 0 6.03-6.03V9.28a8.14 8.14 0 0 0 4.75 1.52V7.66a4.83 4.83 0 0 1-3.22-1.84Z" />
+              </svg>
+            </a>
+            <a
+              href={site.socials.googleBusiness}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Google profil (mapa, recenzije)"
+              className="grid h-10 w-10 place-items-center rounded-full bg-white/5 text-cream/80 transition-colors hover:bg-brand hover:text-cream"
+            >
+              <Map className="h-5 w-5" />
             </a>
             <a
               href={site.socials.website}

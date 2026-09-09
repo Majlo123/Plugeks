@@ -126,7 +126,16 @@ const jsonLd = {
       closes: "13:00",
     },
   ],
-  sameAs: [site.socials.facebook, site.socials.instagram],
+  // Google Business profil ide OVDE zato što Google njime najpouzdanije
+  // potvrđuje da su sajt i Maps-listing ista firma — to je entitet koji već
+  // ima recenzije i NAP podatke, pa je najjači link u ovom nizu, ne samo još
+  // jedna društvena mreža.
+  sameAs: [
+    site.socials.facebook,
+    site.socials.instagram,
+    site.socials.tiktok,
+    site.socials.googleBusiness,
+  ],
 };
 
 /**

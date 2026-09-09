@@ -37,6 +37,11 @@ export const site = {
   socials: {
     facebook: "https://www.facebook.com/p/PlugekS-100077726130337/",
     instagram: "https://www.instagram.com/plugeks/",
+    tiktok: "https://www.tiktok.com/@plugeks",
+    // Google Business profil (Google Maps) — najjači signal za lokalni SEO,
+    // Google njime pouzdano povežuje entitet "Plugeks" sa sajtom i sa NAP
+    // podacima koje Google već ima u svom Knowledge Panel-u za firmu.
+    googleBusiness: "https://share.google/0EQdnsIsovcC2qR5P",
     website: "https://plugeks.com",
   },
 
