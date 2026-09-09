@@ -11,6 +11,7 @@ import {
   getPartsByBrand,
   partTypes,
   partTypesForBrand,
+  ukrstenaHref,
   katBrojeva,
 } from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
@@ -146,7 +147,9 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
               {tipovi.slice(0, 12).map((t) => (
                 <Link
                   key={t.key}
-                  href={`/delovi/${t.key}`}
+                  // Ukrštena strana kad postoji — „Raonik" na strani Lemken-a vodi
+                  // na „Raonik za plugove Lemken", a ne na raonike svih marki.
+                  href={ukrstenaHref(t.key, brend.key) ?? `/delovi/${t.key}`}
                   className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1.5 text-sm text-foreground/85 transition-colors hover:border-brand/40 hover:text-brand"
                 >
                   {t.label}

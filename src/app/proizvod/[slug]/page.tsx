@@ -26,6 +26,8 @@ import {
   machineDescription,
   machineHighlights,
   partDescription,
+  ukrstenaHref,
+  kontekstMasine,
   trailerDescription,
   trailerHighlights,
   type Product,
@@ -67,18 +69,38 @@ const catalogHref = (p: Product) => {
  * opšti katalog: kupac koji se vraća korak nazad završi u spisku modela iz
  * kog je i došao, a ne u fasetama koje za prikolice više ne postoje.
  */
-const putanja = (p: Product): { naziv: string; href: string }[] =>
-  p.kind === "prikolica" || p.kind === "oprema"
-    ? [
-        { naziv: "Auto-prikolice", href: "/prikolice" },
-        ...(p.typeKey
-          ? [{ naziv: p.typeLabel ?? p.groupLabel, href: `/prikolice/${p.typeKey}` }]
-          : []),
-      ]
-    : [
-        { naziv: "Proizvodi", href: "/proizvodi" },
-        { naziv: p.groupLabel, href: catalogHref(p) },
-      ];
+const putanja = (p: Product): { naziv: string; href: string }[] => {
+  if (p.kind === "prikolica" || p.kind === "oprema")
+    return [
+      { naziv: "Auto-prikolice", href: "/prikolice" },
+      ...(p.typeKey
+        ? [{ naziv: p.typeLabel ?? p.groupLabel, href: `/prikolice/${p.typeKey}` }]
+        : []),
+    ];
+
+  if (p.kind === "masina")
+    return [
+      { naziv: "Proizvodi", href: "/proizvodi" },
+      p.typeKey
+        ? { naziv: p.groupLabel, href: `/masine/${p.typeKey}` }
+        : { naziv: p.groupLabel, href: catalogHref(p) },
+    ];
+
+  // Delovi: nagore idu u indeksirane kategorije (`/delovi/...`), a ne u
+  // `/proizvodi?vrsta=delovi&brend=...`. Filter-URL je za Google ista strana kao
+  // katalog, pa su sve 4.644 strane dela do sada pokazivale nagore u prazno.
+  const kontekst = kontekstMasine(p.groupKey);
+  const ukrstena = ukrstenaHref(p.typeKey, p.brandKey);
+  return [
+    { naziv: "Proizvodi", href: "/proizvodi" },
+    ...(p.typeKey && p.typeLabel
+      ? [{ naziv: `${p.typeLabel} za ${kontekst}`, href: `/delovi/${p.typeKey}` }]
+      : [{ naziv: p.groupLabel, href: catalogHref(p) }]),
+    ...(ukrstena && p.typeLabel && p.brandLabel
+      ? [{ naziv: `${p.typeLabel} ${p.brandLabel}`, href: ukrstena }]
+      : []),
+  ];
+};
 
 /** Jedan izvor opisnog teksta — koristi ga i metadata, i JSON-LD, i sama stranica. */
 const opisProizvoda = (p: Product) =>
@@ -99,11 +121,14 @@ export function generateMetadata({
   if (!p) return {};
 
   const canonical = `/proizvod/${p.slug}`;
+  // Kataloški broj je u naslovu zato što ga kupac često i kuca — prepiše ga sa
+  // starog dela. Marka se NE dodaje: svih 4.567 naziva brendiranih delova je već
+  // sadrži, pa bi je naslov ponovio i probio dužinu koju Google prikaže.
   const title =
     p.kind === "masina"
       ? `${p.name} — Rolland`
       : p.kind === "deo"
-        ? `${p.name} — rezervni deo`
+        ? `${p.name} — kat. br. ${p.id}`
         : `${p.name} — ${TRAILER_BRAND.label}`;
   const description =
     p.kind === "deo"

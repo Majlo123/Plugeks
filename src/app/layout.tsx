@@ -129,6 +129,31 @@ const jsonLd = {
   sameAs: [site.socials.facebook, site.socials.instagram],
 };
 
+/**
+ * WebSite + SearchAction — uz rezultat za „plugeks" Google ume da prikaže i polje
+ * za pretragu koje vodi pravo u naš katalog, umesto da posetilac prvo otvori
+ * početnu pa traži odatle. `@id` je odvojen od `Store` entiteta, a `publisher`
+ * ih povezuje u jedan graf.
+ */
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: site.name,
+  alternateName: ["Plugeks", "PLUGEKS"],
+  inLanguage: "sr-RS",
+  publisher: { "@id": `${SITE_URL}/#plugeks` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/proizvodi?vrsta=delovi&q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -140,6 +165,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <Header />
         <main>{children}</main>

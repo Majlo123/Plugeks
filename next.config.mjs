@@ -34,22 +34,21 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Rolland fotografije nose njihov žig, pa ostaju vidljive na sajtu ali
-        // se ne indeksiraju u Google Images. Header, a ne robots.txt Disallow:
-        // zabrana obilaska bi sprečila Google da uopšte pročita ovo pravilo.
+        // Next po podrazumevanom serviranju `public/` šalje `max-age=0`, pa se
+        // svaka slika dohvata iznova. Google Images sporo servirane slike ređe
+        // indeksira, a i posetiocu se katalog otvara sporije.
         //
-        // Radi samo zato što ProductThumb slike servira `unoptimized`, dakle sa
-        // sirovog puta. Ako se `unoptimized` ikad ukloni, slike odlaze na
-        // /_next/image i ovaj source ih više ne pokriva.
-        source: "/images/rolland/:path*",
-        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
-      },
-      {
-        // Isto i za fotografije prikolica: to su proizvođačevi studijski
-        // snimci, pa stoje na karticama, ali se ne prijavljuju Google Images
-        // dok se ne zamene sopstvenim fotografijama.
-        source: "/images/prikolice/:path*",
-        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+        // Namerno BEZ `immutable` i bez godine dana: ime fajla je kataloski broj
+        // i ostaje isto kad se žigosana fotografija zameni sopstvenom (vidi
+        // README, `npm run slike`). Uz `immutable` bi stari posetioci još godinu
+        // dana gledali staru sliku. Dan svežine + nedelja u pozadini je dovoljno.
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
     ];
   },

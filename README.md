@@ -134,6 +134,11 @@ bezbedno — već preuzete slike se preskaču.
 > preko samog proizvoda, pa ga nije moguće ukloniti bez vidnog oštećenja slike.
 > Fotografije *mašina* su čiste. Za čiste slike delova traži media paket od
 > Rollanda — kao distributer ih dobijaš na zahtev.
+>
+> Te slike se **od sad indeksiraju u Google Images** (odluka vlasnika sajta):
+> `X-Robots-Tag: noindex` je uklonjen iz `next.config.mjs` i sve ulaze u
+> `image-sitemap.xml`. Kad stigne media paket, zameni fajlove pod istim imenom —
+> ništa drugo ne treba dirati.
 
 ### 5) Delovi za plugove + najtraženiji delovi → `npm run plugovi`
 
@@ -229,10 +234,11 @@ dobijaju sufiks `(varijanta 2)`.
 > B96) i upućuje na proveru dozvoljene mase skupa. Ako se granica menja, to je
 > `B_KATEGORIJA` u `src/lib/products.ts`.
 
-> **Fotografije** su proizvođačeve, čiste i bez žiga, ali su i dalje tuđe — zato
-> `/images/prikolice/` ide sa `X-Robots-Tag: noindex` (isto kao Rolland slike,
-> vidi `next.config.mjs`) i ne ulazi u `image-sitemap.xml`. Kad dobiješ svoje
-> fotografije ili media paket, ukloni to pravilo.
+> **Fotografije** su proizvođačeve, čiste i bez žiga, ali su i dalje tuđe.
+> Ranije su išle sa `X-Robots-Tag: noindex`; ta zabrana je uklonjena odlukom
+> vlasnika sajta, pa `/images/prikolice/` sada ulazi u `image-sitemap.xml` i
+> indeksira se u Google Images. Kad dobiješ svoje fotografije, zameni fajlove
+> pod istim imenom.
 
 ### 7) Kadar fotografija proizvoda → `npm run slike:kadar`
 
@@ -333,8 +339,19 @@ await fetch("/api/upit", {
 
 - Semantički HTML, meta naslovi/opisi na srpskom sa ključnim rečima
 - **Open Graph** + Twitter kartice za lepo deljenje na FB/IG
-- **JSON-LD `Store`/`LocalBusiness`** šema (naziv, adresa Žabalj, telefon, radno vreme, geo)
+- **JSON-LD**: `Store`/`LocalBusiness`, `WebSite` + `SearchAction` (polje za
+  pretragu u Google rezultatu), `Product`, `BreadcrumbList`, `ItemList`, `FAQPage`
 - `sitemap.xml` i `robots.txt` (automatski generisani)
+- **`image-sitemap.xml`** — sve fotografije proizvoda sa naslovom i natpisom,
+  za Google Images (vidi `src/app/image-sitemap.xml/route.ts`)
+- Kategorijske strane pisane za stvarne upite:
+  - `/delovi/[tip]` — „raonik", „daska"…
+  - `/delovi/brend/[marka]` — „delovi za Lemken"
+  - `/delovi/[tip]/[marka]` — „raonik za Lemken plug"; generišu se samo
+    kombinacije sa ≥ `MIN_ZA_UKRSTENU` delova (`src/lib/products.ts`)
+  - `/katalog/[strana]` — interni link za svaki proizvod
+- Pretraga u headeru (`HeaderSearch`) radi sa svake strane, po nazivu, marki i
+  kataloškom broju
 - Optimizovano za mobilne i brzinu (Core Web Vitals)
 
 Pre objave: u `src/app/layout.tsx` i `sitemap.ts`/`robots.ts` proveri da je domen `https://plugeks.com` tačan.

@@ -491,6 +491,14 @@ const GROUP_CONTEXT: Record<string, string> = {
   "delovi-kosacice": "kosačice",
 };
 
+/**
+ * „delovi-plugovi" → „plugove". Kontekst mašine u akuzativu, da rečenica
+ * „raonik za plugove Lemken" ostane tačna i kad deo nije za plug (isti katalog
+ * nosi i delove za sejalice, tanjirače i vadilice).
+ */
+export const kontekstMasine = (groupKey: string): string =>
+  GROUP_CONTEXT[groupKey] ?? "poljoprivredne mašine";
+
 /** Originalan, iskren opis rezervnog dela — variran po tipu/brendu/kategoriji. */
 export function partDescription(p: Product): string {
   const forMachine = GROUP_CONTEXT[p.groupKey] ?? "poljoprivredne mašine";
@@ -588,6 +596,91 @@ export const getPartsByBrand = (brandKey: string) =>
  */
 export const partTypesForBrand = (brandKey: string): Kategorija[] =>
   prebroj(getPartsByBrand(brandKey), (p) => p.typeKey, (p) => p.typeLabel);
+
+/* ------------------- Ukrštene kategorije: tip × marka ------------------- */
+
+/**
+ * Najmanji broj delova da ukrštena strana ima šta da pokaže. Ispod toga to je
+ * naslov i tri linka — „thin content" koji Google po pravilu ostavi u
+ * „Discovered – currently not indexed", a nama razblažuje kategoriju.
+ */
+export const MIN_ZA_UKRSTENU = 5;
+
+export type UkrstenaKategorija = {
+  tipKey: string;
+  tipLabel: string;
+  brendKey: string;
+  brendLabel: string;
+  count: number;
+};
+
+let ukrsteneCache: UkrstenaKategorija[] | null = null;
+
+/**
+ * Kombinacije tip dela × marka pluga koje zaslužuju svoju stranicu.
+ *
+ * ZAŠTO: „raonik" i „delovi za Lemken" su dva različita upita i oba već imaju
+ * svoju stranu, ali kupac najčešće kuca treći — „raonik za Lemken plug". Za taj
+ * upit do sada nije postojala nijedna strana na kojoj su baš ta dva pojma u
+ * naslovu; Google je nudio širu kategoriju, koja gubi od konkurencije sa
+ * preciznim naslovom. Univerzalni delovi se preskaču — „raonik za univerzalno"
+ * nije upit.
+ */
+export function partTypeBrandPairs(): UkrstenaKategorija[] {
+  if (ukrsteneCache) return ukrsteneCache;
+
+  const mapa = new Map<string, UkrstenaKategorija>();
+  for (const p of getParts()) {
+    if (!p.typeKey || !p.brandKey || p.brandKey === "univerzalno") continue;
+    const kljuc = `${p.typeKey}|${p.brandKey}`;
+    const postojeci = mapa.get(kljuc);
+    if (postojeci) {
+      postojeci.count += 1;
+      continue;
+    }
+    mapa.set(kljuc, {
+      tipKey: p.typeKey,
+      tipLabel: p.typeLabel ?? p.typeKey,
+      brendKey: p.brandKey,
+      brendLabel: p.brandLabel ?? p.brandKey,
+      count: 1,
+    });
+  }
+
+  ukrsteneCache = [...mapa.values()]
+    .filter((u) => u.count >= MIN_ZA_UKRSTENU)
+    .sort(
+      (a, b) =>
+        b.count - a.count ||
+        a.tipLabel.localeCompare(b.tipLabel, "sr") ||
+        a.brendLabel.localeCompare(b.brendLabel, "sr"),
+    );
+  return ukrsteneCache;
+}
+
+export const getPartsByTypeAndBrand = (tipKey: string, brendKey: string): Product[] =>
+  getParts().filter((p) => p.typeKey === tipKey && p.brandKey === brendKey);
+
+/** Marke za koje dati tip dela ima svoju ukrštenu stranu — za unutrašnje linkove. */
+export const brandsForPartType = (tipKey: string): Kategorija[] =>
+  partTypeBrandPairs()
+    .filter((u) => u.tipKey === tipKey)
+    .map((u) => ({ key: u.brendKey, label: u.brendLabel, count: u.count }));
+
+/** Tipovi delova za koje data marka ima svoju ukrštenu stranu. */
+export const partTypesWithPageForBrand = (brendKey: string): Kategorija[] =>
+  partTypeBrandPairs()
+    .filter((u) => u.brendKey === brendKey)
+    .map((u) => ({ key: u.tipKey, label: u.tipLabel, count: u.count }));
+
+/** Adresa ukrštene strane; `null` kad za tu kombinaciju strana ne postoji. */
+export function ukrstenaHref(tipKey?: string, brendKey?: string): string | null {
+  if (!tipKey || !brendKey) return null;
+  const ima = partTypeBrandPairs().some(
+    (u) => u.tipKey === tipKey && u.brendKey === brendKey,
+  );
+  return ima ? `/delovi/${tipKey}/${brendKey}` : null;
+}
 
 export const getMachinesByCategory = (typeKey: string) =>
   getMachines().filter((p) => p.typeKey === typeKey);

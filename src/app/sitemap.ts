@@ -7,6 +7,7 @@ import {
   machineCategories,
   trailerCategories,
   trailerAccessoryGroups,
+  partTypeBrandPairs,
   katalogBrojStrana,
 } from "@/lib/products";
 
@@ -63,6 +64,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    // Ukrštene strane („raonik za Lemken") — najprecizniji upit koji kupac kuca,
+    // pa im prioritet ide iznad širih kategorija.
+    ...partTypeBrandPairs().map((u) => ({
+      url: `${BASE}/delovi/${u.tipKey}/${u.brendKey}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
   ];
 

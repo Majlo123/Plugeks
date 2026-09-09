@@ -3,7 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
-import { partTypes, getPartsByType, partBrands, katBrojeva, uzBroj } from "@/lib/products";
+import {
+  partTypes,
+  getPartsByType,
+  partBrands,
+  brandsForPartType,
+  katBrojeva,
+  uzBroj,
+} from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { SpisakJsonLd } from "@/components/SpisakJsonLd";
 
@@ -42,6 +49,8 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
   const svi = getPartsByType(tip.key);
   const prikazani = svi.slice(0, MAX_NA_STRANI);
   const ostali = svi.length - prikazani.length;
+  // Marke za koje baš ovaj tip ima svoju ukrštenu stranu.
+  const ukrstene = brandsForPartType(tip.key);
 
   return (
     <>
@@ -82,15 +91,37 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
 
           <nav className="mt-12 border-t border-border pt-6">
             {/* Marke su ovde zato što se „raonik" i „raonik za Lemken" traže kao
-                dva različita upita — svaka strana mora da vodi na onu drugu. */}
-            <p className="text-sm font-semibold text-charcoal">
-              {tip.label} po marki pluga
-            </p>
+                dva različita upita — svaka strana mora da vodi na onu drugu.
+                Link ide na ukrštenu stranu kad ona postoji (`/delovi/tip/marka`):
+                natpis obećava baš tu kombinaciju, pa mora i da je isporuči —
+                ranije je vodio na spisak SVIH delova te marke. */}
+            {ukrstene.length > 0 ? (
+              <>
+                <p className="text-sm font-semibold text-charcoal">
+                  {tip.label} po marki pluga
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                  {ukrstene.map((b) => (
+                    <li key={b.key}>
+                      <Link
+                        href={`/delovi/${tip.key}/${b.key}`}
+                        className="text-brand hover:underline"
+                      >
+                        {tip.label} {b.label}
+                      </Link>{" "}
+                      <span className="text-muted-foreground">({b.count})</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+
+            <p className="mt-8 text-sm font-semibold text-charcoal">Svi delovi po marki pluga</p>
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               {partBrands().map((b) => (
                 <li key={b.key}>
                   <Link href={`/delovi/brend/${b.key}`} className="text-brand hover:underline">
-                    {tip.label} {b.label}
+                    {b.label}
                   </Link>
                 </li>
               ))}

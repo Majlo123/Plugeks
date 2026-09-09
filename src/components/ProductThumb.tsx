@@ -48,13 +48,26 @@ export function ProductThumb({
   className,
   podloga,
 }: ThumbProps) {
+  /**
+   * Opis slike. Ime fajla je kataloski broj (`3374.jpg`), pa je `alt` jedini
+   * tekst iz kog Google Images sazna šta je na slici — zato nosi i marku i broj,
+   * a ne samo naziv. Marka se ne ponavlja ako je već u nazivu.
+   */
+  const opisSlike = [
+    name,
+    metaLabel && !name.toLowerCase().includes(metaLabel.toLowerCase()) ? metaLabel : null,
+    code ? `kat. br. ${code}` : null,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
   /* --- Prava fotografija --- */
   if (src) {
     return (
       <div className={cn("relative overflow-hidden", podloga ?? "bg-muted", className)}>
         <Image
           src={src}
-          alt={`${name} | PlugekS`}
+          alt={`${opisSlike} — PlugekS`}
           fill
           sizes={sizes}
           priority={priority}
