@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle, Phone, X } from "lucide-react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -8,9 +9,16 @@ import { cn } from "@/lib/utils";
 /**
  * Plutajuće dugme za brz kontakt — uvek vidljivo (posebno na mobilnom).
  * Otvara WhatsApp, Viber i direktan poziv. Smanjuje trenje do konverzije.
+ *
+ * OSIM U INTERNOM DELU (`/admin`): tamo je jedini posetilac vlasnik sajta, pa
+ * dugme nema kome da ponudi poziv — a na telefonu je stajalo tačno preko
+ * desne, cenovne kolone u tabeli nabavnih cena.
  */
 export function FloatingContact() {
+  const putanja = usePathname();
   const [open, setOpen] = useState(false);
+
+  if (putanja?.startsWith("/admin")) return null;
 
   const actions = [
     {

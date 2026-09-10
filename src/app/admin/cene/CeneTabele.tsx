@@ -63,7 +63,7 @@ export function CeneTabele({
           <Input
             value={upit}
             onChange={(e) => setUpit(e.target.value)}
-            placeholder="Pretraga — naziv, šifra ili program (npr. „light 25”, „9012”, „cerada”)"
+            placeholder="Pretraga — naziv, šifra, program"
             aria-label="Pretraga cenovnika"
             className="pl-11 pr-11"
           />
@@ -136,35 +136,49 @@ function Tabela({
         </span>
       </h2>
 
-      {/* Tabela je jedini element na sajtu koji sme da bude širi od ekrana —
-          zato u svom `overflow-x` okviru, da telefon ne skroluje celu stranu. */}
+      {/* NA TELEFONU SAMO NAZIV I CENA. Pet kolona traži 40rem širine, pa se na
+          telefonu tabela morala vući bočno — a cena, ono zbog čega se strana i
+          otvara, stajala je van ekrana. Šifra, program i link na stranicu se
+          zato ispod `sm` sklanjaju: šifra je ionako samo ključ u JSON-u, a
+          program se čita iz naziva („Auto-prikolica LIGHT 25"). Pretraga i
+          dalje gleda i šifru i program, i kad se ne prikazuju.
+
+          Od `sm` naviše tabela je opet cela, u svom `overflow-x` okviru, da
+          uska strana ne skroluje bočno cela. */}
       <div className="mt-4 overflow-x-auto rounded-2xl border border-border bg-white">
-        <table className="w-full min-w-[40rem] text-sm">
+        <table className="w-full text-sm sm:min-w-[40rem]">
           <thead>
             <tr className="border-b border-border text-left text-xs uppercase tracking-wider text-muted-foreground">
-              <th className="px-4 py-3 font-semibold">Šifra</th>
+              <th className="hidden px-4 py-3 font-semibold sm:table-cell">Šifra</th>
               <th className="px-4 py-3 font-semibold">Naziv</th>
-              <th className="px-4 py-3 font-semibold">Program</th>
+              <th className="hidden px-4 py-3 font-semibold sm:table-cell">Program</th>
               <th className="px-4 py-3 text-right font-semibold">
-                Nabavna cena ({valuta})
+                <span className="hidden sm:inline">Nabavna cena</span>
+                <span className="sm:hidden">Cena</span> ({valuta})
               </th>
-              <th className="px-4 py-3" />
+              <th className="hidden px-4 py-3 sm:table-cell" />
             </tr>
           </thead>
           <tbody>
             {redovi.map((r, i) => (
               <tr key={r.id} className={i % 2 ? "bg-cream/40" : undefined}>
-                <td className="whitespace-nowrap px-4 py-2.5 font-mono text-xs text-muted-foreground">
+                <td className="hidden whitespace-nowrap px-4 py-2.5 font-mono text-xs text-muted-foreground sm:table-cell">
                   {r.id}
                 </td>
-                <td className="px-4 py-2.5 text-charcoal">{r.naziv}</td>
-                <td className="whitespace-nowrap px-4 py-2.5 text-muted-foreground">
+                {/* Naziv je i link na proizvod — na telefonu kolone „Stranica"
+                    nema, a red bez ijednog izlaza je ćorsokak. */}
+                <td className="px-4 py-2.5 text-charcoal">
+                  <Link href={r.href} className="hover:text-brand">
+                    {r.naziv}
+                  </Link>
+                </td>
+                <td className="hidden whitespace-nowrap px-4 py-2.5 text-muted-foreground sm:table-cell">
                   {r.program}
                 </td>
                 <td className="whitespace-nowrap px-4 py-2.5 text-right font-medium tabular-nums text-charcoal">
                   {r.cena != null ? dinara(r.cena) : "—"}
                 </td>
-                <td className="px-4 py-2.5 text-right">
+                <td className="hidden px-4 py-2.5 text-right sm:table-cell">
                   <Link
                     href={r.href}
                     className="inline-flex items-center gap-1 text-xs text-brand hover:underline"
