@@ -15,8 +15,15 @@ import machinesJson from "@/data/machines.json";
 import packedParts from "@/data/parts.json";
 import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
-import { categories } from "@/lib/data";
 import { uzBroj } from "@/lib/brojevi";
+import {
+  GRANE,
+  granaKljucevi,
+  granaZaTip,
+  tipLabel,
+  type GranaKljuc,
+} from "@/lib/masine";
+import { poredaj, rang } from "@/lib/redosled";
 import {
   productSlug,
   idFromSlug,
@@ -32,6 +39,18 @@ const productImages: Record<string, string> = {
 };
 
 /* ---------------------------------- Model ---------------------------------- */
+
+/**
+ * Tabela tehničkih podataka mašine — matrica, ne spisak parova.
+ *
+ * `kolone` su izvedbe iste mašine („TERA HP 210", „TERA HP 240"…), a svaki red
+ * u `redovi` počinje nazivom osobine pa nosi po jednu vrednost za svaku kolonu:
+ * `["Masa", "535 kg", "560 kg", "595 kg"]`.
+ *
+ * Popunjava je `npm run masine` sa slovenačke verzije izvora — jedine na kojoj
+ * te tabele nisu prazne (vidi `scripts/import-hofman.mjs`).
+ */
+export type TabelaModela = { kolone: string[]; redovi: string[][] };
 
 export type ProductKind = "masina" | "deo" | "prikolica" | "oprema";
 
@@ -52,6 +71,9 @@ export type Product = {
   typeLabel?: string;
   brandKey?: string;
   brandLabel?: string;
+  /** Grana mašine (poljoprivredne / šumske / građevinske) — samo kod mašina. */
+  granaKey?: GranaKljuc;
+  granaLabel?: string;
   sideKey?: string;
   sideLabel?: string;
   /** Fabrička oznaka modela bez naše reči ispred („LIGHT 23 DA"). */
@@ -60,6 +82,8 @@ export type Product = {
   specs?: [string, string][];
   /** Tehnički opis komada opreme (marka, nosivost, materijal) — vidi `trailers.json`. */
   note?: string;
+  /** Tabela modela (mašine) — vidi `TabelaModela`. */
+  tabela?: TabelaModela;
 };
 
 /* -------------------------------- Jezik ----------------------------------- */
@@ -96,39 +120,47 @@ type MachineRow = {
   id: string;
   name: string;
   group: string;
+  /** Grana — poljoprivredne / šumske / građevinske. */
+  grana: GranaKljuc;
   subgroup: string;
   tagline: string;
   brand: string;
+  tabela?: TabelaModela;
 };
 
-const CATEGORY_BY_KEY = Object.fromEntries(categories.map((c) => [c.key, c]));
-
-const MACHINE_TYPE_LABELS: Record<string, string> = {
-  tanjirace: "Tanjirača",
-  agregati: "Agregat",
-  podrivaci: "Podrivač",
-  valjci: "Valjak",
-  ostalo: "Mašina",
+/** Marke mašina u ponudi. Ključ je `brand` iz `machines.json`. */
+const MACHINE_BRANDS: Record<string, string> = {
+  rolland: "Rolland",
+  hofman: "Hofman",
 };
 
 function buildMachine(m: MachineRow): Product {
+  const tip = tipLabel(m.subgroup) ?? "Mašine";
   return {
     kind: "masina",
     id: m.id,
     slug: productSlug(m.name, m.id),
     name: m.name,
-    tagline: m.tagline,
+    tagline: m.tagline || undefined,
     // Samo PRAVA fotografija proizvoda; bez nje → brendiran placeholder (ne
     // generička traktor-slika koja pogrešno predstavlja mašinu).
     image: productImages[m.id],
+    // Grupa mašine je njen TIP (tanjirače, cepači drva…), a ne grana: to je
+    // ono što stoji na kartici i u breadcrumb-u, i ono što ima svoju stranu.
     groupKey: m.subgroup,
-    groupLabel: CATEGORY_BY_KEY[m.subgroup]?.label ?? "Mašine",
+    groupLabel: tip,
     typeKey: m.subgroup,
-    typeLabel: MACHINE_TYPE_LABELS[m.subgroup] ?? "Mašina",
-    brandKey: "rolland",
-    brandLabel: "Rolland",
+    typeLabel: tip,
+    granaKey: m.grana,
+    granaLabel: GRANE[m.grana]?.label,
+    brandKey: m.brand,
+    brandLabel: MACHINE_BRANDS[m.brand] ?? m.brand,
+    tabela: m.tabela,
   };
 }
+
+/** Izvedbe mašine iz tabele („TERA HP 210, TERA HP 240, TERA HP 280"). */
+export const modeliMasine = (p: Product): string[] => p.tabela?.kolone ?? [];
 
 /* ------------------------ Auto-prikolice i njihova oprema ------------------ */
 
@@ -214,7 +246,18 @@ function build() {
   const tables = packedParts as unknown as PackedParts;
   const parts = tables.items.map((row) => buildPart(row, tables));
 
-  const all = [...machines, ...prikolice, ...parts];
+  // Redosled se propisuje JEDNOM, ovde (vidi `lib/redosled.ts`). Sve niže
+  // funkcije samo filtriraju `all`, a `Array.filter` čuva redosled — pa svaka
+  // kategorijska strana, kataloški indeks i sitemap nasleđuju isti raspored bez
+  // ijednog dodatnog `sort`-a. Sortira se po vrsti, da grupisanje
+  // (mašine → prikolice → delovi) u kataloškom indeksu ostane netaknuto.
+  // `Product` se već poklapa sa `ZaRedosled`, pa mu ključ ne treba prevod.
+  const sam = (p: Product) => p;
+  const all = [
+    ...poredaj(machines, sam),
+    ...poredaj(prikolice, sam),
+    ...poredaj(parts, sam),
+  ];
   const byId = new Map<string, Product>();
   const bySlug = new Map<string, Product>();
   for (const p of all) {
@@ -278,7 +321,15 @@ export function relatedProducts(p: Product, limit = 4): Product[] {
   return all
     .map((o) => ({ o, s: score(o) }))
     .filter((x) => x.s > 0)
-    .sort((a, b) => b.s - a.s || a.o.name.localeCompare(b.o.name, "sr"))
+    // Isti propisani red kao svuda (crtež pre fotografije pre praznog, obični
+    // deo pre predplužnjakovog) — ali tek posle srodnosti: bolje je pokazati
+    // pravi srodan deo bez slike nego tuđi sa slikom.
+    .sort(
+      (a, b) =>
+        b.s - a.s ||
+        rang(a.o) - rang(b.o) ||
+        a.o.name.localeCompare(b.o.name, "sr"),
+    )
     .slice(0, limit)
     .map((x) => x.o);
 }
@@ -314,13 +365,30 @@ const MACHINE_COPY: Record<string, string> = {
     "Valjci za obradu zemljišta služe za poravnavanje i zbijanje površine posle obrade i za razbijanje grudvi. Biraju se prema tipu zemljišta i kombinuju sa agregatima i tanjiračama.",
 };
 
-/** Vraća opis mašine; ako specifičan ne postoji, gradi solidan podrazumevani. */
+/**
+ * Vraća opis mašine; ako specifičan ne postoji, gradi solidan podrazumevani.
+ *
+ * Marka i grana se čitaju iz samog proizvoda — ranije je ovde stajalo fiksno
+ * „iz Rolland programa za obradu zemljišta", što je posle uvoza Hofman
+ * programa bilo netačno za tri četvrtine kataloga (i za svaki cepač drva).
+ */
 export function machineDescription(p: Product): string {
-  return (
-    MACHINE_COPY[p.id] ??
-    `${p.name} je ${(p.typeLabel ?? "mašina").toLowerCase()} iz Rolland programa za obradu zemljišta. Recite nam veličinu parcela i traktor kojim raspolažete i preporučujemo odgovarajuću konfiguraciju.`
-  );
+  if (MACHINE_COPY[p.id]) return MACHINE_COPY[p.id];
+
+  // Naziv tipa se NE ubacuje u rečenicu: nazivi tipova su u množini („Cepači
+  // drva"), pa bi dalo „REX je cepači drva". Sam naziv mašine ionako počinje
+  // našom imenicom u jednini („Cepač drva REX"), pa je tip tu suvišan.
+  const program = p.brandLabel ? ` iz ${p.brandLabel} programa` : "";
+  const posao = p.granaKey ? ` ${POSAO_GRANE[p.granaKey]}` : "";
+  return `${p.name} je mašina${program}${posao}. Recite nam čime raspolažete i kakav vam je posao — preporučujemo odgovarajući model i konfiguraciju, i šaljemo ponudu sa cenom i rokom isporuke.`;
 }
+
+/** Za koji posao je grana — ulazi u podrazumevani opis mašine. */
+const POSAO_GRANE: Record<GranaKljuc, string> = {
+  poljoprivredne: "za rad na gazdinstvu",
+  sumske: "za rad u šumi i pripremu ogreva",
+  gradjevinske: "za zemljane radove i uređenje terena",
+};
 
 /** Ključne prednosti mašine po tipu — kratke, iskrene stavke (bez brojki). */
 export function machineHighlights(p: Product): string[] {
@@ -334,6 +402,21 @@ export function machineHighlights(p: Product): string[] {
     agregati: ["Priprema setvene osnove uz manje prohoda", "Ušteda goriva i vremena"],
     podrivaci: ["Razbijanje tabana pluga bez prevrtanja sloja", "Bolja drenaža i razvoj korena"],
     valjci: ["Poravnavanje i zbijanje površine", "Kombinuju se sa agregatima i tanjiračama"],
+    "obrada-zemljista": ["Priprema zemljišta pre setve", "Radni zahvat biramo prema snazi traktora"],
+    malceri: ["Usitnjavanje žetvenih ostataka i rastinja", "Radna širina prema snazi traktora"],
+    kosenje: ["Košenje, okretanje i baliranje u jednom programu", "Priključci se biraju prema veličini parcela"],
+    "setva-zetva": ["Podešavanje razmaka i dubine setve", "Rezervni delovi obezbeđeni"],
+    "prskalice-rasipaci": ["Ravnomerna raspodela po celoj radnoj širini", "Lako čišćenje i održavanje"],
+    "traktorske-prikolice": ["Nosivost i sanduk biramo prema poslu", "Kiper izvedba po izboru"],
+    "mesaone-mlinovi": ["Priprema smeše na gazdinstvu", "Kapacitet prema veličini stada"],
+    cepaci: ["Kardanski, električni ili benzinski pogon", "Sila cepanja prema debljini trupca"],
+    iveraci: ["Usitnjavanje grana u iver", "Prečnik grane prema modelu"],
+    "pile-testere": ["Rezanje ogreva na meru", "Zaštitni sistemi u standardu"],
+    "sumske-prikolice": ["Nosivost i dohvat dizalice po izboru", "Za izvlačenje trupaca sa terena"],
+    "klesta-prikljucci": ["Priključuje se na postojeću mašinu", "Kompatibilnost potvrđujemo pre isporuke"],
+    "mini-bageri": ["Prolaze kroz uske prilaze i kapije", "Bogat izbor dodatne opreme"],
+    "mini-utovarivaci": ["Utovar i prenos na skučenom terenu", "Priključci se menjaju bez alata"],
+    "mini-dumperi": ["Prevoz materijala po neuređenom terenu", "Gusenice za mek i blatnjav teren"],
   };
   return [...(byType[p.typeKey ?? ""] ?? []), ...common];
 }
@@ -509,6 +592,61 @@ export function partDescription(p: Product): string {
   return `Rezervni deo (${kind}) za ${forMachine}. ${brand} Radimo sa proverenim dobavljačima; recite nam kataloški broj i model mašine i šaljemo ponudu sa cenom i rokom isporuke isti dan.`;
 }
 
+/* ------------------------------ Natpis slike ------------------------------ */
+
+/**
+ * Strana ugradnje u ženskom rodu, uz imenicu „strana". Oznaka u podacima je
+ * muška („Levi", jer ide uz „raonik"), pa bi prosto malo slovo dalo „levi
+ * strana". Vrednosti su tačno dve, pa se ne pogađa nego ispisuje.
+ */
+const STRANA: Record<string, string> = {
+  levi: "leva strana",
+  desni: "desna strana",
+};
+
+/**
+ * Natpis uz fotografiju proizvoda — ono što Google Images prikaže ispod
+ * rezultata. Sastavlja se od podataka koje proizvod stvarno ima; ništa se ne
+ * izmišlja i ne ponavlja naziv (on već stoji kao `image:title`, odnosno kao
+ * naslov stranice).
+ *
+ * Isti tekst ide na TRI mesta — u `image-sitemap.xml`, u `ImageObject` na
+ * stranici proizvoda i u vidljivi potpis ispod slike. To poklapanje je i svrha:
+ * kad Google na sva tri mesta nađe isti opis vezan za isti `contentUrl`, sliku
+ * pripiše baš toj stranici, a ne širem spisku proizvoda.
+ */
+export function natpisSlike(p: Product): string {
+  const delovi: string[] = [];
+
+  if (p.kind === "deo") {
+    const kontekst = kontekstMasine(p.groupKey);
+    delovi.push(
+      p.brandLabel && p.brandKey !== "univerzalno"
+        ? `${p.typeLabel ?? "Rezervni deo"} za ${kontekst} ${p.brandLabel}`
+        : `${p.typeLabel ?? "Rezervni deo"} za ${kontekst}`,
+    );
+    if (STRANA[p.sideKey ?? ""]) delovi.push(STRANA[p.sideKey!]);
+    delovi.push(`kataloški broj ${p.id}`);
+  } else if (p.kind === "masina") {
+    delovi.push(
+      [p.typeLabel ?? "Mašina", p.brandLabel, p.granaLabel?.toLowerCase()]
+        .filter(Boolean)
+        .join(" — "),
+    );
+    if (p.tagline) delovi.push(p.tagline);
+  } else {
+    delovi.push(
+      p.kind === "oprema"
+        ? `dodatna oprema ${TRAILER_BRAND.label} za auto-prikolice`
+        : `auto-prikolica ${TRAILER_BRAND.label}`,
+    );
+    if (p.tagline) delovi.push(p.tagline);
+  }
+
+  delovi.push("PlugekS");
+  return delovi.join(", ");
+}
+
 /* --------------------------- Kategorije za SEO ---------------------------- */
 
 /**
@@ -559,10 +697,50 @@ export function partBrands(): Kategorija[] {
   );
 }
 
-/** Podgrupe mašina (tanjirače, agregati, podrivači, valjci). */
+/** Tipovi mašina, kroz sve grane — za sitemap i unutrašnje linkove. */
 export function machineCategories(): Kategorija[] {
   return prebroj(getMachines(), (p) => p.typeKey, (p) => p.typeLabel);
 }
+
+/**
+ * Grane mašina sa brojem mašina u svakoj — poljoprivredne, šumske,
+ * građevinske. Redosled je onaj iz `machine-groups.json`, a ne po broju:
+ * poljoprivredne su glavni posao firme i stoje prve i kad ih ne bi bilo
+ * najviše.
+ */
+export function machineBranches(): (Kategorija & { kratko: string; opis: string })[] {
+  const masine = getMachines();
+  return granaKljucevi
+    .map((key) => ({
+      key,
+      label: GRANE[key].label,
+      kratko: GRANE[key].kratko,
+      opis: GRANE[key].opis,
+      count: masine.filter((p) => p.granaKey === key).length,
+    }))
+    .filter((g) => g.count > 0);
+}
+
+/**
+ * Tipovi mašina unutar jedne grane, redosledom iz `machine-groups.json`.
+ * Prazan tip se izostavlja — pločica koja vodi na praznu stranu je i za kupca i
+ * za Google gubitak vremena.
+ */
+export function machineTypesForBranch(granaKey: string): Kategorija[] {
+  const grana = GRANE[granaKey as GranaKljuc];
+  if (!grana) return [];
+  const masine = getMachines().filter((p) => p.granaKey === granaKey);
+  return Object.entries(grana.tipovi)
+    .map(([key, label]) => ({
+      key,
+      label,
+      count: masine.filter((p) => p.typeKey === key).length,
+    }))
+    .filter((t) => t.count > 0);
+}
+
+/** Grana kojoj tip pripada — za breadcrumb sa stranice tipa. */
+export const machineBranchOfType = (tipKey: string) => granaZaTip(tipKey);
 
 /**
  * Kategorije prikolica — po programu (LIGHT, PLATO, MARINE…). To su i naslovi

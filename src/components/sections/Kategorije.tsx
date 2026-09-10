@@ -14,8 +14,8 @@ export function Kategorije() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
             eyebrow="Asortiman"
-            title="Sve za obradu zemljišta i održavanje"
-            description="Od malčera i freza do utovarivača i kompakt traktora — izaberite kategoriju i pošaljite upit za tačnu ponudu."
+            title="Mašine, delovi i auto-prikolice"
+            description="Cela ponuda na jednom mestu — izaberite kategoriju i pošaljite upit, javljamo se sa cenom i rokom isporuke isti dan."
           />
           <Link
             href="/proizvodi"

@@ -16,6 +16,7 @@ import {
   machines,
   popularFirst,
   popularParts,
+  poredajStavke,
   type CatalogItem,
   type CatalogType,
 } from "@/lib/catalog";
@@ -147,12 +148,14 @@ export function ProizvodiClient() {
   }, [type, parts]);
   const results = useMemo(() => {
     const found = filterItems(items, selection, query);
-    if (query) return found;
     // Katalog delova otvara najtraženijim komadima (isti oni sa početne strane)
-    // — inače bi prvih 24 rezultata bili prosto delovi sa najvećim id-em, bez
-    // fotografije. Kad korisnik kuca u pretragu, ne diramo red.
-    if (type === "delovi") return popularFirst(found);
-    return found;
+    // — inače bi prvih 24 rezultata bili prosto delovi sa najvećim id-em. Kad
+    // korisnik kuca u pretragu, tu kuraciju ne guramo ispred pogodaka.
+    const osnova = type === "delovi" && !query ? popularFirst(found) : found;
+    // Propisani redosled ide POSLE svega i važi za svako filtriranje: obični
+    // delovi pre predplužnjakovih, crteži pre fotografija pre onih bez slike.
+    // Sort je stabilan, pa kuracija iznad ostaje netaknuta unutar istog ranga.
+    return poredajStavke(osnova);
   }, [items, selection, query, type]);
 
   const [visible, setVisible] = useState(PAGE_SIZE);
@@ -301,9 +304,14 @@ export function ProizvodiClient() {
 /*                            Korak 1 — izbor vrste                           */
 /* -------------------------------------------------------------------------- */
 
-/** Prikolice su i dalje ovde na izboru, ali vode na svoju stranicu sa pločicama. */
+/**
+ * Mašine i prikolice su i dalje ovde na izboru, ali vode na svoje stranice sa
+ * pločicama — tamo se bira po slici (grana → tip → model), što je za mašinu
+ * prirodnije od fasete. Delovi ostaju u katalogu: 4.644 komada se ne biraju po
+ * slici nego po kataloškom broju i marki.
+ */
 const PICKER: { key: CatalogType; href?: string }[] = [
-  { key: "masine" },
+  { key: "masine", href: "/masine" },
   { key: "prikolice", href: "/prikolice" },
   { key: "delovi" },
 ];

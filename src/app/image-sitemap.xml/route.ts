@@ -1,10 +1,9 @@
 import {
   getProductsWithPhotos,
   productHref,
-  kontekstMasine,
+  natpisSlike,
   type Product,
 } from "@/lib/products";
-import { TRAILER_BRAND } from "@/lib/catalog";
 
 /**
  * Image sitemap — poseban XML sa `image:` namespace-om, jer ugrađeni Next 14
@@ -33,50 +32,6 @@ const escapeXml = (s: string) =>
     c === "<" ? "&lt;" : c === ">" ? "&gt;" : c === "&" ? "&amp;" : c === "'" ? "&apos;" : "&quot;",
   );
 
-/**
- * Strana ugradnje u ženskom rodu, uz imenicu „strana". Oznaka u podacima je
- * muška („Levi", jer ide uz „raonik"), pa bi prosto malo slovo dalo „levi
- * strana". Vrednosti su tacno dve, pa se ne pogađa nego ispisuje.
- */
-const STRANA: Record<string, string> = {
-  levi: "leva strana",
-  desni: "desna strana",
-};
-
-/**
- * Natpis slike — ono što Google Images prikaže ispod rezultata. Sastavlja se od
- * podataka koje proizvod stvarno ima; ništa se ne izmišlja i ne ponavlja.
- */
-function natpis(p: Product): string {
-  const delovi: string[] = [];
-
-  if (p.kind === "deo") {
-    const kontekst = kontekstMasine(p.groupKey);
-    delovi.push(
-      p.brandLabel && p.brandKey !== "univerzalno"
-        ? `${p.typeLabel ?? "Rezervni deo"} za ${kontekst} ${p.brandLabel}`
-        : `${p.typeLabel ?? "Rezervni deo"} za ${kontekst}`,
-    );
-    if (STRANA[p.sideKey ?? ""]) delovi.push(STRANA[p.sideKey!]);
-    delovi.push(`kataloški broj ${p.id}`);
-  } else if (p.kind === "masina") {
-    // Naziv se ne ponavlja — već je u `image:title`, pa bi natpis mucao
-    // („Podrivač Deeper GBM — Podrivač Rolland…").
-    delovi.push(`${p.typeLabel ?? "Mašina"} Rolland za obradu zemljišta`);
-    if (p.tagline) delovi.push(p.tagline);
-  } else {
-    delovi.push(
-      p.kind === "oprema"
-        ? `dodatna oprema ${TRAILER_BRAND.label} za auto-prikolice`
-        : `auto-prikolica ${TRAILER_BRAND.label}`,
-    );
-    if (p.tagline) delovi.push(p.tagline);
-  }
-
-  delovi.push("PlugekS");
-  return delovi.join(", ");
-}
-
 export function GET() {
   const urls = getProductsWithPhotos()
     .filter((p): p is Product & { image: string } => Boolean(p.image))
@@ -85,7 +40,7 @@ export function GET() {
       const loc = escapeXml(`${BASE}${productHref(p)}`);
       const img = escapeXml(`${BASE}${p.image}`);
       const title = escapeXml(p.name);
-      const caption = escapeXml(natpis(p));
+      const caption = escapeXml(natpisSlike(p));
       return [
         "  <url>",
         `    <loc>${loc}</loc>`,

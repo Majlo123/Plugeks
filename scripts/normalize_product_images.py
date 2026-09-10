@@ -1,7 +1,7 @@
 """
 Svodi fotografije proizvoda na jedan kadar — isti odnos stranica kao kartica.
 
-    python scripts/normalize_product_images.py [prikolice|delovi|crtezi] [--dry] [--ponovo]
+    python scripts/normalize_product_images.py [prikolice|masine|delovi|crtezi] [--dry] [--ponovo]
     (ili: npm run slike:kadar)
 
 ZAŠTO POSTOJI: kartica proizvoda prikazuje sliku sa `object-cover`, dakle
@@ -21,8 +21,9 @@ Rolland fotografije usput gube i ROLLAND ZAGLAVLJE — traku sa logom iznad
 samog dela, koja je uzimala oko četvrtine kadra i gurala deo nadole. Poluprovidni
 ROLLAND žig PREKO dela ostaje (vidi `bez_zaglavlja`).
 
-ŠTA NE RADI: ne dira boje i ne dira `public/images/masine/` — te su ručno
-pripremljene i već su tačno 900x563.
+ŠTA NE RADI: ne dira boje i ne dira `public/images/masine/*.jpg` — dvanaest
+Rolland mašina je ručno pripremljeno i već je tačno 900x563. Hofman mašine
+(`npm run masine`) idu u podfolder `masine/hofman/` i njih ovaj posao sređuje.
 
 Slika koja je već u ciljnom formatu se preskače, pa ponovljeno pokretanje ne
 gubi kvalitet na ponovnom JPEG kodiranju; `--ponovo` tu proveru zaobilazi (treba
@@ -83,6 +84,19 @@ POSLOVI = {
         udeo=(0.88, 0.88),
         max_uvecanje=1.4,
         iseci_zaglavlje=True,
+    ),
+    # Kartica mašine je 16:10, kao i kod prikolica; ciljne dimenzije su iste
+    # kao kod dvanaest ručno pripremljenih Rolland mašina (900x563), da se u
+    # istoj mreži ne razlikuju po oštrini.
+    "masine": Posao(
+        naziv="mašine (Hofman fotografije)",
+        ulaz=KOREN / "data" / "hofman-originals",
+        izlaz=KOREN / "public" / "images" / "masine" / "hofman",
+        platno=(900, 563),
+        udeo=(0.92, 0.86),
+        # Originali su 750x500, dakle tek nešto manji od platna — veće uvećanje
+        # bi ih samo omekšalo.
+        max_uvecanje=1.5,
     ),
     "crtezi": Posao(
         naziv="delovi za plugove (tehnički crteži)",
@@ -255,7 +269,10 @@ def uradi(posao: Posao) -> int:
         return 0
 
     slike = sorted(
-        p for p in posao.ulaz.iterdir() if p.suffix.lower() in (".jpg", ".jpeg", ".png")
+        p
+        for p in posao.ulaz.iterdir()
+        # `.webp` je zbog Hofmana — on portrete servira isključivo u tom formatu.
+        if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp")
     )
     if not slike:
         print(f"[{posao.naziv}] nema slika u {posao.ulaz} — preskačem.")

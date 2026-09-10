@@ -39,7 +39,6 @@ export const metadata: Metadata = {
 export default function PrikolicePage() {
   const programi = trailerCategories();
   const oprema = trailerAccessoryGroups();
-  const ukupno = programi.reduce((zbir, p) => zbir + p.count, 0);
 
   return (
     <>
@@ -59,7 +58,6 @@ export default function PrikolicePage() {
             Auto-prikolice
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
-            {ukupno} {uzBroj(ukupno, "model", "modela", "modela")} od 500 do 3500 kg.
             Izaberite vrstu prikolice — unutra birate broj osovina i nosivost.
           </p>
 

@@ -17,6 +17,8 @@ import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
 import popularJson from "@/data/popular.json";
 import { categories } from "@/lib/data";
+import { GRANE, granaKljucevi, tipLabel } from "@/lib/masine";
+import { poredaj, type ZaRedosled } from "@/lib/redosled";
 
 /**
  * Prave fotografije proizvoda (id proizvoda → lokalna putanja): mašine i delovi
@@ -66,7 +68,10 @@ export type FacetDef = {
 /* --------------------------------- Faseta ---------------------------------- */
 
 export const FACETS: Record<CatalogType, FacetDef[]> = {
-  masine: [{ key: "tip", label: "Tip mašine", placeholder: "Sve vrste mašina" }],
+  masine: [
+    { key: "grana", label: "Vrsta posla", placeholder: "Sve grane" },
+    { key: "tip", label: "Tip mašine", placeholder: "Sve vrste mašina" },
+  ],
   prikolice: [
     { key: "tip", label: "Šta tražite", placeholder: "Prikolice i oprema" },
     { key: "program", label: "Program", placeholder: "Svi programi" },
@@ -88,8 +93,8 @@ export const TYPE_META: Record<
   masine: {
     label: "Mašine",
     description:
-      "Tanjirače, tanjirasti i bezoranični agregati, podrivači i valjci za obradu — kompletne mašine sa garancijom.",
-    image: "/images/prikljucne.jpg",
+      "Poljoprivredne, šumske i građevinske mašine — od tanjirača i malčera do cepača drva i mini bagera, sve sa garancijom.",
+    image: "/images/ulaz/masine.jpg",
   },
   prikolice: {
     label: "Auto-prikolice",
@@ -108,14 +113,18 @@ export const TYPE_META: Record<
 /* -------------------------------- Pomoćno --------------------------------- */
 
 /**
- * Link ka katalogu za jednu kategoriju sa početne strane / iz futera.
- * Prikolice imaju svoju stranicu sa pločicama (`/prikolice`) — tamo se bira po
- * slici, a filteri dolaze tek unutar programa. Delovi su zasebna vrsta
- * kataloga, sve ostalo su tipovi mašina.
+ * Link ka ponudi za jednu karticu sa početne strane / iz futera.
+ *
+ * Grane mašina i prikolice imaju svoje stranice sa pločicama (`/masine/grana/…`,
+ * `/prikolice`) — tamo se bira po slici, a filteri dolaze tek u sledećem koraku.
+ * Delovi su zasebna vrsta kataloga; sve ostalo je tip mašine, pa ide u filter.
  */
 export function catalogHref(categoryKey: string): string {
   if (categoryKey === "delovi") return "/proizvodi?vrsta=delovi";
   if (categoryKey === "prikolice") return "/prikolice";
+  if ((granaKljucevi as string[]).includes(categoryKey)) {
+    return `/masine/grana/${categoryKey}`;
+  }
   return `/proizvodi?vrsta=masine&tip=${categoryKey}`;
 }
 
@@ -159,16 +168,22 @@ type MachineRow = {
   id: string;
   name: string;
   group: string;
+  /** Grana — poljoprivredne / šumske / građevinske. */
+  grana: keyof typeof GRANE;
   subgroup: string;
   tagline: string;
   brand: string;
 };
 
-/** Nazivi tipova mašina — podgrupe iz `machines.json`. */
-const MACHINE_TYPE_LABELS: Record<string, string> = {
-  ostalo: "Ostale mašine",
-  ...Object.fromEntries(categories.map((c) => [c.key, c.label])),
-};
+/** Nazivi tipova mašina — dolaze iz podele grana (`machine-groups.json`). */
+const MACHINE_TYPE_LABELS: Record<string, string> = Object.fromEntries(
+  granaKljucevi.flatMap((k) => Object.entries(GRANE[k].tipovi)),
+);
+
+/** Nazivi grana za fasetu „Vrsta posla". */
+const MACHINE_BRANCH_LABELS: Record<string, string> = Object.fromEntries(
+  granaKljucevi.map((k) => [k, GRANE[k].label]),
+);
 
 export const machines: CatalogItem[] = (machinesJson as MachineRow[]).map((m) => ({
   id: m.id,
@@ -177,8 +192,13 @@ export const machines: CatalogItem[] = (machinesJson as MachineRow[]).map((m) =>
   tagline: m.tagline,
   // Samo prava fotografija; bez nje kartica pokazuje brendiran placeholder.
   image: productImages[m.id],
-  facets: { tip: m.subgroup },
-  search: normalize(`${m.name} ${m.tagline} ${MACHINE_TYPE_LABELS[m.subgroup] ?? ""}`),
+  facets: { tip: m.subgroup, grana: m.grana },
+  // U indeks pretrage ulaze i naziv tipa i naziv grane — kupac koji ukuca
+  // „šumske mašine" mora da dobije cepače i prikolice, iako te dve reči ne
+  // stoje ni u jednom nazivu modela.
+  search: normalize(
+    [m.name, m.tagline, tipLabel(m.subgroup) ?? "", GRANE[m.grana]?.label ?? ""].join(" "),
+  ),
 }));
 
 /* ------------------------------ Auto-prikolice ----------------------------- */
@@ -442,6 +462,7 @@ const PART_LABELS: Record<string, Record<string, string>> = {};
 
 const MACHINE_LABELS: Record<string, Record<string, string>> = {
   tip: MACHINE_TYPE_LABELS,
+  grana: MACHINE_BRANCH_LABELS,
 };
 
 /**
@@ -531,3 +552,20 @@ export function filterItems(
     return terms.every((term) => item.search.includes(term));
   });
 }
+
+/* -------------------------------- Redosled -------------------------------- */
+
+/** `CatalogItem` tip dela drži u fasetama — vidi `lib/redosled.ts`. */
+const zaRedosled = (item: CatalogItem): ZaRedosled => ({
+  name: item.name,
+  image: item.image,
+  typeKey: item.facets.tip,
+});
+
+/**
+ * Propisani redosled kataloga — obični delovi pre predplužnjakovih, unutar toga
+ * crteži pre fotografija pre onih bez slike. Primenjuje se posle SVAKOG
+ * filtriranja, uključujući i pretragu po tekstu.
+ */
+export const poredajStavke = (items: CatalogItem[]): CatalogItem[] =>
+  poredaj(items, zaRedosled);

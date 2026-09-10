@@ -93,7 +93,7 @@ Katalog na `/proizvodi` ima tri dela:
 
 | Deo | Izvor | Fajl |
 | --- | --- | --- |
-| Mašine (23) | `src/lib/data.ts` (PlugekS) + Rolland | `src/data/machines.json` |
+| Mašine (87) | Rolland (12) + Hofman, `npm run masine` (odeljak 8) | `src/data/machines.json` |
 | Auto-prikolice (65) + oprema (116) | Vesta, `npm run prikolice` (odeljak 6) | `src/data/trailers.json` |
 | Rezervni delovi (4.644) | Rolland | `src/data/parts.json` |
 
@@ -250,11 +250,13 @@ staje u njen odnos stranica**. Izvorne fotografije to ne poštuju:
 | `public/images/rolland/` | 472x630 i 599x800, **uspravno** | kartica dela je bila položena — pola dela je odlazilo van kadra |
 | `public/images/plugovi/` | kvadrat 440x440, sadržaj od 32% do 95% kadra | crteži različite veličine u istoj mreži |
 | `public/images/prikolice/` | 50 formata, od 157x73 do 2560x1696 | jedna prikolica ispuni karticu, druga pluta kao tačka |
+| `public/images/masine/hofman/` | 750x500 `.webp` | drugi odnos od kartice mašine (16:10) |
 
 ```bash
 npm run slike:kadar                  # sve
 npm run slike:kadar -- delovi        # samo jedan posao
 npm run slike:kadar -- --dry         # samo izveštaj
+npm run masine:slike                 # isto, samo posao „masine"
 ```
 
 Skripta ne opseca nego radi suprotno: iseče proizvod iz bele pozadine, skalira
@@ -277,6 +279,124 @@ dira. Poluprovidni **žig preko samog dela ostaje**.
 > ubaci fajlove u `data/rolland-originals/` i pokreni `npm run slike:kadar`.
 
 ---
+
+### 8) Mašine sa hofman.at → `npm run masine`
+
+Ponuda mašina je podeljena na tri **grane** — poljoprivredne, šumske i
+građevinske. `/masine` nudi SAMO te tri kartice; tip mašine se bira unutar grane
+(`/masine/grana/[grana]`), model tek onda. Dublje se ne ide.
+
+> Grana mora da bude prvi korak. Kad su svi tipovi stajali na jednoj strani,
+> trinaest poljoprivrednih je zauzimalo četiri reda, pa se do šumskih i
+> građevinskih dolazilo skrolovanjem — i delovalo je kao da ih nema.
+
+| Grana | Tipova | Mašina |
+| --- | --- | --- |
+| Poljoprivredne | 13 | tanjirače, agregati, podrivači, valjci (Rolland) + plugovi, malčeri, kosačice, balirke, sejalice, prskalice, prikolice, mešaone, baštenske mašine, tegovi |
+| Šumske | 5 | cepači drva, iverači, kružne pile, šumske prikolice, klešta i priključci |
+| Građevinske | 3 | mini bageri, mini utovarivači, mini dumperi |
+
+```bash
+npm run masine          # 1) podaci + sirovi originali u data/hofman-originals/
+npm run masine:slike    # 2) slike za sajt u public/images/masine/hofman/
+```
+
+Prvi korak obiđe kategorije na hofman.at (hrvatska verzija — najbliža srpskom),
+siđe do stranica pojedinačnih mašina, pa u drugom prolazu pokupi **tabele
+tehničkih podataka sa slovenačke verzije** i upiše `src/data/machines.json`,
+`src/data/machine-groups.json` i `src/data/machine-images.json`. Stranice i
+slike se keširaju u `data/hofman-cache/`, pa je ponovno pokretanje besplatno;
+`npm run masine -- --stablo` samo ispiše šta bi uvezao, bez upisa, a
+`-- --osvezi` baci keš.
+
+> **Nazivi se NE preuzimaju sa izvora.** Njihov prevod je mašinski i mestimično
+> pogrešan („Četkice" za cepače drva, „Kružne stepenice" za tanjirače,
+> „Friziraj" za freze) — a to su reči po kojima nas kupac traži. Zato su naše
+> imenice upisane u tabelu `IZVOR` u `scripts/import-hofman.mjs`; sa izvora se
+> uzima samo fabrička oznaka modela (JASA, ARGA, G LINE). **Nova kategorija na
+> izvoru = novi red u toj tabeli**, inače se preskoči.
+
+> **Komunalna mehanizacija se ne uvozi** (nije u ponudi). Baštenske mašine
+> (izvorno „GARDEN MACHINES") su tip unutar poljoprivrednih, ne zasebna grana.
+
+> **Tabele tehničkih podataka dolaze sa `/si/`, a sve ostalo sa `/hr/`.** Na
+> hrvatskim (i engleskim, i nemačkim) stranicama je `<tbody>` tabele prazan — i
+> u serverskom HTML-u i posle izvršavanja JavaScript-a. Popunjena je jedino
+> slovenačka verzija. Spona između dve verzije je putanja naslovne fotografije,
+> koja je ista na svim jezicima (slug-ovi su prevedeni pa se ne poklapaju).
+> Nazivi redova se prevode preko tabele `OSOBINE` u skripti; ono što u njoj ne
+> postoji ostaje neprevedeno i skripta ga na kraju ISPIŠE, pa se nova osobina
+> odmah vidi. Trenutno 69 od 75 mašina ima tabelu.
+
+> **Jedinice.** Izvor je nedosledan: kod jednih tabela jedinica je u vrednosti
+> („535 kg"), kod drugih samo u nazivu reda („Višina (cm)" → „76"). Skripta
+> zato jedinicu drži UZ NAZIV i skida je iz vrednosti kad se duplira; kad
+> vrednost nosi svoju, drugačiju jedinicu (izvor ume da napiše „Širina (cm)" pa
+> vrednosti u metrima), naziv ostaje bez oznake — vrednost je merodavna.
+> „KM" (slovenačka konjska moč) se prevodi u „KS", inače bi se na srpskom
+> pročitalo kao kilometri.
+
+Tabela stoji na stranici proizvoda **desno od fotografije, na mestu opisa**
+(`src/components/TabelaModela.tsx`): na ekranu kao matrica (redovi = osobine,
+kolone = izvedbe), **na telefonu kao zaseban blok za svaki model** — šest
+kolona u 350px se ne čita, a bočno skrolovanje odnese naziv reda.
+
+Mašina koja ima tabelu NE prikazuje opis: kod tih mašina je opis sastavljen
+automatski i kupcu ne kaže ništa što već ne vidi iz naziva. Opis i dalje ide u
+`<meta description>` i u structured data. Rolland mašine (ručno pisan opis) i
+onih šest Hofman mašina bez tabele zadržavaju opis — kod njih je to jedini
+tekst na stranici.
+
+> **Vrednosti se čiste.** Kroz izvorov automatski prevodilac je prošao i sadržaj
+> ćelija, pa u njima ima ostataka njihovog CMS-a (`Besedilo:` = slovenački
+> „tekst") i grešaka prevoda — „CAT I" (kategorija priključka) je negde postalo
+> „MAČKA I", jer je prevodilac pročitao mačku. Lista `POPRAVKE` u skripti to
+> ispravlja i ujednačava (CAT/KAT/MAČKA → CAT, `hidravli` → `hidrauli`,
+> `zavore` → `kočnice`).
+
+> **Fotografije** su Hofmanove, čiste i na beloj podlozi — isti dogovor kao sa
+> Rolland i Vesta slikama. Kad dobiješ svoje, zameni fajl istog imena u
+> `public/images/masine/hofman/`.
+
+### 9) Redosled proizvoda u listama → `src/lib/redosled.ts`
+
+Jedno pravilo za **svaku** listu (katalog, kategorijske strane, kataloški
+indeks, „slični proizvodi"), po važnosti:
+
+1. **Obični delovi pre predplužnjakovih.** Katalog ima 212 raonika i 185 dasaka
+   koji su zapravo delovi predplužnjaka. Kupac koji otvori „Raonik" traži veliki
+   raonik, pa sitni ide na dno.
+2. **Crteži pre fotografija pre praznog.** Sivi tehnički crtež
+   (`/images/plugovi/`) je za deo najkorisniji vizual — vidi se oblik i mere;
+   red bez ikakve slike je najslabija kartica u mreži i ne sme da drži vrh.
+
+Sortiranje je stabilno, pa unutar istog ranga ostaje zatečeni redosled — kuracija
+najtraženijih delova na prvom ekranu kataloga se ne pomera.
+
+### 10) Nabavne cene prikolica → `/admin`
+
+Interni deo sajta, samo za vlasnika. Podesi promenljivu okruženja:
+
+```
+ADMIN_LOZINKA=nekaDugackaLozinka
+```
+
+(Vercel → Settings → Environment Variables; lokalno u `.env.local`.) Bez nje je
+`/admin` zaključan za sve — nema podrazumevane lozinke.
+
+Cene se unose u `src/data/trailer-prices.json`:
+
+```json
+{ "valuta": "EUR", "cene": { "9001": 1180, "9002": 1340 } }
+```
+
+Ključ je kataloški broj iz kolone „Šifra" na `/admin/cene`.
+
+> **Zašto cene nisu na stranici proizvoda:** sve stranice proizvoda su unapred
+> izgenerisan statični HTML (~4.900 komada). Cena upisana u takvu stranicu bi
+> završila u javnom HTML-u, u kešu i u Google-ovom indeksu. `/admin/cene` se
+> zato računa pri svakom zahtevu i vraća prazno svakome ko nije prijavljen.
+
 
 ## 🖼️ Slike — mockup je već ubačen
 

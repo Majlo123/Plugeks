@@ -8,7 +8,7 @@ import { Banknote, Landmark, ShieldCheck, Truck } from "lucide-react";
 const items = [
   { icon: Banknote, title: "Plaćanje na rate", sub: "Krediti i lizing" },
   { icon: Landmark, title: "Subvencije", sub: "Podrška oko podsticaja" },
-  { icon: ShieldCheck, title: "Garancija", sub: "Na sve mašine" },
+  { icon: ShieldCheck, title: "Garancija", sub: "Uz svaki proizvod" },
   { icon: Truck, title: "Brza isporuka", sub: "Srbija i region" },
 ];
 

@@ -1,0 +1,44 @@
+{
+  "poljoprivredne": {
+    "label": "Poljoprivredne mašine",
+    "kratko": "Poljoprivredne",
+    "opis": "Mašine za obradu zemljišta, košenje i spremanje sena, setvu, zaštitu bilja, pripremu hrane i transport na gazdinstvu.",
+    "tipovi": {
+      "tanjirace": "Tanjirače",
+      "agregati": "Agregati",
+      "podrivaci": "Podrivači",
+      "valjci": "Valjci",
+      "obrada-zemljista": "Plugovi i mašine za obradu",
+      "malceri": "Malčeri i freze",
+      "kosenje": "Kosačice, grabulje i balirke",
+      "setva-zetva": "Sejalice i kombajni",
+      "prskalice-rasipaci": "Prskalice i rasipači đubriva",
+      "traktorske-prikolice": "Traktorske prikolice i kiperi",
+      "mesaone-mlinovi": "Mešaone i mlinovi",
+      "bastenske-masine": "Baštenske mašine",
+      "tegovi": "Tegovi za traktore"
+    }
+  },
+  "sumske": {
+    "label": "Šumske mašine",
+    "kratko": "Šumske",
+    "opis": "Cepači drva, iverači, kružne pile i prikolice za rad u šumi i pripremu ogreva.",
+    "tipovi": {
+      "cepaci": "Cepači drva",
+      "iveraci": "Iverači i drobilice grana",
+      "pile-testere": "Kružne pile i mašine za rezanje",
+      "sumske-prikolice": "Šumske prikolice i transport",
+      "klesta-prikljucci": "Klešta, vezači i priključci"
+    }
+  },
+  "gradjevinske": {
+    "label": "Građevinske mašine",
+    "kratko": "Građevinske",
+    "opis": "Mini bageri, utovarivači i dumperi za iskope, zemljane radove i uređenje terena.",
+    "tipovi": {
+      "mini-bageri": "Mini bageri",
+      "mini-utovarivaci": "Mini utovarivači",
+      "mini-dumperi": "Mini dumperi"
+    }
+  }
+}

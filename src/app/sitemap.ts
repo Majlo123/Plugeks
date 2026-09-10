@@ -5,11 +5,14 @@ import {
   partTypes,
   partBrands,
   machineCategories,
+  machineBranches,
   trailerCategories,
   trailerAccessoryGroups,
   partTypeBrandPairs,
   katalogBrojStrana,
 } from "@/lib/products";
+
+import { granaHref, type GranaKljuc } from "@/lib/masine";
 
 const BASE = "https://plugeks.com";
 
@@ -26,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE}`, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${BASE}/proizvodi`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/masine`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/prikolice`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/subvencije-i-finansiranje`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/o-nama`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
@@ -35,6 +39,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Kategorijske stranice — one nose pretrage tipa „raonik za plug".
   const kategorije: MetadataRoute.Sitemap = [
+    // Grane mašina — „poljoprivredne mašine", „šumske mašine", „mini bager" su
+    // tri različita upita i tri različita kupca.
+    ...machineBranches().map((g) => ({
+      url: `${BASE}${granaHref(g.key as GranaKljuc)}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
     ...machineCategories().map((c) => ({
       url: `${BASE}/masine/${c.key}`,
       lastModified: now,

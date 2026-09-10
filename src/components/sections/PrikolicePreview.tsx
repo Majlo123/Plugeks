@@ -37,7 +37,7 @@ export function PrikolicePreview() {
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <SectionHeading
             eyebrow="Novo u ponudi"
-            title="Auto-prikolice od 500 do 3500 kg"
+            title="Auto-prikolice"
             description="Izaberite prikolicu po slici — za svakodnevni prevoz, za automobil, građevinsku mašinu, čamac ili motocikl. Broj osovina i nosivost birate unutra."
           />
           <Button asChild variant="outline" size="md" className="hidden shrink-0 sm:inline-flex">

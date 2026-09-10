@@ -14,7 +14,6 @@ import type { LucideIcon } from "lucide-react";
 import {
   Scissors,
   Caravan,
-  Cog,
   Tractor,
   Layers,
   Wrench,
@@ -29,15 +28,21 @@ import {
 /* ---------------------------------- Kategorije ---------------------------------- */
 
 /**
- * Ključevi moraju da odgovaraju `subgroup` vrednostima iz `src/data/machines.json`
- * (vidi `MACHINE_SUBGROUPS` u scripts/rolland-dictionary.mjs) — po njima filtrira
- * katalog na `/proizvodi?vrsta=masine&tip=...`.
+ * Kartice asortimana na početnoj i u futeru.
+ *
+ * Tri prve su GRANE mašina (vidi `lib/masine.ts` i `machine-groups.json`), ne
+ * pojedinačni tipovi. Ranije su ovde stajale četiri Rolland podgrupe
+ * (tanjirače, agregati, podrivači, valjci) — sa 87 mašina u 21 tipu to više
+ * nije podela nego uzorak, pa se sada bira posao (njiva / šuma / gradilište),
+ * a tip mašine tek unutar grane.
+ *
+ * Ključevi grana moraju da odgovaraju `grana` vrednostima iz
+ * `src/data/machines.json`; „prikolice" i „delovi" su svoje grane sajta.
  */
 export type CategoryKey =
-  | "tanjirace"
-  | "agregati"
-  | "podrivaci"
-  | "valjci"
+  | "poljoprivredne"
+  | "sumske"
+  | "gradjevinske"
   | "prikolice"
   | "delovi";
 
@@ -62,44 +67,34 @@ export type ImageTone = "field" | "forest" | "soil" | "steel" | "harvest";
  */
 export const categories: Category[] = [
   {
-    key: "tanjirace",
-    label: "Tanjirače",
-    short: "Tanjirače",
+    key: "poljoprivredne",
+    label: "Poljoprivredne mašine",
+    short: "Poljoprivredne",
     description:
-      "Nošene, polunošene i hidraulične tanjirače — Field BT, Field Hawk BH, BTP i BH-PA/PB. Obrada strništa i priprema zemljišta u jednom prohodu.",
-    icon: Layers,
-    tone: "soil",
-    image: "/images/kategorije/tanjirace.jpg",
-  },
-  {
-    key: "agregati",
-    label: "Agregati",
-    short: "Agregati",
-    description:
-      "Tanjirasti i bezoranični agregati Grander AB/ABL, Field AT i ATP — kompletna priprema setvene osnove sa valjkom.",
-    icon: Cog,
-    tone: "field",
-    image: "/images/kategorije/agregati.jpg",
-  },
-  {
-    key: "podrivaci",
-    label: "Podrivači",
-    short: "Podrivači",
-    description:
-      'Deeper GBM "Michel" i GBK "Kret" — dubinsko rastresanje i razbijanje tabana pluga bez prevrtanja sloja.',
+      "Tanjirače, agregati i podrivači, plugovi, malčeri i freze, kosačice i balirke, sejalice, prskalice, prikolice i mešaone — sve za rad na gazdinstvu.",
     icon: Tractor,
-    tone: "harvest",
-    image: "/images/kategorije/podrivaci.jpg",
+    tone: "field",
+    image: "/images/kategorije/poljoprivredne.jpg",
   },
   {
-    key: "valjci",
-    label: "Valjci",
-    short: "Valjci za obradu",
+    key: "sumske",
+    label: "Šumske mašine",
+    short: "Šumske",
     description:
-      "Različiti tipovi valjaka za obradu zemljišta — kombinuju se sa agregatima i tanjiračama po izboru.",
+      "Cepači drva na kardanski, električni i benzinski pogon, iverači, kružne pile, šumske prikolice i klešta za trupce.",
     icon: Scissors,
+    tone: "forest",
+    image: "/images/kategorije/sumske.jpg",
+  },
+  {
+    key: "gradjevinske",
+    label: "Građevinske mašine",
+    short: "Građevinske",
+    description:
+      "Mini bageri, mini utovarivači i dumperi guseničari — za iskope, zemljane radove i uređenje terena tamo gde velika mašina ne prolazi.",
+    icon: Layers,
     tone: "steel",
-    image: "/images/kategorije/valjci.jpg",
+    image: "/images/kategorije/gradjevinske.jpg",
   },
   {
     key: "prikolice",
@@ -148,9 +143,9 @@ export const advantages: Advantage[] = [
     icon: Landmark,
   },
   {
-    title: "Garancija na sve mašine",
+    title: "Garancija",
     description:
-      "Svaka mašina dolazi sa garancijom i obezbeđenim rezervnim delovima — vaša investicija je sigurna.",
+      "Uz proizvod ide garancija i obezbeđeni rezervni delovi — vaša investicija je sigurna.",
     icon: ShieldCheck,
   },
   {

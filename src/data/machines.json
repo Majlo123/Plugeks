@@ -5,7 +5,8 @@
     "group": "masine-rolland",
     "subgroup": "podrivaci",
     "tagline": "Dubinsko rastresanje bez prevrtanja sloja",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4705",
@@ -13,7 +14,8 @@
     "group": "masine-rolland",
     "subgroup": "podrivaci",
     "tagline": "Razbijanje tabana pluga i drenaža zemljišta",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4704",
@@ -21,7 +23,8 @@
     "group": "masine-rolland",
     "subgroup": "agregati",
     "tagline": "Plitka obrada strništa za manje traktore",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4703",
@@ -29,7 +32,8 @@
     "group": "masine-rolland",
     "subgroup": "agregati",
     "tagline": "Obrada bez oranja u jednom prohodu",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4692",
@@ -37,7 +41,8 @@
     "group": "masine-rolland",
     "subgroup": "agregati",
     "tagline": "Veliki zahvat uz stabilnost polunošene konstrukcije",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4577",
@@ -45,7 +50,8 @@
     "group": "masine-rolland",
     "subgroup": "tanjirace",
     "tagline": "Tanjirača velikog kapaciteta za veće parcele",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4576",
@@ -53,7 +59,8 @@
     "group": "masine-rolland",
     "subgroup": "tanjirace",
     "tagline": "Hidrauličko sklapanje za lakši transport",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4575",
@@ -61,7 +68,8 @@
     "group": "masine-rolland",
     "subgroup": "tanjirace",
     "tagline": "Hidrauličko sklapanje za lakši transport",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4397",
@@ -69,7 +77,8 @@
     "group": "masine-rolland",
     "subgroup": "valjci",
     "tagline": "Različiti tipovi valjaka za sve agregate i tanjirače",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4396",
@@ -77,7 +86,8 @@
     "group": "masine-rolland",
     "subgroup": "tanjirace",
     "tagline": "Nošena tanjirača za svakodnevnu obradu",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4395",
@@ -85,7 +95,8 @@
     "group": "masine-rolland",
     "subgroup": "agregati",
     "tagline": "Tanjirasti agregat sa valjkom za pripremu setvene osnove",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
   },
   {
     "id": "4394",
@@ -93,6 +104,4861 @@
     "group": "masine-rolland",
     "subgroup": "tanjirace",
     "tagline": "Hidraulična tanjirača za veliki dnevni učinak",
-    "brand": "rolland"
+    "brand": "rolland",
+    "grana": "poljoprivredne"
+  },
+  {
+    "id": "5001",
+    "name": "Baštenska mašina BOLT",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "bastenske-masine",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/vrtni-strojevi/bolt",
+    "slug": "bastenska-masina-bolt",
+    "tabela": {
+      "kolone": [
+        "BOLT VT65"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "61"
+        ],
+        [
+          "Snaga motora",
+          "4,5 / 6"
+        ],
+        [
+          "Masa (kg)",
+          "125"
+        ],
+        [
+          "Zapremina rezervoara (l)",
+          "150"
+        ],
+        [
+          "Najveća brzina (km/h)",
+          "5,4"
+        ],
+        [
+          "Menjač",
+          "Hidrostatik (CVT)"
+        ],
+        [
+          "Pokretanje",
+          "elektro/ručno"
+        ],
+        [
+          "Zapremina rezervoara goriva (l)",
+          "4"
+        ],
+        [
+          "Visina košenja (mm)",
+          "25 - 75"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5002",
+    "name": "Baštenska mašina RUBY BP",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "bastenske-masine",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/vrtni-strojevi/ruby-bp",
+    "slug": "bastenska-masina-ruby-bp"
+  },
+  {
+    "id": "5003",
+    "name": "Hvatač bala MANO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/en/bale-grippers/mano",
+    "slug": "hvatac-bala-mano",
+    "tabela": {
+      "kolone": [
+        "KLEŠČE MANO K 150"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "201"
+        ],
+        [
+          "Najveći prečnik bale (cm)",
+          "150"
+        ],
+        [
+          "Najveći kapacitet podizanja (kg)",
+          "700"
+        ],
+        [
+          "Prihvat",
+          "Euro"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5004",
+    "name": "Rolo balirka ARGA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/arga/arga",
+    "slug": "rolo-balirka-arga"
+  },
+  {
+    "id": "5005",
+    "name": "Grabulja TORO (dvorotorska)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/dvokotacni-grabljaci/toro-dvorotorski",
+    "slug": "grabulja-toro-dvorotorska",
+    "tabela": {
+      "kolone": [
+        "TORO RK 750"
+      ],
+      "redovi": [
+        [
+          "Najmanja potrebna snaga traktora",
+          "70 KS"
+        ],
+        [
+          "Radna širina (m)",
+          "6,85 - 7,35"
+        ],
+        [
+          "Dužina",
+          "5,6 m"
+        ],
+        [
+          "Masa",
+          "2160 kg"
+        ],
+        [
+          "Broj dvostrukih prstiju po nosaču",
+          "4"
+        ],
+        [
+          "Broj nosača prstiju na rotoru",
+          "11"
+        ],
+        [
+          "Širina otkosa (m)",
+          "1,25 m - 1,75"
+        ],
+        [
+          "Broj rotora",
+          "2"
+        ],
+        [
+          "Broj dvostrukih prstiju po nosaču",
+          "4"
+        ],
+        [
+          "Transportna širina",
+          "3 m"
+        ],
+        [
+          "Transportna visina",
+          "3,8 m"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5006",
+    "name": "Kosačica JASA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kosilice/jasa",
+    "slug": "kosacica-jasa"
+  },
+  {
+    "id": "5007",
+    "name": "Kosačica TERA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kosilice/tera",
+    "slug": "kosacica-tera",
+    "tabela": {
+      "kolone": [
+        "TERA HP 210",
+        "TERA HP 240",
+        "TERA HP 280"
+      ],
+      "redovi": [
+        [
+          "Broj noževa",
+          "10",
+          "12",
+          "14"
+        ],
+        [
+          "Radna širina (m)",
+          "2,1",
+          "2,4",
+          "2,8"
+        ],
+        [
+          "Ukupna širina",
+          "3,8 m",
+          "4,2 m",
+          "4,6 m"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "55 KS",
+          "65 KS",
+          "75 KS"
+        ],
+        [
+          "Masa (kg)",
+          "535",
+          "560",
+          "595"
+        ],
+        [
+          "Učinak (ha/h)",
+          "2,2",
+          "2,6",
+          "3,0"
+        ],
+        [
+          "Broj diskova",
+          "5",
+          "6",
+          "7"
+        ],
+        [
+          "Obrtaji kardana",
+          "540 o/min",
+          "540 o/min",
+          "540 o/min"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5008",
+    "name": "Omotač bala ULCA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/omotaci-za-bale/ulca",
+    "slug": "omotac-bala-ulca",
+    "tabela": {
+      "kolone": [
+        "ULCA - MW60",
+        "ULCA - MW90"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "80",
+          "97"
+        ],
+        [
+          "Veličina bale (cm)",
+          "50/60 x 70",
+          "70/90 x 90"
+        ],
+        [
+          "Širina folije (cm)",
+          "32",
+          "32"
+        ],
+        [
+          "Snaga benzinskog motora",
+          "6,5",
+          "8"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5009",
+    "name": "Balirka ARGA CUBE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prese-za-kockaste-bale/arga-cube",
+    "slug": "balirka-arga-cube",
+    "tabela": {
+      "kolone": [
+        "BK 02"
+      ],
+      "redovi": [
+        [
+          "Najmanja potrebna snaga traktora",
+          "45"
+        ],
+        [
+          "Masa (kg)",
+          "1.720"
+        ],
+        [
+          "Veličina bale (cm)",
+          "36 x 46"
+        ],
+        [
+          "Širina pokupljanja (cm)",
+          "155"
+        ],
+        [
+          "Masa bale (kg)",
+          "12-26"
+        ],
+        [
+          "Podešavanje dužine bale (cm)",
+          "40-130"
+        ],
+        [
+          "Učinak (bala na dan)",
+          "1.500-2.200"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5010",
+    "name": "Okretač sena ZERO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/rotatori/zero",
+    "slug": "okretac-sena-zero",
+    "tabela": {
+      "kolone": [
+        "HT 450 H"
+      ],
+      "redovi": [
+        [
+          "Najmanja potrebna snaga traktora",
+          "18/25 kW/ KS"
+        ],
+        [
+          "Radna širina (m)",
+          "4,5"
+        ],
+        [
+          "Masa",
+          "370 kg"
+        ],
+        [
+          "Obrtaji kardana",
+          "540 o/min"
+        ],
+        [
+          "Transportna širina",
+          "2,5 m"
+        ],
+        [
+          "Zakretanje vretena ka unutra",
+          "Da"
+        ],
+        [
+          "Hidraulično podizanje vretena",
+          "Da"
+        ],
+        [
+          "Broj opružnih prstiju po rotoru",
+          "6"
+        ],
+        [
+          "Broj rotora",
+          "4"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5011",
+    "name": "Grabulja TORO (jednorotorska)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/rotorski-sakupljaci/toro-jedan-rotor",
+    "slug": "grabulja-toro-jednorotorska",
+    "tabela": {
+      "kolone": [
+        "TORO RK 360",
+        "TORO RK 420"
+      ],
+      "redovi": [
+        [
+          "Radna širina (m)",
+          "3,6",
+          "4,2"
+        ],
+        [
+          "Masa",
+          "490 kg",
+          "560 kg"
+        ],
+        [
+          "Učinak (ha/h)",
+          "4,4",
+          "5,4"
+        ],
+        [
+          "Broj dvostrukih prstiju po nosaču",
+          "4",
+          "4"
+        ],
+        [
+          "Broj nosača prstiju na rotoru",
+          "9",
+          "11"
+        ],
+        [
+          "Širina otkosa (m)",
+          "0,7 - 1,3",
+          "0,7 - 1,3"
+        ],
+        [
+          "Najmanja potrebna snaga motora",
+          "45 KS",
+          "60 KS"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5012",
+    "name": "Grabulja REMO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "kosenje",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/trakacipresavijaci/remo",
+    "slug": "grabulja-remo",
+    "tabela": {
+      "kolone": [
+        "REMO 220/4",
+        "REMO 240/4",
+        "REMO PRO 260/4"
+      ],
+      "redovi": [
+        [
+          "Pneumatici",
+          "15 x 6.00 - 6",
+          "15 x 6,00 - 6",
+          "15 x 6.00 - 6"
+        ],
+        [
+          "Radna širina (m)",
+          "2,5",
+          "2,25",
+          "2,45"
+        ],
+        [
+          "Masa (kg)",
+          "200",
+          "212",
+          "303"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "15/20 kW/KS",
+          "15/20 kW/KS",
+          "30/40 kW/KS"
+        ],
+        [
+          "Pocinkovan priključak",
+          "Ne",
+          "Ne",
+          "Da"
+        ],
+        [
+          "Pocinkovani dvostruki prsti",
+          "Ne",
+          "Ne",
+          "Da"
+        ],
+        [
+          "Jednostavno podešavanje širine otkosa",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Sklopiva zavesa",
+          "Da",
+          "Da",
+          "Hidraulično"
+        ],
+        [
+          "Pokretni trotočkasti prihvat",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Obrtaji kardana",
+          "540 o/min",
+          "540 o/min",
+          "540 o/min"
+        ],
+        [
+          "Broj nosača",
+          "11",
+          "12",
+          "12"
+        ],
+        [
+          "Broj dvostrukih prstiju po nosaču",
+          "4",
+          "4",
+          "4"
+        ],
+        [
+          "Transportna širina",
+          "2,2 m",
+          "2,45 m",
+          "2,60 m"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5013",
+    "name": "Malčer F LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/f-line/f-line",
+    "slug": "malcer-f-line",
+    "tabela": {
+      "kolone": [
+        "F LINE F 145H",
+        "F LINE F 165",
+        "F LINE F 165H",
+        "F LINE F 185H"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "83",
+          "83",
+          "83",
+          "83"
+        ],
+        [
+          "Radna širina (cm)",
+          "140",
+          "160",
+          "160",
+          "180"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "162",
+          "182",
+          "182",
+          "202"
+        ],
+        [
+          "Dužina (cm)",
+          "82",
+          "82",
+          "82",
+          "82"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "45-70",
+          "45-70",
+          "45-70",
+          "45-70"
+        ],
+        [
+          "Masa (kg)",
+          "354",
+          "342",
+          "374",
+          "414"
+        ],
+        [
+          "Broj kaiševa",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "108",
+          "108",
+          "108",
+          "108"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,75",
+          "0,75",
+          "0,75",
+          "0,75"
+        ],
+        [
+          "Broj čekića",
+          "18",
+          "20",
+          "20",
+          "22"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I II",
+          "CAT I II",
+          "CAT I II",
+          "CAT I II"
+        ],
+        [
+          "Hidraulični pomak",
+          "Da",
+          "Ne",
+          "Da",
+          "Da"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5014",
+    "name": "Freza VIVA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/friziraj/viva",
+    "slug": "freza-viva"
+  },
+  {
+    "id": "5015",
+    "name": "Malčer G LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/g-line/g-linija",
+    "slug": "malcer-g-line",
+    "tabela": {
+      "kolone": [
+        "G LINE G 105",
+        "G LINE G 105H",
+        "G LINE G 125",
+        "G LINE G 125H",
+        "G LINE G 145",
+        "G LINE G 145H"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "76",
+          "76",
+          "76",
+          "76",
+          "76",
+          "76"
+        ],
+        [
+          "Radna širina (cm)",
+          "100",
+          "100",
+          "120",
+          "120",
+          "140",
+          "140"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "118",
+          "118",
+          "138",
+          "138",
+          "158",
+          "158"
+        ],
+        [
+          "Dužina (cm)",
+          "65",
+          "65",
+          "65",
+          "65",
+          "65",
+          "65"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "15-40",
+          "15-40",
+          "20-45",
+          "20-45",
+          "20-45",
+          "20-45"
+        ],
+        [
+          "Masa (kg)",
+          "202",
+          "211",
+          "211",
+          "225",
+          "215",
+          "238"
+        ],
+        [
+          "Broj kaiševa",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "76",
+          "76",
+          "76",
+          "76",
+          "76",
+          "76"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,45",
+          "0,45",
+          "0,45",
+          "0,45",
+          "0,45",
+          "0,45"
+        ],
+        [
+          "Broj čekića",
+          "14",
+          "14",
+          "18",
+          "18",
+          "20",
+          "20"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I",
+          "CAT I",
+          "CAT I",
+          "CAT I",
+          "CAT I",
+          "CAT I"
+        ],
+        [
+          "Hidraulični pomak",
+          "Ne",
+          "Da",
+          "Ne",
+          "Da",
+          "Ne",
+          "Da"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5016",
+    "name": "Malčer M LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/m-line/m-line",
+    "slug": "malcer-m-line",
+    "tabela": {
+      "kolone": [
+        "M LINE M 200H",
+        "M LINE M 220H"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "89",
+          "59"
+        ],
+        [
+          "Radna širina (cm)",
+          "195",
+          "215"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "220",
+          "240"
+        ],
+        [
+          "Dužina (cm)",
+          "102",
+          "102"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "50-85",
+          "50-85"
+        ],
+        [
+          "Masa (kg)",
+          "524",
+          "563"
+        ],
+        [
+          "Broj kaiševa",
+          "4",
+          "4"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "168",
+          "168"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,79",
+          "0,79"
+        ],
+        [
+          "Broj čekića",
+          "26",
+          "28"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I II",
+          "CAT I II"
+        ],
+        [
+          "Hidraulični pomak",
+          "Da",
+          "Da"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5017",
+    "name": "Bočni malčer B LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mulceri-b-line-na-hidraulickoj-ruci/b-linija-na-hidraulicnoj-ruci",
+    "slug": "bocni-malcer-b-line",
+    "tabela": {
+      "kolone": [
+        "B LINE B 145",
+        "B LINIJA B 165"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "140",
+          "160"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "40-80",
+          "40-80"
+        ],
+        [
+          "Masa (kg)",
+          "300",
+          "340"
+        ],
+        [
+          "Broj kaiševa",
+          "3",
+          "3"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "108",
+          "108"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,45",
+          "0,45"
+        ],
+        [
+          "Broj čekića",
+          "24",
+          "28"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I",
+          "CAT I"
+        ],
+        [
+          "Reduktor sa spoljne strane malčera",
+          "Ne",
+          "Ne"
+        ],
+        [
+          "A",
+          "132 cm",
+          "132 cm"
+        ],
+        [
+          "B",
+          "94 cm",
+          "94 cm"
+        ],
+        [
+          "C",
+          "56 cm",
+          "56 cm"
+        ],
+        [
+          "D",
+          "100 cm",
+          "120 cm"
+        ],
+        [
+          "E",
+          "10 cm",
+          "10 cm"
+        ],
+        [
+          "F",
+          "560 cm",
+          "560 cm"
+        ],
+        [
+          "G",
+          "91 cm",
+          "101 cm"
+        ],
+        [
+          "L",
+          "140 cm",
+          "140 cm"
+        ],
+        [
+          "H",
+          "156 cm",
+          "176 cm"
+        ],
+        [
+          "M",
+          "99 cm",
+          "99 cm"
+        ],
+        [
+          "P",
+          "59,8 cm",
+          "59,8 cm"
+        ],
+        [
+          "S",
+          "161 cm",
+          "181 cm"
+        ],
+        [
+          "T",
+          "204 cm",
+          "224 cm"
+        ],
+        [
+          "U",
+          "150 cm",
+          "150 cm"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5018",
+    "name": "Bočni malčer R LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mulceri-r-line-na-hidraulickoj-ruci/r-line",
+    "slug": "bocni-malcer-r-line",
+    "tabela": {
+      "kolone": [
+        "R LINE R 165 - LIGHT",
+        "R LINE R 185",
+        "R LINE R 205",
+        "R LINE R 225"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "160",
+          "180",
+          "200",
+          "220"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "50-90",
+          "60-100",
+          "70-110",
+          "80-120"
+        ],
+        [
+          "Masa (kg)",
+          "369",
+          "640",
+          "678",
+          "699"
+        ],
+        [
+          "Broj kaiševa",
+          "3",
+          "3",
+          "4",
+          "4"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "108",
+          "127",
+          "127",
+          "127"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,75",
+          "1,15",
+          "1,15",
+          "1,15"
+        ],
+        [
+          "Broj čekića",
+          "20",
+          "14",
+          "16",
+          "18"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I II",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Reduktor sa spoljne strane malčera",
+          "Ne",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "A",
+          "131 cm",
+          "173 cm",
+          "173 cm",
+          "173 cm"
+        ],
+        [
+          "B",
+          "89 cm",
+          "130 cm",
+          "130 cm",
+          "130 cm"
+        ],
+        [
+          "C",
+          "26 cm",
+          "25 cm",
+          "25 cm",
+          "25 cm"
+        ],
+        [
+          "D",
+          "141 cm",
+          "160 cm",
+          "180 cm",
+          "200 cm"
+        ],
+        [
+          "E",
+          "11 cm",
+          "39 cm",
+          "39 cm",
+          "39 cm"
+        ],
+        [
+          "F",
+          "34 cm",
+          "6 cm",
+          "6 cm",
+          "6 cm"
+        ],
+        [
+          "G",
+          "121 cm",
+          "152 cm",
+          "172 cm",
+          "192 cm"
+        ],
+        [
+          "L",
+          "150 cm",
+          "145 cm",
+          "145 cm",
+          "145 cm"
+        ],
+        [
+          "H",
+          "165 cm",
+          "198 cm",
+          "218 cm",
+          "238 cm"
+        ],
+        [
+          "M",
+          "97 cm",
+          "138 cm",
+          "138 cm",
+          "138 cm"
+        ],
+        [
+          "P",
+          "84 cm",
+          "79 cm",
+          "79 cm",
+          "79 cm"
+        ],
+        [
+          "S",
+          "181 cm",
+          "230 cm",
+          "250 cm",
+          "270 cm"
+        ],
+        [
+          "T",
+          "232 cm",
+          "325 cm",
+          "345 cm",
+          "365 cm"
+        ],
+        [
+          "U",
+          "175 cm",
+          "182 cm",
+          "182 cm",
+          "182 cm"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5019",
+    "name": "Malčer PRO LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pro-line/pro-line",
+    "slug": "malcer-pro-line",
+    "tabela": {
+      "kolone": [
+        "PRO LINE PRO 240H",
+        "PRO LINE PRO 260H",
+        "PRO LINE PRO 290H"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "106",
+          "106",
+          "106"
+        ],
+        [
+          "Radna širina (cm)",
+          "240",
+          "260",
+          "290"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "263",
+          "283",
+          "313"
+        ],
+        [
+          "Dužina (cm)",
+          "150",
+          "150",
+          "150"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "80-120",
+          "90-130",
+          "100-140"
+        ],
+        [
+          "Masa (kg)",
+          "890",
+          "930",
+          "987"
+        ],
+        [
+          "Broj kaiševa",
+          "5",
+          "5",
+          "6"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "194",
+          "194",
+          "194"
+        ],
+        [
+          "Masa čekića (kg)",
+          "1,15",
+          "1,15",
+          "1,15"
+        ],
+        [
+          "Broj čekića",
+          "20",
+          "22",
+          "24"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Hidraulični pomak",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Serijsko hidraulično otvaranje vrata",
+          "Da",
+          "Da",
+          "Da"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5020",
+    "name": "Rotacioni malčer T LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/rotacijski-malceri/t-line",
+    "slug": "rotacioni-malcer-t-line",
+    "tabela": {
+      "kolone": [
+        "T LINE 150",
+        "T LINE 150 HS",
+        "T LINE 180",
+        "T LINE 180 HS"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "74",
+          "75",
+          "74",
+          "74"
+        ],
+        [
+          "Radna širina (cm)",
+          "150",
+          "150",
+          "180",
+          "180"
+        ],
+        [
+          "Masa (kg)",
+          "240",
+          "240",
+          "270",
+          "330"
+        ],
+        [
+          "Broj kaiševa",
+          "3",
+          "3",
+          "3",
+          "4"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I",
+          "CAT I",
+          "CAT I",
+          "CAT I"
+        ],
+        [
+          "Hidraulični pomak",
+          "Ne",
+          "Da",
+          "Ne",
+          "Da"
+        ],
+        [
+          "Broj osnovnih noževa",
+          "3",
+          "3",
+          "3",
+          "3"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "162",
+          "162",
+          "175",
+          "210"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "25 - 50",
+          "25-50",
+          "30 - 50",
+          "30 - 50"
+        ],
+        [
+          "Broj noževa na dodatnom disku",
+          "3",
+          "2",
+          "",
+          "4"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5021",
+    "name": "Voćarsko-vinogradarski malčer O LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/sadjarsko-vinogradnicki-malceri/o-line",
+    "slug": "vocarsko-vinogradarski-malcer-o-line",
+    "tabela": {
+      "kolone": [
+        "O LINE O 145H",
+        "O LINE O 165H"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "83",
+          "83"
+        ],
+        [
+          "Radna širina (cm)",
+          "140",
+          "160"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "162",
+          "182"
+        ],
+        [
+          "Dužina (cm)",
+          "82",
+          "82"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "45-70",
+          "45-70"
+        ],
+        [
+          "Masa (kg)",
+          "372",
+          "392"
+        ],
+        [
+          "Broj kaiševa",
+          "3",
+          "3"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "108",
+          "108"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,86",
+          "0,86"
+        ],
+        [
+          "Broj čekića",
+          "18",
+          "20"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I II",
+          "CAT I II"
+        ],
+        [
+          "Hidraulični pomak",
+          "Da",
+          "Da"
+        ],
+        [
+          "Spoljni prečnik kosačice (cm)",
+          "58",
+          "58"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5022",
+    "name": "Malčer DUO LINE",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "malceri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/univerzalni-malceri/duo-line",
+    "slug": "malcer-duo-line",
+    "tabela": {
+      "kolone": [
+        "DUO line 240"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "240"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "90"
+        ],
+        [
+          "Masa (kg)",
+          "725"
+        ],
+        [
+          "Broj kaiševa",
+          "4"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "168"
+        ],
+        [
+          "Masa čekića (kg)",
+          "0,78"
+        ],
+        [
+          "Broj čekića",
+          "32"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I, II"
+        ],
+        [
+          "Hidraulični pomak",
+          "Da"
+        ],
+        [
+          "Dužina (mm)",
+          "2592"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "970"
+        ],
+        [
+          "Visina (mm)",
+          "968"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5023",
+    "name": "Mešaona stočne hrane HAMMER (vertikalna)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "mesaone-mlinovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mjesaci-hrane/vertikalne-mijesalice-hrane-hammer",
+    "slug": "mesaona-stocne-hrane-hammer-vertikalna",
+    "tabela": {
+      "kolone": [
+        "VMP-1000",
+        "VMP-1500",
+        "VMK 300"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "260",
+          "270",
+          "210"
+        ],
+        [
+          "Kapacitet (kg/l)",
+          "1000 / 1500",
+          "1500 / 2000",
+          "300 / 400"
+        ],
+        [
+          "Snaga motora (kW)",
+          "11,25",
+          "11,25",
+          "4,8"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "140",
+          "150",
+          "165"
+        ],
+        [
+          "Dužina (cm)",
+          "270",
+          "320",
+          "165"
+        ],
+        [
+          "Vreme punjenja punog kapaciteta (min)",
+          "40",
+          "50",
+          "15"
+        ],
+        [
+          "Masa (kg)",
+          "650",
+          "750",
+          "350"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5024",
+    "name": "Mešaona stočne hrane HAMMER (horizontalna)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "mesaone-mlinovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mjesaci-hrane/vodoravne-mjesalice-hrane-hammer",
+    "slug": "mesaona-stocne-hrane-hammer-horizontalna",
+    "tabela": {
+      "kolone": [
+        "LMP-500"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "2,0"
+        ],
+        [
+          "Kapacitet (kg/l)",
+          "500 / 700"
+        ],
+        [
+          "Snaga motora (kW)",
+          "10,0"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "1,0"
+        ],
+        [
+          "Dužina (cm)",
+          "2,7"
+        ],
+        [
+          "Vreme punjenja punog kapaciteta (min)",
+          "30"
+        ],
+        [
+          "Masa (kg)",
+          "420"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5025",
+    "name": "Mešaona stočne hrane ZETA FMV (manji model)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "mesaone-mlinovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mjesaci-hrane/zeta-fmv",
+    "slug": "mesaona-stocne-hrane-zeta-fmv-manji-model"
+  },
+  {
+    "id": "5026",
+    "name": "Mešaona stočne hrane ZETA FMV (veći model)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "mesaone-mlinovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mjesaci-hrane/zeta-fmv-2",
+    "slug": "mesaona-stocne-hrane-zeta-fmv-veci-model",
+    "tabela": {
+      "kolone": [
+        "3 m3",
+        "4 m3"
+      ],
+      "redovi": [
+        [
+          "Kapacitet (grla stoke)",
+          "15 - 30",
+          "25 - 40"
+        ],
+        [
+          "Debljina donje ploče (mm)",
+          "10",
+          "10"
+        ],
+        [
+          "Debljina spirale (mm)",
+          "12",
+          "12"
+        ],
+        [
+          "Visina (cm)",
+          "180",
+          "285"
+        ],
+        [
+          "Debljina stranice (mm)",
+          "5",
+          "5"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "165",
+          "175"
+        ],
+        [
+          "Dužina (cm)",
+          "435",
+          "475"
+        ],
+        [
+          "Masa (kg)",
+          "1250",
+          "1500"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5027",
+    "name": "Mlin za žito HAMMER",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "mesaone-mlinovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mlinovi-za-zito/mlini-za-zito-hammer",
+    "slug": "mlin-za-zito-hammer",
+    "tabela": {
+      "kolone": [
+        "SNP90"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "155"
+        ],
+        [
+          "Snaga motora (kW)",
+          "7,5"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "145"
+        ],
+        [
+          "Dužina (cm)",
+          "75"
+        ],
+        [
+          "Masa",
+          "140"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5028",
+    "name": "Mlin za žito ZONDA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "mesaone-mlinovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mlinovi-za-zito/zitni-mlinovi-zonda",
+    "slug": "mlin-za-zito-zonda",
+    "tabela": {
+      "kolone": [
+        "SNN90"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "140"
+        ],
+        [
+          "Snaga motora (kW)",
+          "3,0"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "72"
+        ],
+        [
+          "Dužina (cm)",
+          "90"
+        ],
+        [
+          "Zapremina rezervoara (l)",
+          "280"
+        ],
+        [
+          "Dimenzije rezervoara (cm)",
+          "85 x 60 x 76"
+        ],
+        [
+          "Masa (kg)",
+          "90"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5029",
+    "name": "Cambridge valjak ROLO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/cambdridge-valji/rolo",
+    "slug": "cambridge-valjak-rolo",
+    "tabela": {
+      "kolone": [
+        "CR 450",
+        "CR 540",
+        "CR 630"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "450",
+          "540",
+          "630"
+        ],
+        [
+          "Masa (kg)",
+          "2280",
+          "2560",
+          "2860"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "80-110",
+          "90-120",
+          "110-150"
+        ],
+        [
+          "Transportni točkovi",
+          "11.5/80-15.3",
+          "11.5/80-15.3",
+          "11.5/80-15.3"
+        ],
+        [
+          "Prečnik valjka (cm)",
+          "50",
+          "50",
+          "50"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5030",
+    "name": "Setvospremač MORO AUS (fiksni)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/fiksni-prijedlozi/moro-aus-fiksni",
+    "slug": "setvospremac-moro-aus-fiksni",
+    "tabela": {
+      "kolone": [
+        "PS 250",
+        "PS 270",
+        "PS 300"
+      ],
+      "redovi": [
+        [
+          "Radna širina",
+          "250 c",
+          "270 c",
+          "300 c"
+        ],
+        [
+          "Masa (kg)",
+          "740",
+          "800",
+          "860"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "70-90 KS",
+          "90–100 KS",
+          "90-110 KS"
+        ],
+        [
+          "Broj vrhova",
+          "18",
+          "20",
+          "22"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5031",
+    "name": "Gruber HERO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/gruberji/hero",
+    "slug": "gruber-hero",
+    "tabela": {
+      "kolone": [
+        "GB, GW, GNS 180",
+        "GB, GW, GNS 220",
+        "GB, GW, GNS 260",
+        "GB, GW, GNS 300"
+      ],
+      "redovi": [
+        [
+          "Radna širina",
+          "180 c",
+          "220 c",
+          "260",
+          "300 c"
+        ],
+        [
+          "Masa (kg)",
+          "760",
+          "860",
+          "940",
+          "1020"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "60-80 KS",
+          "70-90 KS",
+          "80-110 KS",
+          "110-140 KS"
+        ],
+        [
+          "Broj radnih tela",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        [
+          "Broj reznih diskova",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5032",
+    "name": "Setvospremač MORO AUH (hidraulično sklopivi)",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/hidraulicki-sklopivi-predsjedaci/moro-auh-hidraulicki-sklopivi",
+    "slug": "setvospremac-moro-auh-hidraulicno-sklopivi",
+    "tabela": {
+      "kolone": [
+        "PSH 360",
+        "PSH 420",
+        "PSH 500",
+        "PSH 560"
+      ],
+      "redovi": [
+        [
+          "Radna širina",
+          "360 c",
+          "",
+          "500 c",
+          "560 c"
+        ],
+        [
+          "Masa (kg)",
+          "1550",
+          "1680",
+          "1820",
+          "1980"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "90-120 KS",
+          "120-150",
+          "150-180 KS",
+          "160"
+        ],
+        [
+          "Broj vrhova",
+          "36",
+          "42",
+          "50",
+          "56"
+        ],
+        [
+          "Radna širina (cm)",
+          "",
+          "420",
+          "",
+          ""
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5033",
+    "name": "Tanjirača BRONCA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kruzne-stepenice/bronca-fiksno",
+    "slug": "tanjiraca-bronca",
+    "tabela": {
+      "kolone": [
+        "KB 200",
+        "KB 250",
+        "KB 300"
+      ],
+      "redovi": [
+        [
+          "Radna širina (m)",
+          "200",
+          "250",
+          "300"
+        ],
+        [
+          "Masa (kg)",
+          "985",
+          "1150",
+          "1380"
+        ],
+        [
+          "Broj diskova",
+          "16",
+          "20",
+          "24"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Razmak između redova diskova (cm)",
+          "110",
+          "110",
+          "110"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "60-90",
+          "70-100",
+          "90-120"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5034",
+    "name": "Plug NERO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/plugi/nero",
+    "slug": "plug-nero",
+    "tabela": {
+      "kolone": [
+        "2P / L LIGHT",
+        "3P / L LIGHT",
+        "3P / 3XL - opcijsko VARIO",
+        "4P/ 4XL - opcijsko VARIO"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "150",
+          "150",
+          "175",
+          "175"
+        ],
+        [
+          "Broj brazdi",
+          "2",
+          "3",
+          "3",
+          "4"
+        ],
+        [
+          "Vrsta dasaka",
+          "perasti / L puni",
+          "perasti / L puni",
+          "perasti / XL puni",
+          "perasti / XL puni"
+        ],
+        [
+          "Dimenzije rama",
+          "100 x 100 x 10 mm",
+          "100 x 100 x 10 mm",
+          "120 x 120 x 10 mm",
+          "120 x 120 x 10 mm"
+        ],
+        [
+          "Radna širina (m)",
+          "12'', 14'', 16''",
+          "12'', 14'', 16''",
+          "12'', 14'', 16'', 18''; vario: 14'', 16'', 18'', 20''",
+          "14'', 16'', 18'', 20''"
+        ],
+        [
+          "Način podešavanja širine",
+          "Mehanički",
+          "Mehanički",
+          "mehanički / hidraulično (VARIO)",
+          "mehanički / hidraulično (VARIO)"
+        ],
+        [
+          "Razmak između vrhova (cm)",
+          "95",
+          "95",
+          "100",
+          "100"
+        ],
+        [
+          "Visina rama (cm)",
+          "70",
+          "70",
+          "80",
+          "80"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "100",
+          "190",
+          "190 / 203(VARIO)",
+          "203"
+        ],
+        [
+          "Dužina (cm)",
+          "245",
+          "335",
+          "350",
+          "450"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "65",
+          "85",
+          "110",
+          "140"
+        ],
+        [
+          "Masa (kg)",
+          "655",
+          "820",
+          "1240 / 1390 (VARIO)",
+          "1500 / 1640 (VARIO)"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5035",
+    "name": "Rezni valjak SEKO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/rezni-valjci/seko",
+    "slug": "rezni-valjak-seko",
+    "tabela": {
+      "kolone": [
+        "RV 200",
+        "RV 250",
+        "RV 300"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "200",
+          "250",
+          "300"
+        ],
+        [
+          "Masa (kg)",
+          "585",
+          "720",
+          "850"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "štirideset",
+          "50",
+          "60"
+        ],
+        [
+          "Dimenzije noža (mm)",
+          "80 x 480",
+          "80 x 480",
+          "80 x 480"
+        ],
+        [
+          "Broj reznih valjaka",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          "Prečnik pojedinačnog valjka (mm)",
+          "380",
+          "380",
+          "380"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5036",
+    "name": "Livadska drljača GRANA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "obrada-zemljista",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/travnicke-brane/grana",
+    "slug": "livadska-drljaca-grana",
+    "tabela": {
+      "kolone": [
+        "Besedilo: TB 400",
+        "TB 500",
+        "TB 600"
+      ],
+      "redovi": [
+        [
+          "Radna širina",
+          "400 c",
+          "500 C",
+          "600 c"
+        ],
+        [
+          "Masa (kg)",
+          "480",
+          "560",
+          "635"
+        ],
+        [
+          "Broj redova klinova",
+          "4",
+          "4",
+          "4"
+        ],
+        [
+          "Hidraulično podizanje",
+          "Da",
+          "Da",
+          "Da"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5037",
+    "name": "Rasipač đubriva FERO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "prskalice-rasipaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/noseni-rasipaci/fero",
+    "slug": "rasipac-dubriva-fero",
+    "tabela": {
+      "kolone": [
+        "FERO FR 600L",
+        "FERO FR 800L",
+        "FERO FR 1000L"
+      ],
+      "redovi": [
+        [
+          "Kapacitet (kg/l)",
+          "600",
+          "800",
+          "1000"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "170",
+          "170",
+          "170"
+        ],
+        [
+          "Masa (kg)",
+          "160",
+          "175",
+          "205"
+        ],
+        [
+          "Širina rasipanja (m)",
+          "12-30",
+          "12-30",
+          "12-30"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5038",
+    "name": "Nošena prskalica CASTA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "prskalice-rasipaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prijenosne-prskalice/casta",
+    "slug": "nosena-prskalica-casta",
+    "tabela": {
+      "kolone": [
+        "CASTA"
+      ],
+      "redovi": [
+        [
+          "Rezervoar (l)",
+          "400/ 600"
+        ],
+        [
+          "Tip rampe",
+          "mehanički zlaganje"
+        ],
+        [
+          "Radna širina rampe (m)",
+          "8/10/12"
+        ],
+        [
+          "Broj sekcija",
+          "4"
+        ],
+        [
+          "Podešavanje visine rampe",
+          "DA (mehanički)"
+        ],
+        [
+          "Samonivelacija",
+          "Ne"
+        ],
+        [
+          "Dizne",
+          "enosmerne"
+        ],
+        [
+          "Posuda za mešanje",
+          "Ne"
+        ],
+        [
+          "Protok pumpe (l/min)",
+          "80"
+        ],
+        [
+          "Regulator",
+          "VDR-50 (mehanički)"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5039",
+    "name": "Nošena prskalica MANTA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "prskalice-rasipaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prijenosne-prskalice/manta",
+    "slug": "nosena-prskalica-manta",
+    "tabela": {
+      "kolone": [
+        "MANTA"
+      ],
+      "redovi": [
+        [
+          "Rezervoar (l)",
+          "600 / 800 / 1000 / 1200"
+        ],
+        [
+          "Tip rampe",
+          "mehanički zlaganje v X"
+        ],
+        [
+          "Radna širina rampe (m)",
+          "12 / 15"
+        ],
+        [
+          "Broj sekcija",
+          "3"
+        ],
+        [
+          "Podešavanje visine rampe",
+          "Hidraulično"
+        ],
+        [
+          "Samonivelacija",
+          "Ne"
+        ],
+        [
+          "Dizne",
+          "trismerne, protikapalne"
+        ],
+        [
+          "Posuda za mešanje",
+          "Ne"
+        ],
+        [
+          "Protok pumpe (l/min)",
+          "80"
+        ],
+        [
+          "Regulator",
+          "VDR-50 (mehanički)"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5040",
+    "name": "Nošena prskalica PADA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "prskalice-rasipaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prijenosne-prskalice/pada",
+    "slug": "nosena-prskalica-pada",
+    "tabela": {
+      "kolone": [
+        "PADA"
+      ],
+      "redovi": [
+        [
+          "Rezervoar (l)",
+          "600 / 800 / 1000 / 1200"
+        ],
+        [
+          "Tip rampe",
+          "Hidraulično zlaganje v X"
+        ],
+        [
+          "Radna širina rampe (m)",
+          "12/15"
+        ],
+        [
+          "Broj sekcija",
+          "5"
+        ],
+        [
+          "Podešavanje visine rampe",
+          "Hidraulično"
+        ],
+        [
+          "Samonivelacija",
+          "Ne"
+        ],
+        [
+          "Dizne",
+          "LECHLER, trismerne, protikapalne, z zaščito"
+        ],
+        [
+          "Posuda za mešanje",
+          "Opciono"
+        ],
+        [
+          "Protok pumpe (l/min)",
+          "105"
+        ],
+        [
+          "Regulatori",
+          "Bertolini (mehanički) GEOLINE (elektro regulacija iz kabine) ARAG BRAVO 180S ARAG BRAVO 400S - LT"
+        ],
+        [
+          "Upravljanje rampom",
+          "preko kontrolnih ročic za upravljanje hidrauličnih ventilov v traktorju preko mehanskih ročic, nameščenih v traktorju preko elektro-hidraulične krmilne enote z joysticki"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5041",
+    "name": "Voćarski atomizer RONA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "prskalice-rasipaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prijenosni-prskalici/rona",
+    "slug": "vocarski-atomizer-rona",
+    "tabela": {
+      "kolone": [
+        "R 200",
+        "R 300 PLUS"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "130",
+          "150"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "110",
+          "130"
+        ],
+        [
+          "Dužina (cm)",
+          "100",
+          "120"
+        ],
+        [
+          "Rezervoar (l)",
+          "200",
+          "300"
+        ],
+        [
+          "Protok pumpe (l/min)",
+          "80",
+          "105"
+        ],
+        [
+          "Regulator",
+          "mehanički, iz kabine",
+          "elektro upravljanje preko joystickov v kabini"
+        ],
+        [
+          "Broj dizni",
+          "8",
+          "12"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5042",
+    "name": "Sejalica MINA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "setva-zetva",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/sejalnice/mina",
+    "slug": "sejalica-mina",
+    "tabela": {
+      "kolone": [
+        "M 100"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "35"
+        ],
+        [
+          "Zapremina rezervoara (l)",
+          "110"
+        ],
+        [
+          "Širina rasipanja (m)",
+          "2-15"
+        ],
+        [
+          "Upravljanje",
+          "elektro - preko krmilne enote"
+        ],
+        [
+          "Napon (V)",
+          "12"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5043",
+    "name": "Silažni kombajn SILO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "setva-zetva",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/zitnokombajni/silo",
+    "slug": "silazni-kombajn-silo",
+    "tabela": {
+      "kolone": [
+        "SILO MC125"
+      ],
+      "redovi": [
+        [
+          "Broj noževa",
+          "12"
+        ],
+        [
+          "Radna širina (m)",
+          "1250"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "80-110"
+        ],
+        [
+          "V × Š × D (transportni položaj)",
+          "2440 x 2850 x 1900"
+        ],
+        [
+          "V (radni položaj)",
+          "4100"
+        ],
+        [
+          "Š (radni položaj, bočni priključak)",
+          "3250"
+        ],
+        [
+          "Veličina ivera (mm)",
+          "4-10"
+        ],
+        [
+          "Radni učinak (t/h)",
+          "40-50"
+        ],
+        [
+          "Radna brzina (km/h)",
+          "2-3"
+        ],
+        [
+          "Mogućnost priključivanja",
+          "zadaj, bočno, čelno*"
+        ],
+        [
+          "Obrtaji priključnog vratila (o/min)",
+          "540/1000 obr./min*"
+        ],
+        [
+          "Hidraulično podizanje izbacne cevi",
+          "Da"
+        ],
+        [
+          "Hidraulično podesiva izbacna zaklopka",
+          "Da"
+        ],
+        [
+          "Hidraulično obrtna cev",
+          "DA, 360 stopinj"
+        ],
+        [
+          "Masa (kg)",
+          "1420"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5044",
+    "name": "Teg za traktor",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "tegovi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/utezi-za-traktore/utezi",
+    "slug": "teg-za-traktor",
+    "tabela": {
+      "kolone": [
+        "HOFMAN"
+      ],
+      "redovi": [
+        [
+          "Masa",
+          "400 / 600 / 800 / 1000 / 1200 kg"
+        ],
+        [
+          "Konstrukcija",
+          "kovinska"
+        ],
+        [
+          "Kategorija",
+          "II."
+        ],
+        [
+          "Priključak za vučnu ušicu",
+          "Da"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5045",
+    "name": "Hidraulična kiper platforma BORO HZ",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/hidraulicne-platforme/boro-hz",
+    "slug": "hidraulicna-kiper-platforma-boro-hz",
+    "tabela": {
+      "kolone": [
+        "BORO HZ 160/110",
+        "BORO HZ 180/110",
+        "BORO HZ 200/110",
+        "BORO HZ 220/110"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "50",
+          "50",
+          "50",
+          "50"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "160",
+          "180",
+          "200",
+          "220"
+        ],
+        [
+          "Dužina (cm)",
+          "115",
+          "115",
+          "115",
+          "110"
+        ],
+        [
+          "Masa (kg)",
+          "378",
+          "394",
+          "410",
+          "455"
+        ],
+        [
+          "Nosivost (kg)",
+          "1500",
+          "1500",
+          "1500",
+          "1500"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5046",
+    "name": "Hidraulična kiper platforma BORO VD",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/hidraulicne-platforme/boro-vd",
+    "slug": "hidraulicna-kiper-platforma-boro-vd",
+    "tabela": {
+      "kolone": [
+        "BORO VD 160/100",
+        "BORO VD 180/100",
+        "BORO VD 200/100",
+        "BORO VD 220/100"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "40",
+          "40",
+          "40",
+          "40"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "160",
+          "180",
+          "200",
+          "220"
+        ],
+        [
+          "Dužina (cm)",
+          "100",
+          "100",
+          "100",
+          "100"
+        ],
+        [
+          "Visina podizanja (cm)",
+          "200",
+          "200",
+          "200",
+          "200"
+        ],
+        [
+          "Nosivost (kg)",
+          "1500",
+          "1500",
+          "1500",
+          "1500"
+        ],
+        [
+          "Masa (kg)",
+          "350",
+          "360",
+          "370",
+          "380"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5047",
+    "name": "Mehanička kiper platforma BORO MZ",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mehanicki-platoi/boro-mz",
+    "slug": "mehanicka-kiper-platforma-boro-mz",
+    "tabela": {
+      "kolone": [
+        "BORO MZ 120",
+        "BORO MZ 150",
+        "BORO MZ 180"
+      ],
+      "redovi": [
+        [
+          "Visina (cm)",
+          "45",
+          "45",
+          "45"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "120",
+          "150",
+          "180"
+        ],
+        [
+          "Dužina (cm)",
+          "70",
+          "70",
+          "70"
+        ],
+        [
+          "Masa (kg)",
+          "105",
+          "115",
+          "165"
+        ],
+        [
+          "Nosivost (kg)",
+          "200",
+          "250",
+          "300"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5048",
+    "name": "Dvoosovinska traktorska prikolica VITA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prikolice/dvoosovinske-prikolice-vita",
+    "slug": "dvoosovinska-traktorska-prikolica-vita",
+    "tabela": {
+      "kolone": [
+        "V 13/10",
+        "V 16/12"
+      ],
+      "redovi": [
+        [
+          "Najveća ukupna masa (kg)",
+          "13000",
+          "16000"
+        ],
+        [
+          "Sopstvena masa (kg)",
+          "2750",
+          "4000"
+        ],
+        [
+          "Unutrašnje dimenzije tovarnog prostora (mm)",
+          "4920 x 2020",
+          "4920 mm x 2220"
+        ],
+        [
+          "Spoljne dimenzije tovarnog prostora (mm)",
+          "5000 x 2100",
+          "5000 mm x 2300"
+        ],
+        [
+          "Zapremina tovarnog prostora (m³)",
+          "15",
+          "15,3"
+        ],
+        [
+          "Ukupne dimenzije prikolice (D × Š × V)",
+          "6900 x 2200 x 2780",
+          "6400 x 2400 x 2700"
+        ],
+        [
+          "Visina stranica (mm)",
+          "700 x 400",
+          "800 x 600"
+        ],
+        [
+          "Debljina poda (mm)",
+          "3",
+          "5"
+        ],
+        [
+          "Debljina stranice (mm)",
+          "2",
+          "2"
+        ],
+        [
+          "Najveća dozvoljena brzina (km/h)",
+          "40",
+          "40"
+        ],
+        [
+          "Pneumatici",
+          "400 / 60 - 15,5",
+          "385/55-22,5"
+        ],
+        [
+          "Širina traga (mm)",
+          "1700",
+          "1950"
+        ],
+        [
+          "Trostrano kipovanje",
+          "Ja",
+          "Da"
+        ],
+        [
+          "Broj stepeni cilindra",
+          "3",
+          "5"
+        ],
+        [
+          "Količina hidrauličnog ulja (l)",
+          "24",
+          "24"
+        ],
+        [
+          "Najmanja potrebna snaga traktora",
+          "85 / 63",
+          "100 / 73,5"
+        ],
+        [
+          "Kočnice",
+          "Hidraulične / vazdušne",
+          "Hidraulične /vazdušne"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5049",
+    "name": "Građevinska traktorska prikolica VITA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prikolice/gradevinske-prikolice-vita",
+    "slug": "gradevinska-traktorska-prikolica-vita",
+    "tabela": {
+      "kolone": [
+        "GM 15/12"
+      ],
+      "redovi": [
+        [
+          "Najveća ukupna masa (kg)",
+          "15000"
+        ],
+        [
+          "Sopstvena masa (kg)",
+          "3000"
+        ],
+        [
+          "Unutrašnje dimenzije tovarnog prostora (mm)",
+          "4920 x 2120"
+        ],
+        [
+          "Spoljne dimenzije tovarnog prostora (mm)",
+          "5000 x 2200"
+        ],
+        [
+          "Ukupne dimenzije prikolice (D × Š × V)",
+          "8405 x 2568 x 2390"
+        ],
+        [
+          "Debljina poda (mm)",
+          "5"
+        ],
+        [
+          "Debljina stranice (mm)",
+          "2"
+        ],
+        [
+          "Najveća dozvoljena brzina (km/h)",
+          "40"
+        ],
+        [
+          "Pneumatici",
+          "435/50-R19,5"
+        ],
+        [
+          "Širina traga (mm)",
+          "1900"
+        ],
+        [
+          "Najmanja potrebna snaga traktora",
+          "90 / 67"
+        ],
+        [
+          "Kočnice",
+          "Hidraulične ali vazdušne"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5050",
+    "name": "Jednoosovinska traktorska prikolica VITA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prikolice/jednoosovinske-prikolice-vita",
+    "slug": "jednoosovinska-traktorska-prikolica-vita",
+    "tabela": {
+      "kolone": [
+        "E 6,5/5",
+        "E 7,5/6",
+        "E 10,5/8"
+      ],
+      "redovi": [
+        [
+          "Najveća ukupna masa (kg)",
+          "6500",
+          "7500",
+          "10000"
+        ],
+        [
+          "Sopstvena masa (kg)",
+          "1400",
+          "1500",
+          "2420"
+        ],
+        [
+          "Unutrašnje dimenzije tovarnog prostora (mm)",
+          "3480 x 1920",
+          "3680 x 1920",
+          "4000 x 2200"
+        ],
+        [
+          "Spoljne dimenzije tovarnog prostora (mm)",
+          "3500 x 2000",
+          "3700 x 2000",
+          "4066 x 2266"
+        ],
+        [
+          "Zapremina tovarnog prostora (m³)",
+          "6,3",
+          "6,66",
+          "8,8"
+        ],
+        [
+          "Ukupne dimenzije prikolice (D × Š × V)",
+          "4750 x 2120 x 1780",
+          "4950 x 2100 x 1900",
+          "5451 x 2282 x 2190"
+        ],
+        [
+          "Visina stranica (mm)",
+          "500 + 400",
+          "500 + 400",
+          "500 + 400 + 400"
+        ],
+        [
+          "Debljina poda (mm)",
+          "5",
+          "5",
+          "5"
+        ],
+        [
+          "Debljina stranice (mm)",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          "Najveća dozvoljena brzina (km/h)",
+          "40",
+          "40",
+          "40"
+        ],
+        [
+          "Pneumatici",
+          "400/60-15.5",
+          "400/60-15.5",
+          "500/50-17"
+        ],
+        [
+          "Širina traga (mm)",
+          "1350",
+          "1500",
+          "1700"
+        ],
+        [
+          "Trostrano kipovanje",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Broj stepeni cilindra",
+          "3",
+          "3",
+          "4"
+        ],
+        [
+          "Količina hidrauličnog ulja (l)",
+          "8",
+          "8",
+          "16"
+        ],
+        [
+          "Najmanja potrebna snaga traktora",
+          "70 / 52",
+          "70 / 52",
+          "60 / 110"
+        ],
+        [
+          "Kočnice",
+          "Hidraulične / vazdušne",
+          "Hidraulične / vazdušne",
+          "Hidraulične / vazdušne"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5051",
+    "name": "Traktorska prikolica MINI VITA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prikolice/mini-vita",
+    "slug": "traktorska-prikolica-mini-vita",
+    "tabela": {
+      "kolone": [
+        "E 1500",
+        "T 2500",
+        "T 2500 PLUS"
+      ],
+      "redovi": [
+        [
+          "Najveća ukupna masa (kg)",
+          "1000",
+          "2000",
+          "2000"
+        ],
+        [
+          "Sopstvena masa (kg)",
+          "320",
+          "400",
+          "400"
+        ],
+        [
+          "Unutrašnje dimenzije tovarnog prostora (mm)",
+          "2060 x 1020",
+          "2320 x 1170",
+          "2330 x 1170"
+        ],
+        [
+          "Spoljne dimenzije tovarnog prostora (mm)",
+          "2160 x 1100",
+          "2420 x 1270",
+          "2430 x 1270"
+        ],
+        [
+          "Visina (cm)",
+          "107",
+          "107",
+          "107"
+        ],
+        [
+          "Visina stranica (mm)",
+          "400",
+          "400",
+          "400"
+        ],
+        [
+          "Širina traga (mm)",
+          "1100",
+          "1270",
+          "1270"
+        ],
+        [
+          "Trostrano kipovanje",
+          "Ne",
+          "NEIN",
+          "Da"
+        ],
+        [
+          "Preporučena snaga traktora",
+          "20",
+          "25",
+          "25"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5052",
+    "name": "Tandem traktorska prikolica VITA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prikolice/tandem-prikolice-vita",
+    "slug": "tandem-traktorska-prikolica-vita",
+    "tabela": {
+      "kolone": [
+        "T 10/7,5",
+        "T 13/10",
+        "T 15,5/12",
+        "T 16/12"
+      ],
+      "redovi": [
+        [
+          "Najveća ukupna masa (kg)",
+          "10000",
+          "13000",
+          "15500",
+          "16000"
+        ],
+        [
+          "Sopstvena masa (kg)",
+          "2500",
+          "2700",
+          "4000",
+          "4000"
+        ],
+        [
+          "Unutrašnje dimenzije tovarnog prostora (mm)",
+          "4420 x 2120",
+          "4920 x 2220",
+          "4920 x 2120",
+          "4920 x 2220"
+        ],
+        [
+          "Spoljne dimenzije tovarnog prostora (mm)",
+          "4500 x 2200",
+          "4500 x 2300",
+          "5000 x 2200",
+          "5000 x 2300"
+        ],
+        [
+          "Zapremina tovarnog prostora (m³)",
+          "9,3",
+          "11",
+          "12,5",
+          "15,3"
+        ],
+        [
+          "Ukupne dimenzije prikolice (D × Š × V)",
+          "5800 x 2300 x 2105",
+          "5800 x 2300 x 2450",
+          "6350 x 2300 x 2450",
+          "6400 x 2400 x 2700"
+        ],
+        [
+          "Visina stranica (mm)",
+          "500 x 500",
+          "600 x 600",
+          "600 x 600",
+          "800 x 600"
+        ],
+        [
+          "Debljina poda (mm)",
+          "4",
+          "5",
+          "5",
+          "5"
+        ],
+        [
+          "Debljina stranice (mm)",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          "Najveća dozvoljena brzina (km/h)",
+          "40",
+          "40",
+          "40",
+          "40"
+        ],
+        [
+          "Pneumatici",
+          "500/50-17",
+          "500/50-17",
+          "435/50-R19,5",
+          "435/50-R19,5"
+        ],
+        [
+          "Širina traga (mm)",
+          "1700",
+          "1700",
+          "1700",
+          "1700"
+        ],
+        [
+          "Trostrano kipovanje",
+          "Da",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Broj stepeni cilindra",
+          "4",
+          "4",
+          "5",
+          "5"
+        ],
+        [
+          "Količina hidrauličnog ulja (l)",
+          "16",
+          "16",
+          "24",
+          "24"
+        ],
+        [
+          "Najmanja potrebna snaga traktora",
+          "70 / 52",
+          "80 / 59",
+          "90 / 67",
+          "100 / 74"
+        ],
+        [
+          "Kočnice",
+          "Hidraulične / vazdušne",
+          "Hidraulične / vazdušne",
+          "Hidraulične / vazdušne",
+          "Hidraulične / vazdušne"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5053",
+    "name": "Traktorska prikolica TINA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "traktorske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/prikolice/tina",
+    "slug": "traktorska-prikolica-tina",
+    "tabela": {
+      "kolone": [
+        "Z 400",
+        "Z 500"
+      ],
+      "redovi": [
+        [
+          "Pneumatici",
+          "10.0/75-15.3",
+          "12,5/80-15.3"
+        ],
+        [
+          "Kočnice",
+          "Hidraulične kočnice + ručna kočnica",
+          "Hidraulične kočnice + ručna kočnica"
+        ],
+        [
+          "Ispust za žito",
+          "Da",
+          "Da"
+        ],
+        [
+          "Podesiva potporna noga",
+          "Da",
+          "Da"
+        ],
+        [
+          "Obrtni priključak",
+          "Da",
+          "Da"
+        ],
+        [
+          "Način kipovanja",
+          "trostrano",
+          "trostrano"
+        ],
+        [
+          "Visina sanduka od tla (cm)",
+          "85",
+          "90"
+        ],
+        [
+          "Stranice (cm)",
+          "30 + 30",
+          "40 + 30"
+        ],
+        [
+          "Dimenzije sanduka (cm)",
+          "270 x 170",
+          "300 x 190"
+        ],
+        [
+          "Sopstvena masa (kg)",
+          "950",
+          "1.100"
+        ],
+        [
+          "Ukupna masa (kg)",
+          "3.990",
+          "4.990"
+        ],
+        [
+          "Nosivost (kg)",
+          "3.040",
+          "3.890"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5054",
+    "name": "Cepač drva REX (kardanski pogon)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "cepaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/cjepaci-na-kardanski-pogon-rex/rex",
+    "slug": "cepac-drva-rex-kardanski-pogon",
+    "tabela": {
+      "kolone": [
+        "T 16 K",
+        "T 22 K",
+        "T 30 K"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "243",
+          "315",
+          "400"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I",
+          "CAT I",
+          "CAT I"
+        ],
+        [
+          "Pogon",
+          "kardan",
+          "kardan",
+          "kardan"
+        ],
+        [
+          "Sila cepanja (t)",
+          "16",
+          "22",
+          "30"
+        ],
+        [
+          "Najveća dužina cepanice (mm)",
+          "1100",
+          "1100",
+          "1100"
+        ],
+        [
+          "Najmanja snaga traktora",
+          "25",
+          "25",
+          "45"
+        ],
+        [
+          "Najveći obrtaji kardana (o/min)",
+          "540",
+          "540",
+          "540"
+        ],
+        [
+          "Količina ulja (l)",
+          "18",
+          "24",
+          "30"
+        ],
+        [
+          "Dužina (mm)",
+          "1200",
+          "1300",
+          "1540"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "1500",
+          "670",
+          "1140"
+        ],
+        [
+          "Visina u radnom položaju (mm)",
+          "",
+          "2470",
+          "2510"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5055",
+    "name": "Cepač drva REX (električni pogon)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "cepaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/elektricni-cetkaci/rex",
+    "slug": "cepac-drva-rex-elektricni-pogon",
+    "tabela": {
+      "kolone": [
+        "T 8 E",
+        "T 12 E"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "115",
+          "178"
+        ],
+        [
+          "Pogon",
+          "El. motor",
+          "El. motor"
+        ],
+        [
+          "Sila cepanja (t)",
+          "8",
+          "12"
+        ],
+        [
+          "Najveća dužina cepanice (mm)",
+          "300",
+          "1040"
+        ],
+        [
+          "Količina ulja (l)",
+          "4",
+          ""
+        ],
+        [
+          "Dužina (mm)",
+          "845",
+          "1200"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "935",
+          "150"
+        ],
+        [
+          "Visina u radnom položaju (mm)",
+          "1500",
+          "2300"
+        ],
+        [
+          "Snaga motora",
+          "3,5 / 400",
+          "3,3"
+        ],
+        [
+          "Brzina cepanja H1/H2/PH (cm/s)",
+          "",
+          "4,2"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5056",
+    "name": "Cepač drva REX (elektro i kardanski pogon)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "cepaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kombinirane-cetkice-elektro-kardan/rex",
+    "slug": "cepac-drva-rex-elektro-i-kardanski-pogon",
+    "tabela": {
+      "kolone": [
+        "T 22 KE",
+        "T 30 KE"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "320",
+          "405"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I",
+          "CAT I"
+        ],
+        [
+          "Pogon",
+          "kombinovan",
+          "kombinovan"
+        ],
+        [
+          "Sila cepanja (t)",
+          "22",
+          "30"
+        ],
+        [
+          "Najveća dužina cepanice (mm)",
+          "1100",
+          "1100"
+        ],
+        [
+          "Najmanja snaga traktora",
+          "25",
+          "45"
+        ],
+        [
+          "Najveći obrtaji kardana (o/min)",
+          "540",
+          "540"
+        ],
+        [
+          "Količina ulja (l)",
+          "24",
+          "30"
+        ],
+        [
+          "Dužina (mm)",
+          "1300",
+          "1540"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "670",
+          "1140"
+        ],
+        [
+          "Visina u radnom položaju (mm)",
+          "2470",
+          "2510"
+        ],
+        [
+          "Snaga motora",
+          "5 / 400",
+          "5 / 400"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5057",
+    "name": "Cepač drva REX (benzinski motor)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "cepaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pogonjeni-drobilnici-s-benzenskim-motorom/rex",
+    "slug": "cepac-drva-rex-benzinski-motor",
+    "tabela": {
+      "kolone": [
+        "T 22 DRIVE"
+      ],
+      "redovi": [
+        [
+          "Snaga motora",
+          "4,1 / 5,5"
+        ],
+        [
+          "Masa (kg)",
+          "346"
+        ],
+        [
+          "Pogon",
+          "bencinski motor Loncin 196cc, 4,1 kW, 3600r/min"
+        ],
+        [
+          "Sila cepanja (t)",
+          "22"
+        ],
+        [
+          "Količina ulja (l)",
+          "24"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5058",
+    "name": "Cepač drva MAX (kardanski pogon)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "cepaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pogonski-vratila-na-kardan-max/max",
+    "slug": "cepac-drva-max-kardanski-pogon",
+    "tabela": {
+      "kolone": [
+        "T 23 K"
+      ],
+      "redovi": [
+        [
+          "Visina cepanja (mm)",
+          "550/1100"
+        ],
+        [
+          "Najmanja potrebna snaga traktora",
+          "37 / 27"
+        ],
+        [
+          "Masa (kg)",
+          "508"
+        ],
+        [
+          "Dimenzije (D × Š × V)",
+          "1350 x 1017 x 2835"
+        ],
+        [
+          "Pogon",
+          "Kardan"
+        ],
+        [
+          "Sila cepanja (t)",
+          "22"
+        ],
+        [
+          "Najveća dužina cepanice (mm)",
+          "550"
+        ],
+        [
+          "Najmanja snaga traktora",
+          "27"
+        ],
+        [
+          "Najveći obrtaji kardana (o/min)",
+          "540"
+        ],
+        [
+          "Brzina cepanja H1/H2/PH (cm/s)",
+          "(3,6-7,2)-3,6"
+        ],
+        [
+          "Količina ulja (l)",
+          "31"
+        ],
+        [
+          "Dužina (mm)",
+          "1350"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "1017"
+        ],
+        [
+          "Visina u radnom položaju (mm)",
+          "2835"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5059",
+    "name": "Iverač",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "iveraci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/drobilci-grana",
+    "slug": "iverac",
+    "tabela": {
+      "kolone": [
+        "W line 100",
+        "X line 100",
+        "D line 160",
+        "TB 6,5HP"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "195",
+          "195",
+          "491",
+          ""
+        ],
+        [
+          "Učinak (m³/h)",
+          "6-8",
+          "4-6",
+          "8-13",
+          "4"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "635",
+          "635",
+          "762",
+          "240"
+        ],
+        [
+          "Pogon",
+          "Kardan",
+          "Kardan",
+          "Kardan",
+          "bencinski"
+        ],
+        [
+          "Priključak",
+          "trotočkasti",
+          "trotočkasti",
+          "trotočkasti",
+          ""
+        ],
+        [
+          "Potrebna snaga traktora",
+          "20-50",
+          "20-45",
+          "45&ndash;100",
+          ""
+        ],
+        [
+          "Debljina rotora (mm)",
+          "20",
+          "12",
+          "20",
+          ""
+        ],
+        [
+          "Veličina otvora (cm)",
+          "20,32x15x24",
+          "10,16x25,4",
+          "16,5x13,5",
+          "15 x 13"
+        ],
+        [
+          "Hidraulično automatsko dovođenje",
+          "Da",
+          "Ne",
+          "Da",
+          ""
+        ],
+        [
+          "Ugao izbacivanja (°)",
+          "360 (obrtni)",
+          "360 (obrtni)",
+          "360 (obrtni)",
+          "Enosmerni"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5060",
+    "name": "Priključak za šumarstvo FW 60",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/alat-i-pribor/fw-60",
+    "slug": "prikljucak-za-sumarstvo-fw-60",
+    "tabela": {
+      "kolone": [
+        "KAJLA FW 60"
+      ],
+      "redovi": [
+        [
+          "Najveći obrtni moment (Nm)",
+          "745"
+        ],
+        [
+          "Prečnik vretena (mm)",
+          "24"
+        ],
+        [
+          "Nastavak",
+          "6-kotni, 16mm, 1/2\""
+        ],
+        [
+          "Visina podizanja (mm)",
+          "60-144"
+        ],
+        [
+          "Nosivost dizalice (t)",
+          "17"
+        ],
+        [
+          "Masa (kg)",
+          "3,3"
+        ],
+        [
+          "Dužina (mm)",
+          "440"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "80"
+        ],
+        [
+          "Visina (mm)",
+          "70"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5061",
+    "name": "Klešta za trupce LEX",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/klijesta-za-drva/lex",
+    "slug": "klesta-za-trupce-lex",
+    "tabela": {
+      "kolone": [
+        "LEX TG 1300"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "280"
+        ],
+        [
+          "Najveći otvor klešta (cm)",
+          "130"
+        ],
+        [
+          "Najmanji prečnik (cm)",
+          "7"
+        ],
+        [
+          "Sila zatvaranja klešta (bar)",
+          "250"
+        ],
+        [
+          "Obrtanje klešta (°)",
+          "360"
+        ],
+        [
+          "Vrsta priključka",
+          "EURO, 3 točkovne vpetje"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5062",
+    "name": "Priključak za šumarstvo KROKO KS",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pomagala-i-prikljucci/kroko-ss",
+    "slug": "prikljucak-za-sumarstvo-kroko-ks",
+    "tabela": {
+      "kolone": [
+        "KS 1600",
+        "KS 1800",
+        "KS 2000"
+      ],
+      "redovi": [
+        [
+          "Zapremina tovarnog prostora (m³)",
+          "0,75",
+          "0,85",
+          "1"
+        ],
+        [
+          "Radna širina (cm)",
+          "160",
+          "180",
+          "200"
+        ],
+        [
+          "Masa (kg)",
+          "305",
+          "335",
+          "383"
+        ],
+        [
+          "Vrsta priključka",
+          "EURO",
+          "EURO",
+          "EURO"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5063",
+    "name": "Priključak za šumarstvo KROKO SS",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pomagala-i-prikljucci/kroko-ss-2",
+    "slug": "prikljucak-za-sumarstvo-kroko-ss",
+    "tabela": {
+      "kolone": [
+        "SS 1600",
+        "SS 1800",
+        "SS 2000"
+      ],
+      "redovi": [
+        [
+          "Zapremina tovarnog prostora (m³)",
+          "0,45",
+          "0,5",
+          "0,6"
+        ],
+        [
+          "Radna širina (cm)",
+          "160",
+          "180",
+          "200"
+        ],
+        [
+          "Masa (kg)",
+          "235",
+          "258",
+          "297"
+        ],
+        [
+          "Vrsta priključka",
+          "EURO",
+          "EURO",
+          "EURO"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5064",
+    "name": "Priključak za šumarstvo MANO PV (manji model)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pomagala-i-prikljucci/mano-pv",
+    "slug": "prikljucak-za-sumarstvo-mano-pv-manji-model",
+    "tabela": {
+      "kolone": [
+        "Paletne vilice MANO PV 120"
+      ],
+      "redovi": [
+        [
+          "Nosivost (kg)",
+          "1500"
+        ],
+        [
+          "Priključak",
+          "EURO"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5065",
+    "name": "Priključak za šumarstvo MANO PV (veći model)",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pomagala-i-prikljucci/mano-pv-2",
+    "slug": "prikljucak-za-sumarstvo-mano-pv-veci-model",
+    "tabela": {
+      "kolone": [
+        "MANO NZ 1800",
+        "MANO NZ 2000",
+        "MANO NZ 2200"
+      ],
+      "redovi": [
+        [
+          "Ukupna širina (cm)",
+          "1800",
+          "2000",
+          "2200"
+        ],
+        [
+          "Masa (kg)",
+          "167",
+          "167",
+          "198"
+        ],
+        [
+          "Prihvat",
+          "EURO",
+          "EURO",
+          "EURO"
+        ],
+        [
+          "Zapremina (m³)",
+          "0,43",
+          "0,48",
+          "0,53"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5066",
+    "name": "Priključak za šumarstvo T3000",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/pomagala-i-prikljucci/t3000",
+    "slug": "prikljucak-za-sumarstvo-t3000",
+    "tabela": {
+      "kolone": [
+        "ROTO T3000"
+      ],
+      "redovi": [
+        [
+          "Najveći radni pritisak (bar)",
+          "175"
+        ],
+        [
+          "Masa (kg)",
+          "112"
+        ],
+        [
+          "Prečnik rotora (mm)",
+          "80"
+        ],
+        [
+          "Najveći otvor klešta (cm)",
+          "126"
+        ],
+        [
+          "Obrtanje klešta (°)",
+          "360"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5067",
+    "name": "Vezač drva BINO",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "klesta-prikljucci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/spojnice-za-drva/bino",
+    "slug": "vezac-drva-bino",
+    "tabela": {
+      "kolone": [
+        "BINO PD 110 H"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "277"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I / II"
+        ],
+        [
+          "Dužina (mm)",
+          "1280"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "1200"
+        ],
+        [
+          "Visina (mm)",
+          "1400"
+        ],
+        [
+          "Obrtanje",
+          "Hidraulično"
+        ],
+        [
+          "Najveća dužina drva (cm)",
+          "100"
+        ],
+        [
+          "Zapremina (m³)",
+          "1"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5068",
+    "name": "Kružna pila KIARA",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "pile-testere",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kruzne-pile/kiara",
+    "slug": "kruzna-pila-kiara",
+    "tabela": {
+      "kolone": [
+        "KR 700 MF",
+        "KR 700 3F",
+        "KR 700 K",
+        "KR 700 K4",
+        "KR 700 K5",
+        "KR 700 K5 PRO"
+      ],
+      "redovi": [
+        [
+          "Snaga motora (kW)",
+          "2.2",
+          "2.2",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Preporučena snaga traktora",
+          "",
+          "",
+          "25",
+          "25",
+          "25",
+          "35"
+        ],
+        [
+          "Masa (kg)",
+          "210",
+          "220",
+          "220",
+          "500",
+          "520",
+          "900"
+        ],
+        [
+          "Napon (V)",
+          "230",
+          "400",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Dimenzije (D × Š × V)",
+          "1290x925x1075",
+          "1290x800x1075",
+          "1290x800x1075",
+          "1600x1300x2600",
+          "1600x1300x2600",
+          "1750x1200x2400"
+        ],
+        [
+          "Pogon",
+          "Elektro",
+          "Elektro",
+          "Kardan",
+          "Kardan",
+          "Kardan",
+          "Kardan"
+        ],
+        [
+          "Najveći prečnik rezanja (mm)",
+          "280",
+          "280",
+          "280",
+          "280",
+          "280",
+          "280"
+        ],
+        [
+          "Prečnik lista testere (mm)",
+          "700",
+          "700",
+          "700",
+          "700",
+          "700",
+          "700"
+        ],
+        [
+          "Priključak",
+          "",
+          "",
+          "CAT II",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Dužina transportne trake (m)",
+          "",
+          "",
+          "",
+          "4",
+          "5",
+          "5"
+        ],
+        [
+          "Unutrašnja širina transportne trake (mm)",
+          "",
+          "",
+          "",
+          "250",
+          "250",
+          "250"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5069",
+    "name": "Kružna pila ZARA",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "pile-testere",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kruzne-pile/zara",
+    "slug": "kruzna-pila-zara",
+    "tabela": {
+      "kolone": [
+        "ZARA R 700 E",
+        "ZARA R 700 K"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "170",
+          "180"
+        ],
+        [
+          "Pogon",
+          "el.motor",
+          "kardan"
+        ],
+        [
+          "Ukupna širina (mm)",
+          "1250",
+          "1250"
+        ],
+        [
+          "Najveći prečnik rezanja (mm)",
+          "300",
+          "300"
+        ],
+        [
+          "Prečnik lista testere (mm)",
+          "700",
+          "700"
+        ],
+        [
+          "Snaga motora",
+          "5 / 400",
+          "5/400"
+        ],
+        [
+          "Visina (mm)",
+          "1250",
+          "1250"
+        ],
+        [
+          "Dubina (mm)",
+          "870",
+          "870"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5070",
+    "name": "Mašina za rezanje i cepanje drva PERO",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "pile-testere",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/rezacko-brusilni-strojevi/pero",
+    "slug": "masina-za-rezanje-i-cepanje-drva-pero",
+    "tabela": {
+      "kolone": [
+        "PERO RCS 20T s podvozjem",
+        "PERO RCS 20T PLUS s podvozjem",
+        "PERO RCS 20T KE nošen"
+      ],
+      "redovi": [
+        [
+          "Masa (kg)",
+          "520",
+          "1060",
+          ""
+        ],
+        [
+          "Pogon",
+          "Kardanski",
+          "Bencinski",
+          ""
+        ],
+        [
+          "Sila cepanja (t)",
+          "20",
+          "20",
+          ""
+        ],
+        [
+          "Najveći prečnik trupca (mm)",
+          "400",
+          "500",
+          ""
+        ],
+        [
+          "Najveća dužina cepanja (mm)",
+          "550",
+          "550",
+          ""
+        ],
+        [
+          "Nož",
+          "6 smerni",
+          "4 in 6 smerni",
+          ""
+        ],
+        [
+          "Dimenzije trake za drva (mm)",
+          "3200x250x400",
+          "3500x250x500",
+          ""
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5071",
+    "name": "Šumska prikolica ARTA",
+    "group": "masine-hofman",
+    "grana": "sumske",
+    "subgroup": "sumske-prikolice",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/sumske-prikolice/arta",
+    "slug": "sumska-prikolica-arta",
+    "tabela": {
+      "kolone": [
+        "GP 1.5T/35",
+        "GP 3T/42",
+        "GP 4T/42",
+        "GP 4T/42 PLUS",
+        "GP 6T/53",
+        "GP 7T/63"
+      ],
+      "redovi": [
+        [
+          "Sopstvena masa (kg)",
+          "490",
+          "570",
+          "750",
+          "900",
+          "1840",
+          "2100"
+        ],
+        [
+          "Pneumatici",
+          "22x11-10",
+          "26x12-12",
+          "26x12-12",
+          "26x12-12",
+          "400/60-15,5",
+          "400/60-15,5"
+        ],
+        [
+          "Kočnice",
+          "Ne",
+          "Ne",
+          "Da",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Najveća dozvoljena masa (kg)",
+          "1500",
+          "3000",
+          "4000",
+          "4000",
+          "6000",
+          "7000"
+        ],
+        [
+          "Dužina utovara (m)",
+          "2,4",
+          "2,8",
+          "2,9",
+          "2,9",
+          "3,4",
+          "4,5"
+        ],
+        [
+          "Pokretna ruda",
+          "Da",
+          "Ne",
+          "Ne",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Pogon na četiri točka",
+          "Serijski",
+          "Opciono",
+          "Opciono",
+          "Opciono",
+          "Ne",
+          "Ne"
+        ],
+        [
+          "Mehanički pomak preme",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Sopstveni rezervoar ulja",
+          "Ne",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Dužina izvučene teleskopske ruke",
+          "3,5",
+          "4,2",
+          "4,2",
+          "4,2",
+          "5,3",
+          "6,3"
+        ],
+        [
+          "Upravljanje polugama",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da"
+        ],
+        [
+          "Prečnik otvaranja klešta (cm)",
+          "72",
+          "72",
+          "72",
+          "72",
+          "100",
+          "100"
+        ],
+        [
+          "Nosivost (kg)",
+          "1010",
+          "2430",
+          "3250",
+          "3100",
+          "4160",
+          "4900"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5072",
+    "name": "Mini bager SUKI",
+    "group": "masine-hofman",
+    "grana": "gradjevinske",
+    "subgroup": "mini-bageri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mini-bagri/suki",
+    "slug": "mini-bager-suki"
+  },
+  {
+    "id": "5073",
+    "name": "Mini bager WARD",
+    "group": "masine-hofman",
+    "grana": "gradjevinske",
+    "subgroup": "mini-bageri",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mini-bagri/ward",
+    "slug": "mini-bager-ward",
+    "tabela": {
+      "kolone": [
+        "HW 20",
+        "HW 25",
+        "HW 35"
+      ],
+      "redovi": [
+        [
+          "Radna masa (kg)",
+          "2000",
+          "2800",
+          "4000"
+        ],
+        [
+          "Snaga motora",
+          "13,4 / 18",
+          "14,6 / 20",
+          "18,5 / 25"
+        ],
+        [
+          "Tip motora",
+          "YANMAR",
+          "YANMAR",
+          "KUBOTA"
+        ],
+        [
+          "Najveći domet kopanja",
+          "3875",
+          "4767",
+          "5568"
+        ],
+        [
+          "Najveća dubina kopanja",
+          "2025",
+          "2800",
+          "3038"
+        ],
+        [
+          "Najveći nagib (°)",
+          "30",
+          "30",
+          "30"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5074",
+    "name": "Mini dumper VANCH",
+    "group": "masine-hofman",
+    "grana": "gradjevinske",
+    "subgroup": "mini-dumperi",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/mini-bageri-gusjenicari/vanch",
+    "slug": "mini-dumper-vanch",
+    "tabela": {
+      "kolone": [
+        "MD 300",
+        "MD 500",
+        "MD 800",
+        "MD 800 PLUS"
+      ],
+      "redovi": [
+        [
+          "Prečnik točka (mm)",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Širina gusenica (mm)",
+          "180",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Način kipovanja",
+          "Ročni",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Dimenzije sanduka (cm)",
+          "86 x 63 x 29",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Tip motora",
+          "Loncin/Zongshen 196cm3, bencinski motor",
+          "B&S 270",
+          "B&S bencinski motor",
+          "Kubota"
+        ],
+        [
+          "Najveće opterećenje (kg)",
+          "300",
+          "500",
+          "800",
+          "800"
+        ],
+        [
+          "Masa (kg)",
+          "166",
+          "350",
+          "630",
+          "630"
+        ],
+        [
+          "Snaga motora",
+          "4,8 / 6,5",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Menjač",
+          "3 hitrosti naprej, 1 hitrost nazaj",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Gusenice (D × Š)",
+          "",
+          "112 x 91",
+          "123 x 91,4",
+          "123 x 91,4"
+        ],
+        [
+          "Širina kipe (cm)",
+          "",
+          "65",
+          "62",
+          "62"
+        ],
+        [
+          "Najveća visina istovara (cm)",
+          "",
+          "",
+          "170",
+          "170"
+        ],
+        [
+          "Najveća visina kipe (cm)",
+          "",
+          "",
+          "298",
+          "298"
+        ],
+        [
+          "Najveća brzina (km/h)",
+          "",
+          "4.2",
+          "4,2",
+          "4.2"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "5075",
+    "name": "Mini utovarivač DANCH",
+    "group": "masine-hofman",
+    "grana": "gradjevinske",
+    "subgroup": "mini-utovarivaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/en/vanch-2",
+    "slug": "mini-utovarivac-danch",
+    "tabela": {
+      "kolone": [
+        "ML 200"
+      ],
+      "redovi": [
+        [
+          "Rezervoar ulja (l)",
+          "29"
+        ],
+        [
+          "Nagib (°)",
+          "25"
+        ],
+        [
+          "Utovarna kašika (l)",
+          "80"
+        ],
+        [
+          "Utovarna kašika sa zubima (l)",
+          "80"
+        ],
+        [
+          "Paletne viljuške (cm)",
+          "60 x 80"
+        ],
+        [
+          "Burgija (cm)",
+          "20"
+        ],
+        [
+          "Klirens (sredina)",
+          "114"
+        ],
+        [
+          "Dimenzije (D × Š × V)",
+          "1460 x 740 x 2000"
+        ],
+        [
+          "Gusenice (D × Š)",
+          "180"
+        ],
+        [
+          "Tip motora",
+          "306cc, bencinski"
+        ],
+        [
+          "Najveće opterećenje (kg)",
+          "200"
+        ],
+        [
+          "Najveća visina istovara (cm)",
+          "250"
+        ],
+        [
+          "Najveća brzina (km/h)",
+          "2,3"
+        ],
+        [
+          "Masa (kg)",
+          "730"
+        ]
+      ]
+    }
   }
 ]

@@ -14,6 +14,7 @@ import {
   Landmark,
 } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
+import { TabelaModela } from "@/components/TabelaModela";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -26,6 +27,7 @@ import {
   machineDescription,
   machineHighlights,
   partDescription,
+  natpisSlike,
   ukrstenaHref,
   kontekstMasine,
   trailerDescription,
@@ -126,7 +128,7 @@ export function generateMetadata({
   // sadrži, pa bi je naslov ponovio i probio dužinu koju Google prikaže.
   const title =
     p.kind === "masina"
-      ? `${p.name} — Rolland`
+      ? `${p.name}${p.brandLabel ? ` — ${p.brandLabel}` : ""}`
       : p.kind === "deo"
         ? `${p.name} — kat. br. ${p.id}`
         : `${p.name} — ${TRAILER_BRAND.label}`;
@@ -141,9 +143,21 @@ export function generateMetadata({
     title,
     description,
     alternates: { canonical },
-    keywords: [p.name, p.brandLabel ?? "", p.typeLabel ?? "", p.groupLabel, "PlugekS"].filter(
-      Boolean,
-    ) as string[],
+    // Izvedbe mašine ulaze u ključne reči: „TERA HP 240" je upit koji kupac
+    // stvarno kuca, a nigde drugde na stranici ne stoji kao zaseban pojam.
+    // `Set` je zbog mašina, kod kojih su tip i grupa isti pojam („Cepači drva").
+    keywords: [
+      ...new Set(
+        [
+          p.name,
+          ...(p.tabela?.kolone ?? []),
+          p.brandLabel,
+          p.typeLabel,
+          p.groupLabel,
+          "PlugekS",
+        ].filter((k): k is string => Boolean(k)),
+      ),
+    ],
     openGraph: {
       type: "website",
       url: abs(canonical),
@@ -157,6 +171,7 @@ export function generateMetadata({
 /* ------------------------------- JSON-LD ---------------------------------- */
 
 function ProductJsonLd({ p }: { p: Product }) {
+  const canonical = abs(`/proizvod/${p.slug}`);
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -164,8 +179,28 @@ function ProductJsonLd({ p }: { p: Product }) {
     description: opisProizvoda(p),
     category: p.groupLabel,
     // Slika u structured data samo kad postoji PRAVA fotografija proizvoda.
-    ...(p.image ? { image: [abs(p.image)] } : {}),
-    url: abs(`/proizvod/${p.slug}`),
+    //
+    // Pun `ImageObject` umesto golog URL-a: fajl se zove po kataloškom broju
+    // (`2719.jpg`), pa Google iz imena ne zaključuje ništa. Ovako uz sliku ide
+    // naziv, natpis i — što je ovde i poenta — `contentUrl` vezan za baš ovu
+    // stranicu preko `mainEntityOfPage`. Bez toga Google Images ume da istu
+    // sliku pripiše širem spisku proizvoda umesto stranici samog dela.
+    ...(p.image
+      ? {
+          image: [
+            {
+              "@type": "ImageObject",
+              contentUrl: abs(p.image),
+              url: abs(p.image),
+              name: p.name,
+              caption: natpisSlike(p),
+              representativeOfPage: true,
+              mainEntityOfPage: canonical,
+            },
+          ],
+        }
+      : {}),
+    url: canonical,
     sku: p.id,
     ...(p.brandLabel && p.brandKey !== "univerzalno"
       ? { brand: { "@type": "Brand", name: p.brandLabel } }
@@ -246,8 +281,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </nav>
 
           <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
-            {/* Vizual */}
-            <div>
+            {/* Vizual. `figure` + vidljiv `figcaption` nisu ukras: Google Images
+                natpis uz sliku čita sa same stranice i po njemu je vezuje za
+                stranicu proizvoda. Tekst je isti onaj koji ide u
+                `image-sitemap.xml` i u `ImageObject` iznad. */}
+            <figure>
               <div className="overflow-hidden rounded-3xl border border-border bg-bone shadow-card">
                 <ProductThumb
                   src={p.image}
@@ -268,7 +306,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   )}
                 />
               </div>
-            </div>
+              <figcaption className="mt-3 text-sm text-muted-foreground">
+                {p.name} — {natpisSlike(p)}
+              </figcaption>
+            </figure>
 
             {/* Podaci */}
             <div className="flex flex-col">
@@ -297,9 +338,30 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <p className="mt-3 text-lg text-muted-foreground">{p.tagline}</p>
               ) : null}
 
-              <p className="mt-4 leading-relaxed text-foreground/85">
-                {opisProizvoda(p)}
-              </p>
+              {/* Mašina koja ima fabričku tabelu pokazuje NJU, a ne opis.
+                  Opis je kod tih mašina sastavljen automatski („…je mašina iz
+                  Hofman programa za rad na gazdinstvu…") i kupcu ne kaže ništa
+                  što već ne vidi iz naziva; tabela mu kaže sve. Opis i dalje
+                  ide u `<meta description>` i u structured data — tamo ga
+                  Google traži i tamo ne smeta.
+
+                  Rolland mašine i onih šest Hofman mašina bez tabele zadržavaju
+                  opis: kod njih je to jedini tekst na stranici. */}
+              {p.kind === "masina" && p.tabela ? (
+                <div className="mt-5">
+                  <p className="eyebrow">
+                    <span className="h-px w-6 bg-current" />
+                    Tehnički podaci
+                  </p>
+                  <div className="mt-3">
+                    <TabelaModela tabela={p.tabela} />
+                  </div>
+                </div>
+              ) : (
+                <p className="mt-4 leading-relaxed text-foreground/85">
+                  {opisProizvoda(p)}
+                </p>
+              )}
 
               {p.kind === "deo" ? null : (
                 <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
