@@ -222,7 +222,9 @@ dobijaju sufiks `(varijanta 2)`.
 
 Šta skripta **namerno ne prenosi**:
 
-- **cene** — PlugekS radi po upitu, pa bi tuđi cenovnik bio netačan;
+- **cene** — na sajtu PlugekS radi po upitu, pa bi tuđi cenovnik na javnoj
+  stranici bio netačan. Nabavne cene postoje, ali samo u internom delu:
+  `npm run cene` → `/admin/cene` (odeljak 10);
 - **marketinški tekst uz prikolice** — opis svakog modela se sastavlja iz njegove
   specifikacije, u `trailerDescription()` (`src/lib/products.ts`);
 - **specifikaciju uz opremu** — fabrički atributi tamo opisuju *prikolicu na koju
@@ -290,11 +292,25 @@ građevinske. `/masine` nudi SAMO te tri kartice; tip mašine se bira unutar gra
 > trinaest poljoprivrednih je zauzimalo četiri reda, pa se do šumskih i
 > građevinskih dolazilo skrolovanjem — i delovalo je kao da ih nema.
 
-| Grana | Tipova | Mašina |
-| --- | --- | --- |
-| Poljoprivredne | 13 | tanjirače, agregati, podrivači, valjci (Rolland) + plugovi, malčeri, kosačice, balirke, sejalice, prskalice, prikolice, mešaone, baštenske mašine, tegovi |
-| Šumske | 5 | cepači drva, iverači, kružne pile, šumske prikolice, klešta i priključci |
-| Građevinske | 3 | mini bageri, mini utovarivači, mini dumperi |
+| Grana | Tipova | Mašina | Strana grane |
+| --- | --- | --- | --- |
+| Poljoprivredne | 13 | tanjirače, agregati, podrivači, valjci (Rolland) + plugovi, malčeri, kosačice, balirke, sejalice, prskalice, prikolice, mešaone, baštenske mašine, tegovi | pločice tipova (65 mašina) |
+| Šumske | 5 | cepači drva, iverači, kružne pile, šumske prikolice, klešta i priključci | sve mašine odjednom (18) |
+| Građevinske | 3 | mini bageri, mini utovarivači, mini dumperi | sve mašine odjednom (4) |
+
+**Strana grane ima dva oblika**, po tome koliko mašina grana ima — granica je
+`SVE_ODJEDNOM_DO` u `src/app/masine/grana/[grana]/page.tsx` (30 mašina):
+
+- **mala grana** (šumske, građevinske) odmah nabraja sve mašine, u mrežama
+  razdvojenim po tipu. Pločica tipa je tamo bila prazan korak — klik na
+  „Iverači" vodi na stranu sa jednom mašinom. Naslov tipa je i dalje link na
+  svoju stranu, pa se ne gubi ni unutrašnje povezivanje ni strana koja gađa
+  upit „cepač drva";
+- **velika grana** (poljoprivredne) ostaje na pločicama: tamo tip zaista sužava
+  izbor, a 65 kartica u nizu bilo bi zid.
+
+> Prag, a ne spisak imena grana: kad se ponuda šumskih mašina udvostruči, tip
+> ponovo postaje koristan korak i strana se sama vraća na pločice.
 
 ```bash
 npm run masine          # 1) podaci + sirovi originali u data/hofman-originals/
@@ -384,13 +400,33 @@ ADMIN_LOZINKA=nekaDugackaLozinka
 (Vercel → Settings → Environment Variables; lokalno u `.env.local`.) Bez nje je
 `/admin` zaključan za sve — nema podrazumevane lozinke.
 
-Cene se unose u `src/data/trailer-prices.json`:
+Cene se ne unose ručno — skida ih `npm run cene` sa istog izvora sa kog je
+uzet i program prikolica (Vesta), u **dinarima**:
 
-```json
-{ "valuta": "EUR", "cene": { "9001": 1180, "9002": 1340 } }
+```bash
+npm run cene
 ```
 
-Ključ je kataloški broj iz kolone „Šifra" na `/admin/cene`.
+Skripta upisuje `src/data/trailer-prices.json`:
+
+```json
+{ "valuta": "RSD", "azurirano": "2026-09-10", "izvor": "https://vesta-trailers.com",
+  "cene": { "9001": 85040, "9002": 80262 } }
+```
+
+Ključ je kataloški broj iz kolone „Šifra" na `/admin/cene`; iznos je broj bez
+oznake valute. Ručna izmena radi, ali je sledeće pokretanje skripte pregazi.
+
+Cena se čita iz JSON-LD-a (`offers.price`) stranice proizvoda, a kad izvor tamo
+upiše 0 — iz prvog iznosa u HTML-u strane. Drugi korak je nužan: modeli sa
+unapred spakovanom opremom (npr. LIGHT 25 DA) u JSON-LD-u stoje na nuli, a na
+strani prikazuju pravu cenu. Poslednje pokretanje: **164 od 181** stavke; ostale
+izvor vodi po upitu ili ih više ne prodaje, pa u tabeli stoje kao „—".
+Neusklađene slugove skripta prijavi na kraju — vidi njeno uvodno objašnjenje.
+
+Na `/admin/cene` je i **pretraga** po nazivu, šifri, programu i iznosu (bez
+dijakritike — „cekrk" nalazi „Čekrk"). Tabela prikolica i tabela opreme se
+filtriraju zajedno; prazna se sklanja.
 
 > **Zašto cene nisu na stranici proizvoda:** sve stranice proizvoda su unapred
 > izgenerisan statični HTML (~4.900 komada). Cena upisana u takvu stranicu bi

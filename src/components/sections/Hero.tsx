@@ -45,9 +45,16 @@ const TONOVI = {
  *
  * ZAŠTO JE NA TELEFONU SVE MANJE: uspravno složene kartice sa kadrom od 51%
  * bile su visoke ~155px, pa je treća („Auto-prikolice") padala ispod ivice
- * ekrana — na 390x844 se pri dolasku na sajt videlo dve i po kartice. Uži kadar,
- * niža stopa (`p-2`) i stubac od 21rem svode karticu na ~126px i sve tri staju
- * u prvi ekran, što je i bila poenta reda: da se vrsta bira bez skrola.
+ * ekrana — na 390x844 se pri dolasku na sajt videlo dve i po kartice. Uži kadar
+ * (42%) i niža stopa (`p-2`) svode karticu na ~130px i sve tri staju u prvi
+ * ekran, što je i bila poenta reda: da se vrsta bira bez skrola.
+ *
+ * ZAŠTO KADAR IMA I `max-w`: kartica prati širinu strane (vidi red ispod), pa
+ * na širem telefonu 42% raste sa njom — a sa kadrom raste i visina kartice, jer
+ * je kadar 5:4. Na 430px bi tri kartice narasle za ~55px zajedno i opet
+ * potisnule telefonsko dugme ispod ivice. Kadar zato staje na 8,75rem (13rem
+ * od `sm`) — tačno na širini koju je imao u stupcu od 21rem, pa je i visina
+ * kartice ostala ista; dalje se širi samo tekstualni deo, koji visinu ne dira.
  *
  * Kadar je 5:4 i tačno tog odnosa je i sama slika, pa `object-cover` nema šta
  * da opseče ni na jednom prelomu. Poluprečnik pločice je poluprečnik kartice
@@ -81,12 +88,12 @@ function Ulaz({
         TONOVI[ton],
       )}
     >
-      <span className="relative aspect-[5/4] w-[42%] shrink-0 overflow-hidden rounded-[0.75rem] ring-1 ring-white/15 sm:w-[51%] sm:rounded-[0.875rem]">
+      <span className="relative aspect-[5/4] w-[42%] max-w-[8.75rem] shrink-0 overflow-hidden rounded-[0.75rem] ring-1 ring-white/15 sm:w-[51%] sm:max-w-[13rem] sm:rounded-[0.875rem]">
         <Image
           src={slika}
           alt={alt}
           fill
-          sizes="(min-width: 1024px) 160px, (min-width: 640px) 205px, 40vw"
+          sizes="(min-width: 1024px) 160px, (min-width: 640px) 208px, 140px"
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
         />
       </span>
@@ -168,19 +175,21 @@ export function Hero({ brojke }: { brojke: HeroBrojke }) {
               vrsta već ima na `/proizvodi` (zelena, čelična, amber), pa je
               boja postala oznaka vrste, a ne ukras jedne kartice.
 
-              U red staju tek od `lg`. Ispod toga se slažu jedna ispod druge, u
-              stubac širok najviše 21rem na telefonu i 26rem od `sm`: tri
-              kartice u redu na tablet širini
+              U red staju tek od `lg`; tri kartice u redu na tablet širini
               spljoštile bi kadar na jedva 90px, a to je upravo sitna sličica od
-              koje se ovde bežalo. Uspravno složene su, naprotiv, najšire — kadar
-              tamo ide i preko 180px.
+              koje se ovde bežalo. Do tada se slažu jedna ispod druge i PRATE
+              ŠIRINU STRANE — ranije su stajale u stupcu od 21rem, pa je na
+              telefonu od 430px desno ostajalo 55px praznine i red je izgledao
+              kao da mu je neko odsekao ivicu, dok su naslov i tekst iznad išli
+              do kraja. Visinu to ne pomera: kadar ima svoj `max-w` (vidi
+              `Ulaz`), pa se sa širinom razvlači samo tekstualni deo.
 
               Telefon stoji ISPOD njih, centriran u odnosu na taj red — ranije je
               posle preloma visio uz levu ivicu i kvario simetriju. Na telefonu
               je niži (h-12): kartice su ispred njega po važnosti, a plutajuće
               dugme za poziv ionako stoji u uglu ekrana. */}
           <div className="mt-6 sm:mt-9">
-            <div className="flex w-full max-w-[21rem] flex-col gap-2.5 sm:max-w-[26rem] sm:gap-3 lg:max-w-5xl lg:gap-4">
+            <div className="flex w-full flex-col gap-2.5 sm:gap-3 lg:max-w-5xl lg:gap-4">
               <div className="grid gap-2.5 sm:gap-3 lg:grid-cols-3 lg:gap-4">
                 <Ulaz
                   href="/masine"

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ExternalLink } from "lucide-react";
 import { jeAdmin } from "@/lib/admin";
 import { getTrailers, getTrailerAccessories, productHref } from "@/lib/products";
-import { TRAILER_PROGRAMS } from "@/lib/catalog";
+import { TRAILER_PROGRAMS, normalize } from "@/lib/catalog";
 import cenovnik from "@/data/trailer-prices.json";
 import { OdjavaDugme } from "./OdjavaDugme";
+import { CeneTabele, type Red } from "./CeneTabele";
+import { dinara } from "./dinara";
 
 /**
  * Nabavne cene auto-prikolica — SAMO za vlasnika.
@@ -17,9 +17,11 @@ import { OdjavaDugme } from "./OdjavaDugme";
  * bez ikakvog upozorenja. Ova strana se, nasuprot tome, računa pri svakom
  * zahtevu i vraća prazno svakome ko nije prijavljen.
  *
- * POPUNJAVANJE CENA: `src/data/trailer-prices.json`, oblik
- * `{ "valuta": "EUR", "cene": { "9001": 1180, "9002": 1340 } }` — ključ je
- * kataloški broj iz kolone „Šifra" ispod. Ono što nije upisano stoji kao „—".
+ * ODAKLE CENE: `src/data/trailer-prices.json`, koji puni
+ * `npm run cene` (`scripts/import-trailer-prices.mjs`) sa istog izvora sa kog
+ * je uzet i program prikolica. Iznosi su u dinarima, onako kako ih izvor
+ * objavljuje. Ručna izmena je i dalje moguća — ključ je kataloški broj iz
+ * kolone „Šifra”, ali će je sledeće pokretanje skripte pregaziti.
  */
 
 export const dynamic = "force-dynamic";
@@ -29,16 +31,46 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
 
-type Cenovnik = { valuta: string; cene: Record<string, number> };
+type Cenovnik = {
+  valuta: string;
+  azurirano?: string;
+  izvor?: string;
+  cene: Record<string, number>;
+};
+
+/** „2026-09-10” → „10.09.2026.” */
+function datum(iso?: string) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso ?? "");
+  return m ? `${m[3]}.${m[2]}.${m[1]}.` : null;
+}
 
 export default function CenePage() {
   if (!jeAdmin()) redirect("/admin");
 
-  const { valuta, cene } = cenovnik as Cenovnik;
-  const prikolice = getTrailers();
-  const oprema = getTrailerAccessories();
-  const upisano = [...prikolice, ...oprema].filter((p) => cene[p.id] != null).length;
+  const { valuta, azurirano, izvor, cene } = cenovnik as Cenovnik;
+
+  /* Redovi se sastavljaju ovde da klijentska komponenta ne uvuče ni katalog ni
+     cenovnik u bundle — `search` je gotov ključ za pretragu bez dijakritike. */
+  const uRed = (p: ReturnType<typeof getTrailers>[number]): Red => {
+    const program = TRAILER_PROGRAMS[p.typeKey ?? ""]?.oznaka ?? p.typeLabel ?? "—";
+    const cena = cene[p.id] ?? null;
+    return {
+      id: p.id,
+      naziv: p.name,
+      program,
+      href: productHref(p),
+      cena,
+      search: normalize(
+        [p.id, p.name, program, cena != null ? dinara(cena) : "bez cene"].join(" "),
+      ),
+    };
+  };
+
+  const prikolice = getTrailers().map(uRed);
+  const oprema = getTrailerAccessories().map(uRed);
   const ukupno = prikolice.length + oprema.length;
+  const upisano = [...prikolice, ...oprema].filter((r) => r.cena != null).length;
+  const kada = datum(azurirano);
 
   return (
     <section className="section bg-cream pt-28 md:pt-32">
@@ -58,88 +90,36 @@ export default function CenePage() {
 
         <p className="mt-6 rounded-2xl border border-border bg-white p-5 text-sm text-muted-foreground">
           Upisano <strong className="text-charcoal">{upisano}</strong> od{" "}
-          <strong className="text-charcoal">{ukupno}</strong>. Cene se unose u
-          fajl{" "}
+          <strong className="text-charcoal">{ukupno}</strong>, u{" "}
+          <strong className="text-charcoal">dinarima ({valuta})</strong>.
+          {izvor && kada ? (
+            <>
+              {" "}
+              Iznosi su preuzeti sa{" "}
+              <a
+                href={izvor}
+                rel="noopener noreferrer nofollow"
+                target="_blank"
+                className="text-brand hover:underline"
+              >
+                {izvor.replace(/^https?:\/\//, "")}
+              </a>
+              , stanje <strong className="text-charcoal">{kada}</strong>
+            </>
+          ) : null}{" "}
+          Osvežavanje:{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-charcoal">
+            npm run cene
+          </code>{" "}
+          — upisuje{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-charcoal">
             src/data/trailer-prices.json
-          </code>{" "}
-          — ključ je šifra iz prve kolone, iznos je broj bez oznake valute (
-          {valuta}).
+          </code>
+          . Ono što izvor vodi po upitu, ili više ne prodaje, stoji kao „—”.
         </p>
 
-        <Tabela naslov="Prikolice" stavke={prikolice} cene={cene} valuta={valuta} />
-        <Tabela naslov="Dodatna oprema" stavke={oprema} cene={cene} valuta={valuta} />
+        <CeneTabele prikolice={prikolice} oprema={oprema} valuta={valuta} />
       </div>
     </section>
-  );
-}
-
-function Tabela({
-  naslov,
-  stavke,
-  cene,
-  valuta,
-}: {
-  naslov: string;
-  stavke: ReturnType<typeof getTrailers>;
-  cene: Record<string, number>;
-  valuta: string;
-}) {
-  if (stavke.length === 0) return null;
-
-  return (
-    <div className="mt-10">
-      <h2 className="font-display text-xl font-bold text-charcoal">
-        {naslov}{" "}
-        <span className="text-base font-normal text-muted-foreground">
-          ({stavke.length})
-        </span>
-      </h2>
-
-      {/* Tabela je jedini element na sajtu koji sme da bude širi od ekrana —
-          zato u svom `overflow-x` okviru, da telefon ne skroluje celu stranu. */}
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-border bg-white">
-        <table className="w-full min-w-[40rem] text-sm">
-          <thead>
-            <tr className="border-b border-border text-left text-xs uppercase tracking-wider text-muted-foreground">
-              <th className="px-4 py-3 font-semibold">Šifra</th>
-              <th className="px-4 py-3 font-semibold">Naziv</th>
-              <th className="px-4 py-3 font-semibold">Program</th>
-              <th className="px-4 py-3 text-right font-semibold">
-                Nabavna cena ({valuta})
-              </th>
-              <th className="px-4 py-3" />
-            </tr>
-          </thead>
-          <tbody>
-            {stavke.map((p, i) => {
-              const cena = cene[p.id];
-              return (
-                <tr key={p.id} className={i % 2 ? "bg-cream/40" : undefined}>
-                  <td className="whitespace-nowrap px-4 py-2.5 font-mono text-xs text-muted-foreground">
-                    {p.id}
-                  </td>
-                  <td className="px-4 py-2.5 text-charcoal">{p.name}</td>
-                  <td className="whitespace-nowrap px-4 py-2.5 text-muted-foreground">
-                    {TRAILER_PROGRAMS[p.typeKey ?? ""]?.oznaka ?? p.typeLabel ?? "—"}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-2.5 text-right font-medium tabular-nums text-charcoal">
-                    {cena != null ? cena.toLocaleString("sr-RS") : "—"}
-                  </td>
-                  <td className="px-4 py-2.5 text-right">
-                    <Link
-                      href={productHref(p)}
-                      className="inline-flex items-center gap-1 text-xs text-brand hover:underline"
-                    >
-                      Stranica <ExternalLink className="h-3 w-3" />
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
   );
 }

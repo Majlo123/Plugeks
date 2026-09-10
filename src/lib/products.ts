@@ -863,6 +863,10 @@ export function ukrstenaHref(tipKey?: string, brendKey?: string): string | null 
 export const getMachinesByCategory = (typeKey: string) =>
   getMachines().filter((p) => p.typeKey === typeKey);
 
+/** Sve mašine jedne grane, bez obzira na tip — za stranicu grane. */
+export const getMachinesByBranch = (granaKey: string) =>
+  getMachines().filter((p) => p.granaKey === granaKey);
+
 /** Radi i za program prikolica („light") i za grupu opreme („oprema-cerade"). */
 export const getTrailersByType = (typeKey: string) =>
   build().all.filter(

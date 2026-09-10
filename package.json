@@ -12,6 +12,7 @@
     "slike": "node scripts/import-images.mjs",
     "plugovi": "node scripts/import-plow-parts.mjs",
     "prikolice": "node scripts/import-trailers.mjs",
+    "cene": "node scripts/import-trailer-prices.mjs",
     "slike:kadar": "python scripts/normalize_product_images.py",
     "masine": "node scripts/import-hofman.mjs",
     "masine:slike": "python scripts/normalize_product_images.py masine",

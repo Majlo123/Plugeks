@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { ProductThumb } from "@/components/ProductThumb";
+import { ArrowLeft } from "lucide-react";
+import { MasinaKartica } from "@/components/MasinaKartica";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import {
   machineCategories,
   getMachinesByCategory,
   machineBranchOfType,
   machineTypesForBranch,
-  productHref,
   uzBroj,
 } from "@/lib/products";
 import { GRANE, granaHref } from "@/lib/masine";
@@ -92,39 +91,7 @@ export default function KategorijaMasinaPage({ params }: { params: { kategorija:
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
             {masine.map((m) => (
-              <Link
-                key={m.id}
-                href={productHref(m)}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bone shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lift"
-              >
-                <ProductThumb
-                  src={m.image}
-                  name={m.name}
-                  kind="masina"
-                  typeKey={m.typeKey}
-                  groupKey={m.groupKey}
-                  code={m.id}
-                  metaLabel={m.brandLabel}
-                  podloga="bg-bone"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="aspect-[16/10] w-full transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="flex flex-1 flex-col p-4">
-                  <h2 className="font-display text-[0.95rem] font-bold leading-tight text-charcoal group-hover:text-brand">
-                    {m.name}
-                  </h2>
-                  {m.tagline ? (
-                    <p className="mt-1.5 text-[0.85rem] leading-snug text-muted-foreground">
-                      {m.tagline}
-                    </p>
-                  ) : null}
-                  <div className="flex-1" />
-                  <span className="mt-3 inline-flex items-center gap-1 text-[0.8rem] font-medium text-brand">
-                    Detaljnije
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
+              <MasinaKartica key={m.id} masina={m} />
             ))}
           </div>
 

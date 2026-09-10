@@ -4,11 +4,14 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
+import { SpisakJsonLd } from "@/components/SpisakJsonLd";
 import { Plocica } from "@/components/Plocica";
+import { MasinaKartica } from "@/components/MasinaKartica";
 import {
   machineBranches,
   machineTypesForBranch,
   getMachinesByCategory,
+  getMachinesByBranch,
   uzBroj,
 } from "@/lib/products";
 import { GRANE, granaKljucevi, granaHref, type GranaKljuc } from "@/lib/masine";
@@ -20,7 +23,25 @@ import { GRANE, granaKljucevi, granaHref, type GranaKljuc } from "@/lib/masine";
  * različita upita („poljoprivredne mašine", „mašine za šumu", „mini bager"). Sa
  * zajedničke strane bi svaki od njih dobio dve trećine ponude koja ga ne
  * zanima, a Google nijednu stranu kojoj je baš taj pojam u naslovu.
+ *
+ * DVA OBLIKA STRANE, po tome koliko mašina grana ima:
+ *
+ *  - MALA grana (šumske 18, građevinske 4) odmah nabraja SVE mašine, u mrežama
+ *    razdvojenim po tipu. Pločica tipa je tu bila prazan korak: klik na
+ *    „Iverači" vodi na stranu sa jednom mašinom, a klik na „Kružne pile" na
+ *    stranu sa dve — kupac dva puta klikne da bi videlo ono što je moglo da
+ *    stane na jedan ekran. Naslov tipa i dalje vodi na svoju stranu, pa se ne
+ *    gubi ni unutrašnje povezivanje ni strana koja gađa upit „cepač drva".
+ *
+ *  - VELIKA grana (poljoprivredne, 65 mašina u 13 tipova) ostaje na pločicama.
+ *    Tamo tip zaista sužava izbor, a spisak svih 65 kartica bio bi zid.
+ *
+ * Prag, a ne spisak imena grana: kad se ponuda šumskih mašina udvostruči, tip
+ * ponovo postaje koristan korak i strana se sama vraća na pločice.
  */
+
+/** Do koliko mašina grana pokazuje sve odjednom, bez koraka po tipovima. */
+const SVE_ODJEDNOM_DO = 30;
 
 const nadji = (kljuc: string) => machineBranches().find((g) => g.key === kljuc);
 
@@ -46,6 +67,8 @@ export default function GranaPage({ params }: { params: { grana: string } }) {
 
   const tipovi = machineTypesForBranch(grana.key);
   const ostale = machineBranches().filter((g) => g.key !== grana.key);
+  const sveOdjednom = grana.count <= SVE_ODJEDNOM_DO;
+  const masine = sveOdjednom ? getMachinesByBranch(grana.key) : [];
 
   return (
     <>
@@ -55,6 +78,9 @@ export default function GranaPage({ params }: { params: { grana: string } }) {
           { naziv: grana.label, href: granaHref(grana.key as GranaKljuc) },
         ]}
       />
+      {/* Strana koja nabraja proizvode i pretraživaču se prijavljuje kao spisak
+          proizvoda; ona sa pločicama tipova nije spisak, pa ga ni nema. */}
+      {sveOdjednom ? <SpisakJsonLd naziv={grana.label} stavke={masine} /> : null}
 
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
@@ -71,23 +97,59 @@ export default function GranaPage({ params }: { params: { grana: string } }) {
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
             {grana.opis}
+            {sveOdjednom ? (
+              <>
+                {" "}
+                Cela ponuda je ispod — {grana.count}{" "}
+                {uzBroj(grana.count, "mašina", "mašine", "mašina")} u{" "}
+                {tipovi.length} {uzBroj(tipovi.length, "grupi", "grupe", "grupa")}.
+              </>
+            ) : null}
           </p>
 
-          <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-            {tipovi.map((tip) => {
-              const naslovna = getMachinesByCategory(tip.key)[0];
-              return (
-                <Plocica
-                  key={tip.key}
-                  href={`/masine/${tip.key}`}
-                  naslov={tip.label}
-                  broj={`${tip.count} ${uzBroj(tip.count, "mašina", "mašine", "mašina")}`}
-                  slika={naslovna?.image}
-                  alt={naslovna?.name ?? tip.label}
-                />
-              );
-            })}
-          </div>
+          {sveOdjednom ? (
+            <div className="mt-8 space-y-10">
+              {tipovi.map((tip) => (
+                <div key={tip.key}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-3">
+                    <h2 className="font-display text-lg font-bold text-charcoal md:text-xl">
+                      <Link
+                        href={`/masine/${tip.key}`}
+                        className="transition-colors hover:text-brand"
+                      >
+                        {tip.label}
+                      </Link>
+                    </h2>
+                    <span className="text-sm text-muted-foreground">
+                      {tip.count} {uzBroj(tip.count, "model", "modela", "modela")}
+                    </span>
+                  </div>
+
+                  <div className="mt-5 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+                    {getMachinesByCategory(tip.key).map((m) => (
+                      <MasinaKartica key={m.id} masina={m} nivo={3} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+              {tipovi.map((tip) => {
+                const naslovna = getMachinesByCategory(tip.key)[0];
+                return (
+                  <Plocica
+                    key={tip.key}
+                    href={`/masine/${tip.key}`}
+                    naslov={tip.label}
+                    broj={`${tip.count} ${uzBroj(tip.count, "mašina", "mašine", "mašina")}`}
+                    slika={naslovna?.image}
+                    alt={naslovna?.name ?? tip.label}
+                  />
+                );
+              })}
+            </div>
+          )}
 
           {ostale.length > 0 ? (
             <nav className="mt-14 border-t border-border pt-6">
