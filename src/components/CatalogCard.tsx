@@ -122,11 +122,21 @@ export function PartCard({ item, tags }: { item: CatalogItem; tags: string[] }) 
       </Link>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-charcoal">
+        {/* Bez `line-clamp`: broj sa dela („Daska Kverneland 063 261") stoji u
+            nazivu, a u dve kolone na telefonu se naziv prelama u tri-četiri
+            reda — skraćivanje na dva je odsecalo baš taj broj, po kom kupac i
+            proverava da li je to njegov komad. Isto važi i za karticu mašine. */}
+        <h3 className="text-sm font-semibold leading-snug text-charcoal">
           <Link href={href} className="transition-colors hover:text-brand">
             {item.name}
           </Link>
         </h3>
+
+        {/* Naš kataloški broj — isti onaj koji stoji u tabeli na stranici dela i
+            koji kupac diktira telefonom. */}
+        <p className="mt-1 text-[0.72rem] font-medium tabular-nums text-muted-foreground">
+          Kat. br. {item.id}
+        </p>
 
         {tags.length > 1 ? (
           <div className="mt-2 flex flex-wrap gap-1.5">
