@@ -136,7 +136,11 @@ export function MultiSelect({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={`Pretraži — ${label.toLowerCase()}`}
-                className="h-11 w-full bg-transparent pl-9 pr-3 text-sm outline-none placeholder:text-muted-foreground"
+                // 16px na telefonu: Safari na iOS-u sam zumira stranicu čim se
+                // fokusira polje sa slovima manjim od toga, pa je kucanje po
+                // brendu ili tipu dela izbacivalo padajuću listu iz kadra.
+                // Na širem ekranu ostaje sitnije, kao i ostatak filtera.
+                className="h-11 w-full bg-transparent pl-9 pr-3 text-base outline-none placeholder:text-muted-foreground md:text-sm"
               />
             </div>
           ) : null}

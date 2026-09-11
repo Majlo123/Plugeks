@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, Menu, X, PhoneCall } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { HeaderSearch } from "@/components/layout/HeaderSearch";
 import { Button } from "@/components/ui/button";
 import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -68,7 +67,6 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden items-center gap-2 xl:flex">
-          <HeaderSearch />
           <Button
             asChild
             size="md"
@@ -87,9 +85,8 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobilni / tablet: pretraga + brzi poziv + hamburger */}
+        {/* Mobilni / tablet: brzi poziv + hamburger */}
         <div className="flex items-center gap-2 xl:hidden">
-          <HeaderSearch />
           <Button asChild variant="accent" size="sm" className="px-3">
             <a href={site.telHref} aria-label="Pozovi">
               <Phone className="h-4 w-4" />
