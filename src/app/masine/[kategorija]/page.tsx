@@ -10,6 +10,8 @@ import {
   machineBranchOfType,
   machineTypesForBranch,
   uzBroj,
+  ogSlikaSpiska,
+  drustveneSlike,
 } from "@/lib/products";
 import { GRANE, granaHref } from "@/lib/masine";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
@@ -44,6 +46,14 @@ export function generateMetadata({ params }: { params: { kategorija: string } })
     description: opis,
     alternates: { canonical: `/masine/${kat.key}` },
     keywords: [kat.label, grana ? GRANE[grana].label : "", "PlugekS"].filter(Boolean),
+    // Fotografija prve mašine iz kategorije — strana je i prikazuje u mreži,
+    // pa Google sliku i stranu vidi kao par. Bez ovoga nasledi logo.
+    ...drustveneSlike({
+      url: `/masine/${kat.key}`,
+      title: `${kat.label} | PlugekS`,
+      description: opis,
+      slika: ogSlikaSpiska(getMachinesByCategory(kat.key)),
+    }),
   };
 }
 

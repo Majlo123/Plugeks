@@ -3,6 +3,13 @@ import {
   productHref,
   natpisSlike,
   slikeMasine,
+  machineCategories,
+  machineBranches,
+  getMachinesByCategory,
+  getMachinesByBranch,
+  trailerCategories,
+  trailerAccessoryGroups,
+  getTrailersByType,
   type Product,
 } from "@/lib/products";
 import { categories } from "@/lib/data";
@@ -29,8 +36,11 @@ import { granaHref, type GranaKljuc } from "@/lib/masine";
  * vlasnika). Kad se neka slika proizvoda zameni sopstvenom fotografijom, ovde
  * ne treba menjati ništa — čita se `images.json`.
  *
- * `image:caption` je bitan: Google Images ga koristi kao opis rezultata, a fajl
- * se zove po kataloškom broju (`3374.jpg`), pa iz imena ne može da zaključi ništa.
+ * `image:title` i `image:caption` se i dalje upisuju, ali bez iluzija: Google od
+ * avgusta 2022. iz ovog fajla čita SAMO `<image:loc>`; ostala polja su ostala
+ * zbog Bing-a i ostalih. Opis koji Google stvarno veže za sliku dolazi sa same
+ * strane — `alt` na slici i `<figcaption>` ispod nje — pa je isti tekst
+ * namerno na sva tri mesta (vidi `natpisSlike`).
  */
 
 const BASE = "https://plugeks.com";
@@ -83,18 +93,15 @@ function slikeSajta(): Unos[] {
       naslov: "Zatražite ponudu — PlugekS",
       natpis: "Njiva u sezoni — PlugekS šalje ponudu isti dan",
     },
-    {
-      loc: "/",
-      slika: "/og.jpg",
-      naslov: "PlugekS",
-      natpis: "PlugekS — uvoz i prodaja poljoprivrednih delova i mašina, Žabalj",
-    },
-    {
-      loc: "/",
-      slika: "/images/logo-full.png",
-      naslov: "PlugekS logo",
-      natpis: "Logo firme PlugekS — Napredna poljoprivreda",
-    },
+    // IZUZETAK od pravila „prijavljuje se sve" iz zaglavlja: `/og.jpg` i
+    // `/images/logo-full.png` NAMERNO nisu ovde.
+    //
+    // `/og.jpg` nije <img> ni na jednoj strani — to je isključivo kartica za
+    // deljenje. Logo jeste, ali u headeru i futeru SVAKE strane, pa ga je
+    // Google uzimao za sliku celog sajta: u pretrazi po nazivu dela je uz
+    // rezultat izlazio logo umesto crteža. Za knowledge panel je dovoljno polje
+    // `logo` u structured data (vidi `components/FirmaJsonLd.tsx`) — to je
+    // kanal predviđen za logo; image sitemap nije.
   ];
 
   // Kartice kategorija: na početnoj sve, na `/masine` samo grane mašina.
@@ -107,12 +114,13 @@ function slikeSajta(): Unos[] {
   }));
 
   const naPocetnoj = kartice.map((k) => ({ loc: "/", slika: k.slika, naslov: k.naslov, natpis: k.natpis }));
+  // Samo `/masine` — TU se kartica grane zaista prikazuje. Na samoj strani
+  // grane (`/masine/grana/...`) je nema, a slika prijavljena uz stranu na kojoj
+  // se ne vidi je za Google neispravan par i baca sumnju na ostale unose.
+  // Strane grana svoje slike dobijaju niže, iz stvarnih fotografija mašina.
   const naMasinama = kartice
     .filter((k) => k.grana)
-    .flatMap((k) => [
-      { loc: "/masine", slika: k.slika, naslov: k.naslov, natpis: k.natpis },
-      { loc: granaHref(k.key as GranaKljuc), slika: k.slika, naslov: k.naslov, natpis: k.natpis },
-    ]);
+    .map((k) => ({ loc: "/masine", slika: k.slika, naslov: k.naslov, natpis: k.natpis }));
 
   const oNama: Unos[] = [
     {
@@ -147,6 +155,41 @@ function unos(loc: string, slike: Unos[]): string {
   ].join("\n");
 }
 
+/**
+ * Slike KATEGORIJSKIH strana.
+ *
+ * Do sada je image sitemap prijavljivao samo strane pojedinačnih proizvoda, pa
+ * je ~470 kategorijskih adresa iz `sitemap.xml` Google-u stajalo bez ijedne
+ * prijavljene slike — a baš one izlaze na upite tipa „delovi za plugove
+ * Lemken". Kad strana nema nijednu svoju sliku, ostaje joj `og:image`, a to je
+ * do sada bio logo.
+ *
+ * Prijavljuju se SAMO strane koje fotografije i stvarno prikazuju: mreže mašina
+ * i prikolica. `/delovi/…` i `/katalog/…` ispisuju go spisak linkova (vidi
+ * `ListaProizvoda`), pa bi im unos ovde bio neispravan par strana↔slika.
+ *
+ * `MAX_PO_STRANI` iz GET-a i dalje seče na 1000 po strani, što nijedna
+ * kategorija ne dostiže.
+ */
+function slikeKategorija(): Unos[] {
+  const odProizvoda = (loc: string, stavke: Product[]): Unos[] =>
+    stavke
+      .filter((p): p is Product & { image: string } => Boolean(p.image))
+      .map((p) => ({ loc, slika: p.image, naslov: p.name, natpis: natpisSlike(p) }));
+
+  return [
+    ...machineCategories().flatMap((c) =>
+      odProizvoda(`/masine/${c.key}`, getMachinesByCategory(c.key)),
+    ),
+    ...machineBranches().flatMap((g) =>
+      odProizvoda(granaHref(g.key as GranaKljuc), getMachinesByBranch(g.key)),
+    ),
+    ...[...trailerCategories(), ...trailerAccessoryGroups()].flatMap((c) =>
+      odProizvoda(`/prikolice/${c.key}`, getTrailersByType(c.key)),
+    ),
+  ];
+}
+
 export function GET() {
   const proizvodi: Unos[] = getProductsWithPhotos()
     .filter((p): p is Product & { image: string } => Boolean(p.image))
@@ -169,7 +212,7 @@ export function GET() {
   // Grupisanje po strani: ista slika na više strana = unos pod svakom od njih,
   // ista slika dvaput na istoj strani = jednom.
   const poStrani = new Map<string, Unos[]>();
-  for (const u of [...slikeSajta(), ...proizvodi]) {
+  for (const u of [...slikeSajta(), ...slikeKategorija(), ...proizvodi]) {
     const lista = poStrani.get(u.loc) ?? [];
     if (!lista.some((x) => x.slika === u.slika)) lista.push(u);
     poStrani.set(u.loc, lista);

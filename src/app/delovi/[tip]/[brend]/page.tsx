@@ -19,6 +19,8 @@ import {
   preovladjujucaGrupa,
   tipZaMasinu,
   uzBroj,
+  ogSlikaSpiska,
+  drustveneSlike,
   type Product,
   type UkrstenaKategorija,
 } from "@/lib/products";
@@ -155,12 +157,14 @@ export function generateMetadata({
       `rezervni delovi za ${kontekst} ${u.brendLabel}`,
       "PlugekS",
     ],
-    openGraph: {
-      type: "website",
-      url: `https://plugeks.com/delovi/${u.tipKey}/${u.brendKey}`,
+    // Slika je crtež prvog dela baš iz ove kombinacije tipa i marke; bez nje
+    // strana Google-u kao svoju sliku nudi logo nasleđen iz layout-a.
+    ...drustveneSlike({
+      url: `/delovi/${u.tipKey}/${u.brendKey}`,
       title: `${h1} | PlugekS`,
       description: `${katBrojeva(u.count)}. Cena i rok isporuke isti dan.`,
-    },
+      slika: ogSlikaSpiska(delovi),
+    }),
   };
 }
 

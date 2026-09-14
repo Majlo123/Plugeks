@@ -60,11 +60,18 @@ export const metadata: Metadata = {
     "PlugekS",
   ],
   authors: [{ name: "PlugekS" }],
-  alternates: { canonical: SITE_URL },
+  /**
+   * NI `canonical` NI `openGraph.url` ne smeju da stoje ovde.
+   *
+   * Next nasleđuje oba polja na svaku stranu koja ih sama ne postavi, pa su
+   * `/o-nama`, `/kontakt`, `/zatrazi-ponudu` i `/subvencije-i-finansiranje`
+   * Google-u govorile „ja sam duplikat početne, ne indeksiraj me", a sve ostale
+   * strane su uz svoj sadržaj prijavljivale adresu početne. Početna svoj
+   * canonical i og:url sada postavlja sama (`src/app/page.tsx`).
+   */
   openGraph: {
     type: "website",
     locale: "sr_RS",
-    url: SITE_URL,
     siteName: "PlugekS",
     title: "PlugekS — Uvoz i prodaja poljoprivrednih delova i mašina",
     description:
@@ -78,71 +85,37 @@ export const metadata: Metadata = {
       "Rezervni delovi za plugove i roto drljače, poljoprivredne mašine i auto-prikolice uz finansiranje i isporuku širom Srbije.",
     images: ["/og.jpg"],
   },
-  robots: { index: true, follow: true },
+  /**
+   * `max-image-preview: "large"` je ono čime se Google-u dozvoljava da uz
+   * rezultat prikaže VELIKU sliku. Bez te direktive vredi podrazumevano
+   * „standard" — sitna sličica ili nijedna — pa je crtež dela, i kad je uredno
+   * prijavljen, u rezultatima gubio od logoa koji stoji na svakoj strani.
+   *
+   * `max-snippet: -1` i `max-video-preview: -1` skidaju isto takva ograničenja
+   * sa dužine opisa i video pregleda; idu zajedno jer ih Google čita kao jedan
+   * skup. `googleBot` ponavlja isto zato što specifičnije pravilo za tog
+   * robota gasi ono opšte ako se razlikuju.
+   */
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#1B5E20",
   width: "device-width",
   initialScale: 1,
-};
-
-// Structured data: LocalBusiness (lokalni SEO)
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Store",
-  // Stabilan @id — vezuje sve pominjanje firme za jedan entitet.
-  "@id": `${SITE_URL}/#plugeks`,
-  name: site.name,
-  // Ljudi kucaju "plugeks", ne "PlugekS".
-  alternateName: ["Plugeks", "PLUGEKS"],
-  description: site.description,
-  url: SITE_URL,
-  telephone: site.phoneIntl,
-  email: site.email,
-  image: `${SITE_URL}/og.jpg`,
-  logo: `${SITE_URL}/images/logo-full.png`,
-  priceRange: "$$",
-  currenciesAccepted: "RSD",
-  areaServed: { "@type": "Country", name: "Srbija" },
-  slogan: site.slogan,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.city,
-    postalCode: site.address.postalCode,
-    addressRegion: site.address.region,
-    addressCountry: "RS",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: site.address.lat,
-    longitude: site.address.lng,
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "17:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "08:00",
-      closes: "13:00",
-    },
-  ],
-  // Google Business profil ide OVDE zato što Google njime najpouzdanije
-  // potvrđuje da su sajt i Maps-listing ista firma — to je entitet koji već
-  // ima recenzije i NAP podatke, pa je najjači link u ovom nizu, ne samo još
-  // jedna društvena mreža.
-  sameAs: [
-    site.socials.facebook,
-    site.socials.instagram,
-    site.socials.tiktok,
-    site.socials.googleBusiness,
-  ],
 };
 
 /**
@@ -178,10 +151,6 @@ export default function RootLayout({
   return (
     <html lang="sr" className={`${display.variable} ${sans.variable}`}>
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

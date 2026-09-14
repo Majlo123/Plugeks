@@ -13,6 +13,8 @@ import {
   getMachinesByCategory,
   getMachinesByBranch,
   uzBroj,
+  ogSlikaSpiska,
+  drustveneSlike,
 } from "@/lib/products";
 import { GRANE, granaKljucevi, granaHref, type GranaKljuc } from "@/lib/masine";
 
@@ -53,11 +55,19 @@ export function generateMetadata({ params }: { params: { grana: string } }): Met
   const grana = nadji(params.grana);
   if (!grana) return {};
 
+  const opis = `${grana.opis} Finansiranje, podrška oko subvencija i isporuka širom Srbije — zatražite ponudu, javljamo se isti dan.`;
+
   return {
     title: `${grana.label} — ${grana.count} ${uzBroj(grana.count, "mašina", "mašine", "mašina")}`,
-    description: `${grana.opis} Finansiranje, podrška oko subvencija i isporuka širom Srbije — zatražite ponudu, javljamo se isti dan.`,
+    description: opis,
     alternates: { canonical: granaHref(grana.key as GranaKljuc) },
     keywords: [grana.label, grana.kratko, "mehanizacija", "PlugekS"],
+    ...drustveneSlike({
+      url: granaHref(grana.key as GranaKljuc),
+      title: `${grana.label} | PlugekS`,
+      description: opis,
+      slika: ogSlikaSpiska(getMachinesByBranch(grana.key)),
+    }),
   };
 }
 

@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   title: "Subvencije i finansiranje poljoprivredne mehanizacije",
   description:
     "Kako da kupite mašinu uz državne subvencije ili na rate preko kredita i lizinga. Vodimo vas kroz ceo proces — od izbora modela do isporuke.",
+  // Bez ovoga strana nasledi canonical početne i sama sebe izbaci iz indeksa.
+  alternates: { canonical: "/subvencije-i-finansiranje" },
 };
 
 const steps = [

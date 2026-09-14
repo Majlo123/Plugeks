@@ -87,8 +87,19 @@ export function ProductThumb({
             podloga ?? "bg-cream/90 shadow-sm ring-1 ring-black/5 backdrop-blur-sm",
           )}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/logo-mark.png" alt="" aria-hidden className="h-3 w-auto sm:h-3.5" />
+          {/* Žig ide kao CSS POZADINA, a ne kao slikovni element. Kao element
+              je logo bio zaseban, indeksabilan, u istom okviru kao i
+              fotografija proizvoda — na kategorijskoj strani sa 24 kartice to
+              je 24 puta logo naspram 24 puta proizvod, pa je logo bio
+              najponovljenija slika strane. Kao pozadina izgleda isto, a Google
+              ga uopšte ne broji kao sliku. */}
+          <span
+            aria-hidden
+            // Širina prati odnos stranica samog logotipa (960x203 ≈ 4.73), da
+            // pozadina izgleda identično slici koju je zamenila.
+            className="block h-3 w-[57px] bg-contain bg-center bg-no-repeat sm:h-3.5 sm:w-[66px]"
+            style={{ backgroundImage: "url('/images/logo-mark.png')" }}
+          />
         </span>
       </div>
     );
@@ -108,12 +119,14 @@ export function ProductThumb({
       <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_1px_1px,rgba(27,94,32,0.06)_1px,transparent_0)] [background-size:18px_18px]" />
 
       <div className="relative flex flex-1 flex-col items-center justify-center gap-2 px-4 py-5 text-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/logo-mark.png"
-          alt=""
+        {/* Isto kao značka iznad, ali ovde je važnije: na 1.202 strane
+            proizvoda BEZ fotografije ovo je bila najveća slika na strani — i
+            bio je logo. Kao pozadina, takva strana Google-u više ne nudi
+            nijednu sliku, umesto da mu je nudila pogrešnu. */}
+        <div
           aria-hidden
-          className="w-[52%] max-w-[160px] opacity-95"
+          className="w-[52%] max-w-[160px] bg-contain bg-center bg-no-repeat opacity-95"
+          style={{ backgroundImage: "url('/images/logo-mark.png')", aspectRatio: "960 / 203" }}
         />
         <span className="text-[0.64rem] font-medium uppercase tracking-[0.12em] text-muted-foreground">
           Fotografija uskoro

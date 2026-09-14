@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
-import { katalogBrojStrana, katalogStrana, KATALOG_PO_STRANI, getAllProducts } from "@/lib/products";
+import {
+  katalogBrojStrana,
+  katalogStrana,
+  KATALOG_PO_STRANI,
+  getAllProducts,
+  ogSlikaSpiska,
+  drustveneSlike,
+} from "@/lib/products";
 
 /**
  * Kataloški indeks — sve što sajt ima, 120 po strani, kao obični linkovi.
@@ -21,10 +28,20 @@ export function generateMetadata({ params }: { params: { strana: string } }): Me
   const ukupno = katalogBrojStrana();
   if (!Number.isFinite(strana) || strana < 1 || strana > ukupno) return {};
 
+  const opis = `Spisak svih ${getAllProducts().length} mašina i rezervnih delova iz PlugekS ponude, strana ${strana} od ${ukupno}.`;
+
   return {
     title: `Katalog — strana ${strana} od ${ukupno}`,
-    description: `Spisak svih ${getAllProducts().length} mašina i rezervnih delova iz PlugekS ponude, strana ${strana} od ${ukupno}.`,
+    description: opis,
     alternates: { canonical: `/katalog/${strana}` },
+    // Svaka od ~44 strane kataloga uzima sliku prvog proizvoda sa SVOJE strane,
+    // pa se ne ponavlja ista slika (ni logo) 44 puta.
+    ...drustveneSlike({
+      url: `/katalog/${strana}`,
+      title: `Katalog — strana ${strana} | PlugekS`,
+      description: opis,
+      slika: ogSlikaSpiska(katalogStrana(strana)),
+    }),
   };
 }
 

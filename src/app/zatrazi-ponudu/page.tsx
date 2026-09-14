@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: "Zatraži ponudu",
   description:
     "Pošaljite upit za ponudu poljoprivredne mehanizacije — recite nam šta vam treba i javljamo se isti dan sa cenom i načinom plaćanja.",
+  // Bez ovoga strana nasledi canonical početne i sama sebe izbaci iz indeksa.
+  alternates: { canonical: "/zatrazi-ponudu" },
 };
 
 export default function ZatraziPonuduPage({

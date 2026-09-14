@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-import { machineBranches } from "@/lib/products";
+import { machineBranches, drustveneSlike } from "@/lib/products";
 import { granaHref, type GranaKljuc } from "@/lib/masine";
 import { categories } from "@/lib/data";
 
@@ -21,11 +21,26 @@ import { categories } from "@/lib/data";
  * unutar grane (`/masine/grana/[grana]`). Isti obrazac koji ima i izvor.
  */
 
+const OPIS =
+  "Poljoprivredne, šumske i građevinske mašine: tanjirače, plugovi, malčeri, kosačice i balirke, sejalice i prskalice, cepači drva, iverači, kružne pile, mini bageri i utovarivači. Izaberite za kakav posao vam mašina treba.";
+
 export const metadata: Metadata = {
   title: "Mašine — poljoprivredne, šumske i građevinske",
-  description:
-    "Poljoprivredne, šumske i građevinske mašine: tanjirače, plugovi, malčeri, kosačice i balirke, sejalice i prskalice, cepači drva, iverači, kružne pile, mini bageri i utovarivači. Izaberite za kakav posao vam mašina treba.",
+  description: OPIS,
   alternates: { canonical: "/masine" },
+  // Kartica grane koju strana i prikazuje, umesto logoa iz layout-a.
+  ...drustveneSlike({
+    url: "/masine",
+    title: "Mašine | PlugekS",
+    description: OPIS,
+    slika: {
+      url: "https://plugeks.com/images/kategorije/poljoprivredne.jpg",
+      width: 900,
+      height: 563,
+      type: "image/jpeg",
+      alt: "Poljoprivredne mašine iz ponude PlugekS",
+    },
+  }),
   keywords: [
     "poljoprivredne mašine",
     "šumske mašine",

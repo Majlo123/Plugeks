@@ -10,6 +10,7 @@ import {
   trailerAccessoryGroups,
   getTrailersByType,
   uzBroj,
+  drustveneSlike,
 } from "@/lib/products";
 import { TRAILER_PROGRAMS } from "@/lib/catalog";
 
@@ -23,11 +24,26 @@ import { TRAILER_PROGRAMS } from "@/lib/catalog";
  * kupca koji već zna oznaku modela ili šta prevozi (vidi `PrikolicePretraga`).
  */
 
+const OPIS =
+  "Auto-prikolice po nameni: za svakodnevni prevoz, platforme, za automobil, građevinske mašine, čamac ili motocikl. Izaberite vrstu po slici, pa broj osovina i nosivost. Isporuka širom Srbije.";
+
 export const metadata: Metadata = {
   title: "Auto-prikolice — 65 modela od 500 do 3500 kg",
-  description:
-    "Auto-prikolice po nameni: za svakodnevni prevoz, platforme, za automobil, građevinske mašine, čamac ili motocikl. Izaberite vrstu po slici, pa broj osovina i nosivost. Isporuka širom Srbije.",
+  description: OPIS,
   alternates: { canonical: "/prikolice" },
+  // Kartica kategorije koju strana i prikazuje — ne logo iz layout-a.
+  ...drustveneSlike({
+    url: "/prikolice",
+    title: "Auto-prikolice | PlugekS",
+    description: OPIS,
+    slika: {
+      url: "https://plugeks.com/images/kategorije/prikolice.jpg",
+      width: 1200,
+      height: 750,
+      type: "image/jpeg",
+      alt: "Auto-prikolice Vesta sa stranicama, poklopcem i kočnicom — PlugekS",
+    },
+  }),
   keywords: [
     "auto prikolice",
     "prikolica za auto",

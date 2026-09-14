@@ -35,11 +35,24 @@ export function SpisakJsonLd({
     ...(opis ? { description: opis } : {}),
     numberOfItems: ukupno ?? stavke.length,
     itemListOrder: "https://schema.org/ItemListOrderAscending",
+    // Oblik je „all-in-one": svaka stavka nosi ugnežden `Product` sa slikom.
+    // Bez `image` kategorijska strana Google-u ne prijavljuje nijednu sliku
+    // proizvoda, pa mu kao jedina slika te strane ostaje `og:image`. Dok je to
+    // bio logo iz layout-a, „delovi za plugove Lemken" su i vraćali logo.
+    //
+    // `@id` je adresa strane proizvoda — isti identitet koji tamo nosi
+    // `Product` node, pa Google spisak i stranu proizvoda spaja u jedan entitet
+    // umesto da ih broji kao dva.
     itemListElement: stavke.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: p.name,
-      url: `${SITE_URL}${productHref(p)}`,
+      item: {
+        "@type": "Product",
+        "@id": `${SITE_URL}${productHref(p)}#proizvod`,
+        name: p.name,
+        url: `${SITE_URL}${productHref(p)}`,
+        ...(p.image ? { image: `${SITE_URL}${p.image}` } : {}),
+      },
     })),
   };
 

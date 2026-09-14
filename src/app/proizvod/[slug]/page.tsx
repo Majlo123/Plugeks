@@ -38,6 +38,8 @@ import {
   slikeMasine,
   ukrstenaHref,
   tipZaMasinu,
+  dimenzijeSlike,
+  ogSlikaProizvoda,
   trailerDescription,
   trailerHighlights,
   type Product,
@@ -144,7 +146,13 @@ export function generateMetadata({
       ? `${p.name}. ${p.brandLabel && p.brandKey !== "univerzalno" ? `Za mašine ${p.brandLabel}. ` : ""}Zatražite ponudu — cena i rok isporuke isti dan. PlugekS, isporuka širom Srbije.`
       : opisProizvoda(p).slice(0, 155);
 
-  const ogImage = p.image ? abs(p.image) : abs("/og.jpg");
+  /**
+   * Proizvod BEZ fotografije namerno ostaje bez og:image umesto da podmetne
+   * logo: 1.202 adrese pod `/proizvod/…` su Google-u do sada tvrdile da im je
+   * glavna slika logo firme, pa se logo vezao baš za pretrage po nazivu dela.
+   * Bolje nijedna slika nego pogrešna.
+   */
+  const ogSlika = ogSlikaProizvoda(p);
 
   return {
     title,
@@ -170,7 +178,7 @@ export function generateMetadata({
       url: abs(canonical),
       title: `${p.name} | PlugekS`,
       description,
-      images: [{ url: ogImage, alt: p.name }],
+      ...(ogSlika ? { images: [ogSlika] } : {}),
     },
     // Bez ovoga se iz layout-a nasleđuje `twitter:image = /og.jpg` (logo), pa
     // stranica istovremeno tvrdi dve različite glavne slike — Google Images je
@@ -179,7 +187,7 @@ export function generateMetadata({
       card: "summary_large_image",
       title: `${p.name} | PlugekS`,
       description,
-      images: [{ url: ogImage, alt: p.name }],
+      ...(ogSlika ? { images: [ogSlika] } : {}),
     },
   };
 }
@@ -188,9 +196,14 @@ export function generateMetadata({
 
 function ProductJsonLd({ p }: { p: Product }) {
   const canonical = abs(`/proizvod/${p.slug}`);
+  const [sirina, visina] = dimenzijeSlike(p.kind);
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${canonical}#proizvod`,
+    // Vezuje proizvod za BAŠ OVU adresu; bez toga isti `Product` može da se
+    // pripiše i spisku na kom se pominje.
+    mainEntityOfPage: { "@id": `${canonical}#stranica` },
     name: p.name,
     description: opisProizvoda(p),
     category: p.groupLabel,
@@ -206,10 +219,17 @@ function ProductJsonLd({ p }: { p: Product }) {
           image: [
             {
               "@type": "ImageObject",
+              // `@id` postoji da bi `primaryImageOfPage` ispod pokazao baš na
+              // ovu sliku, umesto da je ponovi kao zaseban, treći entitet.
+              "@id": `${canonical}#slika`,
               contentUrl: abs(p.image),
               url: abs(p.image),
               name: p.name,
               caption: natpisSlike(p),
+              // Dimenzije: bez njih Google mora da preuzme fajl da bi saznao
+              // koliko je slika velika, a do tada je tretira kao možda sitnu.
+              width: sirina,
+              height: visina,
               representativeOfPage: true,
               mainEntityOfPage: canonical,
             },
@@ -221,6 +241,8 @@ function ProductJsonLd({ p }: { p: Product }) {
               url: abs(slika),
               name: izvedba ? `${p.name} — ${izvedba}` : p.name,
               caption: natpisSlike(p, izvedba),
+              width: sirina,
+              height: visina,
               mainEntityOfPage: canonical,
             })),
           ],
@@ -231,16 +253,45 @@ function ProductJsonLd({ p }: { p: Product }) {
     ...(p.brandLabel && p.brandKey !== "univerzalno"
       ? { brand: { "@type": "Brand", name: p.brandLabel } }
       : {}),
-    // Cena se dogovara upitom (nema fiksnog cenovnika), pa se `offers.price`
-    // namerno izostavlja — navodimo samo prodavca i način nabavke.
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "RSD",
-      url: abs(quoteHref(p)),
-      seller: { "@type": "Organization", name: site.name },
-    },
+    /**
+     * `offers` je SKINUT, nije zaboravljen.
+     *
+     * Cena se kod nas dogovara upitom, pa je ponuda stajala bez `price` — a
+     * `Offer` bez cene Google smatra neispravnim i ume da odbaci ceo `Product`
+     * node zajedno sa njim. Time bi otišla i `image` lista iznad, koja je
+     * jedini razlog zbog kog ovaj node i postoji. `Product` bez ponude je
+     * potpuno ispravan schema.org zapis.
+     *
+     * Prodavac se i dalje pominje, ali preko `@id` reference na `Store` node sa
+     * početne (vidi `components/FirmaJsonLd.tsx`) — bez ponavljanja logoa.
+     */
+    seller: { "@id": `${SITE_URL}/#plugeks` },
   };
+
+  /**
+   * `ItemPage` + `primaryImageOfPage` — izričita tvrdnja „glavna slika OVE
+   * strane je crtež dela", uz `@id` koji pokazuje na `ImageObject` iznad.
+   *
+   * To je jedino mesto na kom se glavna slika strane navodi kao svojstvo same
+   * STRANE, a ne proizvoda. Ostalo (og:image, ImageObject, image sitemap)
+   * govori o slici; ovo govori o strani, pa Google nema šta da bira kad na
+   * istoj adresi nađe i logo iz headera.
+   *
+   * Emituje se samo kad fotografija postoji — inače bi strana tvrdila da ima
+   * glavnu sliku koje nema.
+   */
+  const stranica = p.image
+    ? {
+        "@context": "https://schema.org",
+        "@type": "ItemPage",
+        "@id": `${canonical}#stranica`,
+        url: canonical,
+        name: p.name,
+        primaryImageOfPage: { "@id": `${canonical}#slika` },
+        mainEntity: { "@id": `${canonical}#proizvod` },
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+      }
+    : null;
 
   const iznad = putanja(p);
   const breadcrumb = {
@@ -269,6 +320,12 @@ function ProductJsonLd({ p }: { p: Product }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
       />
+      {stranica ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(stranica) }}
+        />
+      ) : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}

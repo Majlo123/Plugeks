@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, PhoneCall } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { site } from "@/lib/site";
+import { FirmaJsonLd } from "@/components/FirmaJsonLd";
 
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
     "Kontaktirajte PlugekS — telefon, Viber i email. Žabalj 21230, Vojvodina.",
+  // Bez ovoga strana nasledi canonical početne i sama sebe izbaci iz indeksa.
+  alternates: { canonical: "/kontakt" },
 };
 
 // OpenStreetMap embed (bez API ključa) — centriran na Žabalj.
@@ -42,6 +45,8 @@ export default function KontaktPage() {
 
   return (
     <>
+      {/* Firma je ovde tema strane, pa ide pun `Store` node (NAP, radno vreme). */}
+      <FirmaJsonLd />
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container mx-auto max-w-2xl">
           <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">

@@ -697,6 +697,118 @@ export function natpisSlike(p: Product, izvedba?: string | null): string {
   return delovi.join(", ");
 }
 
+/* ----------------------- Slika kategorije (og:image) ---------------------- */
+
+/**
+ * Kadar je po vrsti proizvoda isti za sve fajlove (vidi `scripts/check-images.mjs`),
+ * pa se dimenzije ne čitaju sa diska nego znaju unapred. Trebaju u `og:image` i
+ * u `ImageObject`: bez `width`/`height` i Google i društvene mreže moraju prvo
+ * da preuzmu fajl da bi saznale koliko je velik, a dok ne saznaju, sliku
+ * tretiraju kao potencijalno sitnu.
+ */
+export const dimenzijeSlike = (kind: ProductKind): [number, number] =>
+  kind === "deo"
+    ? [600, 600]
+    : kind === "prikolica" || kind === "oprema"
+      ? [1200, 750]
+      : [900, 563];
+
+export type OgSlika = {
+  url: string;
+  width: number;
+  height: number;
+  type: string;
+  alt: string;
+};
+
+/** Apsolutna adresa slike — og:image ne sme da bude relativan put. */
+const apsolutno = (put: string) => `https://plugeks.com${put}`;
+
+/**
+ * `og:image` za JEDAN proizvod.
+ *
+ * Vraća `undefined` kad proizvoda nema ili nema fotografiju — namerno, da bi
+ * pozivalac izostavio polje umesto da podmetne logo. Strana bez fotografije
+ * radije nema og:image nego da Google-u tvrdi da je njena slika logo firme:
+ * tako se logo ne vezuje za 1.202 adrese pod `/proizvod/…`.
+ */
+export function ogSlikaProizvoda(p?: Product): OgSlika | undefined {
+  if (!p?.image) return undefined;
+  const [width, height] = dimenzijeSlike(p.kind);
+  return {
+    url: apsolutno(p.image),
+    width,
+    height,
+    type: p.image.endsWith(".png") ? "image/png" : "image/jpeg",
+    alt: natpisSlike(p),
+  };
+}
+
+/**
+ * `og:image` za SPISAK proizvoda (kategorijska strana).
+ *
+ * Uzima prvi proizvod iz spiska koji ima pravu fotografiju — dakle sliku koju
+ * ta strana i sama prikazuje ili bar navodi. Bez ovoga svaka kategorijska
+ * strana nasledi `/og.jpg` iz layout-a, pa je za Google jedina slika „delova za
+ * plugove Lemken" — logo PlugekS-a.
+ */
+export const ogSlikaSpiska = (stavke: Product[]): OgSlika | undefined =>
+  ogSlikaProizvoda(stavke.find((p) => p.image));
+
+/**
+ * Gotov `openGraph` + `twitter` par za kategorijsku stranu.
+ *
+ * Postoji kao jedna funkcija zato što se `twitter` MORA ponoviti: Next spaja
+ * `twitter` iz layout-a sa onim iz strane po poljima, pa strana koja postavi
+ * samo `openGraph.images` i dalje šalje `twitter:image` sa logom — dve različite
+ * glavne slike na istoj strani, što je Google Images i dovodilo do logoa.
+ */
+/**
+ * Kartica firme — poslednja rezerva za KATEGORIJSKE strane.
+ *
+ * Nekoliko kombinacija (npr. „Lemeš Fella") i par zadnjih strana kataloga nema
+ * nijedan komad sa fotografijom. Njima je brendirana kartica bolja od nikakve
+ * slike: strana bez `og:image` se deli kao go tekst. Strana POJEDINAČNOG
+ * proizvoda ovu rezervu namerno NE koristi — tamo bi logo bio odgovor na upit o
+ * konkretnom delu, a to je upravo ono što se ispravlja.
+ */
+const KARTICA_FIRME: OgSlika = {
+  url: "https://plugeks.com/og.jpg",
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
+  alt: "PlugekS — uvoz i prodaja poljoprivrednih delova i mašina",
+};
+
+export function drustveneSlike({
+  url,
+  title,
+  description,
+  slika,
+}: {
+  url: string;
+  title: string;
+  description: string;
+  slika?: OgSlika;
+}) {
+  const images = [slika ?? KARTICA_FIRME];
+  return {
+    openGraph: {
+      type: "website" as const,
+      url: apsolutno(url),
+      title,
+      description,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title,
+      description,
+      images,
+    },
+  };
+}
+
 /* --------------------------- Kategorije za SEO ---------------------------- */
 
 /**

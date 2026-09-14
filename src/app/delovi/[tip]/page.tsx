@@ -13,6 +13,8 @@ import {
   preovladjujucaGrupa,
   tipZaMasinu,
   uzBroj,
+  ogSlikaSpiska,
+  drustveneSlike,
 } from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { SpisakJsonLd } from "@/components/SpisakJsonLd";
@@ -49,12 +51,20 @@ export function generateMetadata({ params }: { params: { tip: string } }): Metad
   const tip = nadjiTip(params.tip);
   if (!tip) return {};
   const { h1, kontekst } = naslovTipa(tip);
+  const opis = `${h1} svih vodećih proizvođača. ${katBrojeva(tip.count)} na stanju ili po porudžbini. Zatražite ponudu, javljamo se isti dan.`;
 
   return {
     title: `${h1} — ${tip.count} ${uzBroj(tip.count, "deo", "dela", "delova")}`,
-    description: `${h1} svih vodećih proizvođača. ${katBrojeva(tip.count)} na stanju ili po porudžbini. Zatražite ponudu, javljamo se isti dan.`,
+    description: opis,
     alternates: { canonical: `/delovi/${tip.key}` },
     keywords: [tip.label, h1, `rezervni delovi za ${kontekst}`, "PlugekS"],
+    // Slika strane je crtež prvog dela iz same kategorije, a ne logo iz layout-a.
+    ...drustveneSlike({
+      url: `/delovi/${tip.key}`,
+      title: `${h1} | PlugekS`,
+      description: opis,
+      slika: ogSlikaSpiska(getPartsByType(tip.key)),
+    }),
   };
 }
 

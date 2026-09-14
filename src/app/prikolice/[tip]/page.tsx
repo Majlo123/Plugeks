@@ -9,6 +9,8 @@ import {
   trailerAccessoryGroups,
   getTrailersByType,
   uzBroj,
+  ogSlikaSpiska,
+  drustveneSlike,
 } from "@/lib/products";
 import { TRAILER_PROGRAMS } from "@/lib/catalog";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
@@ -56,13 +58,15 @@ export function generateMetadata({ params }: { params: { tip: string } }): Metad
   const kat = nadji(params.tip);
   if (!kat) return {};
 
+  const opisStrane = opis(kat.key, kat.label, kat.count);
+
   return {
     title: `${kat.label} — ${kat.count} ${
       jeOprema(kat.key)
         ? uzBroj(kat.count, "komad", "komada", "komada")
         : uzBroj(kat.count, "model", "modela", "modela")
     }`,
-    description: opis(kat.key, kat.label, kat.count),
+    description: opisStrane,
     alternates: { canonical: `/prikolice/${kat.key}` },
     keywords: [
       kat.label,
@@ -71,6 +75,14 @@ export function generateMetadata({ params }: { params: { tip: string } }): Metad
       jeOprema(kat.key) ? "oprema za prikolice" : "nova prikolica",
       "PlugekS",
     ],
+    // Studijski snimak prve prikolice iz programa — 1200x750, jedini kadar na
+    // sajtu koji sam po sebi zadovoljava „veliku" kartu za deljenje.
+    ...drustveneSlike({
+      url: `/prikolice/${kat.key}`,
+      title: `${kat.label} | PlugekS`,
+      description: opisStrane,
+      slika: ogSlikaSpiska(getTrailersByType(kat.key)),
+    }),
   };
 }
 

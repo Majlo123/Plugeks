@@ -6,11 +6,14 @@ import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { TrustStats } from "@/components/sections/TrustStats";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { Tractor } from "lucide-react";
+import { FirmaJsonLd } from "@/components/FirmaJsonLd";
 
 export const metadata: Metadata = {
   title: "O nama — PlugekS iz Žablja",
   description:
     "PlugekS je porodična firma iz Žablja specijalizovana za uvoz i prodaju poljoprivredne mehanizacije. Stručan savet, provereni kvalitet i podrška kupcima.",
+  // Bez ovoga strana nasledi canonical početne i sama sebe izbaci iz indeksa.
+  alternates: { canonical: "/o-nama" },
 };
 
 const values = [
@@ -34,6 +37,8 @@ const values = [
 export default function ONamaPage() {
   return (
     <>
+      {/* Firma je ovde tema strane, pa ide pun `Store` node. */}
+      <FirmaJsonLd />
       {/* Priča + slika */}
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container grid items-center gap-12 lg:grid-cols-2">

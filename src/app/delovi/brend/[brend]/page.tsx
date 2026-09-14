@@ -15,6 +15,8 @@ import {
   katBrojeva,
   kontekstMasine,
   preovladjujucaGrupa,
+  ogSlikaSpiska,
+  drustveneSlike,
 } from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { SpisakJsonLd, PitanjaJsonLd, Pitanja } from "@/components/SpisakJsonLd";
@@ -110,12 +112,14 @@ export function generateMetadata({ params }: { params: { brend: string } }): Met
       ...tipovi.slice(0, 5).map((t) => `${t.label} za ${brend.label}`),
       `rezervni delovi za ${kontekst}`,
     ],
-    openGraph: {
-      type: "website",
-      url: `https://plugeks.com/delovi/brend/${brend.key}`,
+    // `openGraph` bez `images` nasledi logo iz layout-a, a `twitter` se mora
+    // ponoviti ili ostaje logo i kad og:image nije — otuda zajednički helper.
+    ...drustveneSlike({
+      url: `/delovi/brend/${brend.key}`,
       title: `Delovi za ${kontekst} ${brend.label} | PlugekS`,
       description: `${katBrojeva(brend.count)} potrošnih delova za ${kontekst} ${brend.label}. Cena i rok isporuke isti dan.`,
-    },
+      slika: ogSlikaSpiska(getPartsByBrand(brend.key)),
+    }),
   };
 }
 
