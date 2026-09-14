@@ -18,7 +18,8 @@
     "slike:provera": "node scripts/check-images.mjs",
     "masine": "node scripts/import-hofman.mjs",
     "masine:slike": "python scripts/normalize_product_images.py masine izvedbe",
-    "kategorije": "python scripts/build_category_images.py"
+    "kategorije": "python scripts/build_category_images.py",
+    "og": "python scripts/build_og_images.py"
   },
   "dependencies": {
     "class-variance-authority": "0.7.0",

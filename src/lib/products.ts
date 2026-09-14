@@ -15,6 +15,7 @@ import machinesJson from "@/data/machines.json";
 import packedParts from "@/data/parts.json";
 import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
+import ogImagesJson from "@/data/og-images.json";
 import { uzBroj } from "@/lib/brojevi";
 import {
   GRANE,
@@ -721,6 +722,9 @@ export type OgSlika = {
   alt: string;
 };
 
+/** Kataloški brojevi koji imaju og karticu 1200x630 — puni `npm run og`. */
+const OG_KARTICE = new Set<string>(ogImagesJson as string[]);
+
 /** Apsolutna adresa slike — og:image ne sme da bude relativan put. */
 const apsolutno = (put: string) => `https://plugeks.com${put}`;
 
@@ -734,6 +738,31 @@ const apsolutno = (put: string) => `https://plugeks.com${put}`;
  */
 export function ogSlikaProizvoda(p?: Product): OgSlika | undefined {
   if (!p?.image) return undefined;
+
+  /**
+   * Kad proizvod ima og karticu 1200x630 (`npm run og`), ide ONA.
+   *
+   * Crtež dela je 600x600 kvadrat, a Facebook, Viber, WhatsApp i LinkedIn
+   * „veliku" karticu prikazuju tek od 1200x630 — ispod toga link izgleda kao
+   * red teksta sa sitnom sličicom sa strane. Kartica je isti crtež, samo
+   * centriran na brendiranoj podlozi (vidi `scripts/build_og_images.py`).
+   *
+   * Slika NA STRANICI se ovim ne menja: `<img>`, `ImageObject` i image sitemap
+   * i dalje nose original — to je ono što Google Images indeksira.
+   *
+   * Ako kartice nisu generisane, manifest je prazan i sve se vraća na original,
+   * pa sajt radi i bez njih.
+   */
+  if (OG_KARTICE.has(p.id)) {
+    return {
+      url: apsolutno(`/images/og/${p.id}.jpg`),
+      width: 1200,
+      height: 630,
+      type: "image/jpeg",
+      alt: natpisSlike(p),
+    };
+  }
+
   const [width, height] = dimenzijeSlike(p.kind);
   return {
     url: apsolutno(p.image),

@@ -10,6 +10,12 @@ import {
   trailerCategories,
   trailerAccessoryGroups,
   getTrailersByType,
+  partTypes,
+  partBrands,
+  partTypeBrandPairs,
+  getPartsByType,
+  getPartsByBrand,
+  getPartsByTypeAndBrand,
   type Product,
 } from "@/lib/products";
 import { categories } from "@/lib/data";
@@ -47,6 +53,9 @@ const BASE = "https://plugeks.com";
 
 /** Google prihvata najviše 1000 slika po jednom `<url>` unosu. */
 const MAX_PO_STRANI = 1000;
+
+/** Koliko slika po KATEGORIJSKOJ strani delova ide u spisak — vidi `slikeKategorija`. */
+const MAX_PO_KATEGORIJI = 24;
 
 type Unos = { loc: string; slika: string; naslov: string; natpis: string };
 
@@ -186,6 +195,26 @@ function slikeKategorija(): Unos[] {
     ),
     ...[...trailerCategories(), ...trailerAccessoryGroups()].flatMap((c) =>
       odProizvoda(`/prikolice/${c.key}`, getTrailersByType(c.key)),
+    ),
+    // Strane delova otkad `ListaProizvoda` na njima ima sličice (`saSlikama`).
+    // Seku se na `MAX_PO_KATEGORIJI` — ne zato što strana prikazuje manje, nego
+    // da spisak od 600 kategorija puta do 300 delova ne naraste u fajl od
+    // desetak megabajta. Prvih 24 je tačno ono što se vidi bez skrolovanja i
+    // sasvim dovoljno da Google sliku veže za stranu.
+    ...partTypes().flatMap((t) =>
+      odProizvoda(`/delovi/${t.key}`, getPartsByType(t.key).slice(0, MAX_PO_KATEGORIJI)),
+    ),
+    ...partBrands().flatMap((b) =>
+      odProizvoda(
+        `/delovi/brend/${b.key}`,
+        getPartsByBrand(b.key).slice(0, MAX_PO_KATEGORIJI),
+      ),
+    ),
+    ...partTypeBrandPairs().flatMap((u) =>
+      odProizvoda(
+        `/delovi/${u.tipKey}/${u.brendKey}`,
+        getPartsByTypeAndBrand(u.tipKey, u.brendKey).slice(0, MAX_PO_KATEGORIJI),
+      ),
     ),
   ];
 }

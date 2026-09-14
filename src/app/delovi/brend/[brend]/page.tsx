@@ -199,7 +199,7 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
               Svi kataloški brojevi za {kontekst} {brend.label}
             </h2>
             <div className="mt-4">
-              <ListaProizvoda items={prikazani} />
+              <ListaProizvoda items={prikazani} saSlikama />
             </div>
           </div>
 

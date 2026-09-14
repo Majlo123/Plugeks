@@ -99,7 +99,7 @@ export default function TipDelaPage({ params }: { params: { tip: string } }) {
           </p>
 
           <div className="mt-8">
-            <ListaProizvoda items={prikazani} />
+            <ListaProizvoda items={prikazani} saSlikama />
           </div>
 
           {ostali > 0 && (

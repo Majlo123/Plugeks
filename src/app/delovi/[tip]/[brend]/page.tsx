@@ -240,7 +240,7 @@ export default function UkrstenaPage({
               Svi kataloški brojevi — {h1}
             </h2>
             <div className="mt-4">
-              <ListaProizvoda items={prikazani} />
+              <ListaProizvoda items={prikazani} saSlikama />
             </div>
           </div>
 
