@@ -15,10 +15,15 @@ import type { TabelaModela as Tabela } from "@/lib/products";
  *
  * Mašine sa jednom izvedbom (njih trećina) nemaju šta da porede, pa dobijaju
  * običnu tabelu — istu na svim širinama.
+ *
+ * `istaknuta` je indeks kolone izabrane izvedbe (vidi `IzvedbeMasine`): ta
+ * kolona dobija podlogu, da se posle klika na model odmah vidi koji je red
+ * brojki njegov. Ostale kolone ostaju — poređenje je i dalje smisao tabele.
  */
-export function TabelaModela({ tabela }: { tabela: Tabela }) {
+export function TabelaModela({ tabela, istaknuta }: { tabela: Tabela; istaknuta?: number }) {
   const { kolone, redovi } = tabela;
   if (redovi.length === 0) return null;
+  const jeIstaknuta = (j: number) => istaknuta !== undefined && istaknuta >= 0 && istaknuta === j;
 
   // Jedna izvedba → nema poređenja, ide obična tabela (i na telefonu i na
   // ekranu), da se stranica ne pravi važna oko jedne kolone.
@@ -44,11 +49,15 @@ export function TabelaModela({ tabela }: { tabela: Tabela }) {
               >
                 Model
               </th>
-              {kolone.map((model) => (
+              {kolone.map((model, j) => (
                 <th
                   key={model}
                   scope="col"
-                  className="px-4 py-3.5 text-center font-display text-[0.78rem] font-bold uppercase tracking-[0.1em] whitespace-nowrap"
+                  aria-current={jeIstaknuta(j) ? "true" : undefined}
+                  className={cn(
+                    "px-4 py-3.5 text-center font-display text-[0.78rem] font-bold uppercase tracking-[0.1em] whitespace-nowrap",
+                    jeIstaknuta(j) && "bg-charcoal",
+                  )}
                 >
                   {model}
                 </th>
@@ -70,7 +79,10 @@ export function TabelaModela({ tabela }: { tabela: Tabela }) {
                 {kolone.map((model, j) => (
                   <td
                     key={model}
-                    className="whitespace-nowrap px-4 py-3 text-center font-medium tabular-nums text-charcoal"
+                    className={cn(
+                      "whitespace-nowrap px-4 py-3 text-center font-medium tabular-nums text-charcoal",
+                      jeIstaknuta(j) && "bg-brand/10 font-semibold",
+                    )}
                   >
                     {vrednosti[j] || "—"}
                   </td>
@@ -84,7 +96,13 @@ export function TabelaModela({ tabela }: { tabela: Tabela }) {
       {/* Telefon — po jedan blok za svaki model. */}
       <div className="space-y-4 sm:hidden">
         {kolone.map((model, j) => (
-          <BlokModela key={model} naslov={model} redovi={redovi} kolona={j} />
+          <BlokModela
+            key={model}
+            naslov={model}
+            redovi={redovi}
+            kolona={j}
+            istaknut={jeIstaknuta(j)}
+          />
         ))}
       </div>
     </>
@@ -96,13 +114,20 @@ function BlokModela({
   naslov,
   redovi,
   kolona,
+  istaknut = false,
 }: {
   naslov?: string;
   redovi: string[][];
   kolona: number;
+  istaknut?: boolean;
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-card">
+    <div
+      className={cn(
+        "overflow-hidden rounded-2xl border bg-white shadow-card",
+        istaknut ? "border-brand ring-2 ring-brand/30" : "border-border",
+      )}
+    >
       {naslov ? (
         <p className="bg-brand px-4 py-3 font-display text-[0.82rem] font-bold uppercase tracking-[0.1em] text-cream">
           {naslov}

@@ -16,7 +16,7 @@ export function MachineCard({
   item,
   typeLabel,
   kind = "masina",
-  brandLabel = "Rolland",
+  brandLabel = item.brand,
   podloga = "bg-bone",
 }: {
   item: CatalogItem;

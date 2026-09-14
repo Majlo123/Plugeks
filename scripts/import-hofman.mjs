@@ -23,10 +23,13 @@
  *
  * ŠTA RADI:
  *  1. siđe kroz mreže svake kategorije i skupi stranice mašina
- *  2. sa svake čita naziv modela i fotografije
- *  3. skida naslovnu fotografiju u `data/hofman-originals/`
+ *  2. sa svake čita naziv modela i fotografije — i galerije PO IZVEDBI
+ *  3. skida naslovnu fotografiju u `data/hofman-originals/`, a fotografije
+ *     izvedbi u `data/hofman-originals/izvedbe/<mašina>/`
  *  4. sa slovenačke verzije čita tabele modela (na ostalima su prazne)
- *  5. dopunjava `src/data/machines.json` i `src/data/machine-images.json`
+ *  5. uparuje galerije sa kolonama tabele u izvedbe (vidi `izvedbeMasine`),
+ *     da kupac na sajtu bira model kao na izvoru
+ *  6. dopunjava `src/data/machines.json` i `src/data/machine-images.json`
  *
  * ŠTA NAMERNO NE RADI: ne prenosi cene (PlugekS radi po upitu, vidi `offers` u
  * ProductJsonLd) i ne prepisuje marketinški tekst — opis mašine se sastavlja
@@ -81,18 +84,18 @@ export const GRANE = {
     label: "Poljoprivredne mašine",
     kratko: "Poljoprivredne",
     opis: "Mašine za obradu zemljišta, košenje i spremanje sena, setvu, zaštitu bilja, pripremu hrane i transport na gazdinstvu.",
-    // Prva četiri tipa su Rolland program, koji je na sajtu od ranije i ima
-    // svoje indeksirane adrese (`/masine/tanjirace`…). Ne stapaju se u
-    // „Plugovi i mašine za obradu" iako tu po nameni spadaju: „tanjirača" i
-    // „podrivač" su reči koje kupac stvarno kuca u pretragu, pa svaka i dalje
-    // zaslužuje svoju stranu.
+    // Plugovi, malčeri i freze su SVAKI svoj tip, iako su malobrojni: to su
+    // reči koje kupac kuca u pretragu i pločice koje traži na strani grane.
+    // „Tanjirače" i „valjci" nose ključeve koje je sajt imao još od Rolland
+    // programa (plave mašine su skinute), pa te indeksirane adrese
+    // (`/masine/tanjirace`, `/masine/valjci`) i dalje vode na živu ponudu.
     tipovi: {
+      plugovi: "Plugovi",
       tanjirace: "Tanjirače",
-      agregati: "Agregati",
-      podrivaci: "Podrivači",
+      "obrada-zemljista": "Gruberi, setvospremači i drljače",
       valjci: "Valjci",
-      "obrada-zemljista": "Plugovi i mašine za obradu",
-      malceri: "Malčeri i freze",
+      malceri: "Malčeri",
+      freze: "Freze",
       kosenje: "Kosačice, grabulje i balirke",
       "setva-zetva": "Sejalice i kombajni",
       "prskalice-rasipaci": "Prskalice i rasipači đubriva",
@@ -148,7 +151,7 @@ const IZVOR = {
   "mulceri-r-line-na-hidraulickoj-ruci": { grana: "poljoprivredne", tip: "malceri", naziv: "Malčer na hidrauličnoj ruci" },
   "sadjarsko-vinogradnicki-malceri": { grana: "poljoprivredne", tip: "malceri", naziv: "Voćarsko-vinogradarski malčer" },
   "rotacijski-malceri": { grana: "poljoprivredne", tip: "malceri", naziv: "Rotacioni malčer" },
-  friziraj: { grana: "poljoprivredne", tip: "malceri", naziv: "Freza" },
+  friziraj: { grana: "poljoprivredne", tip: "freze", naziv: "Freza" },
   muljaci: { grana: "poljoprivredne", tip: "malceri", naziv: "Malčer" },
 
   /* --- Poljoprivredne: košenje i spremanje sena --- */
@@ -167,15 +170,15 @@ const IZVOR = {
 
   /* --- Poljoprivredne: obrada zemljišta --- */
   "obrada-tla": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Mašina za obradu zemljišta" },
-  plugi: { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Plug" },
+  plugi: { grana: "poljoprivredne", tip: "plugovi", naziv: "Plug" },
   gruberji: { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Gruber" },
   predlosci: { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Setvospremač" },
   "fiksni-prijedlozi": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Setvospremač", dodatak: "fiksni" },
   "hidraulicki-sklopivi-predsjedaci": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Setvospremač", dodatak: "hidraulično sklopivi" },
   "globinski-podupiraci": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Podrivač" },
-  "kruzne-stepenice": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Tanjirača" },
-  "cambdridge-valji": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Cambridge valjak" },
-  "rezni-valjci": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Rezni valjak" },
+  "kruzne-stepenice": { grana: "poljoprivredne", tip: "tanjirace", naziv: "Tanjirača" },
+  "cambdridge-valji": { grana: "poljoprivredne", tip: "valjci", naziv: "Cambridge valjak" },
+  "rezni-valjci": { grana: "poljoprivredne", tip: "valjci", naziv: "Rezni valjak" },
   "travnicke-brane": { grana: "poljoprivredne", tip: "obrada-zemljista", naziv: "Livadska drljača" },
 
   /* --- Poljoprivredne: setva i žetva --- */
@@ -325,9 +328,11 @@ async function stranica(putanja) {
 }
 
 /** Skida original fotografije; vraća putanju do fajla ili `null`. */
-async function fotografija(izvorniPut, ime) {
+async function fotografija(izvorniPut, ime, podfolder = "") {
   const ext = extname(izvorniPut).toLowerCase() || ".jpg";
-  const cilj = resolve(ORIGINALS_DIR, `${ime}${ext}`);
+  const folder = resolve(ORIGINALS_DIR, podfolder);
+  mkdirSync(folder, { recursive: true });
+  const cilj = resolve(folder, `${ime}${ext}`);
   if (existsSync(cilj)) return cilj;
 
   await spavaj(PAUZA_MS);
@@ -393,13 +398,37 @@ function naslovnaSlika(html) {
   return html.match(/src="(\/data\/albums\/designer_text_photo\/[^"]+)"/)?.[1] ?? null;
 }
 
-/** Sve fotografije iz galerije — bez sličica za navigaciju. */
-function galerija(html) {
-  const nadjene = new Set();
-  for (const m of html.matchAll(/src="(\/data\/albums\/slider_gallery\/[^"]+)"/g)) {
-    nadjene.add(m[1]);
+/**
+ * Galerije sa strane mašine — PO IZVEDBI, onako kako ih izvor deli.
+ *
+ * Stranica mašine nosi više `designer_gallery_slider` sekcija, svaku sa svojim
+ * naslovom („T line 150", „T line 180HS") i svojim fotografijama. To je jedino
+ * mesto na izvoru gde izvedba ima SVOJU sliku — tabela ih samo nabraja. Uzima
+ * se `popup` verzija (900×600), krupnija od one u klizaču (650×450).
+ *
+ * Neke galerije nemaju naslov izvedbe („Galerija fotografija", „Photo
+ * gallery") — te su galerija cele mašine i uparuju se kasnije (vidi
+ * `izvedbeMasine`). Prazne galerije („Sadržaj u pripremi") se preskaču.
+ */
+function galerije(html) {
+  const nadjene = [];
+  const sekcije = html.split(/<section class="designer_gallery_slider/).slice(1);
+  for (const sekcija of sekcije) {
+    const kraj = sekcija.search(/<section |<footer/);
+    const deo = kraj < 0 ? sekcija : sekcija.slice(0, kraj);
+    const naslov = bezOznaka(deo.match(/section-title__title">([\s\S]*?)<\/h2>/)?.[1] ?? "");
+    const slike = [];
+    for (const m of deo.matchAll(/href="(\/data\/albums\/popup\/[^"]+)"/g)) {
+      if (!slike.includes(m[1])) slike.push(m[1]);
+    }
+    if (!slike.length) {
+      for (const m of deo.matchAll(/src="(\/data\/albums\/slider_gallery\/[^"]+)"/g)) {
+        if (!slike.includes(m[1])) slike.push(m[1]);
+      }
+    }
+    if (slike.length) nadjene.push({ naslov, slike });
   }
-  return [...nadjene];
+  return nadjene;
 }
 
 /* --------------------------------- Obilazak -------------------------------- */
@@ -451,7 +480,7 @@ async function obidji() {
       dodatak: DODACI[putanja] ?? IZVOR[roditelj(putanja)]?.dodatak ?? moj.dodatak,
       oznaka: ISPRAVKE[putanja] ?? naslov(html),
       slika,
-      galerija: galerija(html),
+      galerije: galerije(html),
     });
     process.stdout.write(`\r  nađeno mašina: ${masine.length}   `);
   }
@@ -496,8 +525,19 @@ function tabela(html) {
 }
 
 /**
+ * Mašine kod kojih slovenačka strana nosi DRUGU naslovnu fotografiju, pa se
+ * tabela ne može upariti po slici: naša (hrvatska) putanja → slovenačka.
+ * Freza VIVA je bez tabele stajala na sajtu baš zbog toga.
+ */
+const TABELA_SA_STRANE = {
+  "/hr/friziraj/viva": "/si/freze/viva",
+};
+
+/**
  * Obilazak slovenačke verzije, isti obrazac kao glavni — samo što se ovde ne
  * skupljaju mašine nego tabele, i to po naslovnoj fotografiji.
+ *
+ * Vraća i tabele po PUTANJI (za `TABELA_SA_STRANE`), ne samo po slici.
  */
 async function tabeleSaSlovenackog() {
   // Mega-meni je na svakoj strani, pa jedan zahtev daje ceo spisak kategorija.
@@ -507,6 +547,7 @@ async function tabeleSaSlovenackog() {
   const red = seme.map((putanja) => ({ putanja }));
   const videno = new Set(seme);
   const poSlici = new Map();
+  const poPutanji = new Map();
 
   while (red.length) {
     const { putanja } = red.shift();
@@ -524,14 +565,16 @@ async function tabeleSaSlovenackog() {
     }
 
     const slika = naslovnaSlika(html);
-    if (!slika || poSlici.has(slika)) continue;
+    if (!slika) continue;
     const t = tabela(html);
-    if (t) poSlici.set(slika, t);
+    if (!t) continue;
+    if (!poSlici.has(slika)) poSlici.set(slika, t);
+    poPutanji.set(putanja, t);
     process.stdout.write(`\r  nađeno tabela: ${poSlici.size}   `);
   }
 
   console.log();
-  return poSlici;
+  return { poSlici, poPutanji };
 }
 
 /* ------------------------ Prevod tehničkih podataka ----------------------- */
@@ -683,6 +726,8 @@ const OSOBINE = {
   "število stopenj cilindra": "Broj stepeni cilindra",
   "globina": "Dubina",
   "delovna globina": "Radna dubina",
+  "delovna globina (mm)": "Radna dubina",
+  "sanke za nastavitev d. globine": "Klizači za podešavanje dubine",
   "maksimalna globina kopanja": "Najveća dubina kopanja",
   "maksimalen doseg kopanja": "Najveći domet kopanja",
   "maks. naklon (°)": "Najveći nagib",
@@ -906,6 +951,11 @@ const JEDINICE_NAZIVA = {
   rpm: "o/min",
   "vrt/min": "o/min",
   "obr/min": "o/min",
+  // Slovenačka konjska moč u NAZIVU reda („…moč traktorja(KM)") — vrednosti su
+  // tada gole brojke, pa bi bez ovoga snaga ostala bez ikakve jedinice.
+  KM: "KS",
+  "kW/KM": "kW/KS",
+  "KW/KM": "kW/KS",
 };
 
 /** Jedinica sa kraja naziva („Teža (kg)" → „kg"); `null` kad zagrada nije jedinica. */
@@ -918,8 +968,10 @@ function jedinicaIzNaziva(tekst) {
 function bezJedinice(vrednost, jedinica) {
   if (!jedinica) return vrednost;
   const uzorak = jedinica.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  // Jedinica mora da stoji sama („180 m"), ne kao rep duže („180 cm" uz
+  // jedinicu „m" — inače ostane „180 c").
   const skraceno = vrednost
-    .replace(new RegExp(String.raw`\s*\(?${uzorak}\)?\s*$`, "i"), "")
+    .replace(new RegExp(String.raw`(?<!\p{L})\s*\(?${uzorak}\)?\s*$`, "iu"), "")
     .trim();
   // Ako od vrednosti ostane samo jedinica („kg"), bolje je ne dirati je.
   return skraceno || vrednost;
@@ -961,10 +1013,27 @@ function prevediVrednost(tekst) {
   return JEDINICE.reduce((t, [uzorak, zamena]) => t.replace(uzorak, zamena), v).trim();
 }
 
+/**
+ * Nazivi kolona (izvedbi) su fabričke oznake i ne prevode se — osim ostataka
+ * slovenačkog koji su se u njih uvukli („KLEŠČE MANO K 150", „RCS 20T s
+ * podvozjem", „3XL - opcijsko VARIO") i CMS-a („Besedilo: TB 400").
+ */
+const KOLONE = [
+  [/^\s*Besedilo\s*:\s*/i, ""],
+  [/^KLEŠČE\s+/i, ""],
+  [/\bLINIJA\b/g, "LINE"],
+  [/\bopcijsko\b/gi, "opciono"],
+  [/\bs podvozjem\b/gi, "sa podvozjem"],
+  [/\bnošen\b/gi, "nošeni"],
+];
+
+const prevediKolonu = (k) =>
+  KOLONE.reduce((t, [uzorak, zamena]) => t.replace(uzorak, zamena), k).replace(/\s+/g, " ").trim();
+
 /** Tabela sa izvora → tabela za sajt, sa prevedenim nazivima redova. */
 function prevediTabelu(t) {
   return {
-    kolone: t.kolone,
+    kolone: t.kolone.map(prevediKolonu),
     redovi: t.redovi
       .map(([naziv, ...vrednosti]) => {
         const jedinica = jedinicaIzNaziva(naziv);
@@ -981,6 +1050,137 @@ function prevediTabelu(t) {
       // Red „Model" je već zaglavlje tabele — ne ponavlja se u telu.
       .filter(([naziv]) => naziv.toLowerCase() !== "model"),
   };
+}
+
+/* --------------------------------- Izvedbe -------------------------------- */
+
+/**
+ * Reči u naslovu galerije koje ne razlikuju izvedbu — opis vrste („TANDEM
+ * PRIKOLICA T 13/10"), marketinški dodatak („GNS 300 + V-RING VALJAK") ili
+ * ostatak CMS-a („Sadržaj u pripremi"). Skidaju se pre uparivanja, da bi
+ * „JEDNOOSOVINSKA PRIKOLICA E 7,5/6" našla kolonu „E 7,5/6".
+ */
+const NEBITNE_RECI = new Set([
+  "linija", "line", "prikolica", "jednoosovinska", "dvoosovinska", "tandem",
+  "gradbena", "gradevinska", "galerija", "fotografij", "fotografija", "photo",
+  "gallery", "u", "pripremi", "sadržaj", "i", "v", "ring", "valjak",
+  "dvorotorski", "enorotorski", "jednorotorski", "čekić",
+]);
+
+/** Naslovi galerije koji znače „cela mašina", a ne jedna izvedba. */
+const OPSTA_GALERIJA = /galerija|gallery/i;
+
+/** „T line 150HS" → ["t", "line", "150hs"]; crtica i kosa crta dele reči. */
+const reci = (s) =>
+  s
+    .toLowerCase()
+    .replace(/[()+:]/g, " ")
+    .replace(/,\s/g, " ")
+    .split(/[\s\-]+/)
+    .filter(Boolean);
+
+/**
+ * Sažet oblik za poređenje: reči bez nebitnih, bez oznake mašine, slepljene.
+ * „REX T 22 K" na strani cepača REX → „t22k"; kolona „T 22 K" → „t22k".
+ */
+function sazeto(tekst, m) {
+  const oznaka = new Set(reci(`${m.oznaka} ${m.naziv}`));
+  return reci(tekst)
+    .filter((r) => !NEBITNE_RECI.has(r) && !oznaka.has(r))
+    .join("")
+    .replace(reci(m.oznaka).join(""), "");
+}
+
+/** Reči sa cifrom — „HZ 180/110" → ["180/110"]; poslednja spona pri uparivanju. */
+const brojke = (tekst) => reci(tekst).filter((r) => /\d/.test(r)).sort().join(" ");
+
+/**
+ * Kolone tabele kojima galerija sa izvora pripada.
+ *
+ * Stepenasto, od najstrožeg: isti sažeti oblik („t150" = „t150"), pa jedan
+ * sadrži drugi („hp240" u „terahp240"), pa isto bez broja dizni iza kose crte
+ * („R 300/8 PLUS" ↔ „R 300 PLUS"), pa ista brojka („G 15/12" ↔ „GM 15/12").
+ * Uzima se PRVI stepen koji nešto nađe — inače bi „F linija 165" pored svoje
+ * kolone uzela i „F 165H", jer je „f165" sadržano u „f165h".
+ *
+ * Sažeti oblik kolone mora da ostane neprazan — kolona „CASTA" (samo oznaka)
+ * nema šta da upari.
+ */
+function uparene(galerija, kolone, m) {
+  const g = sazeto(galerija, m);
+  if (!g) return [];
+  const bezKose = (t) => t.replace(/\/[\d,.]+/g, "");
+  const bg = brojke(galerija);
+  const stepeni = [
+    (k) => g === k,
+    (k) => g.includes(k) || k.includes(g),
+    (k) => bezKose(g).includes(bezKose(k)) || bezKose(k).includes(bezKose(g)),
+    (k, kolona) => Boolean(bg) && bg === brojke(kolona),
+  ];
+  for (const stepen of stepeni) {
+    const nadjene = kolone.filter((kolona) => {
+      const k = sazeto(kolona, m);
+      return Boolean(k) && stepen(k, kolona);
+    });
+    if (nadjene.length) return nadjene;
+  }
+  return [];
+}
+
+/** Naslov galerije očišćen za prikaz: bez „(Sadržaj u pripremi)" i sl. */
+const nazivIzGalerije = (naslov) =>
+  naslov.replace(/\((?:sadržaj )?u pripremi\)/gi, "").replace(/\s+/g, " ").trim();
+
+/**
+ * Izvedbe mašine — spisak koji kupac bira na stranici, kao na izvoru.
+ *
+ * Spisak izvedbi je TABELA (njene kolone), a galerije sa strane im daju
+ * fotografije. Kad tabele nema, ili kad joj je jedina kolona sama oznaka
+ * mašine („CASTA" uz galerije „CASTA C300/8 ECO" i „CASTA C600/10"), izvedbe
+ * se čitaju iz galerija — to je tada jedino mesto gde izvor uopšte nabraja
+ * modele. Galerija bez naslova izvedbe („Galerija fotografija") ide na celu
+ * mašinu (`galerija`), a galerija koja ne pripada nijednoj koloni se ispiše i
+ * preskoči — na strani mlina HAMMER stoji i galerija mlina ZONDA.
+ *
+ * Vraća `{ izvedbe: [{ naziv, slike }], galerija: [slike] }`; `slike` su
+ * putanje na izvoru, skidaju se tek pri upisu.
+ */
+function izvedbeMasine(m) {
+  const kolone = (m.tabela?.kolone ?? []).filter(Boolean);
+  const opsteKolone = kolone.every(
+    (k) => !sazeto(k, m) || k.trim().toUpperCase() === "HOFMAN",
+  );
+  const galerija = [];
+  const izvedbe = [];
+  const nesparene = [];
+
+  const posebne = m.galerije.filter((g) => {
+    if (!g.naslov || OPSTA_GALERIJA.test(g.naslov) || !sazeto(g.naslov, m)) {
+      galerija.push(...g.slike);
+      return false;
+    }
+    return true;
+  });
+
+  if (kolone.length && !opsteKolone) {
+    for (const kolona of kolone) izvedbe.push({ naziv: kolona, slike: [] });
+    for (const g of posebne) {
+      const nadjene = uparene(g.naslov, kolone, m);
+      const moje = izvedbe.filter((i) => nadjene.includes(i.naziv));
+      if (!moje.length) {
+        nesparene.push(g.naslov);
+        continue;
+      }
+      for (const i of moje) i.slike.push(...g.slike.filter((s) => !i.slike.includes(s)));
+    }
+  } else {
+    for (const g of posebne) izvedbe.push({ naziv: nazivIzGalerije(g.naslov), slike: [...g.slike] });
+  }
+
+  if (nesparene.length) {
+    console.log(`  ${punNaziv(m)}: galerija bez izvedbe u tabeli — ${nesparene.join(" | ")}`);
+  }
+  return { izvedbe, galerija };
 }
 
 /* --------------------------------- Sastavi -------------------------------- */
@@ -1017,7 +1217,7 @@ console.log("Tehnički podaci (slovenačka verzija) …");
 const tabele = await tabeleSaSlovenackog();
 let bezTabele = 0;
 for (const m of masine) {
-  const t = tabele.get(m.slika);
+  const t = tabele.poSlici.get(m.slika) ?? tabele.poPutanji.get(TABELA_SA_STRANE[m.putanja]);
   if (t) m.tabela = prevediTabelu(t);
   else bezTabele += 1;
 }
@@ -1030,7 +1230,18 @@ if (nepoznateOsobine.size) {
   );
 }
 
-// Stabilan redosled → stabilni kataloški brojevi između pokretanja.
+console.log("\nIzvedbe (galerije po izvedbi sa izvora) …");
+let brojIzvedbi = 0;
+let brojSlika = 0;
+for (const m of masine) {
+  Object.assign(m, izvedbeMasine(m));
+  brojIzvedbi += m.izvedbe.length;
+  brojSlika += m.galerija.length + m.izvedbe.reduce((n, i) => n + i.slike.length, 0);
+}
+console.log(`  izvedbi: ${brojIzvedbi}, fotografija uz njih: ${brojSlika}`);
+
+// Redosled u fajlu: po grani, tipu, putanji. Kataloški brojevi od njega NE
+// zavise (vidi `brojPoIzvoru` niže).
 const redGrana = Object.keys(GRANE);
 masine.sort(
   (a, b) =>
@@ -1060,18 +1271,47 @@ if (process.argv.includes("--stablo")) {
 console.log("\nSkidanje fotografija …");
 const redovi = [];
 const slikeMapa = {};
-let id = ID_OD;
+
+// Kataloški broj se VEZUJE ZA PUTANJU NA IZVORU i čuva između pokretanja: broj
+// stoji u adresi stranice proizvoda (`…-viva-5014`) i u Google indeksu, pa
+// nova mašina ili premeštanje u drugi tip ne sme da pomeri postojeće. Nova
+// mašina dobija prvi broj iza najvećeg zauzetog.
+const ranije = existsSync(MACHINES_FILE) ? JSON.parse(readFileSync(MACHINES_FILE, "utf8")) : [];
+const brojPoIzvoru = new Map(ranije.filter((r) => r.izvor).map((r) => [r.izvor, r.id]));
+let sledeci = Math.max(ID_OD - 1, ...ranije.map((r) => Number(r.id) || 0).filter((n) => n < 9000)) + 1;
 
 for (const m of masine) {
   const naziv = punNaziv(m);
   const slug = uSlug(naziv);
-  const kljuc = String(id++);
+  const kljuc = brojPoIzvoru.get(m.putanja) ?? String(sledeci++);
 
   // Slika se u mapi imenuje po SLUG-u, a ne po kataloškom broju: broj se dodeljuje
   // redom, pa bi dodavanje jedne mašine pomerilo sve iza nje i pomešalo slike sa
   // proizvodima. Slug je vezan za sam naziv i ne pomera se.
   const original = await fotografija(m.slika, slug);
   if (original) slikeMapa[kljuc] = `/images/masine/hofman/${slug}.jpg`;
+
+  // Fotografije izvedbi idu u podfolder mašine, imenovane po fajlu sa izvora
+  // (jedinstven tamo) — ista fotografija uz dve izvedbe (KIARA KR 700 MF i
+  // 3F dele galeriju) se tako skida i čuva jednom.
+  const slikaIzvedbe = async (izvorniPut) => {
+    const ime = uSlug(izvorniPut.split("/").pop().replace(/\.[a-z0-9]+$/i, ""));
+    const fajl = await fotografija(izvorniPut, ime, `izvedbe/${slug}`);
+    return fajl ? `/images/masine/hofman/izvedbe/${slug}/${ime}.jpg` : null;
+  };
+  // Redom, ne paralelno — izvor je mali sajt (vidi `PAUZA_MS`).
+  const skini = async (putanje) => {
+    const gotove = [];
+    for (const put of putanje) {
+      const lokalna = await slikaIzvedbe(put);
+      if (lokalna) gotove.push(lokalna);
+    }
+    return gotove;
+  };
+
+  const izvedbe = [];
+  for (const i of m.izvedbe) izvedbe.push({ naziv: i.naziv, slike: await skini(i.slike) });
+  const galerija = await skini(m.galerija);
 
   redovi.push({
     id: kljuc,
@@ -1085,22 +1325,23 @@ for (const m of masine) {
     slug,
     // Tabela modela; izostaje kad je izvor nema (vidi `tabeleSaSlovenackog`).
     ...(m.tabela ? { tabela: m.tabela } : {}),
+    // Izvedbe sa fotografijama i galerija cele mašine (vidi `izvedbeMasine`).
+    ...(izvedbe.length ? { izvedbe } : {}),
+    ...(galerija.length ? { galerija } : {}),
   });
   process.stdout.write(`\r  ${redovi.length}/${masine.length}   `);
 }
 console.log();
 
-// Postojeće Rolland mašine ostaju netaknute — samo dobijaju granu.
-const postojece = JSON.parse(readFileSync(MACHINES_FILE, "utf8")).filter(
-  (r) => r.brand !== "hofman",
-);
-for (const r of postojece) r.grana ??= "poljoprivredne";
+// Mašine drugih proizvođača (ako ih ikad bude) ostaju netaknute. Rolland
+// program (plave mašine) je skinut sa sajta odlukom vlasnika — ovde ga nema.
+const postojece = ranije.filter((r) => r.brand !== "hofman");
 
 writeFileSync(MACHINES_FILE, `${JSON.stringify([...postojece, ...redovi], null, 2)}\n`, "utf8");
 writeFileSync(GROUPS_FILE, `${JSON.stringify(GRANE, null, 2)}\n`, "utf8");
 
-// Dvanaest ručno pripremljenih Rolland slika (`/images/masine/*.jpg`) ostaje —
-// dopunjuju se, ne gaze.
+// Slike mašina drugih proizvođača (van `masine/hofman/`) ostaju — dopunjuju
+// se, ne gaze.
 const slikePostojece = Object.fromEntries(
   Object.entries(JSON.parse(readFileSync(IMAGES_FILE, "utf8"))).filter(
     ([, put]) => !String(put).startsWith("/images/masine/hofman/"),

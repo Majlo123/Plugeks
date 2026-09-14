@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { Plocica } from "@/components/Plocica";
+import { PrikolicePretraga } from "@/components/PrikolicePretraga";
 import {
   trailerCategories,
   trailerAccessoryGroups,
@@ -16,9 +17,10 @@ import { TRAILER_PROGRAMS } from "@/lib/catalog";
  * Ulaz u ponudu prikolica — pločice sa fotografijom, po jedna za svaki program.
  *
  * Kupac ne zna šta je „jednoosovinska 1300 kg”, ali odmah prepozna prikolicu za
- * čamac ili za auto. Zato ovde nema nijednog filtera: bira se po slici, a
- * osovine i nosivost dolaze tek unutar programa (`/prikolice/[tip]`), gde je
- * izbor sveden na dva reda čipova.
+ * čamac ili za auto. Zato ovde nema filtera: bira se po slici, a osovine i
+ * nosivost dolaze tek unutar programa (`/prikolice/[tip]`), gde je izbor
+ * sveden na dva reda čipova. Iznad pločica stoji jedino OPŠTA PRETRAGA — za
+ * kupca koji već zna oznaku modela ili šta prevozi (vidi `PrikolicePretraga`).
  */
 
 export const metadata: Metadata = {
@@ -58,54 +60,59 @@ export default function PrikolicePage() {
             Auto-prikolice
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
-            Izaberite vrstu prikolice — unutra birate broj osovina i nosivost.
+            Izaberite vrstu prikolice — unutra birate broj osovina i nosivost. Ili
+            odmah pretražite ceo program prikolica i opreme.
           </p>
 
-          <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-            {programi.map((p) => {
-              const program = TRAILER_PROGRAMS[p.key];
-              // Prva prikolica programa je i njegov „portret" — sve imaju
-              // fotografiju, pa pločica nikad ne ostaje prazna.
-              const naslovna = getTrailersByType(p.key)[0];
-              return (
-                <Plocica
-                  key={p.key}
-                  href={`/prikolice/${p.key}`}
-                  naslov={program?.oznaka ?? p.label}
-                  podnaslov={program?.kratko}
-                  broj={`${p.count} ${uzBroj(p.count, "model", "modela", "modela")}`}
-                  slika={naslovna?.image}
-                  alt={naslovna?.name ?? p.label}
-                />
-              );
-            })}
-          </div>
+          <div className="mt-6">
+            <PrikolicePretraga>
+              <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+                {programi.map((p) => {
+                  const program = TRAILER_PROGRAMS[p.key];
+                  // Prva prikolica programa je i njegov „portret" — sve imaju
+                  // fotografiju, pa pločica nikad ne ostaje prazna.
+                  const naslovna = getTrailersByType(p.key)[0];
+                  return (
+                    <Plocica
+                      key={p.key}
+                      href={`/prikolice/${p.key}`}
+                      naslov={program?.oznaka ?? p.label}
+                      podnaslov={program?.kratko}
+                      broj={`${p.count} ${uzBroj(p.count, "model", "modela", "modela")}`}
+                      slika={naslovna?.image}
+                      alt={naslovna?.name ?? p.label}
+                    />
+                  );
+                })}
+              </div>
 
-          <div className="mt-16 border-t border-border pt-12">
-            <h2 className="font-display text-xl font-bold text-charcoal md:text-2xl">
-              Dodatna oprema za prikolice
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
-              Cerade i arnjevi, dodatne stranice, čekrci, potporni točkovi i
-              rezervni delovi — originalna oprema uz svaki program.
-            </p>
+              <div className="mt-16 border-t border-border pt-12">
+                <h2 className="font-display text-xl font-bold text-charcoal md:text-2xl">
+                  Dodatna oprema za prikolice
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">
+                  Cerade i arnjevi, dodatne stranice, čekrci, potporni točkovi i
+                  rezervni delovi — originalna oprema uz svaki program.
+                </p>
 
-            <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-              {oprema.map((g) => {
-                const naslovna = getTrailersByType(g.key)[0];
-                return (
-                  <Plocica
-                    key={g.key}
-                    href={`/prikolice/${g.key}`}
-                    naslov={g.label}
-                    broj={`${g.count} ${uzBroj(g.count, "komad", "komada", "komada")}`}
-                    slika={naslovna?.image}
-                    alt={naslovna?.name ?? g.label}
-                    sitno
-                  />
-                );
-              })}
-            </div>
+                <div className="mt-8 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+                  {oprema.map((g) => {
+                    const naslovna = getTrailersByType(g.key)[0];
+                    return (
+                      <Plocica
+                        key={g.key}
+                        href={`/prikolice/${g.key}`}
+                        naslov={g.label}
+                        broj={`${g.count} ${uzBroj(g.count, "komad", "komada", "komada")}`}
+                        slika={naslovna?.image}
+                        alt={naslovna?.name ?? g.label}
+                        sitno
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </PrikolicePretraga>
           </div>
 
           <p className="mt-12 text-sm text-muted-foreground">

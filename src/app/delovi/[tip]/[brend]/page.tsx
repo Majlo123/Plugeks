@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowRight, Phone } from "lucide-react";
 import { ListaProizvoda } from "@/components/ListaProizvoda";
 import { KontaktCTA } from "@/components/sections/KontaktCTA";
@@ -9,12 +9,15 @@ import { SpisakJsonLd, PitanjaJsonLd, Pitanja } from "@/components/SpisakJsonLd"
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import {
+  partTypes,
   partTypeBrandPairs,
   getPartsByTypeAndBrand,
   brandsForPartType,
   partTypesWithPageForBrand,
   katBrojeva,
   kontekstMasine,
+  preovladjujucaGrupa,
+  tipZaMasinu,
   uzBroj,
   type Product,
   type UkrstenaKategorija,
@@ -44,9 +47,12 @@ export function generateStaticParams() {
 
 /* --------------------------------- Tekst ---------------------------------- */
 
-/** „Raonik za plugove Lemken" — isti oblik u naslovu, H1 i breadcrumb-u. */
-const naslov = (u: UkrstenaKategorija, kontekst: string) =>
-  `${u.tipLabel} za ${kontekst} ${u.brendLabel}`;
+/**
+ * „Raonik za plugove Lemken", „Nož roto drljače Maschio" — isti oblik u naslovu,
+ * H1 i breadcrumb-u. Mašina dolazi iz grupe koja među tim delovima preovlađuje.
+ */
+const naslov = (u: UkrstenaKategorija, grupa: string) =>
+  `${tipZaMasinu(u.tipLabel, grupa)} ${u.brendLabel}`;
 
 /** Koliko komada nosi oznaku strane ugradnje — „levi i desni" je čest upit. */
 function strane(delovi: Product[]) {
@@ -59,14 +65,14 @@ function strane(delovi: Product[]) {
  * Uvodni pasus se sastavlja iz stvarnog sadržaja kataloga za baš tu kombinaciju
  * — bez izmišljanja brojki i bez teksta prepisanog sa kategorije iznad.
  */
-function uvod(u: UkrstenaKategorija, delovi: Product[], kontekst: string): string {
+function uvod(u: UkrstenaKategorija, delovi: Product[], grupa: string): string {
   const podela = strane(delovi);
 
   return [
     // Naziv tipa dolazi iz podataka i ostaje u NOMINATIVU — rečenica je zato
     // sastavljena tako da on bude subjekat. Deklinacija po šablonu daje „za
     // daska" umesto „za dasku"; isto pravilo važi i na strani marke.
-    `${naslov(u, kontekst)} — u katalogu ${katBrojeva(
+    `${naslov(u, grupa)} — u katalogu ${katBrojeva(
       u.count,
     )}, na stanju ili po porudžbini.`,
     podela
@@ -82,14 +88,14 @@ function uvod(u: UkrstenaKategorija, delovi: Product[], kontekst: string): strin
           "desnih",
         )}, pa nam uz broj javite i da li je levi ili desni.`
       : null,
-    "Bira se po kataloškom broju utisnutom na samom komadu; ako je izlizan, dovoljna je oznaka pluga sa pločice na ramu i fotografija dela.",
+    "Bira se po kataloškom broju utisnutom na samom komadu; ako je izlizan, dovoljna je oznaka mašine sa pločice na ramu i fotografija dela.",
   ]
     .filter(Boolean)
     .join(" ");
 }
 
-function pitanja(u: UkrstenaKategorija, delovi: Product[], kontekst: string) {
-  const h1 = naslov(u, kontekst);
+function pitanja(u: UkrstenaKategorija, delovi: Product[], grupa: string) {
+  const h1 = naslov(u, grupa);
   const podela = strane(delovi);
 
   // Svako pitanje počinje tačnim nazivom kategorije u nominativu: i zbog padeza
@@ -97,7 +103,7 @@ function pitanja(u: UkrstenaKategorija, delovi: Product[], kontekst: string) {
   return [
     {
       q: `${h1} — kako da znam koji komad mi treba?`,
-      a: `Najsigurnije po kataloškom broju utisnutom na starom delu. Ako se ne čita, pošaljite oznaku pluga sa pločice na ramu i fotografiju dela sa strane — po obliku i merama ga prepoznajemo${
+      a: `Najsigurnije po kataloškom broju utisnutom na starom delu. Ako se ne čita, pošaljite oznaku mašine sa pločice na ramu i fotografiju dela sa strane — po obliku i merama ga prepoznajemo${
         podela ? " i potvrđujemo da li je levi ili desni" : ""
       }, pa potvrđujemo pre slanja.`,
     },
@@ -113,7 +119,7 @@ function pitanja(u: UkrstenaKategorija, delovi: Product[], kontekst: string) {
       q: `${h1} — koliko različitih brojeva imate?`,
       a: `Trenutno ${katBrojeva(
         u.count,
-      )} baš za tu kombinaciju, uz preko 4.600 stavki u ukupnom katalogu potrošnih delova. Ako broj koji tražite nije na spisku, pozovite — katalog je širi od onoga što je ovde prikazano.`,
+      )} baš za tu kombinaciju, uz preko 4.700 stavki u ukupnom katalogu potrošnih delova. Ako broj koji tražite nije na spisku, pozovite — katalog je širi od onoga što je ovde prikazano.`,
     },
   ];
 }
@@ -129,24 +135,24 @@ export function generateMetadata({
   if (!u) return {};
 
   const delovi = getPartsByTypeAndBrand(u.tipKey, u.brendKey);
-  const kontekst = kontekstMasine(delovi[0]?.groupKey ?? "delovi-plugovi");
-  const h1 = naslov(u, kontekst);
+  const grupa = preovladjujucaGrupa(delovi);
+  const h1 = naslov(u, grupa);
   const pojam = u.tipLabel.toLowerCase();
+  const kontekst = kontekstMasine(grupa);
 
   return {
     // Naslov je namerno u obliku u kojem se i pretražuje.
     title: `${h1} — ${katBrojeva(u.count)}`,
     description: `${h1}: ${katBrojeva(
       u.count,
-    )} na stanju ili po porudžbini. Pošaljite kataloški broj ili oznaku pluga — cena i rok isporuke isti dan. PlugekS, Žabalj.`,
+    )} na stanju ili po porudžbini. Pošaljite kataloški broj ili oznaku mašine — cena i rok isporuke isti dan. PlugekS, Žabalj.`,
     alternates: { canonical: `/delovi/${u.tipKey}/${u.brendKey}` },
     keywords: [
       `${pojam} za ${u.brendLabel}`,
       `${pojam} ${u.brendLabel}`,
       `${u.brendLabel} ${pojam}`,
-      `${pojam} za plug ${u.brendLabel}`,
       `${pojam} za ${u.brendLabel} cena`,
-      `rezervni delovi za plugove ${u.brendLabel}`,
+      `rezervni delovi za ${kontekst} ${u.brendLabel}`,
       "PlugekS",
     ],
     openGraph: {
@@ -166,15 +172,21 @@ export default function UkrstenaPage({
   params: { tip: string; brend: string };
 }) {
   const u = nadji(params.tip, params.brend);
-  if (!u) notFound();
+  // Kombinacija koja je pala ispod praga (npr. posle podele tipa na dva) ne
+  // vraća 404 nego vodi na stranu tipa — te adrese su već bile u Google-u.
+  if (!u) {
+    if (partTypes().some((t) => t.key === params.tip)) permanentRedirect(`/delovi/${params.tip}`);
+    notFound();
+  }
 
   const svi = getPartsByTypeAndBrand(u.tipKey, u.brendKey);
   const prikazani = svi.slice(0, MAX_NA_STRANI);
   const ostali = svi.length - prikazani.length;
-  const kontekst = kontekstMasine(svi[0]?.groupKey ?? "delovi-plugovi");
-  const h1 = naslov(u, kontekst);
-  const tekst = uvod(u, svi, kontekst);
-  const pitanjaLista = pitanja(u, svi, kontekst);
+  const grupa = preovladjujucaGrupa(svi);
+  const kontekst = kontekstMasine(grupa);
+  const h1 = naslov(u, grupa);
+  const tekst = uvod(u, svi, grupa);
+  const pitanjaLista = pitanja(u, svi, grupa);
 
   // Unakrsni linkovi: ista marka drugi tip, isti tip druga marka. Bez njih bi
   // nove strane visile samo o sitemap-u, bez ijednog internog linka.
@@ -188,7 +200,7 @@ export default function UkrstenaPage({
       <PutanjaJsonLd
         stavke={[
           { naziv: "Proizvodi", href: "/proizvodi" },
-          { naziv: `${u.tipLabel} za ${kontekst}`, href: `/delovi/${u.tipKey}` },
+          { naziv: tipZaMasinu(u.tipLabel, grupa), href: `/delovi/${u.tipKey}` },
           { naziv: h1, href: `/delovi/${u.tipKey}/${u.brendKey}` },
         ]}
       />
@@ -243,7 +255,7 @@ export default function UkrstenaPage({
           {drugeMarke.length > 0 && (
             <nav className="mt-12 border-t border-border pt-6">
               <p className="text-sm font-semibold text-charcoal">
-                {u.tipLabel} za druge marke pluga
+                {u.tipLabel} za druge marke
               </p>
               <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                 {drugeMarke.map((b) => (
@@ -264,7 +276,7 @@ export default function UkrstenaPage({
           {drugiTipovi.length > 0 && (
             <nav className="mt-8 border-t border-border pt-6">
               <p className="text-sm font-semibold text-charcoal">
-                Ostali delovi za plugove {u.brendLabel}
+                Ostali delovi za {kontekst} {u.brendLabel}
               </p>
               <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                 {drugiTipovi.map((t) => (
@@ -288,7 +300,7 @@ export default function UkrstenaPage({
               href={`/delovi/brend/${u.brendKey}`}
               className="font-medium text-brand hover:underline"
             >
-              sve delove za plugove {u.brendLabel}
+              sve delove za mašine {u.brendLabel}
             </Link>{" "}
             i{" "}
             <Link

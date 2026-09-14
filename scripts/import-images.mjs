@@ -64,8 +64,17 @@ for (const file of htmlFiles) {
   }
 }
 
+// Samo DELOVI: Rolland mašine (plavi program) su skinute sa sajta, pa se
+// njihove fotografije iz sačuvane strane kategorije mašina ne preuzimaju —
+// slika bez proizvoda bi samo ležala u repozitorijumu (`npm run slike:provera`
+// bi je prijavio).
+const delovi = new Set(
+  JSON.parse(readFileSync(resolve(root, "src/data/parts.json"), "utf8")).items.map((r) => r[0]),
+);
+for (const id of [...found.keys()]) if (!delovi.has(id)) found.delete(id);
+
 console.log(`Pregledano stranica: ${htmlFiles.length}`);
-console.log(`Pronađeno slika: ${found.size}`);
+console.log(`Pronađeno slika (samo za delove iz kataloga): ${found.size}`);
 if (found.size === 0) {
   console.error("\nNijedna adresa nije prepoznata. Proveri da si sačuvao stranicu");
   console.error("kategorije sa proizvodima, a ne npr. početnu stranu.");

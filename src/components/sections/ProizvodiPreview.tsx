@@ -6,8 +6,27 @@ import { MachineCard } from "@/components/CatalogCard";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 
-// Izdvojeni modeli — kompaktna mreža (do 4 u redu) u stilu modernog web-shopa.
-const featured = machines.slice(0, 8);
+/**
+ * Izdvojeni modeli — kompaktna mreža (do 4 u redu) u stilu modernog web-shopa.
+ *
+ * Bira se RUČNO, po kataloškom broju, a ne „prvih osam iz fajla": redosled u
+ * `machines.json` ide po grani i tipu, pa bi prvih osam bile dve baštenske
+ * kosilice i šest mašina za košenje. Ovde je po jedan predstavnik posla za koji
+ * nas kupci najčešće zovu; mašina koje više nema u katalogu jednostavno ispada.
+ */
+const IZDVOJENE = [
+  "5034", // Plug NERO
+  "5015", // Malčer G LINE
+  "5014", // Freza VIVA
+  "5033", // Tanjirača BRONCA
+  "5006", // Kosačica JASA
+  "5031", // Gruber HERO
+  "5054", // Cepač drva REX (kardanski pogon)
+  "5004", // Rolo balirka ARGA
+];
+const featured = IZDVOJENE.map((id) => machines.find((m) => m.id === id)).filter(
+  (m): m is (typeof machines)[number] => Boolean(m),
+);
 
 export function ProizvodiPreview() {
   return (

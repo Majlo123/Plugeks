@@ -24,22 +24,29 @@ const sans = Manrope({
 
 const SITE_URL = "https://plugeks.com";
 
+/**
+ * Naslov i opis početne su ono što Google ispisuje uz rezultat za „plugeks":
+ * prva rečenica opisa je i prva rečenica koju posetilac pročita o firmi, pa
+ * stoji ono čime se firma bavi — „Uvoz i prodaja poljoprivrednih delova i
+ * mašina" — a ne spisak kategorija sa brojkama.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "PlugekS — Poljoprivredna mehanizacija | Malčeri, freze, traktori",
+    default: "PlugekS — Uvoz i prodaja poljoprivrednih delova i mašina",
     template: "%s | PlugekS",
   },
   description:
-    "Uvoz i prodaja poljoprivredne mehanizacije — malčeri, freze, prednji utovarivači, kompakt traktori i priključci. Finansiranje, subvencije i isporuka širom Srbije. Žabalj, Vojvodina.",
+    "Uvoz i prodaja poljoprivrednih delova i mašina. Rezervni delovi za plugove, roto drljače, tanjirače i sejalice, poljoprivredne, šumske i građevinske mašine i auto-prikolice. Isporuka širom Srbije. Žabalj, Vojvodina.",
   keywords: [
-    "malčeri",
-    "mulčeri",
-    "freze",
+    "poljoprivredni delovi",
+    "rezervni delovi za plugove",
+    "delovi za roto drljače",
+    "poljoprivredne mašine",
     "poljoprivredna mehanizacija",
-    "kompakt traktori",
-    "prednji utovarivači",
-    "priključne mašine",
+    "malčeri",
+    "freze",
+    "plugovi",
     "tanjirača",
     "auto prikolice",
     "prikolica za auto",
@@ -59,16 +66,16 @@ export const metadata: Metadata = {
     locale: "sr_RS",
     url: SITE_URL,
     siteName: "PlugekS",
-    title: "PlugekS — Napredna poljoprivredna mehanizacija",
+    title: "PlugekS — Uvoz i prodaja poljoprivrednih delova i mašina",
     description:
-      "Malčeri, freze, utovarivači i kompakt traktori uz finansiranje, podršku oko subvencija i isporuku širom Srbije i regiona.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "PlugekS — poljoprivredna mehanizacija" }],
+      "Rezervni delovi za plugove i roto drljače, poljoprivredne, šumske i građevinske mašine i auto-prikolice — uz finansiranje, podršku oko subvencija i isporuku širom Srbije i regiona.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "PlugekS — uvoz i prodaja poljoprivrednih delova i mašina" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PlugekS — Napredna poljoprivredna mehanizacija",
+    title: "PlugekS — Uvoz i prodaja poljoprivrednih delova i mašina",
     description:
-      "Malčeri, freze, utovarivači i kompakt traktori uz finansiranje i isporuku širom Srbije.",
+      "Rezervni delovi za plugove i roto drljače, poljoprivredne mašine i auto-prikolice uz finansiranje i isporuku širom Srbije.",
     images: ["/og.jpg"],
   },
   robots: { index: true, follow: true },

@@ -8,7 +8,7 @@ export const site = {
   legalName: "PlugekS",
   slogan: "Napredna poljoprivreda",
   description:
-    "Uvoz i prodaja poljoprivredne mehanizacije i delova — malčeri, freze, prednji utovarivači, kompakt traktori i priključne mašine. Žabalj, Vojvodina.",
+    "Uvoz i prodaja poljoprivrednih delova i mašina — rezervni delovi za plugove i roto drljače, poljoprivredne, šumske i građevinske mašine i auto-prikolice. Žabalj, Vojvodina.",
 
   // Kontakt (NAP — Name / Address / Phone)
   phoneDisplay: "062 194 8387",

@@ -11,11 +11,13 @@
     "catalog": "node scripts/build-catalog.mjs",
     "slike": "node scripts/import-images.mjs",
     "plugovi": "node scripts/import-plow-parts.mjs",
+    "rotodrljace": "node scripts/import-rotodrljace.mjs",
     "prikolice": "node scripts/import-trailers.mjs",
     "cene": "node scripts/import-trailer-prices.mjs",
     "slike:kadar": "python scripts/normalize_product_images.py",
+    "slike:provera": "node scripts/check-images.mjs",
     "masine": "node scripts/import-hofman.mjs",
-    "masine:slike": "python scripts/normalize_product_images.py masine",
+    "masine:slike": "python scripts/normalize_product_images.py masine izvedbe",
     "kategorije": "python scripts/build_category_images.py"
   },
   "dependencies": {

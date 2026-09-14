@@ -23,7 +23,12 @@
 const SIVI_CRTEZ = "/images/plugovi/";
 
 /** Tipovi dela koji su po definiciji delovi predplužnjaka. */
-const TIPOVI_PREDPLUZNJAKA = new Set(["predpluznjak", "predpluzna-daska"]);
+const TIPOVI_PREDPLUZNJAKA = new Set([
+  "predpluznjak",
+  "raonik-predpluznjaka",
+  "daska-predpluznjaka",
+  "grudi-predpluznjaka",
+]);
 
 /** „Raonik predplužnjaka Vogel & Noot…" — ime nosi podatak koji tip ne nosi. */
 const IME_PREDPLUZNJAKA = /predplu[žz]/i;

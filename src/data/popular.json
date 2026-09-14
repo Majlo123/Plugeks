@@ -22,14 +22,14 @@
     "image": "/images/plugovi/2719.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
-      "tip": "lajsna",
+      "tip": "resetka",
       "brend": "lemken",
       "strana": "desni"
     },
     "tags": [
       "Delovi za plugove",
       "Lemken",
-      "Nastavak daske",
+      "Rešetka/traka daske",
       "Desni"
     ]
   },
@@ -103,7 +103,7 @@
   },
   {
     "id": "3482",
-    "name": "Daska Rabe / RabeWerk HRP O 296 27020102 (levo)",
+    "name": "Daska Rabewerk HRP O 296 27020102 (levo)",
     "image": "/images/plugovi/3482.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -113,7 +113,7 @@
     },
     "tags": [
       "Delovi za plugove",
-      "Rabe / RabeWerk",
+      "Rabewerk",
       "Daska",
       "Levi"
     ]
@@ -226,20 +226,20 @@
     "image": "/images/plugovi/3872.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
-      "tip": "plaz",
+      "tip": "kratki-plaz",
       "brend": "regent",
       "strana": "levi"
     },
     "tags": [
       "Delovi za plugove",
       "Regent",
-      "Plaz",
+      "Kratki plaz",
       "Levi"
     ]
   },
   {
     "id": "3627",
-    "name": "Grudi daske Rabe / RabeWerk VRP 292 (levo)",
+    "name": "Grudi daske Rabewerk VRP 292 (levo)",
     "image": "/images/plugovi/3627.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -249,7 +249,7 @@
     },
     "tags": [
       "Delovi za plugove",
-      "Rabe / RabeWerk",
+      "Rabewerk",
       "Grudi daske",
       "Levi"
     ]
@@ -328,14 +328,14 @@
     "image": "/images/plugovi/3258.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
-      "tip": "drzac",
+      "tip": "nosac-deflektora",
       "brend": "overum",
       "strana": "desni"
     },
     "tags": [
       "Delovi za plugove",
       "Överum",
-      "Držač",
+      "Nosač deflektora",
       "Desni"
     ]
   },
@@ -358,7 +358,7 @@
   },
   {
     "id": "3424",
-    "name": "Raonik Rabe / RabeWerk SSP OS 293 (levo)",
+    "name": "Raonik Rabewerk SSP OS 293 (levo)",
     "image": "/images/plugovi/3424.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
@@ -368,7 +368,7 @@
     },
     "tags": [
       "Delovi za plugove",
-      "Rabe / RabeWerk",
+      "Rabewerk",
       "Raonik",
       "Levi"
     ]
@@ -379,14 +379,14 @@
     "image": "/images/plugovi/2294.jpg",
     "facets": {
       "grupa": "delovi-plugovi",
-      "tip": "daska",
+      "tip": "daska-predpluznjaka",
       "brend": "landsberg-pottinger",
       "strana": "levi"
     },
     "tags": [
       "Delovi za plugove",
       "Landsberg / Pöttinger",
-      "Daska",
+      "Daska predplužnjaka",
       "Levi"
     ]
   },

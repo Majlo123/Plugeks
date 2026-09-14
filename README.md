@@ -87,15 +87,20 @@ Promena ovde se odražava na **celom sajtu** (header, footer, dugmad, JSON-LD).
 
 > Sva mesta koja treba proveriti/zameniti označena su komentarom `// ZAMENI: ...`
 
-### 3) Katalog sa rolland.pl → `npm run catalog`
+### 3) Katalog delova → `npm run catalog`
 
 Katalog na `/proizvodi` ima tri dela:
 
 | Deo | Izvor | Fajl |
 | --- | --- | --- |
-| Mašine (87) | Rolland (12) + Hofman, `npm run masine` (odeljak 8) | `src/data/machines.json` |
+| Mašine (75) | Hofman, `npm run masine` (odeljak 8) | `src/data/machines.json` |
 | Auto-prikolice (65) + oprema (116) | Vesta, `npm run prikolice` (odeljak 6) | `src/data/trailers.json` |
-| Rezervni delovi (4.644) | Rolland | `src/data/parts.json` |
+| Rezervni delovi (4.800) | Rolland (4.644) + roto drljače sa psc-ferencak.hr (156, odeljak 3a) | `src/data/parts.json` |
+
+> **Rolland MAŠINE (plavi program za obradu zemljišta) su skinute sa sajta**
+> odlukom vlasnika — od Rollanda ostaju samo delovi. Njihove stare adrese
+> (`/proizvod/tanjiraca-field-bt-4396`, `/masine/agregati`…) trajno vode na
+> stranu tipa sa zelenim Hofman mašinama (vidi `redirects` u `next.config.mjs`).
 
 Rolland deo se generiše iz njihovog `sitemap.xml` — jedine stranice koja nije iza
 anti-bot zaštite. Osvežavanje:
@@ -106,12 +111,56 @@ npm run catalog
 ```
 
 Skripta iz URL-ova izvlači tip dela, brend mašine, kataloški broj i stranu
-ugradnje, i sve prevodi na srpski. **Prevode, brendove i nazive mašina menjaš u
+ugradnje, i sve prevodi na srpski. **Prevode i brendove menjaš u
 `scripts/rolland-dictionary.mjs`** — ako skripta prijavi „neprepoznati tipovi
 delova", dodaj ih u `PART_TYPES` i pokreni ponovo.
 
+**Tip dela se poklapa sa nazivom.** Složeni nazivi iz `NAME_PREFIXES` nose i
+svoj tip za filter: „Rešetka/traka daske" (271), „Dugi plaz" (259), „Kratki
+plaz" (218), „Raonik predplužnjaka" (212), „Daska predplužnjaka" (200),
+„Prednji deo plaza" (83), „Nožasto crtalo", „Obloga plaza", „Nosač deflektora"…
+Ranije su svi stajali pod osnovnim tipom prvog tokena (rešetka pod „Nastavak
+daske", prednji deo plaza pod „Ostali delovi"), pa naziv na kartici i tip u
+filteru nisu bili isti. Skripta i dalje spaja ono što je isti deo pod dva
+imena („odkładniczka" = daska predplužnjaka).
+
+Posle pakovanja skripta osveži i `src/data/popular.json` (nazive, fasete i
+oznake najtraženijih delova) iz istih podataka — ko je u vitrini bira
+`npm run plugovi` (odeljak 5), ali kopija u tom fajlu ne sme da zastari.
+
 Delovi se u pretraživač učitavaju tek kad korisnik izabere „Rezervni delovi",
 pa `parts.json` ne opterećuje početno učitavanje stranice.
+
+### 3a) Delovi za roto drljače → `npm run rotodrljace`
+
+Sedma grupa delova — noževi, klinovi, čistači valjka, ležajevi, kućišta i
+osovinice za roto drljače (Maschio, Kuhn, Lemken, Breviglieri, Amazone, Lely,
+Pegoraro, Howard, Rabe…) — dolazi sa **psc-ferencak.hr**, iz kategorije
+„Rotodrljače":
+
+```bash
+npm run rotodrljace                    # 1) podaci + sirovi originali u data/ferencak-originals/
+npm run slike:kadar -- rotodrljace     # 2) slike za sajt u public/images/rotodrljace/ (+ skidanje žiga)
+npm run catalog                        # 3) spajanje sa Rolland delovima u parts.json
+```
+
+Skripta (`scripts/import-rotodrljace.mjs`) čita mrežu proizvoda te kategorije,
+prevodi njihove naslove (velika slova, hrvatski, skraćenice) u naš oblik —
+„NOŽ ROTO DRLJAČE LEMKEN D. 320x110x72x15 fi17" → „Nož roto drljače Lemken
+320x110x72x15 fi 17 (desno)" — i iz naslova vadi tip, marku i stranu ugradnje.
+Marke koje već postoje u Rolland katalogu (Lemken, Kuhn, Kverneland, Maschio,
+Rabe…) nose ISTI ključ, pa je u filteru jedna marka bez obzira na izvor.
+
+Naši kataloški brojevi idu od **6001** (Rolland staje na 4790, Hofman mašine
+su 5001–5999, prikolice od 9001), vezani su za njihov id proizvoda i čuvaju se
+u `src/data/rotodrljace.json` — ponovno pokretanje ne pomera postojeće.
+Cene se ne prenose (ostaju samo kao `izvor.cena` u tom fajlu, nigde na sajtu).
+
+> **Žig:** nekoliko crteža na izvoru nosi poluprovidan plavi logo preko sredine.
+> Skida ga korak 2 (`bez_ziga_izvora` u `normalize_product_images.py`): plavu
+> ispunu odblendira iz odnosa kanala, a tanke sive konture loga (klas i
+> zupčanik) prepozna po obliku — tanke su i ne naslanjaju se na crne linije
+> crteža — i izbriše. Slike bez dovoljno plavih piksela se ne diraju.
 
 ### 4) Fotografije proizvoda → `npm run slike`
 
@@ -242,6 +291,11 @@ dobijaju sufiks `(varijanta 2)`.
 > indeksira se u Google Images. Kad dobiješ svoje fotografije, zameni fajlove
 > pod istim imenom.
 
+> **Pretraga:** iznad pločica na `/prikolice` stoji jedno opšte polje za
+> pretragu (`PrikolicePretraga`) — pretražuje sve prikolice i svu opremu
+> odjednom, po istom indeksu kao katalog (oznaka modela, nosivost, namena,
+> narodni pojmovi). Dok je prazno, vide se pločice; čim se kuca, pogoci.
+
 ### 7) Kadar fotografija proizvoda → `npm run slike:kadar`
 
 Kartica proizvoda prikazuje sliku sa `object-cover`, dakle **opseca sve što ne
@@ -251,6 +305,7 @@ staje u njen odnos stranica**. Izvorne fotografije to ne poštuju:
 | --- | --- | --- |
 | `public/images/rolland/` | 472x630 i 599x800, **uspravno** | kartica dela je bila položena — pola dela je odlazilo van kadra |
 | `public/images/plugovi/` | kvadrat 440x440, sadržaj od 32% do 95% kadra | crteži različite veličine u istoj mreži |
+| `public/images/rotodrljace/` | 600x600 i 670x670 `.webp`, deo sa žigom | žig preko crteža (vidi odeljak 3a) |
 | `public/images/prikolice/` | 50 formata, od 157x73 do 2560x1696 | jedna prikolica ispuni karticu, druga pluta kao tačka |
 | `public/images/masine/hofman/` | 750x500 `.webp` | drugi odnos od kartice mašine (16:10) |
 
@@ -259,7 +314,13 @@ npm run slike:kadar                  # sve
 npm run slike:kadar -- delovi        # samo jedan posao
 npm run slike:kadar -- --dry         # samo izveštaj
 npm run masine:slike                 # isto, samo posao „masine"
+npm run slike:provera                # provera: fajlovi, kadar, slike bez proizvoda, proizvodi bez slike
 ```
+
+`npm run slike:provera` (`scripts/check-images.mjs`) prođe kroz SVAKU sliku koju
+sajt poznaje i prijavi sliku iz mape koje nema na disku, fajl koji nijedan
+proizvod ne koristi, pogrešan kadar i slike sajta koje kod referencira a fajla
+nema; izlazni kod 1 kad ima grešaka, pa se sme zvati pre objave.
 
 Skripta ne opseca nego radi suprotno: iseče proizvod iz bele pozadine, skalira
 ga na **uvek isti udeo kadra** i centrira na belom platnu tačnog odnosa
@@ -276,8 +337,7 @@ samog dela, koja je uzimala oko četvrtine kadra. Traži se povezana celina koja
 je cela iznad proizvoda i u gornjoj trećini kadra; ako je nema, slika se ne
 dira. Poluprovidni **žig preko samog dela ostaje**.
 
-> **Šta skripta ne dira:** boje i `public/images/masine/` — te su ručno
-> pripremljene i već su tačno 900x563 (16:10). Kad dobiješ media paket bez žiga,
+> **Šta skripta ne dira:** boje. Kad dobiješ Rolland media paket bez žiga,
 > ubaci fajlove u `data/rolland-originals/` i pokreni `npm run slike:kadar`.
 
 ---
@@ -294,9 +354,15 @@ građevinske. `/masine` nudi SAMO te tri kartice; tip mašine se bira unutar gra
 
 | Grana | Tipova | Mašina | Strana grane |
 | --- | --- | --- | --- |
-| Poljoprivredne | 13 | tanjirače, agregati, podrivači, valjci (Rolland) + plugovi, malčeri, kosačice, balirke, sejalice, prskalice, prikolice, mešaone, baštenske mašine, tegovi | pločice tipova (65 mašina) |
+| Poljoprivredne | 15 | plugovi, tanjirače, gruberi/setvospremači/drljače, valjci, malčeri, freze, kosačice i balirke, sejalice, prskalice, traktorske prikolice, mešaone, baštenske mašine, tegovi | pločice tipova (53 mašine) |
 | Šumske | 5 | cepači drva, iverači, kružne pile, šumske prikolice, klešta i priključci | sve mašine odjednom (18) |
 | Građevinske | 3 | mini bageri, mini utovarivači, mini dumperi | sve mašine odjednom (4) |
+
+> **Plugovi, malčeri i freze su svaki svoj tip** iako su malobrojni (plug NERO
+> je sam u „Plugovi", freza VIVA sama u „Freze"): to su reči koje kupac kuca i
+> pločice koje traži na strani grane. Ključevi `tanjirace` i `valjci` su ostali
+> iz vremena Rolland programa, pa te indeksirane adrese i dalje vode na živu
+> ponudu (tanjirača BRONCA, valjci ROLO i SEKO).
 
 **Strana grane ima dva oblika**, po tome koliko mašina grana ima — granica je
 `SVE_ODJEDNOM_DO` u `src/app/masine/grana/[grana]/page.tsx` (30 mašina):
@@ -331,6 +397,14 @@ slike se keširaju u `data/hofman-cache/`, pa je ponovno pokretanje besplatno;
 > imenice upisane u tabelu `IZVOR` u `scripts/import-hofman.mjs`; sa izvora se
 > uzima samo fabrička oznaka modela (JASA, ARGA, G LINE). **Nova kategorija na
 > izvoru = novi red u toj tabeli**, inače se preskoči.
+
+> **Kataloški brojevi su stabilni.** Broj se vezuje za putanju mašine na izvoru
+> i čuva iz postojećeg `machines.json`; nova mašina ili premeštanje u drugi tip
+> ne pomera brojeve ostalih (broj stoji u adresi stranice i u Google indeksu).
+
+> **Tabela koja se ne upari po slici** (freza VIVA — slovenačka strana nosi
+> drugu naslovnu fotografiju) upisuje se ručno u `TABELA_SA_STRANE`: naša
+> putanja → slovenačka. VIVA zato sad ima svih sedam izvedbi (CRT 120–260 PRO).
 
 > **Komunalna mehanizacija se ne uvozi** (nije u ponudi). Baštenske mašine
 > (izvorno „GARDEN MACHINES") su tip unutar poljoprivrednih, ne zasebna grana.
@@ -498,16 +572,19 @@ await fetch("/api/upit", {
 - **JSON-LD**: `Store`/`LocalBusiness`, `WebSite` + `SearchAction` (polje za
   pretragu u Google rezultatu), `Product`, `BreadcrumbList`, `ItemList`, `FAQPage`
 - `sitemap.xml` i `robots.txt` (automatski generisani)
-- **`image-sitemap.xml`** — sve fotografije proizvoda sa naslovom i natpisom,
-  za Google Images (vidi `src/app/image-sitemap.xml/route.ts`)
+- **`image-sitemap.xml`** — SVE slike sajta za Google Images: svaka fotografija
+  proizvoda uz stranicu svog proizvoda, plus hero, ulazi u katalog, kartice
+  kategorija, OG slika i logo uz strane na kojima stoje — sa naslovom i
+  natpisom (vidi `src/app/image-sitemap.xml/route.ts`)
 - Kategorijske strane pisane za stvarne upite:
   - `/delovi/[tip]` — „raonik", „daska"…
   - `/delovi/brend/[marka]` — „delovi za Lemken"
   - `/delovi/[tip]/[marka]` — „raonik za Lemken plug"; generišu se samo
     kombinacije sa ≥ `MIN_ZA_UKRSTENU` delova (`src/lib/products.ts`)
   - `/katalog/[strana]` — interni link za svaki proizvod
-- Pretraga u headeru (`HeaderSearch`) radi sa svake strane, po nazivu, marki i
-  kataloškom broju
+- Pretraga po nazivu, marki i kataloškom broju stoji ispod filtera na
+  `/proizvodi`; sami filteri (padajuće liste) **nemaju** polje za kucanje —
+  na telefonu je dizalo tastaturu pri svakom otvaranju, a lista se bira klikom
 - Optimizovano za mobilne i brzinu (Core Web Vitals)
 
 Pre objave: u `src/app/layout.tsx` i `sitemap.ts`/`robots.ts` proveri da je domen `https://plugeks.com` tačan.

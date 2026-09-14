@@ -1,20 +1,26 @@
 /**
- * Generiše katalog proizvoda iz Rolland sitemap-a.
+ * Generiše katalog rezervnih delova.
  *
  *   node scripts/build-catalog.mjs        (ili: npm run catalog)
  *
- * Ulaz:  data/rolland-sitemap.xml   — preuzet sa https://www.rolland.pl/sitemap.xml
- * Izlaz: src/data/machines.json     — mašine (mali fajl, ide u glavni bundle)
- *        src/data/parts.json        — delovi (veliki fajl, učitava se lazy)
+ * Ulaz:  data/rolland-sitemap.xml      — preuzet sa https://www.rolland.pl/sitemap.xml
+ *        src/data/rotodrljace.json     — delovi za roto drljače, piše ih
+ *                                        `npm run rotodrljace` (vidi import-rotodrljace.mjs)
+ * Izlaz: src/data/parts.json           — SVI delovi, kolonarno spakovani (učitava se lazy)
+ *        src/data/popular.json         — osveženi nazivi/fasete najtraženijih delova
  *
- * Osvežavanje kataloga:
+ * Osvežavanje Rolland kataloga:
  *   curl -o data/rolland-sitemap.xml https://www.rolland.pl/sitemap.xml
  *   npm run catalog
  *
  * Prevode i brendove menjaš u scripts/rolland-dictionary.mjs.
+ *
+ * MAŠINE SE OVDE VIŠE NE GENERIŠU: Rolland mašine (plavi program) su skinute sa
+ * sajta odlukom vlasnika, a `src/data/machines.json` piše isključivo
+ * `npm run masine` (Hofman). Ova skripta ga ne dira.
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,12 +32,13 @@ import {
   SIDES,
   DESCRIPTORS,
   TOKEN_FIXES,
-  MACHINES,
 } from "./rolland-dictionary.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SITEMAP = resolve(root, "data/rolland-sitemap.xml");
 const OUT_DIR = resolve(root, "src/data");
+const ROTODRLJACE = resolve(OUT_DIR, "rotodrljace.json");
+const POPULAR = resolve(OUT_DIR, "popular.json");
 
 /* -------------------------------------------------------------------------- */
 /*                                   Parsing                                  */
@@ -84,14 +91,23 @@ function extractBrand(tokens) {
   return { brand: null, tokens };
 }
 
-/** Preostale tokene pretvara u čitljiv nastavak naziva (model + kataloški broj). */
-function formatRest(tokens) {
+/**
+ * Preostale tokene pretvara u čitljiv nastavak naziva (model + kataloški broj).
+ *
+ * `typeLabel` je naziv tipa koji već stoji na početku imena: pridev koji bi ga
+ * samo ponovio se preskače. Bez toga je „odkladniczka-goudland-przedpluzka"
+ * davalo „Daska predplužnjaka Goudland predplužnjaka".
+ */
+function formatRest(tokens, typeLabel = "") {
   const words = [];
   const codes = [];
+  // Poređenje po celim rečima: „za" nije u „Zakivak", iako je njegov deo.
+  const reciTipa = new Set(typeLabel.toLowerCase().split(/[\s/()]+/).filter(Boolean));
+  const uTipu = (rec) => rec.toLowerCase().split(" ").every((w) => reciTipa.has(w));
   for (const t of tokens) {
     if (!t) continue;
     if (DESCRIPTORS[t]) {
-      words.push(DESCRIPTORS[t]);
+      if (!uTipu(DESCRIPTORS[t])) words.push(DESCRIPTORS[t]);
     } else if (/\d/.test(t)) {
       codes.push(t.toUpperCase());
     } else if (t.length <= 4) {
@@ -100,6 +116,8 @@ function formatRest(tokens) {
       words.push(t.charAt(0).toUpperCase() + t.slice(1));
     }
   }
+  // Predlog kome je ispala imenica („za raonika" → „za") ne ostaje da visi.
+  if (words[words.length - 1] === "za") words.pop();
   return { words, code: codes.join(" ") };
 }
 
@@ -120,14 +138,16 @@ function buildPart(entry, group) {
   const typeToken = tokens[0];
   const partType = PART_TYPES[typeToken] ?? null;
 
-  // Složeni naziv (npr. „ploza-dluga” → „Dugi plaz”) ima prednost nad osnovnim.
+  // Složeni naziv (npr. „ploza-dluga" → „Dugi plaz") ima prednost nad osnovnim —
+  // i za naziv i, kad nosi `key`, za tip u filteru (vidi NAME_PREFIXES).
   const joined = tokens.join("-");
   const prefix = NAME_PREFIXES.find((p) => joined.startsWith(`${p.prefix}-`) || joined === p.prefix);
   const typeLabel = prefix?.label ?? partType?.label ?? capitalize(typeToken ?? "Deo");
+  const typeKey = prefix?.key ?? partType?.key ?? "ostalo";
   const consumed = prefix ? prefix.prefix.split("-").length : partType ? 1 : 0;
 
   const { brand, tokens: rest } = extractBrand(tokens.slice(consumed));
-  const { words, code } = formatRest(rest);
+  const { words, code } = formatRest(rest, typeLabel);
 
   const name = [typeLabel, brand?.label ?? "", words.join(" "), code]
     .filter(Boolean)
@@ -139,21 +159,10 @@ function buildPart(entry, group) {
     id: entry.sourceId,
     name: side ? `${name} (${side.suffix})` : name,
     group: group.key,
-    partType: partType?.key ?? "ostalo",
+    partType: typeKey,
+    partTypeLabel: typeLabel,
     brand: brand?.key ?? "univerzalno",
     side: side?.key ?? null,
-  };
-}
-
-function buildMachine(entry, group) {
-  const known = MACHINES[entry.slug];
-  return {
-    id: entry.sourceId,
-    name: known?.name ?? capitalize(entry.slug.replace(/-/g, " ")),
-    group: group.key,
-    subgroup: known?.subgroup ?? "ostalo",
-    tagline: known?.tagline ?? "",
-    brand: "rolland",
   };
 }
 
@@ -165,7 +174,6 @@ const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 
 const entries = readSitemap().map(splitUrl).filter(Boolean);
 
-const machines = [];
 const parts = [];
 const unknownTypes = new Map();
 
@@ -173,16 +181,12 @@ for (const entry of entries) {
   const group = GROUPS[entry.groupSlug];
   if (!group) continue;
 
-  if (group.type === "masine") {
-    machines.push(buildMachine(entry, group));
-  } else {
-    const part = buildPart(entry, group);
-    if (part.partType === "ostalo" && !PART_TYPES[entry.slug.split("-")[0]]) {
-      const t = entry.slug.split("-")[0];
-      unknownTypes.set(t, (unknownTypes.get(t) ?? 0) + 1);
-    }
-    parts.push(part);
+  const part = buildPart(entry, group);
+  if (part.partType === "ostalo" && !PART_TYPES[entry.slug.split("-")[0]]) {
+    const t = entry.slug.split("-")[0];
+    unknownTypes.set(t, (unknownTypes.get(t) ?? 0) + 1);
   }
+  parts.push(part);
 }
 
 // Deduplikacija po nazivu + grupi (sitemap ume da ponovi isti proizvod).
@@ -196,8 +200,16 @@ const dedupe = (list) => {
   });
 };
 
-const finalMachines = dedupe(machines);
-const finalParts = dedupe(parts);
+/**
+ * Delovi za roto drljače dolaze iz drugog izvora i drugom skriptom
+ * (`npm run rotodrljace`), već prevedeni i sa našim kataloškim brojevima. Ovde
+ * se samo pridružuju Rolland delovima, da sajt ima JEDAN `parts.json`.
+ */
+const rotodrljace = existsSync(ROTODRLJACE)
+  ? JSON.parse(readFileSync(ROTODRLJACE, "utf8"))
+  : [];
+
+const finalParts = dedupe([...parts, ...rotodrljace]);
 
 /**
  * Delovi se pakuju kolonarno: umesto da se `delovi-plugovi` ponovi 4600 puta,
@@ -220,28 +232,74 @@ function pack(items) {
   const rows = items.map((p) => [
     p.id,
     p.name,
-    idx("groups", p.group, groupLabel(p.group)),
-    idx("types", p.partType, partTypeLabel(p.partType)),
-    idx("brands", p.brand, brandLabel(p.brand)),
+    idx("groups", p.group, groupLabel(p)),
+    idx("types", p.partType, partTypeLabel(p)),
+    idx("brands", p.brand, brandLabel(p)),
     idx("sides", p.side, p.side === "levi" ? "Levi" : "Desni"),
   ]);
 
   return { ...tables, items: rows };
 }
 
-const groupLabel = (key) =>
-  Object.values(GROUPS).find((g) => g.key === key)?.label ?? key;
-const partTypeLabel = (key) =>
-  Object.values(PART_TYPES).find((t) => t.key === key)?.label ?? "Ostali delovi";
-const brandLabel = (key) =>
-  BRANDS.find((b) => b.key === key)?.label ?? "Univerzalno / bez oznake";
+// Red iz drugog izvora (roto drljače) nosi svoje nazive grupe/tipa/brenda; Rolland
+// red ih dobija iz rečnika.
+const groupLabel = (p) =>
+  p.groupLabel ?? Object.values(GROUPS).find((g) => g.key === p.group)?.label ?? p.group;
+const partTypeLabel = (p) =>
+  p.partTypeLabel ??
+  Object.values(PART_TYPES).find((t) => t.key === p.partType)?.label ??
+  "Ostali delovi";
+const brandLabel = (p) =>
+  p.brandLabel ?? BRANDS.find((b) => b.key === p.brand)?.label ?? "Univerzalno / bez oznake";
+
+/**
+ * `popular.json` (vitrina najtraženijih delova) nosi KOPIJU naziva i faseta —
+ * mali fajl koji ide u klijentski bundle. Kad se promeni rečnik (novi tip,
+ * drugačiji naziv), kopija bi ostala stara, pa kartica na početnoj ne bi
+ * odgovarala stranici dela. Zato se posle svakog pakovanja osveži iz istih
+ * podataka; ko je u vitrini i kojim redom i dalje bira `npm run plugovi`.
+ */
+function refreshPopular(packed) {
+  if (!existsSync(POPULAR)) return 0;
+  const popular = JSON.parse(readFileSync(POPULAR, "utf8"));
+  const byId = new Map(packed.items.map((row) => [row[0], row]));
+  const at = (table, i) => (i >= 0 ? table[i] : undefined);
+
+  const fresh = popular.flatMap((p) => {
+    const row = byId.get(p.id);
+    if (!row) return []; // deo je nestao iz kataloga — ispada i iz vitrine
+    const [, name, g, t, b, s] = row;
+    const group = at(packed.groups, g);
+    const type = at(packed.types, t);
+    const brand = at(packed.brands, b);
+    const side = at(packed.sides, s);
+    return [
+      {
+        ...p,
+        name,
+        facets: {
+          ...(group && { grupa: group.key }),
+          ...(type && { tip: type.key }),
+          ...(brand && { brend: brand.key }),
+          ...(side && { strana: side.key }),
+        },
+        tags: [group?.label, brand?.label, type?.label, side?.label].filter(Boolean),
+      },
+    ];
+  });
+
+  writeFileSync(POPULAR, `${JSON.stringify(fresh, null, 2)}\n`);
+  return fresh.length;
+}
 
 mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(resolve(OUT_DIR, "machines.json"), JSON.stringify(finalMachines, null, 2));
-writeFileSync(resolve(OUT_DIR, "parts.json"), JSON.stringify(pack(finalParts)));
+const packed = pack(finalParts);
+writeFileSync(resolve(OUT_DIR, "parts.json"), JSON.stringify(packed));
+const uVitrini = refreshPopular(packed);
 
-console.log(`Mašine: ${finalMachines.length}`);
-console.log(`Delovi: ${finalParts.length}`);
+console.log(`Delovi: ${finalParts.length} (Rolland ${dedupe(parts).length} + roto drljače ${rotodrljace.length})`);
+console.log(`Tipova: ${packed.types.length}, brendova: ${packed.brands.length}, grupa: ${packed.groups.length}`);
+console.log(`Najtraženiji (popular.json) osveženo: ${uVitrini}`);
 if (unknownTypes.size) {
   console.log("\nNeprepoznati tipovi delova (dodaj u PART_TYPES ako su bitni):");
   for (const [t, n] of [...unknownTypes].sort((a, b) => b[1] - a[1]).slice(0, 20)) {

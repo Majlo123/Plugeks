@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, Search, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+import { Check, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { normalize, type FacetOption } from "@/lib/catalog";
+import type { FacetOption } from "@/lib/catalog";
 
 type MultiSelectProps = {
   label: string;
@@ -17,15 +17,17 @@ type MultiSelectProps = {
    */
   onToggle: (value: string) => void;
   onClear: () => void;
-  /** Ispod ovog broja opcija polje za pretragu se ne prikazuje. */
-  searchThreshold?: number;
 };
 
 /**
- * Padajuće polje sa više izbora i pretragom — jedan „filter” u katalogu.
+ * Padajuće polje sa više izbora — jedan „filter” u katalogu.
  *
- * Zatvara se klikom van polja ili tasterom Esc. Lista se ne virtualizuje jer
- * najduža faseta (brendovi) ima ~70 opcija.
+ * NAMERNO BEZ POLJA ZA PRETRAGU unutar liste: ono je na telefonu pri svakom
+ * otvaranju filtera dizalo tastaturu i pojedalo pola ekrana, a lista se bira
+ * klikom, ne kucanjem. Ko hoće da kuca ima opštu pretragu ispod filtera.
+ * Najduža faseta (brendovi) ima ~85 opcija — lista se skroluje.
+ *
+ * Zatvara se klikom van polja ili tasterom Esc.
  */
 export function MultiSelect({
   label,
@@ -34,12 +36,9 @@ export function MultiSelect({
   selected,
   onToggle,
   onClear,
-  searchThreshold = 8,
 }: MultiSelectProps) {
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
   const wrapper = useRef<HTMLDivElement>(null);
-  const searchInput = useRef<HTMLInputElement>(null);
   const listId = useId();
 
   useEffect(() => {
@@ -59,16 +58,6 @@ export function MultiSelect({
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
-
-  useEffect(() => {
-    if (open) searchInput.current?.focus();
-    else setQuery("");
-  }, [open]);
-
-  const visible = useMemo(() => {
-    const q = normalize(query.trim());
-    return q ? options.filter((o) => normalize(o.label).includes(q)) : options;
-  }, [options, query]);
 
   const summary =
     selected.length === 0
@@ -128,30 +117,13 @@ export function MultiSelect({
           id={listId}
           className="absolute left-0 right-0 top-full z-40 mt-2 overflow-hidden rounded-xl border border-border bg-white shadow-lift"
         >
-          {options.length >= searchThreshold ? (
-            <div className="relative border-b border-border">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                ref={searchInput}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={`Pretraži — ${label.toLowerCase()}`}
-                // 16px na telefonu: Safari na iOS-u sam zumira stranicu čim se
-                // fokusira polje sa slovima manjim od toga, pa je kucanje po
-                // brendu ili tipu dela izbacivalo padajuću listu iz kadra.
-                // Na širem ekranu ostaje sitnije, kao i ostatak filtera.
-                className="h-11 w-full bg-transparent pl-9 pr-3 text-base outline-none placeholder:text-muted-foreground md:text-sm"
-              />
-            </div>
-          ) : null}
-
           <ul
             role="listbox"
             aria-multiselectable
             aria-label={label}
-            className="max-h-64 overflow-y-auto py-1"
+            className="max-h-72 overflow-y-auto overscroll-contain py-1"
           >
-            {visible.map((option) => {
+            {options.map((option) => {
               const isSelected = selected.includes(option.value);
               return (
                 <li key={option.value}>
@@ -163,7 +135,7 @@ export function MultiSelect({
                     onClick={() => onToggle(option.value)}
                     disabled={option.count === 0 && !isSelected}
                     className={cn(
-                      "flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors",
+                      "flex w-full items-center gap-2.5 px-3 py-2.5 text-left text-sm transition-colors",
                       "hover:bg-brand-50 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent",
                       isSelected && "bg-brand-50",
                     )}
@@ -185,9 +157,9 @@ export function MultiSelect({
               );
             })}
 
-            {visible.length === 0 ? (
+            {options.length === 0 ? (
               <li className="px-3 py-6 text-center text-sm text-muted-foreground">
-                Nema rezultata za „{query}”
+                Nema opcija za trenutni izbor
               </li>
             ) : null}
           </ul>

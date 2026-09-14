@@ -3,7 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
 
 /**
- * Pločica kategorije — fotografija, naziv i broj stavki, cela je jedan link.
+ * Pločica kategorije — fotografija, naziv i (van početne) broj stavki, cela je
+ * jedan link.
  *
  * Koristi se svuda gde se bira VRSTA, a ne pojedinačan proizvod: pločice
  * prikolica na početnoj i na `/prikolice`. Kupac ne zna šta je „jednoosovinska
@@ -67,12 +68,12 @@ export function Plocica({
         ) : null}
 
         <div className="flex-1" />
-        {broj ? (
-          <span className="mt-3 inline-flex items-center gap-1 text-[0.8rem] font-medium text-brand">
-            {broj}
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </span>
-        ) : null}
+        {/* Bez `broj` (početna strana) pločica i dalje ima poziv na klik —
+            samo bez brojke koliko čega ima. */}
+        <span className="mt-3 inline-flex items-center gap-1 text-[0.8rem] font-medium text-brand">
+          {broj ?? "Pogledaj"}
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+        </span>
       </div>
     </Link>
   );

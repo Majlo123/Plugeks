@@ -1,113 +1,5 @@
 [
   {
-    "id": "4706",
-    "name": "Podrivač Deeper GBM \"Michel\"",
-    "group": "masine-rolland",
-    "subgroup": "podrivaci",
-    "tagline": "Dubinsko rastresanje bez prevrtanja sloja",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4705",
-    "name": "Podrivač Deeper GBK \"Kret\"",
-    "group": "masine-rolland",
-    "subgroup": "podrivaci",
-    "tagline": "Razbijanje tabana pluga i drenaža zemljišta",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4704",
-    "name": "Laki bezoranični agregat Grander ABL",
-    "group": "masine-rolland",
-    "subgroup": "agregati",
-    "tagline": "Plitka obrada strništa za manje traktore",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4703",
-    "name": "Bezoranični agregat Grander AB",
-    "group": "masine-rolland",
-    "subgroup": "agregati",
-    "tagline": "Obrada bez oranja u jednom prohodu",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4692",
-    "name": "Polunošeni tanjirasti agregat ATP",
-    "group": "masine-rolland",
-    "subgroup": "agregati",
-    "tagline": "Veliki zahvat uz stabilnost polunošene konstrukcije",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4577",
-    "name": "Polunošena tanjirača BTP",
-    "group": "masine-rolland",
-    "subgroup": "tanjirace",
-    "tagline": "Tanjirača velikog kapaciteta za veće parcele",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4576",
-    "name": "Hidraulična polunošena tanjirača BH-PB",
-    "group": "masine-rolland",
-    "subgroup": "tanjirace",
-    "tagline": "Hidrauličko sklapanje za lakši transport",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4575",
-    "name": "Hidraulična polunošena tanjirača BH-PA",
-    "group": "masine-rolland",
-    "subgroup": "tanjirace",
-    "tagline": "Hidrauličko sklapanje za lakši transport",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4397",
-    "name": "Valjci za obradu zemljišta",
-    "group": "masine-rolland",
-    "subgroup": "valjci",
-    "tagline": "Različiti tipovi valjaka za sve agregate i tanjirače",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4396",
-    "name": "Tanjirača Field BT",
-    "group": "masine-rolland",
-    "subgroup": "tanjirace",
-    "tagline": "Nošena tanjirača za svakodnevnu obradu",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4395",
-    "name": "Tanjirasti agregat Field AT",
-    "group": "masine-rolland",
-    "subgroup": "agregati",
-    "tagline": "Tanjirasti agregat sa valjkom za pripremu setvene osnove",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
-    "id": "4394",
-    "name": "Hidraulična tanjirača Field Hawk BH",
-    "group": "masine-rolland",
-    "subgroup": "tanjirace",
-    "tagline": "Hidraulična tanjirača za veliki dnevni učinak",
-    "brand": "rolland",
-    "grana": "poljoprivredne"
-  },
-  {
     "id": "5001",
     "name": "Baštenska mašina BOLT",
     "group": "masine-hofman",
@@ -127,7 +19,7 @@
           "61"
         ],
         [
-          "Snaga motora",
+          "Snaga motora (kW/KS)",
           "4,5 / 6"
         ],
         [
@@ -159,7 +51,20 @@
           "25 - 75"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "BOLT VT65",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/bastenska-masina-bolt/17-img-20250226-wa0005-png.jpg",
+      "/images/masine/hofman/izvedbe/bastenska-masina-bolt/17-img-20250226-wa0008-png.jpg",
+      "/images/masine/hofman/izvedbe/bastenska-masina-bolt/17-img-20250226-wa0009-png.jpg",
+      "/images/masine/hofman/izvedbe/bastenska-masina-bolt/17-img-20250226-wa0010-png.jpg",
+      "/images/masine/hofman/izvedbe/bastenska-masina-bolt/17-img-20250226-wa0011-png.jpg"
+    ]
   },
   {
     "id": "5002",
@@ -170,7 +75,204 @@
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/vrtni-strojevi/ruby-bp",
-    "slug": "bastenska-masina-ruby-bp"
+    "slug": "bastenska-masina-ruby-bp",
+    "izvedbe": [
+      {
+        "naziv": "BP 550",
+        "slike": [
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8345-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8346-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8347-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8348-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8349-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-daljinec-png.jpg"
+        ]
+      },
+      {
+        "naziv": "BP 1000",
+        "slike": [
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8337-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8338-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8339-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8340-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8342-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-img-8343-png.jpg",
+          "/images/masine/hofman/izvedbe/bastenska-masina-ruby-bp/17-daljinec-png.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5014",
+    "name": "Freza VIVA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "freze",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/friziraj/viva",
+    "slug": "freza-viva",
+    "tabela": {
+      "kolone": [
+        "VIVA CRT 120",
+        "VIVA CRT 140",
+        "VIVA CRT 160",
+        "VIVA CRT 180",
+        "VIVA CRT 200 PRO",
+        "VIVA CRT 230 PRO",
+        "VIVA CRT 260 PRO"
+      ],
+      "redovi": [
+        [
+          "Broj noževa",
+          "36",
+          "42",
+          "48",
+          "54",
+          "48",
+          "54",
+          "60"
+        ],
+        [
+          "Radna širina (cm)",
+          "120",
+          "140",
+          "160",
+          "180",
+          "200",
+          "230",
+          "260"
+        ],
+        [
+          "Preporučena snaga traktora (KS)",
+          "25 - 30",
+          "30 - 35",
+          "35 - 40",
+          "40 - 45",
+          "50 - 60",
+          "60 - 70",
+          "70 - 80"
+        ],
+        [
+          "Masa (kg)",
+          "245",
+          "270",
+          "290",
+          "310",
+          "535",
+          "595",
+          "610"
+        ],
+        [
+          "Obrtaji kardana (o/min)",
+          "540",
+          "540",
+          "540",
+          "540",
+          "540/1000",
+          "540/1000",
+          "540/1000"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT I / II",
+          "CAT I / II",
+          "CAT I / II",
+          "CAT I / II",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "140",
+          "160",
+          "180",
+          "200",
+          "225",
+          "250",
+          "280"
+        ],
+        [
+          "Radna dubina (mm)",
+          "do 125",
+          "do 125",
+          "do 125",
+          "do 125",
+          "152",
+          "152",
+          "152"
+        ],
+        [
+          "Broj rotora",
+          "6",
+          "6",
+          "8",
+          "9",
+          "8",
+          "9",
+          "10"
+        ],
+        [
+          "Klizači za podešavanje dubine",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da",
+          "Da"
+        ]
+      ]
+    },
+    "izvedbe": [
+      {
+        "naziv": "VIVA CRT 120",
+        "slike": [
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7841-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7830-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7832-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7834-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7839-png.jpg"
+        ]
+      },
+      {
+        "naziv": "VIVA CRT 140",
+        "slike": []
+      },
+      {
+        "naziv": "VIVA CRT 160",
+        "slike": [
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7812-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7814-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7817-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7822-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7825-png.jpg"
+        ]
+      },
+      {
+        "naziv": "VIVA CRT 180",
+        "slike": []
+      },
+      {
+        "naziv": "VIVA CRT 200 PRO",
+        "slike": [
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7847-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7850-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7852-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7854-png.jpg",
+          "/images/masine/hofman/izvedbe/freza-viva/17-img-7858-png.jpg"
+        ]
+      },
+      {
+        "naziv": "VIVA CRT 230 PRO",
+        "slike": []
+      },
+      {
+        "naziv": "VIVA CRT 260 PRO",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5003",
@@ -184,7 +286,7 @@
     "slug": "hvatac-bala-mano",
     "tabela": {
       "kolone": [
-        "KLEŠČE MANO K 150"
+        "MANO K 150"
       ],
       "redovi": [
         [
@@ -204,7 +306,20 @@
           "Euro"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "MANO K 150",
+        "slike": [
+          "/images/masine/hofman/izvedbe/hvatac-bala-mano/17-20230731-104546138-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/hvatac-bala-mano/17-20230731-104600390-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/hvatac-bala-mano/17-20230731-104610642-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/hvatac-bala-mano/17-20230731-104721891-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/hvatac-bala-mano/17-20230731-104807122-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/hvatac-bala-mano/17-20230731-104814356-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5004",
@@ -277,7 +392,21 @@
           "3,8 m"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "TORO RK 750",
+        "slike": [
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5034-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5038-copy-5.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5045-copy-4.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5006-copy-4.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5016-copy-4.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5023-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-dvorotorska/17-dsc5043-copy-2.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5006",
@@ -288,7 +417,14 @@
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/kosilice/jasa",
-    "slug": "kosacica-jasa"
+    "slug": "kosacica-jasa",
+    "galerija": [
+      "/images/masine/hofman/izvedbe/kosacica-jasa/17-dsc8634.jpg",
+      "/images/masine/hofman/izvedbe/kosacica-jasa/17-dsc8625.jpg",
+      "/images/masine/hofman/izvedbe/kosacica-jasa/17-dsc8627.jpg",
+      "/images/masine/hofman/izvedbe/kosacica-jasa/17-dsc8628.jpg",
+      "/images/masine/hofman/izvedbe/kosacica-jasa/17-dsc8632.jpg"
+    ]
   },
   {
     "id": "5007",
@@ -356,7 +492,32 @@
           "540 o/min"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "TERA HP 210",
+        "slike": []
+      },
+      {
+        "naziv": "TERA HP 240",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8243.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc6576.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc6583.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc6596.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8223.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8225.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8228.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8233.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8236.jpg",
+          "/images/masine/hofman/izvedbe/kosacica-tera/17-dsc8239.jpg"
+        ]
+      },
+      {
+        "naziv": "TERA HP 280",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5008",
@@ -390,12 +551,33 @@
           "32"
         ],
         [
-          "Snaga benzinskog motora",
+          "Snaga benzinskog motora (KS)",
           "6,5",
           "8"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "ULCA - MW60",
+        "slike": [
+          "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-img-5656-png.jpg",
+          "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-img-5661-png.jpg"
+        ]
+      },
+      {
+        "naziv": "ULCA - MW90",
+        "slike": [
+          "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-img-5649-png.jpg",
+          "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-img-5654-png.jpg"
+        ]
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-ulca-8-r.jpg",
+      "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-ulca-6-r.jpg",
+      "/images/masine/hofman/izvedbe/omotac-bala-ulca/17-ulca-7-r.jpg"
+    ]
   },
   {
     "id": "5009",
@@ -441,7 +623,22 @@
           "1.500-2.200"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "BK 02",
+        "slike": [
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6626-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6630-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6603-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6605-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6608-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6610-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6623-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/balirka-arga-cube/17-dsc6625-copy-2.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5010",
@@ -495,7 +692,27 @@
           "4"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "HT 450 H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6854-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6779-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6782-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6784-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6786-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6790-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6793-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6797-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6800-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6803-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6810-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6824-copy.jpg",
+          "/images/masine/hofman/izvedbe/okretac-sena-zero/17-dsc6841-copy.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5011",
@@ -549,7 +766,24 @@
           "60 KS"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "TORO RK 360",
+        "slike": [
+          "/images/masine/hofman/izvedbe/grabulja-toro-jednorotorska/17-dsc5092-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-jednorotorska/17-dsc5095-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-jednorotorska/17-dsc5105-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-jednorotorska/17-dsc5109-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-jednorotorska/17-dsc5089-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-toro-jednorotorska/17-dsc5091-copy-2.jpg"
+        ]
+      },
+      {
+        "naziv": "TORO RK 420",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5012",
@@ -647,7 +881,41 @@
           "2,60 m"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "REMO 220/4",
+        "slike": [
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0792-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0794-copy.jpg"
+        ]
+      },
+      {
+        "naziv": "REMO 240/4",
+        "slike": [
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0796-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0798-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0782-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0786-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0788-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0790-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0790-copy-2.jpg"
+        ]
+      },
+      {
+        "naziv": "REMO PRO 260/4",
+        "slike": [
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0798-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0768-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0770-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0772-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0773-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0778-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0780-copy.jpg",
+          "/images/masine/hofman/izvedbe/grabulja-remo/17-dsc0784-copy.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5013",
@@ -752,18 +1020,36 @@
           "Da"
         ]
       ]
-    }
-  },
-  {
-    "id": "5014",
-    "name": "Freza VIVA",
-    "group": "masine-hofman",
-    "grana": "poljoprivredne",
-    "subgroup": "malceri",
-    "tagline": "",
-    "brand": "hofman",
-    "izvor": "/hr/friziraj/viva",
-    "slug": "freza-viva"
+    },
+    "izvedbe": [
+      {
+        "naziv": "F LINE F 145H",
+        "slike": []
+      },
+      {
+        "naziv": "F LINE F 165",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7161-2.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7150-2.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7153-2.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7155-2.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7160.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7163.jpg"
+        ]
+      },
+      {
+        "naziv": "F LINE F 165H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7113-2.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7115.jpg",
+          "/images/masine/hofman/izvedbe/malcer-f-line/17-dsc7119.jpg"
+        ]
+      },
+      {
+        "naziv": "F LINE F 185H",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5015",
@@ -894,7 +1180,40 @@
           "Da"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "G LINE G 105",
+        "slike": []
+      },
+      {
+        "naziv": "G LINE G 105H",
+        "slike": []
+      },
+      {
+        "naziv": "G LINE G 125",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-g-line/17-dsc7124.jpg",
+          "/images/masine/hofman/izvedbe/malcer-g-line/17-dsc7120.jpg",
+          "/images/masine/hofman/izvedbe/malcer-g-line/17-dsc7123.jpg"
+        ]
+      },
+      {
+        "naziv": "G LINE G 125H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-g-line/17-dsc7144.jpg",
+          "/images/masine/hofman/izvedbe/malcer-g-line/17-dsc7141.jpg"
+        ]
+      },
+      {
+        "naziv": "G LINE G 145",
+        "slike": []
+      },
+      {
+        "naziv": "G LINE G 145H",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5016",
@@ -973,7 +1292,21 @@
           "Da"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "M LINE M 200H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-m-line/17-mline3.jpg",
+          "/images/masine/hofman/izvedbe/malcer-m-line/17-mline.jpg",
+          "/images/masine/hofman/izvedbe/malcer-m-line/17-mline2.jpg"
+        ]
+      },
+      {
+        "naziv": "M LINE M 220H",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5017",
@@ -988,7 +1321,7 @@
     "tabela": {
       "kolone": [
         "B LINE B 145",
-        "B LINIJA B 165"
+        "B LINE B 165"
       ],
       "redovi": [
         [
@@ -1107,7 +1440,30 @@
           "150 cm"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "B LINE B 145",
+        "slike": [
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-bline1.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6003-2.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6004.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6017.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6018.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc7174.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc7176.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc7630.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6009-2.jpg"
+        ]
+      },
+      {
+        "naziv": "B LINE B 165",
+        "slike": [
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6003-3.jpg",
+          "/images/masine/hofman/izvedbe/bocni-malcer-b-line/17-dsc6004-2.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5018",
@@ -1289,7 +1645,36 @@
           "182 cm"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "R LINE R 165 - LIGHT",
+        "slike": []
+      },
+      {
+        "naziv": "R LINE R 185",
+        "slike": []
+      },
+      {
+        "naziv": "R LINE R 205",
+        "slike": []
+      },
+      {
+        "naziv": "R LINE R 225",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc0120-2.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc0122-2.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc0129-3.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc7165-2.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc7171-2.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc7630-3.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc0112-2.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc0115-2.jpg",
+      "/images/masine/hofman/izvedbe/bocni-malcer-r-line/17-dsc7627.jpg"
+    ]
   },
   {
     "id": "5019",
@@ -1387,7 +1772,27 @@
           "Da"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "PRO LINE PRO 240H",
+        "slike": []
+      },
+      {
+        "naziv": "PRO LINE PRO 260H",
+        "slike": []
+      },
+      {
+        "naziv": "PRO LINE PRO 290H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-pro-line/17-dsc2780.jpg",
+          "/images/masine/hofman/izvedbe/malcer-pro-line/17-odpiranje-2.jpg",
+          "/images/masine/hofman/izvedbe/malcer-pro-line/17-dsc2774.jpg",
+          "/images/masine/hofman/izvedbe/malcer-pro-line/17-dsc2777.jpg",
+          "/images/masine/hofman/izvedbe/malcer-pro-line/17-dsc2779.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5020",
@@ -1478,7 +1883,53 @@
           "4"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T LINE 150",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-dsc9716-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0079-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0119-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0122-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0210-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T LINE 150 HS",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-dsc9726-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-1044183-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-2044187-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-5044199-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-8044212-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-11044224-hd-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T LINE 180",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-dsc9716-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-1461-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-1528-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-1547-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T LINE 180 HS",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-dsc9721-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-dsc9724-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0219-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0232-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0238-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0261-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0271-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0298-png.jpg",
+          "/images/masine/hofman/izvedbe/rotacioni-malcer-t-line/17-img-0308-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5021",
@@ -1562,7 +2013,21 @@
           "58"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "O LINE O 145H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/vocarsko-vinogradarski-malcer-o-line/17-dsc7100-2.jpg",
+          "/images/masine/hofman/izvedbe/vocarsko-vinogradarski-malcer-o-line/17-dsc7104.jpg",
+          "/images/masine/hofman/izvedbe/vocarsko-vinogradarski-malcer-o-line/17-dsc7111.jpg"
+        ]
+      },
+      {
+        "naziv": "O LINE O 165H",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5022",
@@ -1584,7 +2049,7 @@
           "240"
         ],
         [
-          "Preporučena snaga traktora",
+          "Preporučena snaga traktora (KS)",
           "90"
         ],
         [
@@ -1628,7 +2093,19 @@
           "968"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "DUO line 240",
+        "slike": [
+          "/images/masine/hofman/izvedbe/malcer-duo-line/17-20250723-080729-png.jpg",
+          "/images/masine/hofman/izvedbe/malcer-duo-line/17-20250723-080805-png.jpg",
+          "/images/masine/hofman/izvedbe/malcer-duo-line/17-20250723-080824-png.jpg",
+          "/images/masine/hofman/izvedbe/malcer-duo-line/17-20250723-080929-png.jpg",
+          "/images/masine/hofman/izvedbe/malcer-duo-line/17-20250723-081845-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5023",
@@ -1690,7 +2167,21 @@
           "350"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "VMP-1000",
+        "slike": []
+      },
+      {
+        "naziv": "VMP-1500",
+        "slike": []
+      },
+      {
+        "naziv": "VMK 300",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5024",
@@ -1736,7 +2227,13 @@
           "420"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "LMP-500",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5025",
@@ -1747,7 +2244,33 @@
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/mjesaci-hrane/zeta-fmv",
-    "slug": "mesaona-stocne-hrane-zeta-fmv-manji-model"
+    "slug": "mesaona-stocne-hrane-zeta-fmv-manji-model",
+    "izvedbe": [
+      {
+        "naziv": "ZETA 1 M3 E",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-065410131-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-065550364-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-065602241-ios-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "ZETA 1,5 m3 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-084026358-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-084038637-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-084125176-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-084257150-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20241120-084346871-ios-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "ZETA 2 m3 E",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mesaona-stocne-hrane-zeta-fmv-manji-model/17-20250404-054005734-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5026",
@@ -1806,7 +2329,17 @@
           "1500"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "3 m3",
+        "slike": []
+      },
+      {
+        "naziv": "4 m3",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5027",
@@ -1844,7 +2377,18 @@
           "140"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "SNP90",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mlin-za-zito-hammer/17-snp-1-2.jpg",
+          "/images/masine/hofman/izvedbe/mlin-za-zito-hammer/17-snp-2.jpg",
+          "/images/masine/hofman/izvedbe/mlin-za-zito-hammer/17-snp-3.jpg",
+          "/images/masine/hofman/izvedbe/mlin-za-zito-hammer/17-snp-4.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5028",
@@ -1890,57 +2434,18 @@
           "90"
         ]
       ]
-    }
-  },
-  {
-    "id": "5029",
-    "name": "Cambridge valjak ROLO",
-    "group": "masine-hofman",
-    "grana": "poljoprivredne",
-    "subgroup": "obrada-zemljista",
-    "tagline": "",
-    "brand": "hofman",
-    "izvor": "/hr/cambdridge-valji/rolo",
-    "slug": "cambridge-valjak-rolo",
-    "tabela": {
-      "kolone": [
-        "CR 450",
-        "CR 540",
-        "CR 630"
-      ],
-      "redovi": [
-        [
-          "Radna širina (cm)",
-          "450",
-          "540",
-          "630"
-        ],
-        [
-          "Masa (kg)",
-          "2280",
-          "2560",
-          "2860"
-        ],
-        [
-          "Potrebna snaga traktora",
-          "80-110",
-          "90-120",
-          "110-150"
-        ],
-        [
-          "Transportni točkovi",
-          "11.5/80-15.3",
-          "11.5/80-15.3",
-          "11.5/80-15.3"
-        ],
-        [
-          "Prečnik valjka (cm)",
-          "50",
-          "50",
-          "50"
-        ]
-      ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "SNN90",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/mlin-za-zito-zonda/17-snn-2.jpg",
+      "/images/masine/hofman/izvedbe/mlin-za-zito-zonda/17-snn1.jpg",
+      "/images/masine/hofman/izvedbe/mlin-za-zito-zonda/17-snn2.jpg"
+    ]
   },
   {
     "id": "5030",
@@ -1961,9 +2466,9 @@
       "redovi": [
         [
           "Radna širina",
-          "250 c",
-          "270 c",
-          "300 c"
+          "250 cm",
+          "270 cm",
+          "300 cm"
         ],
         [
           "Masa (kg)",
@@ -1984,7 +2489,29 @@
           "22"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "PS 250",
+        "slike": []
+      },
+      {
+        "naziv": "PS 270",
+        "slike": []
+      },
+      {
+        "naziv": "PS 300",
+        "slike": [
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1530-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1535-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1537-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1540-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1545-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1552-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-aus-fiksni/17-mg-1540-copy-3.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5031",
@@ -2006,10 +2533,10 @@
       "redovi": [
         [
           "Radna širina",
-          "180 c",
-          "220 c",
+          "180 cm",
+          "220 cm",
           "260",
-          "300 c"
+          "300 cm"
         ],
         [
           "Masa (kg)",
@@ -2040,7 +2567,44 @@
           "8"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "GB, GW, GNS 180",
+        "slike": []
+      },
+      {
+        "naziv": "GB, GW, GNS 220",
+        "slike": []
+      },
+      {
+        "naziv": "GB, GW, GNS 260",
+        "slike": []
+      },
+      {
+        "naziv": "GB, GW, GNS 300",
+        "slike": [
+          "/images/masine/hofman/izvedbe/gruber-hero/17-20230613-112820190-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-20230613-112826607-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-20230613-112836807-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-20230613-112840556-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-20230613-114228677-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0650-copy-4.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0639-copy-4.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0645-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0642-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0634-copy.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0620-copy.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0625-copy.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0630-copy.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0631-copy.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0654-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0655-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0669-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/gruber-hero/17-mg-0673-copy-2.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5032",
@@ -2062,10 +2626,10 @@
       "redovi": [
         [
           "Radna širina",
-          "360 c",
+          "360 cm",
           "",
-          "500 c",
-          "560 c"
+          "500 cm",
+          "560 cm"
         ],
         [
           "Masa (kg)",
@@ -2096,70 +2660,103 @@
           ""
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "PSH 360",
+        "slike": []
+      },
+      {
+        "naziv": "PSH 420",
+        "slike": [
+          "/images/masine/hofman/izvedbe/setvospremac-moro-auh-hidraulicno-sklopivi/17-mg-1436-copy.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-auh-hidraulicno-sklopivi/17-mg-1453-copy.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-auh-hidraulicno-sklopivi/17-mg-1463-copy.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-auh-hidraulicno-sklopivi/17-mg-1466-copy.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-auh-hidraulicno-sklopivi/17-mg-1510-copy.jpg",
+          "/images/masine/hofman/izvedbe/setvospremac-moro-auh-hidraulicno-sklopivi/17-mg-1525-copy.jpg"
+        ]
+      },
+      {
+        "naziv": "PSH 500",
+        "slike": []
+      },
+      {
+        "naziv": "PSH 560",
+        "slike": []
+      }
+    ]
   },
   {
-    "id": "5033",
-    "name": "Tanjirača BRONCA",
+    "id": "5036",
+    "name": "Livadska drljača GRANA",
     "group": "masine-hofman",
     "grana": "poljoprivredne",
     "subgroup": "obrada-zemljista",
     "tagline": "",
     "brand": "hofman",
-    "izvor": "/hr/kruzne-stepenice/bronca-fiksno",
-    "slug": "tanjiraca-bronca",
+    "izvor": "/hr/travnicke-brane/grana",
+    "slug": "livadska-drljaca-grana",
     "tabela": {
       "kolone": [
-        "KB 200",
-        "KB 250",
-        "KB 300"
+        "TB 400",
+        "TB 500",
+        "TB 600"
       ],
       "redovi": [
         [
-          "Radna širina (m)",
-          "200",
-          "250",
-          "300"
+          "Radna širina",
+          "400 cm",
+          "500 CM",
+          "600 cm"
         ],
         [
           "Masa (kg)",
-          "985",
-          "1150",
-          "1380"
+          "480",
+          "560",
+          "635"
         ],
         [
-          "Broj diskova",
-          "16",
-          "20",
-          "24"
+          "Broj redova klinova",
+          "4",
+          "4",
+          "4"
         ],
         [
-          "Kategorija priključka",
-          "CAT II",
-          "CAT II",
-          "CAT II"
-        ],
-        [
-          "Razmak između redova diskova (cm)",
-          "110",
-          "110",
-          "110"
-        ],
-        [
-          "Potrebna snaga traktora",
-          "60-90",
-          "70-100",
-          "90-120"
+          "Hidraulično podizanje",
+          "Da",
+          "Da",
+          "Da"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "TB 400",
+        "slike": []
+      },
+      {
+        "naziv": "TB 500",
+        "slike": []
+      },
+      {
+        "naziv": "TB 600",
+        "slike": [
+          "/images/masine/hofman/izvedbe/livadska-drljaca-grana/17-travniska-brana-grana-png-tel-2.jpg",
+          "/images/masine/hofman/izvedbe/livadska-drljaca-grana/17-img-7473-png.jpg",
+          "/images/masine/hofman/izvedbe/livadska-drljaca-grana/17-img-7466-png.jpg",
+          "/images/masine/hofman/izvedbe/livadska-drljaca-grana/17-img-7469-png.jpg",
+          "/images/masine/hofman/izvedbe/livadska-drljaca-grana/17-img-7470-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5034",
     "name": "Plug NERO",
     "group": "masine-hofman",
     "grana": "poljoprivredne",
-    "subgroup": "obrada-zemljista",
+    "subgroup": "plugovi",
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/plugi/nero",
@@ -2168,8 +2765,8 @@
       "kolone": [
         "2P / L LIGHT",
         "3P / L LIGHT",
-        "3P / 3XL - opcijsko VARIO",
-        "4P/ 4XL - opcijsko VARIO"
+        "3P / 3XL - opciono VARIO",
+        "4P/ 4XL - opciono VARIO"
       ],
       "redovi": [
         [
@@ -2257,107 +2854,37 @@
           "1500 / 1640 (VARIO)"
         ]
       ]
-    }
-  },
-  {
-    "id": "5035",
-    "name": "Rezni valjak SEKO",
-    "group": "masine-hofman",
-    "grana": "poljoprivredne",
-    "subgroup": "obrada-zemljista",
-    "tagline": "",
-    "brand": "hofman",
-    "izvor": "/hr/rezni-valjci/seko",
-    "slug": "rezni-valjak-seko",
-    "tabela": {
-      "kolone": [
-        "RV 200",
-        "RV 250",
-        "RV 300"
-      ],
-      "redovi": [
-        [
-          "Radna širina (cm)",
-          "200",
-          "250",
-          "300"
-        ],
-        [
-          "Masa (kg)",
-          "585",
-          "720",
-          "850"
-        ],
-        [
-          "Potrebna snaga traktora",
-          "štirideset",
-          "50",
-          "60"
-        ],
-        [
-          "Dimenzije noža (mm)",
-          "80 x 480",
-          "80 x 480",
-          "80 x 480"
-        ],
-        [
-          "Broj reznih valjaka",
-          "2",
-          "2",
-          "2"
-        ],
-        [
-          "Prečnik pojedinačnog valjka (mm)",
-          "380",
-          "380",
-          "380"
-        ]
-      ]
-    }
-  },
-  {
-    "id": "5036",
-    "name": "Livadska drljača GRANA",
-    "group": "masine-hofman",
-    "grana": "poljoprivredne",
-    "subgroup": "obrada-zemljista",
-    "tagline": "",
-    "brand": "hofman",
-    "izvor": "/hr/travnicke-brane/grana",
-    "slug": "livadska-drljaca-grana",
-    "tabela": {
-      "kolone": [
-        "Besedilo: TB 400",
-        "TB 500",
-        "TB 600"
-      ],
-      "redovi": [
-        [
-          "Radna širina",
-          "400 c",
-          "500 C",
-          "600 c"
-        ],
-        [
-          "Masa (kg)",
-          "480",
-          "560",
-          "635"
-        ],
-        [
-          "Broj redova klinova",
-          "4",
-          "4",
-          "4"
-        ],
-        [
-          "Hidraulično podizanje",
-          "Da",
-          "Da",
-          "Da"
-        ]
-      ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "2P / L LIGHT",
+        "slike": []
+      },
+      {
+        "naziv": "3P / L LIGHT",
+        "slike": []
+      },
+      {
+        "naziv": "3P / 3XL - opciono VARIO",
+        "slike": []
+      },
+      {
+        "naziv": "4P/ 4XL - opciono VARIO",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3507.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3491-3.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3493.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3495.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3496.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3501.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3502.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3504.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3505.jpg",
+      "/images/masine/hofman/izvedbe/plug-nero/17-dsc3506.jpg"
+    ]
   },
   {
     "id": "5037",
@@ -2401,7 +2928,40 @@
           "12-30"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "FERO FR 600L",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133151410-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133156952-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133202564-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133207491-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133227824-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133232909-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133237566-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133240900-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133245763-ios-png.jpg"
+        ]
+      },
+      {
+        "naziv": "FERO FR 800L",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6253-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6227-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6231-png-3.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6233-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6237-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6239-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6244-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6251-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "FERO FR 1000L",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5038",
@@ -2459,7 +3019,26 @@
           "VDR-50 (mehanički)"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "CASTA C300/8 ECO",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6909-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6901-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6904-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6907-png.jpg"
+        ]
+      },
+      {
+        "naziv": "CASTA C600/10",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6936-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6929-png-2.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-casta/17-img-6931-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5039",
@@ -2517,7 +3096,45 @@
           "VDR-50 (mehanički)"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "MANTA M600/12 MX",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5270.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5250.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5255.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5266.jpg"
+        ]
+      },
+      {
+        "naziv": "MANTA M800/12 MX",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5296.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5280.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5283.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5291.jpg"
+        ]
+      },
+      {
+        "naziv": "MANTA M1000/12 MX",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5317.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5302.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5304.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5312.jpg"
+        ]
+      },
+      {
+        "naziv": "MANTA M1200/15 MX",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5342.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5324.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5327.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-manta/17-img-5335.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5040",
@@ -2579,7 +3196,25 @@
           "preko kontrolnih ročic za upravljanje hidrauličnih ventilov v traktorju preko mehanskih ročic, nameščenih v traktorju preko elektro-hidraulične krmilne enote z joysticki"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "PADA P600/12 HX",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-pada/17-img-6956-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-pada/17-img-6949-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-pada/17-img-6952-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "PADA P1000/15 HX",
+        "slike": [
+          "/images/masine/hofman/izvedbe/nosena-prskalica-pada/17-img-6943-png.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-pada/17-img-6938-png-2.jpg",
+          "/images/masine/hofman/izvedbe/nosena-prskalica-pada/17-img-6942-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5041",
@@ -2633,7 +3268,27 @@
           "12"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "R 200",
+        "slike": [
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6915-png.jpg",
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6911-png.jpg",
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6912-png.jpg",
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6914-png.jpg"
+        ]
+      },
+      {
+        "naziv": "R 300 PLUS",
+        "slike": [
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6927-png.jpg",
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6917-png.jpg",
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6919-png.jpg",
+          "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6922-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5042",
@@ -2671,7 +3326,17 @@
           "12"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "M 100",
+        "slike": [
+          "/images/masine/hofman/izvedbe/sejalica-mina/17-img-5629-png.jpg",
+          "/images/masine/hofman/izvedbe/sejalica-mina/17-img-5639-png.jpg",
+          "/images/masine/hofman/izvedbe/sejalica-mina/17-img-5631-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5043",
@@ -2749,7 +3414,104 @@
           "1420"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "SILO MC125",
+        "slike": [
+          "/images/masine/hofman/izvedbe/silazni-kombajn-silo/17-img-0465-png.jpg",
+          "/images/masine/hofman/izvedbe/silazni-kombajn-silo/17-img-0425-png-2.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5033",
+    "name": "Tanjirača BRONCA",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "tanjirace",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/kruzne-stepenice/bronca-fiksno",
+    "slug": "tanjiraca-bronca",
+    "tabela": {
+      "kolone": [
+        "KB 200",
+        "KB 250",
+        "KB 300"
+      ],
+      "redovi": [
+        [
+          "Radna širina (m)",
+          "200",
+          "250",
+          "300"
+        ],
+        [
+          "Masa (kg)",
+          "985",
+          "1150",
+          "1380"
+        ],
+        [
+          "Broj diskova",
+          "16",
+          "20",
+          "24"
+        ],
+        [
+          "Kategorija priključka",
+          "CAT II",
+          "CAT II",
+          "CAT II"
+        ],
+        [
+          "Razmak između redova diskova (cm)",
+          "110",
+          "110",
+          "110"
+        ],
+        [
+          "Potrebna snaga traktora (KS)",
+          "60-90",
+          "70-100",
+          "90-120"
+        ]
+      ]
+    },
+    "izvedbe": [
+      {
+        "naziv": "KB 200",
+        "slike": []
+      },
+      {
+        "naziv": "KB 250",
+        "slike": [
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0785-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0791-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0794-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0797-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0806-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0779-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0783-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0798-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0802-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-02a0803-copy-2.jpg"
+        ]
+      },
+      {
+        "naziv": "KB 300",
+        "slike": [
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-20230612-102024310-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-20230612-102058250-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-20230612-102103861-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-20230612-102109221-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-20230612-103040528-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tanjiraca-bronca/17-20230612-103048313-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5044",
@@ -2783,7 +3545,18 @@
           "Da"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "1000 KG",
+        "slike": [
+          "/images/masine/hofman/izvedbe/teg-za-traktor/17-img-6265-png.jpg",
+          "/images/masine/hofman/izvedbe/teg-za-traktor/17-img-6255-png.jpg",
+          "/images/masine/hofman/izvedbe/teg-za-traktor/17-img-6258-png.jpg",
+          "/images/masine/hofman/izvedbe/teg-za-traktor/17-img-6262-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5045",
@@ -2839,7 +3612,29 @@
           "1500"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "BORO HZ 160/110",
+        "slike": []
+      },
+      {
+        "naziv": "BORO HZ 180/110",
+        "slike": [
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-hz/17-dsc8213.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-hz/17-dsc8222.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-hz/17-dsc8217.jpg"
+        ]
+      },
+      {
+        "naziv": "BORO HZ 200/110",
+        "slike": []
+      },
+      {
+        "naziv": "BORO HZ 220/110",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5046",
@@ -2902,7 +3697,33 @@
           "380"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "BORO VD 160/100",
+        "slike": []
+      },
+      {
+        "naziv": "BORO VD 180/100",
+        "slike": [
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8660-copy.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8642-copy.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8644-copy.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8645-copy.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8647-copy.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8649-copy.jpg",
+          "/images/masine/hofman/izvedbe/hidraulicna-kiper-platforma-boro-vd/17-mg-8651-copy.jpg"
+        ]
+      },
+      {
+        "naziv": "BORO VD 200/100",
+        "slike": []
+      },
+      {
+        "naziv": "BORO VD 220/100",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5047",
@@ -2952,7 +3773,36 @@
           "300"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "BORO MZ 120",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-5694-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-5700-png.jpg"
+        ]
+      },
+      {
+        "naziv": "BORO MZ 150",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8877-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8882-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8891-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8931-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8946-png.jpg"
+        ]
+      },
+      {
+        "naziv": "BORO MZ 180",
+        "slike": [
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8958-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8971-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-8990-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-9047-png.jpg",
+          "/images/masine/hofman/izvedbe/mehanicka-kiper-platforma-boro-mz/17-img-9083-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5048",
@@ -3056,7 +3906,25 @@
           "Hidraulične /vazdušne"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "V 13/10",
+        "slike": []
+      },
+      {
+        "naziv": "V 16/12",
+        "slike": [
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-20250306-075856699-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-20250306-075902394-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-20250306-075912948-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-img-8291-png.jpg",
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-20250306-075917688-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-20250306-075925482-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/dvoosovinska-traktorska-prikolica-vita/17-img-8291-png-2.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5049",
@@ -3122,7 +3990,17 @@
           "Hidraulične ali vazdušne"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "GM 15/12",
+        "slike": [
+          "/images/masine/hofman/izvedbe/gradevinska-traktorska-prikolica-vita/17-gradbena-png.jpg",
+          "/images/masine/hofman/izvedbe/gradevinska-traktorska-prikolica-vita/17-20250204-122612235-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/gradevinska-traktorska-prikolica-vita/17-20250204-122742481-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5050",
@@ -3244,7 +4122,36 @@
           "Hidraulične / vazdušne"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "E 6,5/5",
+        "slike": [
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-photo-2025-06-03-12-59-38-2-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-photo-2025-06-03-12-59-38-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-photo-2025-06-03-12-59-39-2-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-photo-2025-06-03-12-59-39-3-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-photo-2025-06-03-12-59-39-4-png.jpg"
+        ]
+      },
+      {
+        "naziv": "E 7,5/6",
+        "slike": [
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250204-104724270-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250204-104737221-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250204-104755897-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250204-104814621-ios-png.jpg"
+        ]
+      },
+      {
+        "naziv": "E 10,5/8",
+        "slike": [
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250130-092053270-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250130-092107894-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/jednoosovinska-traktorska-prikolica-vita/17-20250130-092139599-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5051",
@@ -3312,13 +4219,43 @@
           "Da"
         ],
         [
-          "Preporučena snaga traktora",
+          "Preporučena snaga traktora (KS)",
           "20",
           "25",
           "25"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "E 1500",
+        "slike": [
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-093347350-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-093402623-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-093453985-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-093826123-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-093837260-ios-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 2500",
+        "slike": [
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-081934313-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-081957155-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-082113450-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-082126802-ios-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 2500 PLUS",
+        "slike": [
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-084956097-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-085008084-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-085145174-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-mini-vita/17-20250909-085208533-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5052",
@@ -3458,7 +4395,38 @@
           "Hidraulične / vazdušne"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T 10/7,5",
+        "slike": [
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-20250131-082642267-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-20250131-082652792-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-20250131-082709829-ios-png-2.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-20250131-082719478-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-20250131-082735663-ios-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 13/10",
+        "slike": []
+      },
+      {
+        "naziv": "T 15,5/12",
+        "slike": [
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-photo-2025-06-02-08-30-47-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-photo-2025-06-02-08-30-48-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-photo-2025-06-02-08-30-49-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-photo-2025-06-02-08-30-50-1-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-photo-2025-06-02-08-30-52-1-png.jpg",
+          "/images/masine/hofman/izvedbe/tandem-traktorska-prikolica-vita/17-photo-2025-06-02-08-30-54-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 16/12",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5053",
@@ -3537,7 +4505,172 @@
           "3.890"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "Z 400",
+        "slike": []
+      },
+      {
+        "naziv": "Z 500",
+        "slike": [
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-tina/17-img-5668-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-tina/17-img-5665-png.jpg",
+          "/images/masine/hofman/izvedbe/traktorska-prikolica-tina/17-img-5690-png.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5029",
+    "name": "Cambridge valjak ROLO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "valjci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/cambdridge-valji/rolo",
+    "slug": "cambridge-valjak-rolo",
+    "tabela": {
+      "kolone": [
+        "CR 450",
+        "CR 540",
+        "CR 630"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "450",
+          "540",
+          "630"
+        ],
+        [
+          "Masa (kg)",
+          "2280",
+          "2560",
+          "2860"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "80-110",
+          "90-120",
+          "110-150"
+        ],
+        [
+          "Transportni točkovi",
+          "11.5/80-15.3",
+          "11.5/80-15.3",
+          "11.5/80-15.3"
+        ],
+        [
+          "Prečnik valjka (cm)",
+          "50",
+          "50",
+          "50"
+        ]
+      ]
+    },
+    "izvedbe": [
+      {
+        "naziv": "CR 450",
+        "slike": []
+      },
+      {
+        "naziv": "CR 540",
+        "slike": []
+      },
+      {
+        "naziv": "CR 630",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8528-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8532-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8538-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8539-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8554-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8559-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8562-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8566-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8571-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8523-copy-3.jpg",
+          "/images/masine/hofman/izvedbe/cambridge-valjak-rolo/17-mg-8525-copy-2.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5035",
+    "name": "Rezni valjak SEKO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "valjci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/rezni-valjci/seko",
+    "slug": "rezni-valjak-seko",
+    "tabela": {
+      "kolone": [
+        "RV 200",
+        "RV 250",
+        "RV 300"
+      ],
+      "redovi": [
+        [
+          "Radna širina (cm)",
+          "200",
+          "250",
+          "300"
+        ],
+        [
+          "Masa (kg)",
+          "585",
+          "720",
+          "850"
+        ],
+        [
+          "Potrebna snaga traktora",
+          "štirideset",
+          "50",
+          "60"
+        ],
+        [
+          "Dimenzije noža (mm)",
+          "80 x 480",
+          "80 x 480",
+          "80 x 480"
+        ],
+        [
+          "Broj reznih valjaka",
+          "2",
+          "2",
+          "2"
+        ],
+        [
+          "Prečnik pojedinačnog valjka (mm)",
+          "380",
+          "380",
+          "380"
+        ]
+      ]
+    },
+    "izvedbe": [
+      {
+        "naziv": "RV 200",
+        "slike": []
+      },
+      {
+        "naziv": "RV 250",
+        "slike": []
+      },
+      {
+        "naziv": "RV 300",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rezni-valjak-seko/17-mg-1555-copy-2.jpg",
+          "/images/masine/hofman/izvedbe/rezni-valjak-seko/17-mg-1558-copy.jpg",
+          "/images/masine/hofman/izvedbe/rezni-valjak-seko/17-mg-1564-copy.jpg",
+          "/images/masine/hofman/izvedbe/rezni-valjak-seko/17-mg-1568-copy.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5054",
@@ -3587,7 +4720,7 @@
           "1100"
         ],
         [
-          "Najmanja snaga traktora",
+          "Najmanja snaga traktora (KS)",
           "25",
           "25",
           "45"
@@ -3623,7 +4756,45 @@
           "2510"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T 16 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7910-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7903-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7907-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7908-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 22 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7929-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7921-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7922-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7923-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7924-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7925-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7926-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7927-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7928-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 30 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7959-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7960-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7961-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7962-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7963-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7964-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7965-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-kardanski-pogon/17-img-7966-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5055",
@@ -3692,7 +4863,29 @@
           "4,2"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T 8 E",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7880-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7882-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7884-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7885-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7886-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 12 E",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7861-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7862-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7863-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7864-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektricni-pogon/17-img-7865-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5056",
@@ -3736,7 +4929,7 @@
           "1100"
         ],
         [
-          "Najmanja snaga traktora",
+          "Najmanja snaga traktora (KS)",
           "25",
           "45"
         ],
@@ -3771,7 +4964,35 @@
           "5 / 400"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T 22 KE",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7895-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7896-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7897-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7898-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7899-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7900-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7901-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7902-png.jpg"
+        ]
+      },
+      {
+        "naziv": "T 30 KE",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7912-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7913-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7914-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7915-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7916-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7917-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7918-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-elektro-i-kardanski-pogon/17-img-7919-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5057",
@@ -3789,7 +5010,7 @@
       ],
       "redovi": [
         [
-          "Snaga motora",
+          "Snaga motora (kW/KS)",
           "4,1 / 5,5"
         ],
         [
@@ -3809,7 +5030,16 @@
           "24"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T 22 DRIVE",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-benzinski-motor/17-rex-t-22-drive-2.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-rex-benzinski-motor/17-rex-t-22-drive-avtonet.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5058",
@@ -3855,7 +5085,7 @@
           "550"
         ],
         [
-          "Najmanja snaga traktora",
+          "Najmanja snaga traktora (KS)",
           "27"
         ],
         [
@@ -3883,7 +5113,18 @@
           "2835"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "T 23 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/cepac-drva-max-kardanski-pogon/17-79a3c4fd-73e9-4948-b2e5-ee4674b4f268-png.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-max-kardanski-pogon/17-55595122-e093-4ccc-93fc-d233fc0d2c03-png-2.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-max-kardanski-pogon/17-b77c09dc-0e5e-44a6-9d21-e919cf926ad1-png-2.jpg",
+          "/images/masine/hofman/izvedbe/cepac-drva-max-kardanski-pogon/17-e011ae02-25b2-41b0-9682-2847269fe030-png-2.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5059",
@@ -3939,7 +5180,7 @@
           ""
         ],
         [
-          "Potrebna snaga traktora",
+          "Potrebna snaga traktora (KS)",
           "20-50",
           "20-45",
           "45&ndash;100",
@@ -3974,7 +5215,40 @@
           "Enosmerni"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "W line 100",
+        "slike": [
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9738-3.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9741.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9744.jpg"
+        ]
+      },
+      {
+        "naziv": "X line 100",
+        "slike": [
+          "/images/masine/hofman/izvedbe/iverac/17-x-line-100-png.jpg"
+        ]
+      },
+      {
+        "naziv": "D line 160",
+        "slike": [
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9731.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9735.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9728-2.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-dsc9729.jpg"
+        ]
+      },
+      {
+        "naziv": "TB 6,5HP",
+        "slike": [
+          "/images/masine/hofman/izvedbe/iverac/17-20251020-062433881-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-20251020-062442836-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/iverac/17-20251020-062518877-ios-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5060",
@@ -4028,7 +5302,18 @@
           "70"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "KAJLA FW 60",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-fw-60/17-image00001-png.jpg",
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-fw-60/17-image00002-png.jpg",
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-fw-60/17-image00003-png.jpg"
+    ]
   },
   {
     "id": "5061",
@@ -4070,7 +5355,19 @@
           "EURO, 3 točkovne vpetje"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "LEX TG 1300",
+        "slike": [
+          "/images/masine/hofman/izvedbe/klesta-za-trupce-lex/17-20250722-102206-png.jpg",
+          "/images/masine/hofman/izvedbe/klesta-za-trupce-lex/17-20250722-102247-png.jpg",
+          "/images/masine/hofman/izvedbe/klesta-za-trupce-lex/17-20250722-102322-png.jpg",
+          "/images/masine/hofman/izvedbe/klesta-za-trupce-lex/17-20250722-102721-png.jpg",
+          "/images/masine/hofman/izvedbe/klesta-za-trupce-lex/17-20250722-102737-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5062",
@@ -4114,7 +5411,21 @@
           "EURO"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "KS 1600",
+        "slike": []
+      },
+      {
+        "naziv": "KS 1800",
+        "slike": []
+      },
+      {
+        "naziv": "KS 2000",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5063",
@@ -4158,7 +5469,21 @@
           "EURO"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "SS 1600",
+        "slike": []
+      },
+      {
+        "naziv": "SS 1800",
+        "slike": []
+      },
+      {
+        "naziv": "SS 2000",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5064",
@@ -4184,7 +5509,18 @@
           "EURO"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "Paletne vilice MANO PV 120",
+        "slike": [
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-manji-model/17-1030355-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-manji-model/17-2030360-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-manji-model/17-3030364-hd-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-manji-model/17-4030368-hd-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5065",
@@ -4228,7 +5564,45 @@
           "0,53"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "MANO NZ 1800",
+        "slike": [
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3865-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3877-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3945-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3952-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3963-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3964-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3968-png.jpg"
+        ]
+      },
+      {
+        "naziv": "MANO NZ 2000",
+        "slike": [
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3865-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3877-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3945-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3952-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3963-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3964-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3968-png.jpg"
+        ]
+      },
+      {
+        "naziv": "MANO NZ 2200",
+        "slike": [
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3865-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3877-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3945-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3952-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3963-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3964-png.jpg",
+          "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-mano-pv-veci-model/17-img-3968-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5066",
@@ -4266,7 +5640,20 @@
           "360"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "ROTO T3000",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-t3000/17-0b44f939-4cf0-40dd-a4ec-353c6518d63f-png.jpg",
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-t3000/17-2c3e4ba0-6fe8-4a39-a087-9d446a445c01-png.jpg",
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-t3000/17-3ae1d488-a9cd-40dd-b3d8-00874472c1a3-png.jpg",
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-t3000/17-966f0776-5eb2-473c-a36b-964ae58d6a10-png.jpg",
+      "/images/masine/hofman/izvedbe/prikljucak-za-sumarstvo-t3000/17-4980e888-c22d-40e5-9a80-97fcd8ed198d-png.jpg"
+    ]
   },
   {
     "id": "5067",
@@ -4316,7 +5703,19 @@
           "1"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "BINO PD 110 H",
+        "slike": [
+          "/images/masine/hofman/izvedbe/vezac-drva-bino/17-img-7967-png.jpg",
+          "/images/masine/hofman/izvedbe/vezac-drva-bino/17-img-7968-png.jpg",
+          "/images/masine/hofman/izvedbe/vezac-drva-bino/17-img-7969-png.jpg",
+          "/images/masine/hofman/izvedbe/vezac-drva-bino/17-img-7970-png.jpg",
+          "/images/masine/hofman/izvedbe/vezac-drva-bino/17-img-7971-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5068",
@@ -4348,7 +5747,7 @@
           ""
         ],
         [
-          "Preporučena snaga traktora",
+          "Preporučena snaga traktora (KS)",
           "",
           "",
           "25",
@@ -4438,7 +5837,106 @@
           "250"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "KR 700 MF",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8299-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8300-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8301-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8302-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8294-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8295-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8297-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8298-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8304-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8305-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8306-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8307-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "KR 700 3F",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8299-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8300-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8301-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8302-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8294-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8295-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8297-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8298-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8304-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8305-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8306-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8307-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "KR 700 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8299-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8300-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8301-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8302-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8294-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8295-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8297-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8298-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8304-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8305-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8306-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8307-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8316-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8318-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8319-png-3.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8320-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8321-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8322-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8323-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8324-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8325-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8326-png.jpg"
+        ]
+      },
+      {
+        "naziv": "KR 700 K4",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8316-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8318-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8319-png-3.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8320-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8321-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8322-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8323-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8324-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8325-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8326-png.jpg"
+        ]
+      },
+      {
+        "naziv": "KR 700 K5",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8316-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8318-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8319-png-3.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8320-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8321-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8322-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8323-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8324-png-2.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8325-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-img-8326-png.jpg"
+        ]
+      },
+      {
+        "naziv": "KR 700 K5 PRO",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-kiara/17-20250529-051109954-ios-1-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5069",
@@ -4497,7 +5995,33 @@
           "870"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "ZARA R 700 E",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-img-7887-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-img-7888-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-img-7889-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-img-7890-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-img-7892-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-img-7893-png.jpg"
+        ]
+      },
+      {
+        "naziv": "ZARA R 700 K",
+        "slike": [
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-7d592dc1-8c79-474a-b114-e3b4a0e457c2-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-86d787bb-30e9-4dd8-983c-e4fed3385729-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-3440be79-e44c-4753-9936-de27ab612484-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-85851aeb-7cd0-456c-9b15-caa52f91f28b-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-15011948-2761-400b-99c2-7fdbe1f5ef25-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-c3a4997c-35a1-49ce-b4d2-6f9e1522076a-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-d4124698-04f1-4a91-b315-ed7e5a27efd0-png.jpg",
+          "/images/masine/hofman/izvedbe/kruzna-pila-zara/17-e8b6ea45-54fc-466c-9753-7262a9c8e3e7-png.jpg"
+        ]
+      }
+    ]
   },
   {
     "id": "5070",
@@ -4511,9 +6035,9 @@
     "slug": "masina-za-rezanje-i-cepanje-drva-pero",
     "tabela": {
       "kolone": [
-        "PERO RCS 20T s podvozjem",
-        "PERO RCS 20T PLUS s podvozjem",
-        "PERO RCS 20T KE nošen"
+        "PERO RCS 20T sa podvozjem",
+        "PERO RCS 20T PLUS sa podvozjem",
+        "PERO RCS 20T KE nošeni"
       ],
       "redovi": [
         [
@@ -4559,7 +6083,21 @@
           ""
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "PERO RCS 20T sa podvozjem",
+        "slike": []
+      },
+      {
+        "naziv": "PERO RCS 20T PLUS sa podvozjem",
+        "slike": []
+      },
+      {
+        "naziv": "PERO RCS 20T KE nošeni",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5071",
@@ -4699,7 +6237,33 @@
           "4900"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "GP 1.5T/35",
+        "slike": []
+      },
+      {
+        "naziv": "GP 3T/42",
+        "slike": []
+      },
+      {
+        "naziv": "GP 4T/42",
+        "slike": []
+      },
+      {
+        "naziv": "GP 4T/42 PLUS",
+        "slike": []
+      },
+      {
+        "naziv": "GP 6T/53",
+        "slike": []
+      },
+      {
+        "naziv": "GP 7T/63",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5072",
@@ -4736,7 +6300,7 @@
           "4000"
         ],
         [
-          "Snaga motora",
+          "Snaga motora (kW/KS)",
           "13,4 / 18",
           "14,6 / 20",
           "18,5 / 25"
@@ -4766,7 +6330,21 @@
           "30"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "HW 20",
+        "slike": []
+      },
+      {
+        "naziv": "HW 25",
+        "slike": []
+      },
+      {
+        "naziv": "HW 35",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5074",
@@ -4885,7 +6463,25 @@
           "4.2"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "MD 300",
+        "slike": []
+      },
+      {
+        "naziv": "MD 500",
+        "slike": []
+      },
+      {
+        "naziv": "MD 800",
+        "slike": []
+      },
+      {
+        "naziv": "MD 800 PLUS",
+        "slike": []
+      }
+    ]
   },
   {
     "id": "5075",
@@ -4959,6 +6555,22 @@
           "730"
         ]
       ]
-    }
+    },
+    "izvedbe": [
+      {
+        "naziv": "ML 200",
+        "slike": []
+      }
+    ],
+    "galerija": [
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125031107-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125037318-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125109793-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125116513-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125124717-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125348893-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125355938-ios-png.jpg",
+      "/images/masine/hofman/izvedbe/mini-utovarivac-danch/17-20250618-125404615-ios-png.jpg"
+    ]
   }
 ]

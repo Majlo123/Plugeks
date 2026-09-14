@@ -15,6 +15,13 @@ import {
 } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
 import { TabelaModela } from "@/components/TabelaModela";
+import {
+  IzvedbeProvider,
+  BiracIzvedbe,
+  GalerijaMasine,
+  TabelaIzvedbi,
+  PonudaZaIzvedbu,
+} from "@/components/IzvedbeMasine";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -28,8 +35,9 @@ import {
   machineHighlights,
   partDescription,
   natpisSlike,
+  slikeMasine,
   ukrstenaHref,
-  kontekstMasine,
+  tipZaMasinu,
   trailerDescription,
   trailerHighlights,
   type Product,
@@ -91,12 +99,11 @@ const putanja = (p: Product): { naziv: string; href: string }[] => {
   // Delovi: nagore idu u indeksirane kategorije (`/delovi/...`), a ne u
   // `/proizvodi?vrsta=delovi&brend=...`. Filter-URL je za Google ista strana kao
   // katalog, pa su sve 4.644 strane dela do sada pokazivale nagore u prazno.
-  const kontekst = kontekstMasine(p.groupKey);
   const ukrstena = ukrstenaHref(p.typeKey, p.brandKey);
   return [
     { naziv: "Proizvodi", href: "/proizvodi" },
     ...(p.typeKey && p.typeLabel
-      ? [{ naziv: `${p.typeLabel} za ${kontekst}`, href: `/delovi/${p.typeKey}` }]
+      ? [{ naziv: tipZaMasinu(p.typeLabel, p.groupKey), href: `/delovi/${p.typeKey}` }]
       : [{ naziv: p.groupLabel, href: catalogHref(p) }]),
     ...(ukrstena && p.typeLabel && p.brandLabel
       ? [{ naziv: `${p.typeLabel} ${p.brandLabel}`, href: ukrstena }]
@@ -165,6 +172,15 @@ export function generateMetadata({
       description,
       images: [{ url: ogImage, alt: p.name }],
     },
+    // Bez ovoga se iz layout-a nasleđuje `twitter:image = /og.jpg` (logo), pa
+    // stranica istovremeno tvrdi dve različite glavne slike — Google Images je
+    // uz stranicu dela prikazivao logo umesto crteža.
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.name} | PlugekS`,
+      description,
+      images: [{ url: ogImage, alt: p.name }],
+    },
   };
 }
 
@@ -197,6 +213,16 @@ function ProductJsonLd({ p }: { p: Product }) {
               representativeOfPage: true,
               mainEntityOfPage: canonical,
             },
+            // Fotografije izvedbi (mašine) — iste koje stranica pokazuje posle
+            // izbora modela, sa izvedbom u natpisu.
+            ...slikeMasine(p).map(({ slika, izvedba }) => ({
+              "@type": "ImageObject",
+              contentUrl: abs(slika),
+              url: abs(slika),
+              name: izvedba ? `${p.name} — ${izvedba}` : p.name,
+              caption: natpisSlike(p, izvedba),
+              mainEntityOfPage: canonical,
+            })),
           ],
         }
       : {}),
@@ -280,11 +306,26 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <span className="font-medium text-charcoal">{p.name}</span>
           </nav>
 
+          {/* Mašina sa izvedbama: izbor modela pokreće galeriju (levo), tabelu
+              i ponudu (desno) — vidi `IzvedbeMasine`. Ostali proizvodi prolaze
+              kroz isti okvir netaknuti. */}
+          <IzvedbeProvider izvedbe={p.izvedbe ?? []}>
           <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Vizual. `figure` + vidljiv `figcaption` nisu ukras: Google Images
                 natpis uz sliku čita sa same stranice i po njemu je vezuje za
                 stranicu proizvoda. Tekst je isti onaj koji ide u
                 `image-sitemap.xml` i u `ImageObject` iznad. */}
+            {p.kind === "masina" && p.izvedbe?.length ? (
+              <GalerijaMasine
+                slika={p.image}
+                galerija={p.galerija ?? []}
+                name={p.name}
+                code={p.id}
+                metaLabel={p.brandLabel}
+                natpis={natpisSlike(p)}
+                natpisi={p.izvedbe.map((i) => natpisSlike(p, i.naziv))}
+              />
+            ) : (
             <figure>
               <div className="overflow-hidden rounded-3xl border border-border bg-bone shadow-card">
                 <ProductThumb
@@ -310,6 +351,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 {p.name} — {natpisSlike(p)}
               </figcaption>
             </figure>
+            )}
 
             {/* Podaci */}
             <div className="flex flex-col">
@@ -345,8 +387,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   ide u `<meta description>` i u structured data — tamo ga
                   Google traži i tamo ne smeta.
 
-                  Rolland mašine i onih šest Hofman mašina bez tabele zadržavaju
-                  opis: kod njih je to jedini tekst na stranici. */}
+                  Mašina bez tabele (pet Hofman modela kod kojih je izvor nema)
+                  zadržava opis: kod nje je to jedini tekst na stranici. */}
+              {p.kind === "masina" ? <BiracIzvedbe /> : null}
+
               {p.kind === "masina" && p.tabela ? (
                 <div className="mt-5">
                   <p className="eyebrow">
@@ -354,7 +398,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     Tehnički podaci
                   </p>
                   <div className="mt-3">
-                    <TabelaModela tabela={p.tabela} />
+                    {p.izvedbe?.length ? (
+                      <TabelaIzvedbi tabela={p.tabela} />
+                    ) : (
+                      <TabelaModela tabela={p.tabela} />
+                    )}
                   </div>
                 </div>
               ) : (
@@ -382,12 +430,16 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
               {/* CTA */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild variant="primary" size="lg" className="sm:flex-1">
-                  <Link href={quoteHref(p)}>
-                    Zatraži ponudu
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
+                {p.kind === "masina" && p.izvedbe?.length ? (
+                  <PonudaZaIzvedbu name={p.name} />
+                ) : (
+                  <Button asChild variant="primary" size="lg" className="sm:flex-1">
+                    <Link href={quoteHref(p)}>
+                      Zatraži ponudu
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                )}
                 <Button asChild variant="outline" size="lg" className="sm:flex-1">
                   <a href={site.telHref}>
                     <Phone className="h-4 w-4" />
@@ -404,6 +456,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </div>
             </div>
           </div>
+
+          </IzvedbeProvider>
 
           {/* Srodni proizvodi */}
           <RelatedGrid p={p} />

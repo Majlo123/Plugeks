@@ -29,6 +29,41 @@ const nextConfig = {
         destination: "/prikolice",
         permanent: true,
       },
+
+      // Rolland mašine (plavi program za obradu zemljišta) su skinute sa sajta
+      // odlukom vlasnika. Njihove adrese su bile indeksirane, pa svaka vodi na
+      // stranu tipa u kome danas stoji zelena (Hofman) mašina istog posla —
+      // tanjirače na tanjirače, valjci na valjke, agregati i podrivači na
+      // grubere i setvospremače.
+      ...[
+        ["podrivac-deeper-gbm-michel-4706", "obrada-zemljista"],
+        ["podrivac-deeper-gbk-kret-4705", "obrada-zemljista"],
+        ["laki-bezoranicni-agregat-grander-abl-4704", "obrada-zemljista"],
+        ["bezoranicni-agregat-grander-ab-4703", "obrada-zemljista"],
+        ["polunoseni-tanjirasti-agregat-atp-4692", "obrada-zemljista"],
+        ["polunosena-tanjiraca-btp-4577", "tanjirace"],
+        ["hidraulicna-polunosena-tanjiraca-bh-pb-4576", "tanjirace"],
+        ["hidraulicna-polunosena-tanjiraca-bh-pa-4575", "tanjirace"],
+        ["valjci-za-obradu-zemljista-4397", "valjci"],
+        ["tanjiraca-field-bt-4396", "tanjirace"],
+        ["tanjirasti-agregat-field-at-4395", "obrada-zemljista"],
+        ["hidraulicna-tanjiraca-field-hawk-bh-4394", "tanjirace"],
+      ].map(([slug, tip]) => ({
+        source: `/proizvod/${slug}`,
+        destination: `/masine/${tip}`,
+        permanent: true,
+      })),
+      { source: "/masine/agregati", destination: "/masine/obrada-zemljista", permanent: true },
+      { source: "/masine/podrivaci", destination: "/masine/obrada-zemljista", permanent: true },
+
+      // Tip „Predplužna daska" je spojen sa „Daska predplužnjaka" (isti deo pod
+      // dva imena iz izvornog kataloga).
+      { source: "/delovi/predpluzna-daska", destination: "/delovi/daska-predpluznjaka", permanent: true },
+      {
+        source: "/delovi/predpluzna-daska/:brend",
+        destination: "/delovi/daska-predpluznjaka/:brend",
+        permanent: true,
+      },
     ];
   },
   async headers() {

@@ -25,6 +25,7 @@ import {
 } from "@/lib/masine";
 import { poredaj, rang } from "@/lib/redosled";
 import {
+  normalize,
   productSlug,
   idFromSlug,
   trailerRows,
@@ -51,6 +52,14 @@ const productImages: Record<string, string> = {
  * te tabele nisu prazne (vidi `scripts/import-hofman.mjs`).
  */
 export type TabelaModela = { kolone: string[]; redovi: string[][] };
+
+/**
+ * Izvedba mašine — model koji kupac bira na stranici (TERA HP 210 / 240 /
+ * 280), sa fotografijama BAŠ te izvedbe kad ih izvor ima. Spisak je isti kao
+ * kolone tabele; kad tabele nema, dolazi iz galerija na izvoru. Vidi
+ * `izvedbeMasine` u `scripts/import-hofman.mjs`.
+ */
+export type Izvedba = { naziv: string; slike: string[] };
 
 export type ProductKind = "masina" | "deo" | "prikolica" | "oprema";
 
@@ -84,6 +93,10 @@ export type Product = {
   note?: string;
   /** Tabela modela (mašine) — vidi `TabelaModela`. */
   tabela?: TabelaModela;
+  /** Izvedbe mašine sa fotografijama — vidi `Izvedba`. */
+  izvedbe?: Izvedba[];
+  /** Fotografije cele mašine (bez vezivanja za izvedbu), uz naslovnu. */
+  galerija?: string[];
 };
 
 /* -------------------------------- Jezik ----------------------------------- */
@@ -126,11 +139,16 @@ type MachineRow = {
   tagline: string;
   brand: string;
   tabela?: TabelaModela;
+  izvedbe?: Izvedba[];
+  galerija?: string[];
 };
 
-/** Marke mašina u ponudi. Ključ je `brand` iz `machines.json`. */
+/**
+ * Marke mašina u ponudi. Ključ je `brand` iz `machines.json`. Rolland (plavi
+ * program za obradu zemljišta) je skinut sa sajta odlukom vlasnika — ostao je
+ * samo Hofman; nova marka = novi red ovde.
+ */
 const MACHINE_BRANDS: Record<string, string> = {
-  rolland: "Rolland",
   hofman: "Hofman",
 };
 
@@ -156,11 +174,32 @@ function buildMachine(m: MachineRow): Product {
     brandKey: m.brand,
     brandLabel: MACHINE_BRANDS[m.brand] ?? m.brand,
     tabela: m.tabela,
+    izvedbe: m.izvedbe,
+    galerija: m.galerija,
   };
 }
 
 /** Izvedbe mašine iz tabele („TERA HP 210, TERA HP 240, TERA HP 280"). */
-export const modeliMasine = (p: Product): string[] => p.tabela?.kolone ?? [];
+export const modeliMasine = (p: Product): string[] =>
+  p.izvedbe?.map((i) => i.naziv) ?? p.tabela?.kolone ?? [];
+
+/**
+ * Sve fotografije mašine osim naslovne, svaka sa izvedbom kojoj pripada
+ * (`null` = cela mašina). Za image sitemap i `ImageObject` — ista slika uz
+ * dve izvedbe se navodi jednom, uz prvu.
+ */
+export function slikeMasine(p: Product): { slika: string; izvedba: string | null }[] {
+  const videne = new Set<string>(p.image ? [p.image] : []);
+  const sve: { slika: string; izvedba: string | null }[] = [];
+  const dodaj = (slika: string, izvedba: string | null) => {
+    if (videne.has(slika)) return;
+    videne.add(slika);
+    sve.push({ slika, izvedba });
+  };
+  for (const s of p.galerija ?? []) dodaj(s, null);
+  for (const i of p.izvedbe ?? []) for (const s of i.slike) dodaj(s, i.naziv);
+  return sve;
+}
 
 /* ------------------------ Auto-prikolice i njihova oprema ------------------ */
 
@@ -337,40 +376,18 @@ export function relatedProducts(p: Product, limit = 4): Product[] {
 /* ------------------------------ Opisni tekst ------------------------------ */
 /* Originalni srpski tekst pisan za PlugekS — nije prevod izvornog sajta.     */
 
-/** Detaljan opis mašine (po id-u). Piše se ljudski, bez izmišljanja brojki. */
-const MACHINE_COPY: Record<string, string> = {
-  "4394":
-    "Field Hawk BH je hidraulična tanjirača namenjena velikom dnevnom učinku. Hidrauličko sklapanje krila skraćuje pripremu za transport i prelazak između parcela, a agresivan ugao diskova brzo usitnjava žetvene ostatke i priprema zemljište u jednom prohodu.",
-  "4396":
-    "Field BT je nošena tanjirača za svakodnevnu obradu na malim i srednjim gazdinstvima. Jednostavna je za priključivanje i održavanje, a dobro drži dubinu i ravnomerno meša strnište — dobar izbor za brzu obradu posle žetve.",
-  "4395":
-    "Field AT je tanjirasti agregat sa zadnjim valjkom koji u jednom prohodu usitni, poravna i delimično zbije zemljište. Time se priprema kvalitetna setvena osnova uz manje prohoda i uštedu goriva.",
-  "4575":
-    "BH-PA je hidraulična polunošena tanjirača za veće površine. Polunošena konstrukcija sa transportnim točkovima rasterećuje traktor i omogućava stabilan rad pri većim radnim brzinama.",
-  "4576":
-    "BH-PB je hidraulična polunošena tanjirača građena za intenzivnu obradu većih parcela. Hidrauličko sklapanje i robusan ram omogućavaju siguran transport i pouzdan rad tokom cele sezone.",
-  "4577":
-    "BTP je polunošena tanjirača velikog kapaciteta. Namenjena je gazdinstvima kojima je bitan učinak po satu — veliki radni zahvat pokriva više hektara dnevno uz stabilan hod.",
-  "4692":
-    "ATP je polunošeni tanjirasti agregat koji spaja veliki radni zahvat sa stabilnošću polunošene konstrukcije. Kombinacija diskova i valjka daje poravnatu, prozračnu setvenu osnovu.",
-  "4703":
-    "Grander AB je bezoranični (no-till) agregat za obradu bez prevrtanja plodnog sloja. Radnim telima rastresa i meša zemljište uz očuvanje vlage i strukture — osnova sistema konzervacijske obrade.",
-  "4704":
-    "Grander ABL je laka verzija bezoraničnog agregata prilagođena manjim traktorima. Omogućava plitku obradu strništa i mešanje žetvenih ostataka uz manju potrošnju snage.",
-  "4705":
-    'Deeper GBK "Kret" je podrivač za razbijanje tabana pluga i poboljšanje drenaže zemljišta. Radi u dubini bez prevrtanja sloja, čime se obnavlja propusnost za vodu i vazduh i podstiče razvoj korena.',
-  "4706":
-    'Deeper GBM "Michel" je podrivač za dubinsko rastresanje zbijenih slojeva. Bez prevrtanja plodnog sloja probija zbijeni taban i vraća zemljištu prozračnost — pogodan pred setvu okopavina.',
-  "4397":
-    "Valjci za obradu zemljišta služe za poravnavanje i zbijanje površine posle obrade i za razbijanje grudvi. Biraju se prema tipu zemljišta i kombinuju sa agregatima i tanjiračama.",
-};
+/**
+ * Ručno pisan opis mašine (po id-u) — ima prednost nad sastavljenim. Trenutno
+ * prazno: Rolland mašine, koje su jedine imale ručni opis, skinute su sa sajta,
+ * a Hofman mašine nose fabričku tabelu umesto opisa (vidi stranicu proizvoda).
+ */
+const MACHINE_COPY: Record<string, string> = {};
 
 /**
  * Vraća opis mašine; ako specifičan ne postoji, gradi solidan podrazumevani.
  *
- * Marka i grana se čitaju iz samog proizvoda — ranije je ovde stajalo fiksno
- * „iz Rolland programa za obradu zemljišta", što je posle uvoza Hofman
- * programa bilo netačno za tri četvrtine kataloga (i za svaki cepač drva).
+ * Marka i grana se čitaju iz samog proizvoda, ne pišu se fiksno — inače bi
+ * svaka nova marka ili grana zatekla pogrešnu rečenicu na svim svojim stranama.
  */
 export function machineDescription(p: Product): string {
   if (MACHINE_COPY[p.id]) return MACHINE_COPY[p.id];
@@ -398,12 +415,12 @@ export function machineHighlights(p: Product): string[] {
     "Isporuka širom Srbije i regiona",
   ];
   const byType: Record<string, string[]> = {
+    plugovi: ["Prevrtanje i rastresanje plodnog sloja", "Broj plužnih tela prema snazi traktora"],
     tanjirace: ["Brza obrada strništa u jednom prohodu", "Ravnomerno mešanje žetvenih ostataka"],
-    agregati: ["Priprema setvene osnove uz manje prohoda", "Ušteda goriva i vremena"],
-    podrivaci: ["Razbijanje tabana pluga bez prevrtanja sloja", "Bolja drenaža i razvoj korena"],
-    valjci: ["Poravnavanje i zbijanje površine", "Kombinuju se sa agregatima i tanjiračama"],
+    valjci: ["Poravnavanje i zbijanje površine", "Kombinuju se sa setvospremačima i tanjiračama"],
     "obrada-zemljista": ["Priprema zemljišta pre setve", "Radni zahvat biramo prema snazi traktora"],
     malceri: ["Usitnjavanje žetvenih ostataka i rastinja", "Radna širina prema snazi traktora"],
+    freze: ["Fina priprema setvenog sloja u jednom prohodu", "Radna širina i broj noževa prema traktoru"],
     kosenje: ["Košenje, okretanje i baliranje u jednom programu", "Priključci se biraju prema veličini parcela"],
     "setva-zetva": ["Podešavanje razmaka i dubine setve", "Rezervni delovi obezbeđeni"],
     "prskalice-rasipaci": ["Ravnomerna raspodela po celoj radnoj širini", "Lako čišćenje i održavanje"],
@@ -572,24 +589,57 @@ const GROUP_CONTEXT: Record<string, string> = {
   "delovi-sejalice": "sejalice",
   "delovi-vadilice": "vadilice krompira",
   "delovi-kosacice": "kosačice",
+  "delovi-roto-drljace": "roto drljače",
 };
 
 /**
  * „delovi-plugovi" → „plugove". Kontekst mašine u akuzativu, da rečenica
  * „raonik za plugove Lemken" ostane tačna i kad deo nije za plug (isti katalog
- * nosi i delove za sejalice, tanjirače i vadilice).
+ * nosi i delove za sejalice, tanjirače, vadilice i roto drljače).
  */
 export const kontekstMasine = (groupKey: string): string =>
   GROUP_CONTEXT[groupKey] ?? "poljoprivredne mašine";
 
+/**
+ * Naziv tipa dela sa mašinom za koju je: „Raonik" → „Raonik za plugove".
+ *
+ * Kad naziv tipa već nosi mašinu („Nož roto drljače", „Čistač valjka roto
+ * drljače"), ništa se ne dodaje — „Nož roto drljače za roto drljače" bi bio
+ * naslov koji se generisan i vidi. Isti oblik ide u naslove kategorijskih
+ * strana, breadcrumb, opis dela i natpis slike.
+ */
+export function tipZaMasinu(typeLabel: string | undefined, groupKey: string): string {
+  const tip = typeLabel ?? "Rezervni deo";
+  const kontekst = kontekstMasine(groupKey);
+  return normalize(tip).includes(normalize(kontekst)) ? tip : `${tip} za ${kontekst}`;
+}
+
+/**
+ * Grupa (mašina) koja u spisku delova preovlađuje — za naslov strane tipa ili
+ * marke. Marka kao Lemken ima i delove za plugove i za roto drljače; strana
+ * „Delovi za plugove Lemken" ostaje tačna dok su plugovi većina, a manjina se
+ * nabraja u uvodu. Prazan spisak → plugovi, jer je to i najveći deo kataloga.
+ */
+export function preovladjujucaGrupa(delovi: Product[]): string {
+  const broj = new Map<string, number>();
+  for (const p of delovi) broj.set(p.groupKey, (broj.get(p.groupKey) ?? 0) + 1);
+  let najbolja = "delovi-plugovi";
+  let najvise = 0;
+  for (const [grupa, n] of broj) {
+    if (n > najvise) {
+      najbolja = grupa;
+      najvise = n;
+    }
+  }
+  return najbolja;
+}
+
 /** Originalan, iskren opis rezervnog dela — variran po tipu/brendu/kategoriji. */
 export function partDescription(p: Product): string {
-  const forMachine = GROUP_CONTEXT[p.groupKey] ?? "poljoprivredne mašine";
   const brand = p.brandLabel && p.brandKey !== "univerzalno"
     ? `Odgovara mašinama proizvođača ${p.brandLabel}.`
     : "Univerzalni deo — javite model mašine da potvrdimo kompatibilnost.";
-  const kind = p.typeLabel ? p.typeLabel.toLowerCase() : "rezervni deo";
-  return `Rezervni deo (${kind}) za ${forMachine}. ${brand} Radimo sa proverenim dobavljačima; recite nam kataloški broj i model mašine i šaljemo ponudu sa cenom i rokom isporuke isti dan.`;
+  return `${tipZaMasinu(p.typeLabel, p.groupKey)} — rezervni deo. ${brand} Radimo sa proverenim dobavljačima; recite nam kataloški broj i model mašine i šaljemo ponudu sa cenom i rokom isporuke isti dan.`;
 }
 
 /* ------------------------------ Natpis slike ------------------------------ */
@@ -615,15 +665,13 @@ const STRANA: Record<string, string> = {
  * kad Google na sva tri mesta nađe isti opis vezan za isti `contentUrl`, sliku
  * pripiše baš toj stranici, a ne širem spisku proizvoda.
  */
-export function natpisSlike(p: Product): string {
+export function natpisSlike(p: Product, izvedba?: string | null): string {
   const delovi: string[] = [];
 
   if (p.kind === "deo") {
-    const kontekst = kontekstMasine(p.groupKey);
+    const tip = tipZaMasinu(p.typeLabel, p.groupKey);
     delovi.push(
-      p.brandLabel && p.brandKey !== "univerzalno"
-        ? `${p.typeLabel ?? "Rezervni deo"} za ${kontekst} ${p.brandLabel}`
-        : `${p.typeLabel ?? "Rezervni deo"} za ${kontekst}`,
+      p.brandLabel && p.brandKey !== "univerzalno" ? `${tip} ${p.brandLabel}` : tip,
     );
     if (STRANA[p.sideKey ?? ""]) delovi.push(STRANA[p.sideKey!]);
     delovi.push(`kataloški broj ${p.id}`);
@@ -633,6 +681,8 @@ export function natpisSlike(p: Product): string {
         .filter(Boolean)
         .join(" — "),
     );
+    // Fotografija jedne izvedbe kaže i koje: „izvedba TERA HP 240".
+    if (izvedba) delovi.push(`izvedba ${izvedba}`);
     if (p.tagline) delovi.push(p.tagline);
   } else {
     delovi.push(
@@ -688,7 +738,7 @@ export function partTypes(): Kategorija[] {
   return prebroj(getParts(), (p) => p.typeKey, (p) => p.typeLabel);
 }
 
-/** Brendovi plugova za koje postoje delovi (Lemken, Kuhn, Kverneland…). */
+/** Marke mašina za koje postoje delovi (Lemken, Kuhn, Kverneland, Maschio…). */
 export function partBrands(): Kategorija[] {
   return prebroj(
     getParts().filter((p) => p.brandKey && p.brandKey !== "univerzalno"),

@@ -1,8 +1,8 @@
 /**
  * Sadržaj sajta — kategorije asortimana, prednosti, utisci, statistika.
  *
- * Sami proizvodi (mašine i delovi) NISU ovde — dolaze iz Rolland kataloga,
- * vidi `src/lib/catalog.ts` i `npm run catalog`.
+ * Sami proizvodi (mašine i delovi) NISU ovde — generišu ih skripte, vidi
+ * `src/lib/catalog.ts` (`npm run masine`, `npm run catalog`, `npm run rotodrljace`).
  *
  * KAKO DA ZAMENIŠ PRAVE PODATKE:
  *  - `tone` određuje boju premium placeholder slike. Kad imaš pravu fotografiju,
@@ -31,10 +31,8 @@ import {
  * Kartice asortimana na početnoj i u futeru.
  *
  * Tri prve su GRANE mašina (vidi `lib/masine.ts` i `machine-groups.json`), ne
- * pojedinačni tipovi. Ranije su ovde stajale četiri Rolland podgrupe
- * (tanjirače, agregati, podrivači, valjci) — sa 87 mašina u 21 tipu to više
- * nije podela nego uzorak, pa se sada bira posao (njiva / šuma / gradilište),
- * a tip mašine tek unutar grane.
+ * pojedinačni tipovi: sa 75 mašina u 21 tipu bira se posao (njiva / šuma /
+ * gradilište), a tip mašine tek unutar grane.
  *
  * Ključevi grana moraju da odgovaraju `grana` vrednostima iz
  * `src/data/machines.json`; „prikolice" i „delovi" su svoje grane sajta.
@@ -60,10 +58,10 @@ export type ImageTone = "field" | "forest" | "soil" | "steel" | "harvest";
 
 /**
  * Slike kategorija žive u `public/images/kategorije/` (900x563, 16:10, bela
- * podloga) i nisu mockup — to su isečci PRAVIH Rolland rendera naših mašina
- * (čiste verzije iz git istorije `public/images/rolland/`: 4394 Field Hawk BH,
- * 4703 Grander AB, 4705 Deeper GB-325, 4396 valjak sa Field BT), a „Rezervni
- * delovi" je mreža 2x2 Molbro crteža iz `public/images/plugovi/`.
+ * podloga) i nisu mockup — mreže 2x2 pravih fotografija naših mašina
+ * („Poljoprivredne" sklapa `scripts/build_category_images.py` od Hofman
+ * fotografija; šumske i građevinske su ručno složene), a „Rezervni delovi" je
+ * mreža Molbro crteža iz `public/images/plugovi/`.
  */
 export const categories: Category[] = [
   {
@@ -71,7 +69,7 @@ export const categories: Category[] = [
     label: "Poljoprivredne mašine",
     short: "Poljoprivredne",
     description:
-      "Tanjirače, agregati i podrivači, plugovi, malčeri i freze, kosačice i balirke, sejalice, prskalice, prikolice i mešaone — sve za rad na gazdinstvu.",
+      "Plugovi, tanjirače, gruberi i valjci, malčeri i freze, kosačice i balirke, sejalice, prskalice, prikolice i mešaone — sve za rad na gazdinstvu.",
     icon: Tractor,
     tone: "field",
     image: "/images/kategorije/poljoprivredne.jpg",
@@ -111,7 +109,7 @@ export const categories: Category[] = [
     label: "Rezervni delovi",
     short: "Rezervni delovi",
     description:
-      "Preko 4.600 delova za plugove, agregate, tanjirače, sejalice i vadilice — Lemken, Kuhn, Kverneland, Rabe, Pöttinger i drugi.",
+      "Delovi za plugove, roto drljače, agregate, tanjirače, sejalice i vadilice — Lemken, Kuhn, Kverneland, Maschio, Rabe, Pöttinger i drugi.",
     icon: Wrench,
     tone: "steel",
     image: "/images/kategorije/delovi.jpg",
@@ -192,30 +190,30 @@ export const testimonials: Testimonial[] = [
   {
     name: "Milan J.",
     location: "Bačka Palanka",
-    machine: "Tanjirača Field BT",
+    machine: "Tanjirača BRONCA",
     quote:
       "Mašina radi besprekorno već drugu sezonu. Isporuka brza, a kad sam zvao za podešavanje — odmah su mi izašli u susret.",
   },
   {
     name: "Dragan S.",
     location: "Ruma",
-    machine: "Tanjirasti agregat Field AT",
+    machine: "Setvospremač MORO AUS",
     quote:
-      "Agregat mi je dosta ubrzao pripremu njive — u jednom prohodu dobijem setvenu osnovu za koju sam ranije išao dva puta.",
+      "Setvospremač mi je dosta ubrzao pripremu njive — u jednom prohodu dobijem setvenu osnovu za koju sam ranije išao dva puta.",
   },
   {
     name: "Zoran M.",
     location: "Bijeljina (BiH)",
-    machine: "Podrivač Deeper GBK \"Kret\"",
+    machine: "Gruber HERO",
     quote:
-      "Godinama sam imao problem sa tabanom pluga. Posle podrivača se vidi razlika već prve sezone. Sve dogovoreno telefonom, isporuka preko granice bez problema.",
+      "Godinama sam imao problem sa zbijenim zemljištem. Posle grubera se vidi razlika već prve sezone. Sve dogovoreno telefonom, isporuka preko granice bez problema.",
   },
   {
     name: "Nenad P.",
     location: "Šabac",
-    machine: "Bezoranični agregat Grander AB",
+    machine: "Plug NERO",
     quote:
-      "Pomogli su mi i oko papira za subvenciju. Agregat ostavlja zemlju kao iz knjige. Preporuka svakom domaćinu.",
+      "Pomogli su mi i oko papira za subvenciju. Plug ostavlja brazdu kao iz knjige. Preporuka svakom domaćinu.",
   },
 ];
 

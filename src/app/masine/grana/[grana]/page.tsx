@@ -33,8 +33,8 @@ import { GRANE, granaKljucevi, granaHref, type GranaKljuc } from "@/lib/masine";
  *    stane na jedan ekran. Naslov tipa i dalje vodi na svoju stranu, pa se ne
  *    gubi ni unutrašnje povezivanje ni strana koja gađa upit „cepač drva".
  *
- *  - VELIKA grana (poljoprivredne, 65 mašina u 13 tipova) ostaje na pločicama.
- *    Tamo tip zaista sužava izbor, a spisak svih 65 kartica bio bi zid.
+ *  - VELIKA grana (poljoprivredne, 53 mašine u 15 tipova) ostaje na pločicama.
+ *    Tamo tip zaista sužava izbor, a spisak svih 53 kartice bio bi zid.
  *
  * Prag, a ne spisak imena grana: kad se ponuda šumskih mašina udvostruči, tip
  * ponovo postaje koristan korak i strana se sama vraća na pločice.

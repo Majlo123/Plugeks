@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { site } from "@/lib/site";
-import { uzBroj } from "@/lib/brojevi";
 import { cn } from "@/lib/utils";
 
 /**
@@ -61,21 +60,28 @@ const TONOVI = {
  * minus njen okvir (20−8 na telefonu, 24−10 dalje) — koncentrično, kako uglovi
  * ne bi izgledali kao dva nesložena luka.
  *
- * Broj ispod naziva nije ukras — kaže koliko ponuda ima pre nego što se klikne.
- * Strelica stoji uz taj broj, a ne uz naziv: na najužoj kartici u redu naziv
+ * Ispod naziva stoji kratak OPIS onoga što je iza klika („Od 500 do 3500 kg, sa
+ * opremom"), a ne broj stavki: brojka („4.800 delova") je izgledala kao
+ * statistika, a kupcu ne kaže da li je njegova mašina među njima — opis kaže.
+ * Strelica stoji uz taj red, a ne uz naziv: na najužoj kartici u redu naziv
  * „Auto-prikolice" i strelica ne staju u isti red, pa bi se naziv lomio.
+ *
+ * Preko kartice ide blag odsjaj iz gornjeg levog ugla i tanki svetli obod —
+ * bez toga su tri tamne pločice na tamnoj fotografiji izgledale kao tri
+ * ravna pravougaonika. Strelica je pun krem krug sa strelicom u boji kartice,
+ * pa se čita kao dugme, a ne kao ukras.
  */
 function Ulaz({
   href,
   naziv,
-  broj,
+  opis,
   slika,
   alt,
   ton,
 }: {
   href: string;
   naziv: string;
-  broj: string;
+  opis: string;
   slika: string;
   alt: string;
   ton: keyof typeof TONOVI;
@@ -84,30 +90,36 @@ function Ulaz({
     <Link
       href={href}
       className={cn(
-        "group flex w-full items-center gap-2.5 rounded-[1.25rem] p-2 text-cream ring-1 ring-white/10 transition-all duration-300 ease-out hover:-translate-y-0.5 sm:gap-3 sm:rounded-[1.5rem] sm:p-2.5",
+        "group relative isolate flex w-full items-center gap-2.5 overflow-hidden rounded-[1.25rem] p-2 text-cream ring-1 ring-white/20 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:ring-white/40 sm:gap-3 sm:rounded-[1.5rem] sm:p-2.5",
         TONOVI[ton],
       )}
     >
-      <span className="relative aspect-[5/4] w-[42%] max-w-[8.75rem] shrink-0 overflow-hidden rounded-[0.75rem] ring-1 ring-white/15 sm:w-[51%] sm:max-w-[13rem] sm:rounded-[0.875rem]">
+      {/* Odsjaj — svetlo pada iz gornjeg levog ugla, kao na lakiranoj površini. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(130%_90%_at_0%_0%,rgba(255,255,255,0.22),transparent_58%)] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+      />
+
+      <span className="relative aspect-[5/4] w-[42%] max-w-[8.75rem] shrink-0 overflow-hidden rounded-[0.8rem] shadow-[0_8px_20px_-10px_rgba(0,0,0,0.6)] ring-1 ring-white/25 sm:w-[51%] sm:max-w-[13rem] sm:rounded-[0.95rem] lg:w-[46%]">
         <Image
           src={slika}
           alt={alt}
           fill
           sizes="(min-width: 1024px) 160px, (min-width: 640px) 208px, 140px"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
         />
       </span>
 
       <span className="flex min-w-0 flex-1 flex-col justify-center gap-1 pr-1 sm:gap-1.5 sm:pr-1.5">
-        <span className="font-display text-[0.95rem] font-bold leading-tight tracking-[-0.015em] sm:text-[1.0625rem]">
+        <span className="font-display text-[1rem] font-bold leading-tight tracking-[-0.015em] sm:text-[1.125rem]">
           {naziv}
         </span>
         <span className="flex items-center justify-between gap-2">
-          <span className="min-w-0 truncate text-[0.75rem] font-medium leading-tight text-cream/75 sm:text-[0.8rem]">
-            {broj}
+          <span className="line-clamp-2 min-w-0 text-[0.74rem] font-medium leading-snug text-cream/80 sm:text-[0.8rem]">
+            {opis}
           </span>
-          <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-cream/15 transition-transform duration-300 ease-out group-hover:translate-x-0.5 sm:h-7 sm:w-7">
-            <ArrowRight className="h-3.5 w-3.5" />
+          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-cream text-charcoal shadow-[0_4px_12px_-4px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:scale-105 sm:h-8 sm:w-8">
+            <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
           </span>
         </span>
       </span>
@@ -115,10 +127,7 @@ function Ulaz({
   );
 }
 
-/** Brojke iz kataloga; računa ih `page.tsx` na serveru. */
-export type HeroBrojke = { masina: number; delova: number; prikolica: number };
-
-export function Hero({ brojke }: { brojke: HeroBrojke }) {
+export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -194,15 +203,15 @@ export function Hero({ brojke }: { brojke: HeroBrojke }) {
                 <Ulaz
                   href="/masine"
                   naziv="Mašine"
-                  broj={`${brojke.masina} ${uzBroj(brojke.masina, "model", "modela", "modela")}`}
+                  opis="Za njivu, šumu i gradilište"
                   slika="/images/ulaz/masine.jpg"
-                  alt="Tanjirača, plug i malčer — poljoprivredne mašine iz ponude PlugekS"
+                  alt="Malčer, plug i tanjirača Hofman — poljoprivredne mašine iz ponude PlugekS"
                   ton="masine"
                 />
                 <Ulaz
                   href="/proizvodi?vrsta=delovi"
-                  naziv="Delovi"
-                  broj={`${brojke.delova.toLocaleString("sr-RS")} ${uzBroj(brojke.delova, "deo", "dela", "delova")}`}
+                  naziv="Rezervni delovi"
+                  opis="Plugovi, roto drljače, sejalice"
                   slika="/images/ulaz/delovi.jpg"
                   alt="Plužne daske, raonici i grudi daske — rezervni delovi za plugove iz ponude PlugekS"
                   ton="delovi"
@@ -210,7 +219,7 @@ export function Hero({ brojke }: { brojke: HeroBrojke }) {
                 <Ulaz
                   href="/prikolice"
                   naziv="Auto-prikolice"
-                  broj={`${brojke.prikolica} ${uzBroj(brojke.prikolica, "model", "modela", "modela")}`}
+                  opis="500–3500 kg, sa opremom"
                   slika="/images/ulaz/prikolice.jpg"
                   alt="Auto-prikolice Vesta sa stranicama, ceradom i platformom — iz ponude PlugekS"
                   ton="prikolice"

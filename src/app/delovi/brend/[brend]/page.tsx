@@ -13,6 +13,8 @@ import {
   partTypesForBrand,
   ukrstenaHref,
   katBrojeva,
+  kontekstMasine,
+  preovladjujucaGrupa,
 } from "@/lib/products";
 import { PutanjaJsonLd } from "@/components/PutanjaJsonLd";
 import { SpisakJsonLd, PitanjaJsonLd, Pitanja } from "@/components/SpisakJsonLd";
@@ -37,23 +39,36 @@ function nabroj(reci: string[]): string {
   return `${reci.slice(0, -1).join(", ")} i ${reci[reci.length - 1]}`;
 }
 
+/**
+ * „Delovi za plugove Lemken", „Delovi za roto drljače Maschio" — mašina se čita
+ * iz delova te marke (grupa koja preovlađuje), ne piše se fiksno „plugove":
+ * Maschio i Alpego u katalogu imaju samo delove za roto drljače.
+ */
+const kontekstMarke = (brendKey: string) =>
+  kontekstMasine(preovladjujucaGrupa(getPartsByBrand(brendKey)));
+
 /** Uvodni pasus se sastavlja iz stvarnog sadržaja kataloga za tu marku. */
-function uvod(brendLabel: string, ukupno: number, tipovi: { label: string; count: number }[]) {
+function uvod(
+  brendLabel: string,
+  kontekst: string,
+  ukupno: number,
+  tipovi: { label: string; count: number }[],
+) {
   const glavni = tipovi.slice(0, 4).map((t) => t.label.toLowerCase());
   // Tipovi se nabrajaju posle dvotačke, u nominativu — tako se izbegava
   // deklinacija naziva koji dolaze iz podataka („za daska" umesto „za dasku").
   return `U katalogu držimo ${katBrojeva(
     ukupno,
-  )} potrošnih delova za plugove ${brendLabel}.${
+  )} potrošnih delova za ${kontekst} ${brendLabel}.${
     glavni.length ? ` Najzastupljeniji tipovi: ${nabroj(glavni)}.` : ""
-  } Deo se bira po kataloškom broju utisnutom na samom komadu ili po oznaci pluga; ako broj nije čitljiv, dovoljna je fotografija.`;
+  } Deo se bira po kataloškom broju utisnutom na samom komadu ili po oznaci mašine; ako broj nije čitljiv, dovoljna je fotografija.`;
 }
 
 function pitanjaZaBrend(brendLabel: string, ukupno: number) {
   return [
     {
       q: `Kako da znam koji deo za ${brendLabel} mi treba?`,
-      a: `Najsigurnije je po kataloškom broju koji je utisnut na samom delu. Ako je izlizan, pošaljite nam oznaku pluga (npr. sa pločice na ramu) i fotografiju dela — po tome ga prepoznajemo i potvrđujemo pre slanja.`,
+      a: `Najsigurnije je po kataloškom broju koji je utisnut na samom delu. Ako je izlizan, pošaljite nam oznaku mašine (npr. sa pločice na ramu) i fotografiju dela — po tome ga prepoznajemo i potvrđujemo pre slanja.`,
     },
     {
       q: `Da li su delovi za ${brendLabel} originalni?`,
@@ -65,7 +80,7 @@ function pitanjaZaBrend(brendLabel: string, ukupno: number) {
     },
     {
       q: `Koliko delova za ${brendLabel} imate u ponudi?`,
-      a: `Trenutno ${katBrojeva(ukupno)} samo za tu marku, a ukupan katalog potrošnih delova za plugove je preko 4.600 stavki. Ako broj koji tražite nije na spisku, pozovite — katalog je širi od onoga što je prikazano.`,
+      a: `Trenutno ${katBrojeva(ukupno)} samo za tu marku, a ukupan katalog potrošnih delova je preko 4.700 stavki. Ako broj koji tražite nije na spisku, pozovite — katalog je širi od onoga što je prikazano.`,
     },
   ];
 }
@@ -80,26 +95,26 @@ export function generateMetadata({ params }: { params: { brend: string } }): Met
 
   const tipovi = partTypesForBrand(brend.key);
   const glavni = tipovi.slice(0, 4).map((t) => t.label.toLowerCase());
+  const kontekst = kontekstMarke(brend.key);
 
   return {
     // Naslov je namerno u obliku u kojem se i pretražuje („delovi za Lemken").
-    title: `Delovi za plugove ${brend.label} — ${katBrojeva(brend.count)}`,
-    description: `Rezervni delovi za plugove ${brend.label}: ${nabroj(glavni)}. ${katBrojeva(brend.count)} na stanju ili po porudžbini. Pošaljite kataloški broj ili oznaku pluga — cena i rok isporuke isti dan. PlugekS, Žabalj.`,
+    title: `Delovi za ${kontekst} ${brend.label} — ${katBrojeva(brend.count)}`,
+    description: `Rezervni delovi za ${kontekst} ${brend.label}: ${nabroj(glavni)}. ${katBrojeva(brend.count)} na stanju ili po porudžbini. Pošaljite kataloški broj ili oznaku mašine — cena i rok isporuke isti dan. PlugekS, Žabalj.`,
     alternates: { canonical: `/delovi/brend/${brend.key}` },
     keywords: [
       `delovi za ${brend.label}`,
       `deo za ${brend.label}`,
       `${brend.label} delovi`,
       `rezervni delovi ${brend.label}`,
-      `delovi za plug ${brend.label}`,
       ...tipovi.slice(0, 5).map((t) => `${t.label} za ${brend.label}`),
-      "rezervni delovi za plugove",
+      `rezervni delovi za ${kontekst}`,
     ],
     openGraph: {
       type: "website",
       url: `https://plugeks.com/delovi/brend/${brend.key}`,
-      title: `Delovi za plugove ${brend.label} | PlugekS`,
-      description: `${katBrojeva(brend.count)} potrošnih delova za plugove ${brend.label}. Cena i rok isporuke isti dan.`,
+      title: `Delovi za ${kontekst} ${brend.label} | PlugekS`,
+      description: `${katBrojeva(brend.count)} potrošnih delova za ${kontekst} ${brend.label}. Cena i rok isporuke isti dan.`,
     },
   };
 }
@@ -112,7 +127,8 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
   const prikazani = svi.slice(0, MAX_NA_STRANI);
   const ostali = svi.length - prikazani.length;
   const tipovi = partTypesForBrand(brend.key);
-  const tekst = uvod(brend.label, brend.count, tipovi);
+  const kontekst = kontekstMasine(preovladjujucaGrupa(svi));
+  const tekst = uvod(brend.label, kontekst, brend.count, tipovi);
   const pitanja = pitanjaZaBrend(brend.label, brend.count);
 
   return (
@@ -120,11 +136,11 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
       <PutanjaJsonLd
         stavke={[
           { naziv: "Proizvodi", href: "/proizvodi" },
-          { naziv: `Delovi za plugove ${brend.label}`, href: `/delovi/brend/${brend.key}` },
+          { naziv: `Delovi za ${kontekst} ${brend.label}`, href: `/delovi/brend/${brend.key}` },
         ]}
       />
       <SpisakJsonLd
-        naziv={`Rezervni delovi za plugove ${brend.label}`}
+        naziv={`Rezervni delovi za ${kontekst} ${brend.label}`}
         opis={tekst}
         stavke={prikazani}
         ukupno={svi.length}
@@ -134,7 +150,7 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
       <section className="section bg-cream pt-28 md:pt-32">
         <div className="container">
           <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
-            Delovi za plugove {brend.label}
+            Delovi za {kontekst} {brend.label}
           </h1>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
             {tekst}
@@ -161,7 +177,7 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="primary" size="md">
-              <Link href={`/zatrazi-ponudu?proizvod=${encodeURIComponent(`Delovi za plug ${brend.label}`)}`}>
+              <Link href={`/zatrazi-ponudu?proizvod=${encodeURIComponent(`Delovi za ${kontekst} ${brend.label}`)}`}>
                 Pošalji kataloški broj
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -176,7 +192,7 @@ export default function BrendPage({ params }: { params: { brend: string } }) {
 
           <div className="mt-10">
             <h2 className="text-sm font-semibold text-charcoal">
-              Svi kataloški brojevi za plugove {brend.label}
+              Svi kataloški brojevi za {kontekst} {brend.label}
             </h2>
             <div className="mt-4">
               <ListaProizvoda items={prikazani} />

@@ -5,7 +5,7 @@ import { Plocica } from "@/components/Plocica";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 import { TRAILER_PROGRAMS } from "@/lib/catalog";
-import { trailerCategories, getTrailersByType, uzBroj } from "@/lib/products";
+import { trailerCategories, getTrailersByType } from "@/lib/products";
 
 /**
  * Vitrina auto-prikolica — po jedna pločica za svaki program (UNO, LIGHT,
@@ -13,7 +13,9 @@ import { trailerCategories, getTrailersByType, uzBroj } from "@/lib/products";
  *
  * Namerno vodi na program, a ne na pojedinačan model: kupac prvo prepozna po
  * slici šta mu treba („treba mi za čamac”), pa tek unutra bira broj osovina i
- * nosivost. Isti izbor stoji i na `/prikolice`, pa se koristi ista pločica.
+ * nosivost. Isti izbor stoji i na `/prikolice`, pa se koristi ista pločica —
+ * ovde BEZ broja modela: na početnoj se ne ispisuje koliko čega ima (isto kao
+ * na ulazima u heroju), brojke ostaju na stranama kataloga.
  */
 const programi = trailerCategories().map((p) => {
   // Prva prikolica programa je i njegov „portret" — sve imaju fotografiju.
@@ -55,7 +57,6 @@ export function PrikolicePreview() {
                 href={`/prikolice/${p.key}`}
                 naslov={p.oznaka}
                 podnaslov={p.kratko}
-                broj={`${p.count} ${uzBroj(p.count, "model", "modela", "modela")}`}
                 slika={p.slika}
                 alt={p.alt}
               />

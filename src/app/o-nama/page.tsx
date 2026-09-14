@@ -49,8 +49,9 @@ export default function ONamaPage() {
               <p>
                 PlugekS je nastao iz jednostavne ideje: poljoprivrednicima u Srbiji
                 ponuditi kvalitetnu mehanizaciju po poštenoj ceni, uz savet kome mogu
-                da veruju. Bavimo se uvozom i prodajom malčera, freza, prednjih
-                utovarivača, kompakt traktora i priključnih mašina.
+                da veruju. Bavimo se uvozom i prodajom rezervnih delova za plugove i
+                roto drljače, poljoprivrednih, šumskih i građevinskih mašina i
+                auto-prikolica.
               </p>
               <p>
                 Svaku mašinu biramo, prikazujemo i testiramo u realnim uslovima — zato

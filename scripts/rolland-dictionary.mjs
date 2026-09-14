@@ -7,13 +7,10 @@
 
 /* --------------------------- Grupe (kategorije) --------------------------- */
 // Ključ = slug segment iz rolland.pl URL-a.
+// Rolland MAŠINE (plavi program za obradu zemljišta) su skinute sa sajta
+// odlukom vlasnika — ostaju samo delovi. Grupa `maszyny-rolniczne` zato više
+// nije ovde, a `machines.json` piše isključivo `npm run masine` (Hofman).
 export const GROUPS = {
-  "maszyny-rolniczne": {
-    key: "masine-rolland",
-    type: "masine",
-    label: "Mašine za obradu zemljišta",
-    image: "/images/prikljucne.jpg",
-  },
   "czesci-do-plugow": {
     key: "delovi-plugovi",
     type: "delovi",
@@ -59,7 +56,9 @@ export const PART_TYPES = {
   lemiesz: { key: "lemes", label: "Raonik" },
   odkladnia: { key: "daska", label: "Daska" },
   odkladnica: { key: "daska", label: "Daska" },
-  odkladniczka: { key: "predpluzna-daska", label: "Predplužna daska" },
+  // „Odkładniczka" je daska predplužnjaka — isti deo kao „odkladnia-przedpluzka"
+  // (vidi NAME_PREFIXES), pa ide pod isti tip.
+  odkladniczka: { key: "daska-predpluznjaka", label: "Daska predplužnjaka" },
   ploza: { key: "plaz", label: "Plaz" },
   piers: { key: "grudi", label: "Grudi daske" },
   listwa: { key: "lajsna", label: "Nastavak daske" },
@@ -103,25 +102,30 @@ export const PART_TYPES = {
 };
 
 /* ------------------------ Složeni nazivi (prefiks slug-a) ----------------- */
-// Kad slug počinje ovim tokenima, koristi se ovaj naziv umesto osnovnog tipa.
-// Tip dela za filter i dalje ostaje osnovni (prvi token) — npr. „ploza-dluga”
-// se zove „Dugi plaz”, ali se filtrira pod tipom „Plaz”.
+// Kad slug počinje ovim tokenima, koristi se ovaj naziv umesto osnovnog tipa —
+// i, kad je naveden `key`, TAJ TIP za filter. Ranije je tip uvek ostajao
+// osnovni (prvi token), pa je „Rešetka/traka daske" stajala pod tipom
+// „Nastavak daske", a „Prednji deo plaza" pod „Ostali delovi": naziv na kartici
+// i tip u filteru nisu se poklapali, a kupac koji bira „Plaz" nije mogao da
+// razdvoji dugi od kratkog. Sad svaki naziv iz ove tabele ima svoj tip.
+//
+// Prefiks BEZ `key` (npr. „piers-odkladni") samo lepše imenuje osnovni tip.
 // Duži prefiksi moraju biti navedeni pre kraćih.
 export const NAME_PREFIXES = [
-  { prefix: "czesc-przednia-plozy", label: "Prednji deo plaza" },
-  { prefix: "listwa-odkladnicy", label: "Nastavak daske" },
-  { prefix: "listwa-azurowa", label: "Rešetka/traka daske" },
-  { prefix: "lemiesz-przedpluzka", label: "Raonik predplužnjaka" },
-  { prefix: "odkladnia-przedpluzka", label: "Daska predplužnjaka" },
-  { prefix: "piers-przedpluzka", label: "Grudi daske predplužnjaka" },
-  { prefix: "ploza-przednia", label: "Prednji plaz" },
-  { prefix: "ploza-dluga", label: "Dugi plaz" },
-  { prefix: "ploza-krotka", label: "Kratki plaz" },
-  { prefix: "kroj-plozy", label: "Nožasto crtalo" },
-  { prefix: "nakladka-plozy", label: "Obloga plaza" },
-  { prefix: "uchwyt-scinacza", label: "Nosač deflektora" },
+  { prefix: "czesc-przednia-plozy", key: "prednji-deo-plaza", label: "Prednji deo plaza" },
+  { prefix: "listwa-odkladnicy", key: "lajsna", label: "Nastavak daske" },
+  { prefix: "listwa-azurowa", key: "resetka", label: "Rešetka/traka daske" },
+  { prefix: "lemiesz-przedpluzka", key: "raonik-predpluznjaka", label: "Raonik predplužnjaka" },
+  { prefix: "odkladnia-przedpluzka", key: "daska-predpluznjaka", label: "Daska predplužnjaka" },
+  { prefix: "piers-przedpluzka", key: "grudi-predpluznjaka", label: "Grudi daske predplužnjaka" },
+  { prefix: "ploza-przednia", key: "prednji-plaz", label: "Prednji plaz" },
+  { prefix: "ploza-dluga", key: "dugi-plaz", label: "Dugi plaz" },
+  { prefix: "ploza-krotka", key: "kratki-plaz", label: "Kratki plaz" },
+  { prefix: "kroj-plozy", key: "nozasto-crtalo", label: "Nožasto crtalo" },
+  { prefix: "nakladka-plozy", key: "obloga-plaza", label: "Obloga plaza" },
+  { prefix: "uchwyt-scinacza", key: "nosac-deflektora", label: "Nosač deflektora" },
   { prefix: "piers-odkladni", label: "Grudi daske" },
-  { prefix: "czesc-przednia", label: "Prednji deo" },
+  { prefix: "czesc-przednia", key: "prednji-deo", label: "Prednji deo" },
 ];
 
 /* --------------------------------- Brendovi -------------------------------- */
@@ -273,77 +277,4 @@ export const DESCRIPTORS = {
   wloski: "italijanski",
   uniwersalny: "univerzalni",
   uniwersalna: "univerzalna",
-};
-
-/* ------------------------------ Mašine (12 kom) ----------------------------- */
-// Nazivi mašina se ne izvode automatski — ovde su ručno prevedeni.
-export const MACHINES = {
-  "glebosz-deeper-gbm-michel": {
-    name: 'Podrivač Deeper GBM "Michel"',
-    subgroup: "podrivaci",
-    tagline: "Dubinsko rastresanje bez prevrtanja sloja",
-  },
-  "glebosz-deeper-gbk-kret": {
-    name: 'Podrivač Deeper GBK "Kret"',
-    subgroup: "podrivaci",
-    tagline: "Razbijanje tabana pluga i drenaža zemljišta",
-  },
-  "agregat-bezorkowy-lekki-grander-abl": {
-    name: "Laki bezoranični agregat Grander ABL",
-    subgroup: "agregati",
-    tagline: "Plitka obrada strništa za manje traktore",
-  },
-  "agregat-bezorkowy-grander-ab": {
-    name: "Bezoranični agregat Grander AB",
-    subgroup: "agregati",
-    tagline: "Obrada bez oranja u jednom prohodu",
-  },
-  "agregat-talerzowy-polzawieszany-atp": {
-    name: "Polunošeni tanjirasti agregat ATP",
-    subgroup: "agregati",
-    tagline: "Veliki zahvat uz stabilnost polunošene konstrukcije",
-  },
-  "brona-talerzowa-polzawieszana-btp": {
-    name: "Polunošena tanjirača BTP",
-    subgroup: "tanjirace",
-    tagline: "Tanjirača velikog kapaciteta za veće parcele",
-  },
-  "brona-hydrauliczna-polzawieszana-bh-pb": {
-    name: "Hidraulična polunošena tanjirača BH-PB",
-    subgroup: "tanjirace",
-    tagline: "Hidrauličko sklapanje za lakši transport",
-  },
-  "brona-hydrauliczna-polzawieszana-bh-pa": {
-    name: "Hidraulična polunošena tanjirača BH-PA",
-    subgroup: "tanjirace",
-    tagline: "Hidrauličko sklapanje za lakši transport",
-  },
-  "waly-uprawowe": {
-    name: "Valjci za obradu zemljišta",
-    subgroup: "valjci",
-    tagline: "Različiti tipovi valjaka za sve agregate i tanjirače",
-  },
-  "brona-talerzowa-field-bt": {
-    name: "Tanjirača Field BT",
-    subgroup: "tanjirace",
-    tagline: "Nošena tanjirača za svakodnevnu obradu",
-  },
-  "agregat-talerzowy-field-at": {
-    name: "Tanjirasti agregat Field AT",
-    subgroup: "agregati",
-    tagline: "Tanjirasti agregat sa valjkom za pripremu setvene osnove",
-  },
-  "brona-talerzowa-hydrauliczna-filed-hawk-bh": {
-    name: "Hidraulična tanjirača Field Hawk BH",
-    subgroup: "tanjirace",
-    tagline: "Hidraulična tanjirača za veliki dnevni učinak",
-  },
-};
-
-/** Podgrupe mašina — koriste se kao filter „Tip mašine”. */
-export const MACHINE_SUBGROUPS = {
-  tanjirace: "Tanjirače",
-  agregati: "Agregati",
-  podrivaci: "Podrivači",
-  valjci: "Valjci",
 };

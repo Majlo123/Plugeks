@@ -1,14 +1,14 @@
 /**
  * Katalog proizvoda — jedinstveni model za mašine i rezervne delove.
  *
- * Ceo asortiman dolazi sa rolland.pl (generisano skriptom):
- *  - `src/data/machines.json` — mašine
- *  - `src/data/parts.json`    — rezervni delovi, ~4.600 kom
+ * Sve je generisano skriptama:
+ *  - `src/data/machines.json` — mašine (Hofman, `npm run masine`)
+ *  - `src/data/parts.json`    — rezervni delovi, ~4.800 kom: Rolland program za
+ *                               plugove i ostale mašine (`npm run catalog`) +
+ *                               delovi za roto drljače (`npm run rotodrljace`)
  *
  * Delovi se NE uvoze ovde nego kroz `loadParts()`, da ~300 KB podataka ne bi
  * ulazilo u početni bundle — učita se tek kad korisnik izabere „Rezervni delovi”.
- *
- * Katalog se osvežava sa: `npm run catalog` (vidi scripts/build-catalog.mjs).
  */
 
 import machinesJson from "@/data/machines.json";
@@ -21,9 +21,10 @@ import { GRANE, granaKljucevi, tipLabel } from "@/lib/masine";
 import { poredaj, type ZaRedosled } from "@/lib/redosled";
 
 /**
- * Prave fotografije proizvoda (id proizvoda → lokalna putanja): mašine i delovi
- * sa rolland.pl (`npm run slike`) + crteži delova za plugove
- * (`npm run plugovi`). Bez unosa u mapi kartica pokazuje brendiran placeholder.
+ * Prave fotografije proizvoda (id proizvoda → lokalna putanja): delovi sa
+ * rolland.pl (`npm run slike`), crteži delova za plugove (`npm run plugovi`) i
+ * crteži delova za roto drljače (`npm run rotodrljace`). Bez unosa u mapi
+ * kartica pokazuje brendiran placeholder.
  *
  * `machine-images.json` ide POSLE i gazi mapu: to su ručno pripremljene slike
  * mašina (jedna mašina po kadru, 16:10, bela podloga — vidi public/images/masine),
@@ -49,6 +50,8 @@ export type CatalogItem = {
   type: CatalogType;
   name: string;
   tagline?: string;
+  /** Naziv marke (mašine) — za alt tekst i placeholder kartice. */
+  brand?: string;
   image?: string;
   /** Vrednost po ključu fasete — vidi `FACETS`. */
   facets: Record<string, string>;
@@ -105,7 +108,7 @@ export const TYPE_META: Record<
   delovi: {
     label: "Rezervni delovi",
     description:
-      "Preko 4.600 delova za plugove, agregate, tanjirače, sejalice i vadilice — za sve poznate brendove.",
+      "Preko 4.700 delova za plugove, roto drljače, agregate, tanjirače, sejalice i vadilice — za sve poznate brendove.",
     image: "/images/delovi.jpg",
   },
 };
@@ -185,11 +188,15 @@ const MACHINE_BRANCH_LABELS: Record<string, string> = Object.fromEntries(
   granaKljucevi.map((k) => [k, GRANE[k].label]),
 );
 
+/** Marke mašina — isti spisak kao `MACHINE_BRANDS` u `lib/products.ts`. */
+const MACHINE_BRAND_LABELS: Record<string, string> = { hofman: "Hofman" };
+
 export const machines: CatalogItem[] = (machinesJson as MachineRow[]).map((m) => ({
   id: m.id,
   type: "masine",
   name: m.name,
   tagline: m.tagline,
+  brand: MACHINE_BRAND_LABELS[m.brand] ?? m.brand,
   // Samo prava fotografija; bez nje kartica pokazuje brendiran placeholder.
   image: productImages[m.id],
   facets: { tip: m.subgroup, grana: m.grana },
@@ -341,11 +348,29 @@ export function trailersFirst(items: CatalogItem[]): CatalogItem[] {
  */
 const TYPE_SYNONYMS: Record<string, string> = {
   lemes: "lemeš lemes",
+  "raonik-predpluznjaka": "lemeš predplužnjak predplužnjaka raonik",
   daska: "plužna daska",
-  lajsna: "lajsna daske ažurna lajsna",
+  "daska-predpluznjaka": "predplužna daska predplužnjak daska",
+  lajsna: "lajsna daske ažurna lajsna nastavak",
+  resetka: "rešetka resetka ažurna lajsna traka daske letva rešetkaste daske",
+  "dugi-plaz": "plaz dugi plaz",
+  "kratki-plaz": "plaz kratki plaz",
+  "prednji-plaz": "plaz prednji plaz",
+  "prednji-deo-plaza": "plaz prednji deo plaza",
+  "obloga-plaza": "plaz obloga nalegač",
+  "nozasto-crtalo": "crtalo nož nožasto crtalo",
+  "nosac-deflektora": "držač deflektora nosač odsecač",
   dleto: "dleto",
   odsecac: "odsecač busena",
   gredelj: "gredelj",
+  // Roto drljače: kupac kuca i „rotodrljača”, i „roto drljača”, i „rotaciona drljača”.
+  "noz-roto-drljace": "rotodrljača rotodrljace rotaciona drljača nož noževi",
+  "klin-roto-drljace": "rotodrljača rotodrljace rotaciona drljača klin klinovi zub",
+  "cistac-valjka": "rotodrljača rotodrljace čistač valjka strugač",
+  "lezaj-roto-drljace": "rotodrljača rotodrljace ležaj",
+  "kuciste-lezaja": "rotodrljača rotodrljace kućište ležaja",
+  osovinica: "rotodrljača rotodrljace osovinica bolcna svornjak",
+  "zastita-noza": "rotodrljača rotodrljace zaštita noža",
 };
 
 /* --------------------------- Najtraženiji delovi --------------------------- */

@@ -12,9 +12,14 @@ sa dva metra razdaljine vidi da je iza klika katalog, a ne artikal.
 Slike se ne crtaju ručno nego se sklapaju od postojećih fotografija proizvoda,
 pa uvek prikazuju ono što je stvarno u ponudi:
 
-  - `public/images/masine/`     Rolland (plavo) i Hofman (zeleno) mašine,
-  - `public/images/plugovi/`    tehnički crteži delova za plugove,
-  - `public/images/prikolice/`  Vesta auto-prikolice.
+  - `public/images/masine/hofman/`  Hofman (zelene) mašine,
+  - `public/images/plugovi/`        tehnički crteži delova za plugove,
+  - `public/images/prikolice/`      Vesta auto-prikolice.
+
+Pored tri kadra za hero (`public/images/ulaz/`) sklapa i MREŽU 2x2 za karticu
+„Poljoprivredne mašine" (`public/images/kategorije/poljoprivredne.jpg`) — na
+goloj beloj, bez senke, u istom stilu kao ručno pripremljene kartice šumskih i
+građevinskih mašina pored nje.
 
 Delovi idu kao CRTEŽI, a ne kao Rolland fotografije: fotografije nose preko
 sebe poluprovidan ROLLAND žig, koji na ovoj veličini ostaje čitljiv i izgleda
@@ -43,6 +48,7 @@ from PIL import Image, ImageFilter
 
 KOREN = Path(__file__).resolve().parent.parent
 IZLAZ = KOREN / "public" / "images" / "ulaz"
+IZLAZ_KATEGORIJE = KOREN / "public" / "images" / "kategorije"
 
 #: Odnos stranica kadra na kartici (vidi `Ulaz` u `Hero.tsx`).
 PLATNO = (1000, 800)
@@ -83,6 +89,12 @@ class Kadar:
     #: Senka ispod proizvoda. Fotografija je snimak predmeta koji negde stoji,
     #: pa mu senka pripada; tehnički crtež je crtež i senka bi mu bila laž.
     senke: bool = True
+    #: Platno i podloga: hero kadrovi su 5:4 na studijskom gradijentu, mreže za
+    #: kategorijske kartice 16:10 na goloj beloj (kao susedne ručne kartice).
+    platno: tuple[int, int] = PLATNO
+    bela_podloga: bool = False
+    #: Vodoravno centriranje i po visini (mreža), umesto „na dno police" (hero).
+    centriraj: bool = False
 
 
 # Raspored „jedan širok gore, dva ispod" nose mašine i prikolice: i jedne i
@@ -94,14 +106,19 @@ class Kadar:
 # pretražuje po tipu; tri daske bi na kadru izgledale kao jedna. Plaz je ispao
 # iako je četvrti po traženosti: dugačak je i tanak (odnos 2,8), pa se u polje
 # sa ostalima uklapa kao šibica i na kartici se izgubi.
+#
+# Mašine: gore malčer (najšira i najprepoznatljivija zelena mašina), dole plug
+# i tanjirača — plug i malčer namerno NISU u istom redu: na kartici od 140px
+# su dve mašine jedna uz drugu izgledale kao jedna, pa je i razmak u donjem
+# redu širi nego kod ostalih kadrova. Plave Rolland mašine su skinute sa sajta.
 KADROVI = (
     Kadar(
         naziv="mašine",
         izlaz="masine.jpg",
         stavke=(
-            ("masine/4394.jpg", Mesto(0.03, 0.03, 0.94, 0.49)),
-            ("masine/hofman/plug-nero.jpg", Mesto(0.03, 0.54, 0.455, 0.42)),
-            ("masine/hofman/malcer-pro-line.jpg", Mesto(0.515, 0.54, 0.455, 0.42)),
+            ("masine/hofman/malcer-g-line.jpg", Mesto(0.05, 0.03, 0.90, 0.47)),
+            ("masine/hofman/plug-nero.jpg", Mesto(0.02, 0.56, 0.44, 0.40)),
+            ("masine/hofman/tanjiraca-bronca.jpg", Mesto(0.54, 0.56, 0.44, 0.40)),
         ),
     ),
     Kadar(
@@ -122,6 +139,26 @@ KADROVI = (
             ("prikolice/light-20-box.jpg", Mesto(0.03, 0.54, 0.455, 0.42)),
             ("prikolice/cargo-4120-3-5-14c.jpg", Mesto(0.515, 0.54, 0.455, 0.42)),
         ),
+    ),
+)
+
+# Mreža 2x2 za karticu „Poljoprivredne mašine" na početnoj i na /masine: četiri
+# RAZLIČITA posla — tanjirača, malčer, kosačica, plug — svaki u svom polju, sa
+# jasnim razmakom, da se nijedna dva ne stope u jednu mašinu.
+MREZE = (
+    Kadar(
+        naziv="kategorija: poljoprivredne",
+        izlaz="poljoprivredne.jpg",
+        stavke=(
+            ("masine/hofman/tanjiraca-bronca.jpg", Mesto(0.02, 0.03, 0.46, 0.44)),
+            ("masine/hofman/malcer-g-line.jpg", Mesto(0.52, 0.03, 0.46, 0.44)),
+            ("masine/hofman/kosacica-jasa.jpg", Mesto(0.02, 0.53, 0.46, 0.44)),
+            ("masine/hofman/plug-nero.jpg", Mesto(0.52, 0.53, 0.46, 0.44)),
+        ),
+        senke=False,
+        platno=(900, 563),
+        bela_podloga=True,
+        centriraj=True,
     ),
 )
 
@@ -191,8 +228,9 @@ def senka(proizvod: Image.Image, platno: tuple[int, int], mesto: tuple[int, int]
 
 
 def sklopi(kadar: Kadar) -> Image.Image:
-    platno = podloga(PLATNO)
-    crno = Image.new("RGB", PLATNO, (24, 30, 24))
+    velicina = kadar.platno
+    platno = Image.new("RGB", velicina, (255, 255, 255)) if kadar.bela_podloga else podloga(velicina)
+    crno = Image.new("RGB", velicina, (24, 30, 24))
 
     for rel, mesto in kadar.stavke:
         izvor = KOREN / "public" / "images" / rel
@@ -203,33 +241,37 @@ def sklopi(kadar: Kadar) -> Image.Image:
 
         # `contain`, ne `cover`: proizvod se nikad ne opseca. Kadrovi su
         # izabrani tako da im odnos odgovara mestu, pa praznine ostaje malo.
-        polje = (round(mesto.w * PLATNO[0]), round(mesto.h * PLATNO[1]))
+        polje = (round(mesto.w * velicina[0]), round(mesto.h * velicina[1]))
         faktor = min(polje[0] / proizvod.width, polje[1] / proizvod.height)
         nova = (max(1, round(proizvod.width * faktor)), max(1, round(proizvod.height * faktor)))
         proizvod = proizvod.resize(nova, Image.LANCZOS)
 
         # Vodoravno u sredinu polja, uspravno na DNO — tako svi proizvodi u
-        # jednom redu stoje na istoj liniji, kao na polici.
-        x = round(mesto.x * PLATNO[0]) + (polje[0] - nova[0]) // 2
-        y = round(mesto.y * PLATNO[1]) + (polje[1] - nova[1])
+        # jednom redu stoje na istoj liniji, kao na polici. U mreži i po visini
+        # u sredinu: tamo polja nisu red police nego četiri zasebna prozora.
+        x = round(mesto.x * velicina[0]) + (polje[0] - nova[0]) // 2
+        y = round(mesto.y * velicina[1]) + (
+            (polje[1] - nova[1]) // 2 if kadar.centriraj else polje[1] - nova[1]
+        )
 
         if kadar.senke:
-            platno.paste(crno, (0, 0), senka(proizvod, PLATNO, (x, y)))
+            platno.paste(crno, (0, 0), senka(proizvod, velicina, (x, y)))
         platno.paste(proizvod, (x, y), proizvod)
 
     return platno
 
 
 def main() -> None:
-    for kadar in KADROVI:
-        slika = sklopi(kadar)
-        if "--dry" in sys.argv:
-            print(f"{kadar.naziv:16} (dry)")
-            continue
-        IZLAZ.mkdir(parents=True, exist_ok=True)
-        putanja = IZLAZ / kadar.izlaz
-        slika.save(putanja, "JPEG", quality=KVALITET, optimize=True, progressive=True)
-        print(f"{kadar.naziv:16} → {putanja.relative_to(KOREN)}  ({putanja.stat().st_size // 1024} kB)")
+    for izlaz_dir, kadrovi in ((IZLAZ, KADROVI), (IZLAZ_KATEGORIJE, MREZE)):
+        for kadar in kadrovi:
+            slika = sklopi(kadar)
+            if "--dry" in sys.argv:
+                print(f"{kadar.naziv:28} (dry)")
+                continue
+            izlaz_dir.mkdir(parents=True, exist_ok=True)
+            putanja = izlaz_dir / kadar.izlaz
+            slika.save(putanja, "JPEG", quality=KVALITET, optimize=True, progressive=True)
+            print(f"{kadar.naziv:28} → {putanja.relative_to(KOREN)}  ({putanja.stat().st_size // 1024} kB)")
 
 
 if __name__ == "__main__":
