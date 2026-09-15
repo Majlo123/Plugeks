@@ -48,3 +48,16 @@ export function datumCenovnika(): string | null {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(CENOVNIK.azurirano ?? "");
   return m ? `${m[3]}.${m[2]}.${m[1]}.` : null;
 }
+
+/**
+ * Kopija liste poređana po ceni, od najniže — vlasnikov zahtev za spiskove
+ * prikolica. Stavke bez cene (na upit) idu na kraj; sortiranje je stabilno, pa
+ * unutar iste cene i među „na upit" ostaje zatečeni redosled.
+ */
+export function poCeni<T extends { cena?: number }>(items: T[]): T[] {
+  return [...items].sort((a, b) => {
+    if (a.cena == null) return b.cena == null ? 0 : 1;
+    if (b.cena == null) return -1;
+    return a.cena - b.cena;
+  });
+}

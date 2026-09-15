@@ -19,7 +19,7 @@ import popularJson from "@/data/popular.json";
 import { categories } from "@/lib/data";
 import { GRANE, granaKljucevi, tipLabel } from "@/lib/masine";
 import { poredaj, type ZaRedosled } from "@/lib/redosled";
-import { cenaPrikolice } from "@/lib/cene";
+import { cenaPrikolice, poCeni } from "@/lib/cene";
 
 /**
  * Prave fotografije proizvoda (id proizvoda → lokalna putanja): delovi sa
@@ -301,8 +301,11 @@ const TRAILER_ACCESSORY_GROUPS: Record<string, string> = {
 /**
  * Prikolice i oprema. Fajl je mali (181 stavka, bez teksta opisa), pa za razliku
  * od `parts.json` sme pravo u bundle — bez `loadParts()` odlaganja.
+ *
+ * Redosled: po ceni od najniže, „na upit" na kraju (vidi `poCeni`). Spiskovi
+ * programa (`PrikoliceFilter`) samo filtriraju ovaj niz, pa ga nasleđuju.
  */
-export const trailers: CatalogItem[] = trailerRows.map((t) => ({
+export const trailers: CatalogItem[] = poCeni(trailerRows.map((t) => ({
   id: t.id,
   type: "prikolice",
   name: t.name,
@@ -324,7 +327,7 @@ export const trailers: CatalogItem[] = trailerRows.map((t) => ({
       "prikolica prikolice auto prikolica prikolica za auto",
     ].join(" "),
   ),
-}));
+})));
 
 /**
  * Prikolice pre opreme dok korisnik nije ništa filtrirao — opreme ima skoro

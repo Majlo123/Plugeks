@@ -17,7 +17,7 @@ import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
 import ogImagesJson from "@/data/og-images.json";
 import { uzBroj } from "@/lib/brojevi";
-import { cenaPrikolice } from "@/lib/cene";
+import { cenaPrikolice, poCeni } from "@/lib/cene";
 import {
   GRANE,
   granaKljucevi,
@@ -300,10 +300,14 @@ function build() {
   // ijednog dodatnog `sort`-a. Sortira se po vrsti, da grupisanje
   // (mašine → prikolice → delovi) u kataloškom indeksu ostane netaknuto.
   // `Product` se već poklapa sa `ZaRedosled`, pa mu ključ ne treba prevod.
+  //
+  // Prikolice idu po ceni od najniže (vlasnikov zahtev), a `poredaj` im
+  // ostaje samo kao drugi ključ — stabilan sort posle njega ga čuva unutar
+  // iste cene. Isti redosled nosi i klijentski `trailers` u `lib/catalog.ts`.
   const sam = (p: Product) => p;
   const all = [
     ...poredaj(machines, sam),
-    ...poredaj(prikolice, sam),
+    ...poCeni(poredaj(prikolice, sam)),
     ...poredaj(parts, sam),
   ];
   const byId = new Map<string, Product>();

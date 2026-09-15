@@ -6,7 +6,6 @@ import {
   trailers,
   filterItems,
   trailersFirst,
-  poredajStavke,
 } from "@/lib/catalog";
 import { TrailerCard } from "@/components/CatalogCard";
 import { uzBroj } from "@/lib/brojevi";
@@ -32,7 +31,9 @@ export function PrikolicePretraga({ children }: { children: ReactNode }) {
   const upit = query.trim();
   const pogoci = useMemo(() => {
     if (!upit) return [];
-    return poredajStavke(trailersFirst(filterItems(trailers, {}, upit)));
+    // Prikolice pre opreme, unutar toga po ceni — `trailersFirst` samo deli
+    // na dve grupe i čuva redosled iz `trailers`, koji je već po ceni.
+    return trailersFirst(filterItems(trailers, {}, upit));
   }, [upit]);
 
   const prikolica = pogoci.filter((p) => p.facets.tip !== "oprema").length;
