@@ -204,7 +204,7 @@ export function Hero() {
                 <Ulaz
                   href="/proizvodi?vrsta=delovi"
                   naziv="Rezervni delovi"
-                  opis="Plugovi, roto drljače, sejalice"
+                  opis="Plugovi, roto drljače, tanjirače, freze"
                   slika="/images/ulaz/delovi.jpg"
                   alt="Plužne daske, raonici i grudi daske — rezervni delovi za plugove iz ponude PlugekS"
                   kasnjenje={0.4}

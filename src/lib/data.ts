@@ -109,7 +109,7 @@ export const categories: Category[] = [
     label: "Rezervni delovi",
     short: "Rezervni delovi",
     description:
-      "Delovi za plugove, roto drljače, agregate, tanjirače, sejalice i vadilice — Lemken, Kuhn, Kverneland, Maschio, Rabe, Pöttinger i drugi.",
+      "Delovi za plugove, roto drljače, tanjirače, freze, setvospremače i sejalice — Lemken, Kuhn, Kverneland, Maschio, Rabe, Pöttinger i drugi.",
     icon: Wrench,
     tone: "steel",
     image: "/images/kategorije/delovi.jpg",

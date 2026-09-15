@@ -64,6 +64,15 @@ const nextConfig = {
         destination: "/delovi/daska-predpluznjaka/:brend",
         permanent: true,
       },
+
+      // Klinovi roto drljače su spojeni sa noževima u jedan tip („Nož i klin
+      // roto drljače") — isti potrošni deo pod dva imena, pa i jedan spisak.
+      { source: "/delovi/klin-roto-drljace", destination: "/delovi/noz-roto-drljace", permanent: true },
+      {
+        source: "/delovi/klin-roto-drljace/:brend",
+        destination: "/delovi/noz-roto-drljace/:brend",
+        permanent: true,
+      },
     ];
   },
   async headers() {

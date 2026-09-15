@@ -5,7 +5,7 @@ import { KontaktCTA } from "@/components/sections/KontaktCTA";
 import { drustveneSlike } from "@/lib/products";
 
 const OPIS =
-  "Uvoz i prodaja poljoprivrednih delova i mašina. Rezervni delovi za plugove, roto drljače, agregate, tanjirače, sejalice i vadilice, poljoprivredne, šumske i građevinske mašine i auto-prikolice od 500 do 3500 kg. Zatražite ponudu.";
+  "Uvoz i prodaja poljoprivrednih delova i mašina. Rezervni delovi za plugove, roto drljače, tanjirače, freze, setvospremače i sejalice, poljoprivredne, šumske i građevinske mašine i auto-prikolice od 500 do 3500 kg. Zatražite ponudu.";
 
 export const metadata: Metadata = {
   title: "Proizvodi — Mašine, auto-prikolice i rezervni delovi",

@@ -112,7 +112,12 @@ const proizvodi = [
 const KADROVI = {
   "images/rolland": [600, 600],
   "images/plugovi": [600, 600],
+  // Crteži sa psc-ferencak.hr — jedan folder po mašini (`npm run ferencak`).
   "images/rotodrljace": [600, 600],
+  "images/drljace": [600, 600],
+  "images/freze": [600, 600],
+  "images/setvospremaci": [600, 600],
+  "images/tanjirace": [600, 600],
   "images/prikolice": [1200, 750],
   "images/masine/hofman": [900, 563],
   "images/masine/hofman/izvedbe": [900, 563],

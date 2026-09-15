@@ -95,7 +95,7 @@ Katalog na `/proizvodi` ima tri dela:
 | --- | --- | --- |
 | Mašine (75) | Hofman, `npm run masine` (odeljak 8) | `src/data/machines.json` |
 | Auto-prikolice (65) + oprema (116) | Vesta, `npm run prikolice` (odeljak 6) | `src/data/trailers.json` |
-| Rezervni delovi (4.800) | Rolland (4.644) + roto drljače sa psc-ferencak.hr (156, odeljak 3a) | `src/data/parts.json` |
+| Rezervni delovi (4.960) | Rolland (4.644) + psc-ferencak.hr (316, odeljak 3a) | `src/data/parts.json` |
 
 > **Rolland MAŠINE (plavi program za obradu zemljišta) su skinute sa sajta**
 > odlukom vlasnika — od Rollanda ostaju samo delovi. Njihove stare adrese
@@ -131,30 +131,47 @@ oznake najtraženijih delova) iz istih podataka — ko je u vitrini bira
 Delovi se u pretraživač učitavaju tek kad korisnik izabere „Rezervni delovi",
 pa `parts.json` ne opterećuje početno učitavanje stranice.
 
-### 3a) Delovi za roto drljače → `npm run rotodrljace`
+### 3a) Delovi za obradu zemlje → `npm run ferencak`
 
-Sedma grupa delova — noževi, klinovi, čistači valjka, ležajevi, kućišta i
-osovinice za roto drljače (Maschio, Kuhn, Lemken, Breviglieri, Amazone, Lely,
-Pegoraro, Howard, Rabe…) — dolazi sa **psc-ferencak.hr**, iz kategorije
-„Rotodrljače":
+Delovi za pet mašina koje Rolland katalog ne pokriva — dolaze sa
+**psc-ferencak.hr**, iz pet kategorija odeljka „Obrada zemlje":
+
+| Njihova kategorija | Naša grupa | Šta nosi |
+| --- | --- | --- |
+| Rotodrljače | Delovi za roto drljače (156) | noževi i klinovi, čistači valjka, ležajevi, kućišta, osovinice |
+| Drljače | Delovi za drljače (7) | klinovi (pačja noga, ravni i zakrivljeni) |
+| Freze | Delovi za freze (70) | noževi levi i desni |
+| Sjetvospremači | Delovi za setvospremače (47) | S-opruge, nožići, držači, pojačanja, poništavači tragova |
+| Tanjurače | Delovi za tanjirače (36) | diskovi, ležajevi, osovine, odstojnici, prirubnice, strugači |
 
 ```bash
-npm run rotodrljace                    # 1) podaci + sirovi originali u data/ferencak-originals/
-npm run slike:kadar -- rotodrljace     # 2) slike za sajt u public/images/rotodrljace/ (+ skidanje žiga)
-npm run catalog                        # 3) spajanje sa Rolland delovima u parts.json
+npm run ferencak                     # 1) podaci + sirovi originali u data/ferencak-originals/{kategorija}/
+npm run slike:kadar -- ferencak      # 2) slike za sajt u public/images/{kategorija}/ (+ skidanje žiga)
+npm run catalog                      # 3) spajanje sa Rolland delovima u parts.json
 ```
 
-Skripta (`scripts/import-rotodrljace.mjs`) čita mrežu proizvoda te kategorije,
+Skripta (`scripts/import-ferencak.mjs`) čita mrežu proizvoda svake kategorije,
 prevodi njihove naslove (velika slova, hrvatski, skraćenice) u naš oblik —
 „NOŽ ROTO DRLJAČE LEMKEN D. 320x110x72x15 fi17" → „Nož roto drljače Lemken
 320x110x72x15 fi 17 (desno)" — i iz naslova vadi tip, marku i stranu ugradnje.
 Marke koje već postoje u Rolland katalogu (Lemken, Kuhn, Kverneland, Maschio,
-Rabe…) nose ISTI ključ, pa je u filteru jedna marka bez obzira na izvor.
+Rabe, Brix, Kongskilde…) nose ISTI ključ, pa je u filteru jedna marka bez
+obzira na izvor. **Tip dela menjaš u `TIPOVI`, reči u `RECI`, marke u `MARKE`**
+— `npm run ferencak -- --dry` ispiše prevod svakog naziva i prijavi svaku reč
+koju rečnik ne zna, pre nego što išta upiše.
+
+> **Noževi i klinovi roto drljače su JEDAN tip u filteru** („Nož i klin roto
+> drljače"): isti potrošni deo se kod jednih mašina zove nož, kod drugih klin,
+> pa kupac koji zna samo jednu reč mora da vidi oba. Kartica i dalje kaže koji
+> je od ta dva, a stara adresa `/delovi/klin-roto-drljace` vodi na spojenu
+> stranu (`redirects` u `next.config.mjs`).
 
 Naši kataloški brojevi idu od **6001** (Rolland staje na 4790, Hofman mašine
 su 5001–5999, prikolice od 9001), vezani su za njihov id proizvoda i čuvaju se
-u `src/data/rotodrljace.json` — ponovno pokretanje ne pomera postojeće.
+u `src/data/ferencak.json` — ponovno pokretanje ne pomera postojeće.
 Cene se ne prenose (ostaju samo kao `izvor.cena` u tom fajlu, nigde na sajtu).
+Komad koji ni na izvoru nema fotografiju (njihov `nopic.png`, 8 komada) ostaje
+bez slike — kartica onda pokazuje brendiran placeholder.
 
 > **Žig:** nekoliko crteža na izvoru nosi poluprovidan plavi logo preko sredine.
 > Skida ga korak 2 (`bez_ziga_izvora` u `normalize_product_images.py`): plavu
@@ -305,7 +322,7 @@ staje u njen odnos stranica**. Izvorne fotografije to ne poštuju:
 | --- | --- | --- |
 | `public/images/rolland/` | 472x630 i 599x800, **uspravno** | kartica dela je bila položena — pola dela je odlazilo van kadra |
 | `public/images/plugovi/` | kvadrat 440x440, sadržaj od 32% do 95% kadra | crteži različite veličine u istoj mreži |
-| `public/images/rotodrljace/` | 600x600 i 670x670 `.webp`, deo sa žigom | žig preko crteža (vidi odeljak 3a) |
+| `public/images/{rotodrljace,drljace,freze,setvospremaci,tanjirace}/` | 600x600 i 670x670 `.webp`, deo sa žigom | žig preko crteža (vidi odeljak 3a) |
 | `public/images/prikolice/` | 50 formata, od 157x73 do 2560x1696 | jedna prikolica ispuni karticu, druga pluta kao tačka |
 | `public/images/masine/hofman/` | 750x500 `.webp` | drugi odnos od kartice mašine (16:10) |
 

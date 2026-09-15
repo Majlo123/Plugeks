@@ -603,6 +603,9 @@ const GROUP_CONTEXT: Record<string, string> = {
   "delovi-vadilice": "vadilice krompira",
   "delovi-kosacice": "kosačice",
   "delovi-roto-drljace": "roto drljače",
+  "delovi-drljace": "drljače",
+  "delovi-freze": "freze",
+  "delovi-setvospremaci": "setvospremače",
 };
 
 /**

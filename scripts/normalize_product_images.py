@@ -1,7 +1,7 @@
 """
 Svodi fotografije proizvoda na jedan kadar — isti odnos stranica kao kartica.
 
-    python scripts/normalize_product_images.py [prikolice|masine|izvedbe|delovi|crtezi|rotodrljace] [--dry] [--ponovo]
+    python scripts/normalize_product_images.py [prikolice|masine|izvedbe|delovi|crtezi|ferencak] [--dry] [--ponovo]
     (ili: npm run slike:kadar)
 
 ZAŠTO POSTOJI: kartica proizvoda prikazuje sliku sa `object-cover`, dakle
@@ -21,9 +21,10 @@ Rolland fotografije usput gube i ROLLAND ZAGLAVLJE — traku sa logom iznad
 samog dela, koja je uzimala oko četvrtine kadra i gurala deo nadole. Poluprovidni
 ROLLAND žig PREKO dela ostaje (vidi `bez_zaglavlja`).
 
-Crteži delova za roto drljače (`npm run rotodrljace`, psc-ferencak.hr) usput
-gube i ŽIG IZVORA — poluprovidan plavi logo preko sredine crteža, koji nose
-neki od njih (vidi `bez_ziga_izvora`).
+Crteži delova sa psc-ferencak.hr (`npm run ferencak`) usput gube i ŽIG IZVORA —
+poluprovidan plavi logo preko sredine crteža, koji nose neki od njih (vidi
+`bez_ziga_izvora`). Njihov ulaz ima podfolder po mašini (`rotodrljace`, `freze`,
+`tanjirace`…) i on se prenosi u izlaz, pa slike ostaju razdvojene po grupi dela.
 
 ŠTA NE RADI: ne dira boje. Hofman mašine (`npm run masine`) idu u podfolder
 `masine/hofman/` i njih ovaj posao sređuje.
@@ -135,16 +136,20 @@ POSLOVI = {
         udeo=(0.88, 0.88),
         max_uvecanje=1.4,
     ),
-    # Delovi za roto drljače — isti kvadratni kadar kao ostali delovi. Originali
-    # su 600x600 i 670x670 crteži sa psc-ferencak.hr, uglavnom već uz ivicu kadra.
-    "rotodrljace": Posao(
-        naziv="delovi za roto drljače (psc-ferencak crteži)",
+    # Delovi sa psc-ferencak.hr (roto drljače, drljače, freze, setvospremači,
+    # tanjurače) — isti kvadratni kadar kao ostali delovi. Originali su 600x600 i
+    # 670x670 crteži, uglavnom već uz ivicu kadra. Podfolder je kategorija iz
+    # `import-ferencak.mjs` i prenosi se u izlaz: `rotodrljace/6001.webp` →
+    # `public/images/rotodrljace/6001.jpg`.
+    "ferencak": Posao(
+        naziv="delovi sa psc-ferencak.hr (crteži)",
         ulaz=KOREN / "data" / "ferencak-originals",
-        izlaz=KOREN / "public" / "images" / "rotodrljace",
+        izlaz=KOREN / "public" / "images",
         platno=(600, 600),
         udeo=(0.88, 0.88),
         max_uvecanje=1.4,
         ukloni_zig=True,
+        podfolderi=True,
     ),
 }
 
@@ -463,7 +468,10 @@ def uradi(posao: Posao) -> int:
         if ishod == "mekše":
             mekse.append(putanja.name)
 
-    kb = sum(p.stat().st_size for p in posao.izlaz.rglob("*.jpg")) // 1024
+    # Samo ono što je ovaj posao napravio — `ferencak` piše u podfoldere
+    # `public/images/`, gde stoje i tuđe slike.
+    izlazne = [izlazni_fajl(p, posao) for p in slike]
+    kb = sum(p.stat().st_size for p in izlazne if p.exists()) // 1024
     print(
         f"[{posao.naziv}] {len(slike)} slika → {posao.platno[0]}x{posao.platno[1]}"
         f"  (sređeno {broj['ok'] + broj['mekše']}, već bilo {broj['preskočeno']})"

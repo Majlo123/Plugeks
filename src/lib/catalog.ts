@@ -3,9 +3,10 @@
  *
  * Sve je generisano skriptama:
  *  - `src/data/machines.json` — mašine (Hofman, `npm run masine`)
- *  - `src/data/parts.json`    — rezervni delovi, ~4.800 kom: Rolland program za
+ *  - `src/data/parts.json`    — rezervni delovi, ~4.960 kom: Rolland program za
  *                               plugove i ostale mašine (`npm run catalog`) +
- *                               delovi za roto drljače (`npm run rotodrljace`)
+ *                               delovi za roto drljače, drljače, freze,
+ *                               setvospremače i tanjirače (`npm run ferencak`)
  *
  * Delovi se NE uvoze ovde nego kroz `loadParts()`, da ~300 KB podataka ne bi
  * ulazilo u početni bundle — učita se tek kad korisnik izabere „Rezervni delovi”.
@@ -24,7 +25,7 @@ import { cenaPrikolice, poCeni } from "@/lib/cene";
 /**
  * Prave fotografije proizvoda (id proizvoda → lokalna putanja): delovi sa
  * rolland.pl (`npm run slike`), crteži delova za plugove (`npm run plugovi`) i
- * crteži delova za roto drljače (`npm run rotodrljace`). Bez unosa u mapi
+ * crteži delova sa psc-ferencak.hr (`npm run ferencak`). Bez unosa u mapi
  * kartica pokazuje brendiran placeholder.
  *
  * `machine-images.json` ide POSLE i gazi mapu: to su ručno pripremljene slike
@@ -111,7 +112,7 @@ export const TYPE_META: Record<
   delovi: {
     label: "Rezervni delovi",
     description:
-      "Preko 4.700 delova za plugove, roto drljače, agregate, tanjirače, sejalice i vadilice — za sve poznate brendove.",
+      "Preko 4.900 delova za plugove, roto drljače, tanjirače, freze, setvospremače, drljače, agregate, sejalice i vadilice — za sve poznate brendove.",
     image: "/images/delovi.jpg",
   },
 };
@@ -367,13 +368,31 @@ const TYPE_SYNONYMS: Record<string, string> = {
   odsecac: "odsecač busena",
   gredelj: "gredelj",
   // Roto drljače: kupac kuca i „rotodrljača”, i „roto drljača”, i „rotaciona drljača”.
-  "noz-roto-drljace": "rotodrljača rotodrljace rotaciona drljača nož noževi",
-  "klin-roto-drljace": "rotodrljača rotodrljace rotaciona drljača klin klinovi zub",
+  // Noževi i klinovi su jedan tip (isti potrošni deo pod dva imena), pa obe reči
+  // moraju da vode na isti spisak.
+  "noz-roto-drljace": "rotodrljača rotodrljace rotaciona drljača nož noževi klin klinovi zub",
   "cistac-valjka": "rotodrljača rotodrljace čistač valjka strugač",
   "lezaj-roto-drljace": "rotodrljača rotodrljace ležaj",
   "kuciste-lezaja": "rotodrljača rotodrljace kućište ležaja",
   osovinica: "rotodrljača rotodrljace osovinica bolcna svornjak",
   "zastita-noza": "rotodrljača rotodrljace zaštita noža",
+  // Drljače i freze.
+  "klin-drljace": "drljača drljace brana klin klinovi zub pačja noga",
+  "noz-freze": "freza freze rotofreza nož noževi motika",
+  // Setvospremači — „S-pero” i „S-opruga” su ista stvar, po krajevima Srbije.
+  "s-opruga": "setvospremač setvospremac S opruga S pero opruge pera",
+  "drzac-s-opruge": "setvospremač držač nosač S opruge S pera",
+  "nozic-s-opruge": "setvospremač nožić nožići S opruge S pera motičica",
+  "pojacanje-s-opruge": "setvospremač pojačanje ojačanje S opruge",
+  "ponistivac-tragova": "setvospremač poništavač poništivač brisač tragova točka",
+  // Tanjirače.
+  "disk-tanjirace": "tanjirača tanjirace disk diskovi tanjir tanjiri nazubljeni",
+  "lezaj-tanjirace": "tanjirača tanjirace ležaj drveni ležaj",
+  odstojnik: "tanjirača tanjirace odstojnik distancer čaura",
+  "osovina-tanjirace": "tanjirača tanjirace osovina vratilo",
+  prirubnica: "tanjirača tanjirace prirubnica protivploča",
+  "strugac-tanjirace": "tanjirača tanjirace strugač čistač diskova",
+  zavrtanj: "zavrtanj šraf vijak matica navrtka",
 };
 
 /* --------------------------- Najtraženiji delovi --------------------------- */

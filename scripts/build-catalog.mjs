@@ -4,8 +4,9 @@
  *   node scripts/build-catalog.mjs        (ili: npm run catalog)
  *
  * Ulaz:  data/rolland-sitemap.xml      — preuzet sa https://www.rolland.pl/sitemap.xml
- *        src/data/rotodrljace.json     — delovi za roto drljače, piše ih
- *                                        `npm run rotodrljace` (vidi import-rotodrljace.mjs)
+ *        src/data/ferencak.json        — delovi za roto drljače, drljače, freze,
+ *                                        setvospremače i tanjirače, piše ih
+ *                                        `npm run ferencak` (vidi import-ferencak.mjs)
  * Izlaz: src/data/parts.json           — SVI delovi, kolonarno spakovani (učitava se lazy)
  *        src/data/popular.json         — osveženi nazivi/fasete najtraženijih delova
  *
@@ -37,7 +38,7 @@ import {
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SITEMAP = resolve(root, "data/rolland-sitemap.xml");
 const OUT_DIR = resolve(root, "src/data");
-const ROTODRLJACE = resolve(OUT_DIR, "rotodrljace.json");
+const FERENCAK = resolve(OUT_DIR, "ferencak.json");
 const POPULAR = resolve(OUT_DIR, "popular.json");
 
 /* -------------------------------------------------------------------------- */
@@ -125,6 +126,22 @@ function formatRest(tokens, typeLabel = "") {
 /*                                   Mapiranje                                 */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * „Tanjir" znači dva različita dela: u plugu je to tanjirasto crtalo, a u
+ * tanjirači disk od pola metra naviše. Rolland katalog za oba ima isti tip, pa
+ * se onaj iz grupe tanjirača prevodi u tip koji nose i diskovi sa
+ * psc-ferencak.hr — jedan deo, jedan tip u filteru.
+ */
+function fixTanjir(part) {
+  if (part.group !== "delovi-tanjirace" || part.partType !== "tanjir") return part;
+  return {
+    ...part,
+    name: part.name.replace(/^Tanjir \(disk\)/, "Disk tanjirače"),
+    partType: "disk-tanjirace",
+    partTypeLabel: "Disk tanjirače",
+  };
+}
+
 function buildPart(entry, group) {
   const rawTokens = entry.slug
     .split("-")
@@ -155,7 +172,7 @@ function buildPart(entry, group) {
     .replace(/\s+/g, " ")
     .trim();
 
-  return {
+  return fixTanjir({
     id: entry.sourceId,
     name: side ? `${name} (${side.suffix})` : name,
     group: group.key,
@@ -163,7 +180,7 @@ function buildPart(entry, group) {
     partTypeLabel: typeLabel,
     brand: brand?.key ?? "univerzalno",
     side: side?.key ?? null,
-  };
+  });
 }
 
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
@@ -201,15 +218,13 @@ const dedupe = (list) => {
 };
 
 /**
- * Delovi za roto drljače dolaze iz drugog izvora i drugom skriptom
- * (`npm run rotodrljace`), već prevedeni i sa našim kataloškim brojevima. Ovde
+ * Delovi sa psc-ferencak.hr dolaze iz drugog izvora i drugom skriptom
+ * (`npm run ferencak`), već prevedeni i sa našim kataloškim brojevima. Ovde
  * se samo pridružuju Rolland delovima, da sajt ima JEDAN `parts.json`.
  */
-const rotodrljace = existsSync(ROTODRLJACE)
-  ? JSON.parse(readFileSync(ROTODRLJACE, "utf8"))
-  : [];
+const ferencak = existsSync(FERENCAK) ? JSON.parse(readFileSync(FERENCAK, "utf8")) : [];
 
-const finalParts = dedupe([...parts, ...rotodrljace]);
+const finalParts = dedupe([...parts, ...ferencak]);
 
 /**
  * Delovi se pakuju kolonarno: umesto da se `delovi-plugovi` ponovi 4600 puta,
@@ -297,7 +312,7 @@ const packed = pack(finalParts);
 writeFileSync(resolve(OUT_DIR, "parts.json"), JSON.stringify(packed));
 const uVitrini = refreshPopular(packed);
 
-console.log(`Delovi: ${finalParts.length} (Rolland ${dedupe(parts).length} + roto drljače ${rotodrljace.length})`);
+console.log(`Delovi: ${finalParts.length} (Rolland ${dedupe(parts).length} + psc-ferencak ${ferencak.length})`);
 console.log(`Tipova: ${packed.types.length}, brendova: ${packed.brands.length}, grupa: ${packed.groups.length}`);
 console.log(`Najtraženiji (popular.json) osveženo: ${uVitrini}`);
 if (unknownTypes.size) {

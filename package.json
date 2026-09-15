@@ -11,7 +11,7 @@
     "catalog": "node scripts/build-catalog.mjs",
     "slike": "node scripts/import-images.mjs",
     "plugovi": "node scripts/import-plow-parts.mjs",
-    "rotodrljace": "node scripts/import-rotodrljace.mjs",
+    "ferencak": "node scripts/import-ferencak.mjs",
     "prikolice": "node scripts/import-trailers.mjs",
     "cene": "node scripts/import-trailer-prices.mjs",
     "slike:kadar": "python scripts/normalize_product_images.py",
