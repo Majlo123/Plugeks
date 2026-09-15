@@ -9,6 +9,21 @@ jednu prikolicu — pa je „Delovi" sa 4.644 stavke izgledalo kao da se prodaje
 tačno jedan komad. Sad svaka kartica nosi VIŠE proizvoda u jednom kadru, da se
 sa dva metra razdaljine vidi da je iza klika katalog, a ne artikal.
 
+ZAŠTO JE KADAR ŠIROK (14:5) I ZAŠTO NOSI SVOJU PODLOGU: kartica u heroju više
+nema obojen panel sa fotografijom umetnutom u ugao — CELA kartica je ova slika.
+Zato kadar mora da sadrži i mesto za tekst: leva polovina se namerno ostavlja
+prazna (vidi `TEKST_DO`), a proizvodi stoje desno. Podloga zato više nije samo
+bela: to je svetla METALNA PLOČA — gradijent od skoro bele gore do kosti dole,
+tamniji pojas „stola" pri dnu, dijagonalni odsjaj preko sredine i vinjeta po
+ivicama. Ista ploča za sve tri kartice: tri kartice su tako jedan materijal, a
+razlikuje ih samo ono što na njima stoji.
+
+ZAŠTO JEDAN VELIKI PROIZVOD, A DVA MANJA: kartica je na desktopu široka oko
+385px, a tekst zauzima levu polovinu — na proizvode otpada jedva 200px. Tri
+jednaka proizvoda tu ispadnu po 65px i opet su sličice. Jedan nosi kadar (oko
+135px, prepoznaje se), a dva manja uz njega kažu da iza klika stoji više od
+jednog komada.
+
 Slike se ne crtaju ručno nego se sklapaju od postojećih fotografija proizvoda,
 pa uvek prikazuju ono što je stvarno u ponudi:
 
@@ -27,14 +42,9 @@ kao greška u pripremi. Crtež uz to pokazuje i oblik i mere, što je kod potro�
 dela ono po čemu se bira (vidi i `redosled.ts`, gde crtež ide ispred fotografije).
 
 KAKO: svi izvori stoje na beloj podlozi, pa se belina izdvaja u alfa kanal
-(`izrezi`) i proizvod se „položi" na blagi studijski gradijent umesto na golu
-belinu. Ispod fotografija ide meka senka po njihovoj SOPSTVENOJ silueti — bez
-nje proizvodi lebde i kolaž se raspada na nalepnice; crteži je nemaju (vidi
-`Kadar.senke`).
-
-Broj proizvoda po kadru je namerno mali (tri do četiri). Kadar se na kartici
-prikazuje širok oko 140-200px; na šest komada bi svaki bio ispod 50px i ništa
-se ne bi prepoznalo, a poenta je baš da se prepozna.
+(`izrezi`) i proizvod se „položi" na ploču umesto na golu belinu. Ispod
+fotografija ide meka senka po njihovoj SOPSTVENOJ silueti — bez nje proizvodi
+lebde i kolaž se raspada na nalepnice; crteži je nemaju (vidi `Kadar.senke`).
 """
 
 from __future__ import annotations
@@ -50,16 +60,22 @@ KOREN = Path(__file__).resolve().parent.parent
 IZLAZ = KOREN / "public" / "images" / "ulaz"
 IZLAZ_KATEGORIJE = KOREN / "public" / "images" / "kategorije"
 
-#: Odnos stranica kadra na kartici (vidi `Ulaz` u `Hero.tsx`).
-PLATNO = (1000, 800)
+#: Odnos stranica kartice u heroju (vidi `Ulaz` u `Hero.tsx` → `aspect-[14/5]`).
+#: Kadar i kartica MORAJU biti istog odnosa: kartica je slika, pa bi svako
+#: neslaganje značilo da `object-cover` opseca ili proizvod ili prazninu za
+#: tekst.
+PLATNO = (1400, 500)
 
 KVALITET = 90
 
-#: Studijska podloga: od bele gore do `bone` (#EFF0EA) dole — ista prljavo bela
-#: kojom su podložene i kartice proizvoda, pa se kadar ne vidi kao beli
-#: pravougaonik ubačen u krem karticu.
-PODLOGA_GORE = (255, 255, 255)
-PODLOGA_DOLE = (233, 235, 227)
+#: Do ovog udela širine kadar ostaje prazan — tu, preko slike, stoji tekst
+#: kartice. Proizvodi počinju odmah iza.
+TEKST_DO = 0.47
+
+#: Metalna ploča: skoro bela gore, kost dole, pa tamniji pojas „stola".
+PLOCA_GORE = (253, 253, 251)
+PLOCA_DOLE = (228, 231, 222)
+PLOCA_POD = (211, 215, 205)
 
 #: Ispod ove razlike od bele piksel je podloga, a ne proizvod. Blago, da meka
 #: senka ispod proizvoda ne bude odsečena kao stepenica.
@@ -89,7 +105,7 @@ class Kadar:
     #: Senka ispod proizvoda. Fotografija je snimak predmeta koji negde stoji,
     #: pa mu senka pripada; tehnički crtež je crtež i senka bi mu bila laž.
     senke: bool = True
-    #: Platno i podloga: hero kadrovi su 5:4 na studijskom gradijentu, mreže za
+    #: Platno i podloga: hero kadrovi su 14:5 na metalnoj ploči, mreže za
     #: kategorijske kartice 16:10 na goloj beloj (kao susedne ručne kartice).
     platno: tuple[int, int] = PLATNO
     bela_podloga: bool = False
@@ -97,37 +113,33 @@ class Kadar:
     centriraj: bool = False
 
 
-# Raspored „jedan širok gore, dva ispod" nose mašine i prikolice: i jedne i
-# druge su na fotografiji ŠIROKE (oko 1,6:1), pa im širok gornji pojas leži
-# prirodno, a dva manja ispod daju množinu bez sitnjenja.
+# Raspored „dva manja levo, jedan veliki desno" nose sve tri kartice — ista
+# građa, pa se red čita kao jedna stvar, a ne kao tri različita plakata.
 #
-# Isti raspored nose i delovi, da sve tri kartice imaju istu građu. Izabrana su
-# tri RAZLIČITA tipa — daska, grudi daske i raonik — jer se katalog delova i
-# pretražuje po tipu; tri daske bi na kadru izgledale kao jedna. Plaz je ispao
-# iako je četvrti po traženosti: dugačak je i tanak (odnos 2,8), pa se u polje
-# sa ostalima uklapa kao šibica i na kartici se izgubi.
+# Veliki je uvek onaj proizvod po kojem se vrsta prepoznaje iz hoda: malčer
+# (najšira i najprepoznatljivija zelena mašina), plužna daska (deo koji se
+# najviše i troši i traži) i otvorena prikolica Light 23. Dva manja uz njega su
+# namerno DRUGOG tipa — tanjirača i plug, trougao i raonik, box i platforma —
+# jer se katalog i pretražuje po tipu; tri iste stvari bi izgledale kao jedna.
 #
-# Mašine: gore malčer (najšira i najprepoznatljivija zelena mašina), dole plug
-# i tanjirača — plug i malčer namerno NISU u istom redu: na kartici od 140px
-# su dve mašine jedna uz drugu izgledale kao jedna, pa je i razmak u donjem
-# redu širi nego kod ostalih kadrova. Plave Rolland mašine su skinute sa sajta.
+# Plave Rolland mašine su skinute sa sajta, pa ih ovde nema.
 KADROVI = (
     Kadar(
         naziv="mašine",
         izlaz="masine.jpg",
         stavke=(
-            ("masine/hofman/malcer-g-line.jpg", Mesto(0.05, 0.03, 0.90, 0.47)),
-            ("masine/hofman/plug-nero.jpg", Mesto(0.02, 0.56, 0.44, 0.40)),
-            ("masine/hofman/tanjiraca-bronca.jpg", Mesto(0.54, 0.56, 0.44, 0.40)),
+            ("masine/hofman/tanjiraca-bronca.jpg", Mesto(0.47, 0.09, 0.175, 0.33)),
+            ("masine/hofman/plug-nero.jpg", Mesto(0.47, 0.57, 0.175, 0.33)),
+            ("masine/hofman/malcer-g-line.jpg", Mesto(0.625, 0.17, 0.34, 0.66)),
         ),
     ),
     Kadar(
         naziv="delovi",
         izlaz="delovi.jpg",
         stavke=(
-            ("plugovi/1970.jpg", Mesto(0.03, 0.03, 0.94, 0.49)),
-            ("plugovi/1957.jpg", Mesto(0.03, 0.54, 0.455, 0.42)),
-            ("plugovi/3802.jpg", Mesto(0.515, 0.54, 0.455, 0.42)),
+            ("plugovi/1957.jpg", Mesto(0.475, 0.10, 0.13, 0.34)),
+            ("plugovi/3802.jpg", Mesto(0.47, 0.58, 0.155, 0.32)),
+            ("plugovi/1970.jpg", Mesto(0.635, 0.11, 0.335, 0.78)),
         ),
         senke=False,
     ),
@@ -135,9 +147,9 @@ KADROVI = (
         naziv="auto-prikolice",
         izlaz="prikolice.jpg",
         stavke=(
-            ("prikolice/light-23.jpg", Mesto(0.03, 0.03, 0.94, 0.49)),
-            ("prikolice/light-20-box.jpg", Mesto(0.03, 0.54, 0.455, 0.42)),
-            ("prikolice/cargo-4120-3-5-14c.jpg", Mesto(0.515, 0.54, 0.455, 0.42)),
+            ("prikolice/light-20-box.jpg", Mesto(0.47, 0.09, 0.175, 0.33)),
+            ("prikolice/cargo-4120-3-5-14c.jpg", Mesto(0.47, 0.57, 0.175, 0.33)),
+            ("prikolice/light-23.jpg", Mesto(0.625, 0.17, 0.34, 0.66)),
         ),
     ),
 )
@@ -163,21 +175,42 @@ MREZE = (
 )
 
 
-def podloga(velicina: tuple[int, int]) -> Image.Image:
-    """Blagi vertikalni gradijent + svetlo teme u gornjoj trećini."""
+def ploca(velicina: tuple[int, int]) -> Image.Image:
+    """
+    Svetla metalna ploča na kojoj proizvodi stoje — podloga cele kartice.
+
+    Četiri sloja, svaki rešava jednu stvar:
+      * uspravni gradijent — ploča ima gore i dole, nije ravna traka;
+      * pojas „stola" pri dnu — proizvodi imaju na čemu da stoje, pa senka
+        ispod njih ima smisla;
+      * dijagonalni odsjaj — jedina stvar koja svetlu površinu čita kao METAL
+        umesto kao papir, i jedina koja radi na svakoj veličini (fino brušenje
+        bi na kartici od 330px dalo moare);
+      * zrno — bez njega JPEG od ovako mekog gradijenta pravi vidljive trake.
+    """
     sirina, visina = velicina
-    t = np.linspace(0.0, 1.0, visina, dtype=np.float32)[:, None]
-    gore = np.array(PODLOGA_GORE, dtype=np.float32)
-    dole = np.array(PODLOGA_DOLE, dtype=np.float32)
-    trake = gore + (dole - gore) * t  # (visina, 3)
-
-    piksure = np.repeat(trake[:, None, :], sirina, axis=1)
-
-    # Meko svetlo iznad sredine — kadar dobija dubinu studijskog snimka umesto
-    # ravne trake. Namerno slabo (do 6 nivoa): jače počne da se vidi kao mrlja.
     yy, xx = np.mgrid[0:visina, 0:sirina].astype(np.float32)
-    r = np.hypot((xx - sirina * 0.5) / (sirina * 0.75), (yy - visina * 0.28) / (visina * 0.7))
-    piksure += (6.0 * np.clip(1.0 - r, 0.0, 1.0) ** 2)[:, :, None]
+    ty = yy / max(1, visina - 1)
+
+    gore = np.array(PLOCA_GORE, dtype=np.float32)
+    dole = np.array(PLOCA_DOLE, dtype=np.float32)
+    pod = np.array(PLOCA_POD, dtype=np.float32)
+
+    piksure = gore + (dole - gore) * ty[:, :, None]
+
+    prelaz = (np.clip((ty - 0.70) / 0.30, 0.0, 1.0) ** 1.6)[:, :, None]
+    piksure = piksure + (pod - piksure) * prelaz
+
+    dijagonala = (xx / sirina) * 0.8 + (yy / visina) * 0.6
+    piksure += (np.exp(-((dijagonala - 0.62) ** 2) / (2 * 0.16**2)) * 7.0)[:, :, None]
+
+    r = np.hypot(
+        (xx - sirina * 0.5) / (sirina * 0.62),
+        (yy - visina * 0.45) / (visina * 0.72),
+    )
+    piksure -= (np.clip(r - 0.75, 0.0, None) ** 1.5 * 26.0)[:, :, None]
+
+    piksure += np.random.default_rng(7).normal(0.0, 1.1, (visina, sirina, 1))
 
     return Image.fromarray(np.clip(piksure, 0, 255).astype(np.uint8), "RGB")
 
@@ -229,7 +262,7 @@ def senka(proizvod: Image.Image, platno: tuple[int, int], mesto: tuple[int, int]
 
 def sklopi(kadar: Kadar) -> Image.Image:
     velicina = kadar.platno
-    platno = Image.new("RGB", velicina, (255, 255, 255)) if kadar.bela_podloga else podloga(velicina)
+    platno = Image.new("RGB", velicina, (255, 255, 255)) if kadar.bela_podloga else ploca(velicina)
     crno = Image.new("RGB", velicina, (24, 30, 24))
 
     for rel, mesto in kadar.stavke:

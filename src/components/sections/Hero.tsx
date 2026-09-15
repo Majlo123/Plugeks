@@ -4,72 +4,45 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  ArrowRight,
-  Phone,
-  Tractor,
-  Truck,
-  ShieldCheck,
-  Star,
-} from "lucide-react";
+import { ArrowRight, Phone, Tractor, Truck, ShieldCheck, Star } from "lucide-react";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { site } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 /**
- * Tonovi kartica — ISTI gradijenti koje pločice za izbor vrste već nose na
- * `/proizvodi` (`TYPE_TONES` → `MediaPlaceholder`): mašine zelene, prikolice
- * amber, delovi čelično sive. Boja je time postala oznaka vrste kroz ceo sajt:
- * ono što je na početnoj zeleno i na stranici proizvoda je zeleno.
- */
-const TONOVI = {
-  masine:
-    "bg-gradient-to-br from-brand-600 via-brand to-charcoal shadow-[0_18px_42px_-18px_rgba(27,94,32,0.85)] hover:shadow-[0_28px_56px_-18px_rgba(27,94,32,1)]",
-  delovi:
-    "bg-gradient-to-br from-[#374151] via-[#1f2937] to-charcoal shadow-[0_18px_42px_-18px_rgba(16,20,17,0.85)] hover:shadow-[0_28px_56px_-18px_rgba(16,20,17,1)]",
-  prikolice:
-    "bg-gradient-to-br from-accent-600 via-[#8a6a16] to-charcoal shadow-[0_18px_42px_-18px_rgba(201,139,4,0.85)] hover:shadow-[0_28px_56px_-18px_rgba(201,139,4,1)]",
-} as const;
-
-/**
- * Jedan ulaz u katalog — kartica sa fotografijom onoga što je iza klika.
+ * Jedan ulaz u katalog — kartica KOJA JE fotografija.
  *
- * ZAŠTO VELIKI KADAR, A NE PLOČICA: ranije je fotografija stajala u beloj
- * pločici od 96px. Na toj veličini je mogao da stane tačno JEDAN proizvod, pa
- * je „Delovi" sa 4.644 stavke izgledalo kao da se prodaje jedna plužna daska, a
- * ceo red kartica kao tri dugmeta sa sitnim sličicama. Sad kadar uzima 42%
- * širine kartice na telefonu (51% od `sm` naviše) i svu njenu visinu, a u njemu
- * su TRI proizvoda (`scripts/build_category_images.py`) — sa dva metra
- * razdaljine se vidi i šta je iza klika i da je iza klika katalog.
+ * ŠTA JE OVDE PROMENJENO I ZAŠTO: ranije je kartica bila obojen panel (zelen,
+ * čeličan, amber) sa fotografijom umetnutom u levi ugao. Boja je bila oznaka
+ * vrste, ali je time i kartica bila dugme sa slikom — dve stvari zalepljene
+ * jedna do druge, sa vidljivim šavom između njih. Sad je kartica samo slika,
+ * od ivice do ivice: `public/images/ulaz/*.jpg` (vidi
+ * `scripts/build_category_images.py`) nosi i proizvode i podlogu na kojoj
+ * stoje — svetlu metalnu ploču, ISTU za sve tri. Tri kartice su time jedan
+ * materijal, a razlikuje ih samo ono što na njima stoji. Nema više šava jer
+ * nema više dva sloja.
  *
- * ZAŠTO JE NA TELEFONU SVE MANJE: uspravno složene kartice sa kadrom od 51%
- * bile su visoke ~155px, pa je treća („Auto-prikolice") padala ispod ivice
- * ekrana — na 390x844 se pri dolasku na sajt videlo dve i po kartice. Uži kadar
- * (42%) i niža stopa (`p-2`) svode karticu na ~130px i sve tri staju u prvi
- * ekran, što je i bila poenta reda: da se vrsta bira bez skrola.
+ * ZAŠTO SVETLA PLOČA, A NE TAMNA: hero je tamna fotografija njive pod tamnim
+ * velom. Tri svetle ploče na njoj su jedina svetla stvar ispod naslova, pa red
+ * uzima pogled bez ijedne boje i bez ijednog okvira koji viče. Tamne kartice
+ * bi se na toj pozadini izgubile.
  *
- * ZAŠTO KADAR IMA I `max-w`: kartica prati širinu strane (vidi red ispod), pa
- * na širem telefonu 42% raste sa njom — a sa kadrom raste i visina kartice, jer
- * je kadar 5:4. Na 430px bi tri kartice narasle za ~55px zajedno i opet
- * potisnule telefonsko dugme ispod ivice. Kadar zato staje na 8,75rem (13rem
- * od `sm`) — tačno na širini koju je imao u stupcu od 21rem, pa je i visina
- * kartice ostala ista; dalje se širi samo tekstualni deo, koji visinu ne dira.
+ * ZAŠTO 14:5: kadar i kartica moraju biti istog odnosa, inače `object-cover`
+ * opseca — ili proizvod desno, ili prazninu levo u kojoj stoji tekst. 14:5 je
+ * izabrano tako da kartica na telefonu ostane visoka ~125px: sve tri plus
+ * dugme za poziv i dalje staju u prvi ekran na 390x844, što je i bila poenta
+ * reda (da se vrsta bira bez skrola).
  *
- * Kadar je 5:4 i tačno tog odnosa je i sama slika, pa `object-cover` nema šta
- * da opseče ni na jednom prelomu. Poluprečnik pločice je poluprečnik kartice
- * minus njen okvir (20−8 na telefonu, 24−10 dalje) — koncentrično, kako uglovi
- * ne bi izgledali kao dva nesložena luka.
+ * TEKST STOJI PREKO SLIKE, levo, u pojasu koji je u kadru namerno ostavljen
+ * prazan (`TEKST_DO` u skripti). Vela preko njega NEMA i ne treba mu: ploča je
+ * tamo ionako svetla, pa ugljeni tekst na njoj ima pun kontrast, a uvećanje od
+ * 3,5% na hover pomera proizvode za jedva 6px — i dalje daleko od teksta. Veo
+ * je probno stajao i samo je isprao dva manja proizvoda iza sebe.
  *
- * Ispod naziva stoji kratak OPIS onoga što je iza klika („Od 500 do 3500 kg, sa
+ * Opis ispod naziva je kratak OPIS onoga što je iza klika („500–3500 kg, sa
  * opremom"), a ne broj stavki: brojka („4.800 delova") je izgledala kao
  * statistika, a kupcu ne kaže da li je njegova mašina među njima — opis kaže.
- * Strelica stoji uz taj red, a ne uz naziv: na najužoj kartici u redu naziv
- * „Auto-prikolice" i strelica ne staju u isti red, pa bi se naziv lomio.
- *
- * Preko kartice ide blag odsjaj iz gornjeg levog ugla i tanki svetli obod —
- * bez toga su tri tamne pločice na tamnoj fotografiji izgledale kao tri
- * ravna pravougaonika. Strelica je pun krem krug sa strelicom u boji kartice,
- * pa se čita kao dugme, a ne kao ukras.
+ * Strelica stoji uz taj red, a ne uz naziv: naziv „Rezervni delovi" i strelica
+ * ne staju u isti red u pojasu za tekst, pa bi se naziv lomio.
  */
 function Ulaz({
   href,
@@ -77,53 +50,64 @@ function Ulaz({
   opis,
   slika,
   alt,
-  ton,
+  kasnjenje,
 }: {
   href: string;
   naziv: string;
   opis: string;
   slika: string;
   alt: string;
-  ton: keyof typeof TONOVI;
+  /** Razmak u ulasku, da tri kartice ne uskoče u isti kadar (sekunde). */
+  kasnjenje: number;
 }) {
   return (
-    <Link
-      href={href}
-      className={cn(
-        "group relative isolate flex w-full items-center gap-2.5 overflow-hidden rounded-[1.25rem] p-2 text-cream ring-1 ring-white/20 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:ring-white/40 sm:gap-3 sm:rounded-[1.5rem] sm:p-2.5",
-        TONOVI[ton],
-      )}
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: kasnjenje, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Odsjaj — svetlo pada iz gornjeg levog ugla, kao na lakiranoj površini. */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(130%_90%_at_0%_0%,rgba(255,255,255,0.22),transparent_58%)] opacity-90 transition-opacity duration-300 group-hover:opacity-100"
-      />
+      <Link
+        href={href}
+        className="group relative block overflow-hidden rounded-[1.15rem] bg-[#FBFBF9] shadow-[0_1px_2px_rgba(16,20,17,0.10),0_18px_40px_-18px_rgba(16,20,17,0.75)] ring-1 ring-charcoal/10 transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_10px_rgba(16,20,17,0.14),0_34px_64px_-22px_rgba(16,20,17,0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal sm:rounded-[1.35rem]"
+      >
+        <span className="relative block aspect-[14/5] w-full">
+          <Image
+            src={slika}
+            alt={alt}
+            fill
+            sizes="(min-width: 1024px) 460px, 100vw"
+            className="object-cover transition-transform duration-[700ms] ease-out group-hover:scale-[1.035]"
+          />
+        </span>
 
-      <span className="relative aspect-[5/4] w-[42%] max-w-[8.75rem] shrink-0 overflow-hidden rounded-[0.8rem] shadow-[0_8px_20px_-10px_rgba(0,0,0,0.6)] ring-1 ring-white/25 sm:w-[51%] sm:max-w-[13rem] sm:rounded-[0.95rem] lg:w-[46%]">
-        <Image
-          src={slika}
-          alt={alt}
-          fill
-          sizes="(min-width: 1024px) 160px, (min-width: 640px) 208px, 140px"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+        {/* Faseta — svetla nit gore, tanka senka dole: ploča ima debljinu. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-1px_0_rgba(16,20,17,0.07)]"
         />
-      </span>
 
-      <span className="flex min-w-0 flex-1 flex-col justify-center gap-1 pr-1 sm:gap-1.5 sm:pr-1.5">
-        <span className="font-display text-[1rem] font-bold leading-tight tracking-[-0.015em] sm:text-[1.125rem]">
-          {naziv}
-        </span>
-        <span className="flex items-center justify-between gap-2">
-          <span className="line-clamp-2 min-w-0 text-[0.74rem] font-medium leading-snug text-cream/80 sm:text-[0.8rem]">
-            {opis}
+        <span className="absolute inset-y-0 left-0 flex w-[46%] flex-col justify-center gap-1 pl-4 pr-1 sm:gap-1.5 xl:pl-5">
+          <span className="relative w-fit max-w-full font-display text-[1rem] font-bold leading-tight tracking-[-0.02em] text-charcoal xl:text-[1.15rem]">
+            {naziv}
+            <span
+              aria-hidden
+              className="absolute -bottom-[3px] left-0 h-px w-full origin-left scale-x-0 bg-charcoal/45 transition-transform duration-300 ease-out group-hover:scale-x-100"
+            />
           </span>
-          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-cream text-charcoal shadow-[0_4px_12px_-4px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:scale-105 sm:h-8 sm:w-8">
-            <ArrowRight className="h-4 w-4" strokeWidth={2.4} />
+          <span className="flex items-center justify-between gap-2">
+            <span className="line-clamp-2 min-w-0 text-[0.72rem] font-medium leading-snug text-charcoal/60 xl:text-[0.8rem]">
+              {opis}
+            </span>
+            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-charcoal text-cream shadow-[0_6px_14px_-6px_rgba(16,20,17,0.9)] transition-transform duration-300 ease-out group-hover:scale-110 sm:h-8 sm:w-8">
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+                strokeWidth={2.4}
+              />
+            </span>
           </span>
         </span>
-      </span>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }
 
@@ -155,11 +139,14 @@ export function Hero() {
       </motion.div>
 
       <div className="container flex min-h-[80vh] flex-col justify-center pt-[5.5rem] pb-14 sm:pt-24 sm:pb-20">
+        {/* Naslovni blok ima svoje `max-w` po elementu (h1 3xl, tekst xl), pa
+            sam omotač ide preko cele širine — red kartica ispod time dobija
+            punu širinu strane, a naslov ostaje tamo gde je i bio. */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-5xl"
+          className="w-full"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.16em]">
             <Star className="h-3.5 w-3.5 text-accent" />
@@ -177,28 +164,34 @@ export function Hero() {
           </p>
 
           {/* Tri ulaza u katalog — svaki vodi direktno na svoju vrstu, bez
-              koraka „šta tražite". Umesto ikonice svaki nosi FOTOGRAFIJE onoga
-              što ga čeka iza klika (mašine, delovi, prikolice): sa dva metra
-              razdaljine slika kaže šta je gde brže od reči, a i razlikuje tri
-              inače identična dugmeta. Boju svaka nosi svoju — istu koju ta
-              vrsta već ima na `/proizvodi` (zelena, čelična, amber), pa je
-              boja postala oznaka vrste, a ne ukras jedne kartice.
+              koraka „šta tražite". Svaki je JEDNA fotografija preko cele
+              kartice: proizvodi desno, prazna ploča levo za tekst (vidi
+              `Ulaz`). Sa dva metra razdaljine slika kaže šta je gde brže od
+              reči, a tri kartice se razlikuju po sadržaju, ne po boji.
 
               U red staju tek od `lg`; tri kartice u redu na tablet širini
-              spljoštile bi kadar na jedva 90px, a to je upravo sitna sličica od
-              koje se ovde bežalo. Do tada se slažu jedna ispod druge i PRATE
-              ŠIRINU STRANE — ranije su stajale u stupcu od 21rem, pa je na
-              telefonu od 430px desno ostajalo 55px praznine i red je izgledao
-              kao da mu je neko odsekao ivicu, dok su naslov i tekst iznad išli
-              do kraja. Visinu to ne pomera: kadar ima svoj `max-w` (vidi
-              `Ulaz`), pa se sa širinom razvlači samo tekstualni deo.
+              spljoštile bi kadar ispod 240px i proizvodi bi opet bili sličice.
+              Do tada se slažu jedna ispod druge.
 
-              Telefon stoji ISPOD njih, centriran u odnosu na taj red — ranije je
-              posle preloma visio uz levu ivicu i kvario simetriju. Na telefonu
-              je niži (h-12): kartice su ispred njega po važnosti, a plutajuće
-              dugme za poziv ionako stoji u uglu ekrana. */}
+              ZAŠTO STUB OD 27rem NA TABLETU: kartica je sad slika i visina joj
+              je vezana za širinu (14:5). Na telefonu je to ono što treba —
+              350px široko, 125px visoko, sve tri i telefon staju u prvi ekran.
+              Ali na tabletu od 768px kartica preko cele širine postaje visoka
+              260px, tri takve su 780px i hero naraste za trećinu ekrana. Stub
+              od 27rem drži karticu na ~154px, tačno u rangu u kojem je bila i
+              pre; na telefonu se ne oseća (tamo je strana ionako uža), a od
+              `lg` ga nema jer tada kartice ionako idu u red.
+
+              Ulaze u kadar jedna za drugom (`kasnjenje`), pa oko krene levo-
+              desno preko reda umesto da ga zatekne gotovog: na telefonu, gde
+              hover ne postoji, to je jedino što red pokreće.
+
+              Telefon stoji ISPOD njih, centriran u odnosu na taj red — ranije
+              je posle preloma visio uz levu ivicu i kvario simetriju. Na
+              telefonu je niži (h-12): kartice su ispred njega po važnosti, a
+              plutajuće dugme za poziv ionako stoji u uglu ekrana. */}
           <div className="mt-6 sm:mt-9">
-            <div className="flex w-full flex-col gap-2.5 sm:gap-3 lg:max-w-5xl lg:gap-4">
+            <div className="flex w-full flex-col gap-2.5 sm:max-w-[27rem] sm:gap-3 lg:max-w-none lg:gap-4">
               <div className="grid gap-2.5 sm:gap-3 lg:grid-cols-3 lg:gap-4">
                 <Ulaz
                   href="/masine"
@@ -206,7 +199,7 @@ export function Hero() {
                   opis="Za njivu, šumu i gradilište"
                   slika="/images/ulaz/masine.jpg"
                   alt="Malčer, plug i tanjirača Hofman — poljoprivredne mašine iz ponude PlugekS"
-                  ton="masine"
+                  kasnjenje={0.3}
                 />
                 <Ulaz
                   href="/proizvodi?vrsta=delovi"
@@ -214,7 +207,7 @@ export function Hero() {
                   opis="Plugovi, roto drljače, sejalice"
                   slika="/images/ulaz/delovi.jpg"
                   alt="Plužne daske, raonici i grudi daske — rezervni delovi za plugove iz ponude PlugekS"
-                  ton="delovi"
+                  kasnjenje={0.4}
                 />
                 <Ulaz
                   href="/prikolice"
@@ -222,12 +215,12 @@ export function Hero() {
                   opis="500–3500 kg, sa opremom"
                   slika="/images/ulaz/prikolice.jpg"
                   alt="Auto-prikolice Vesta sa stranicama, ceradom i platformom — iz ponude PlugekS"
-                  ton="prikolice"
+                  kasnjenje={0.5}
                 />
               </div>
 
-              {/* Telefon: „staklen" — vidi se na fotografiji, a puna boja ostaje
-                  rezervisana za ulaze u katalog. */}
+              {/* Telefon: „staklen" — vidi se na fotografiji, a puna svetlina
+                  ostaje rezervisana za ulaze u katalog. */}
               <a
                 href={site.telHref}
                 className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-cream/45 bg-charcoal/35 px-7 text-[0.95rem] font-semibold tracking-[-0.01em] text-cream shadow-[0_14px_34px_-14px_rgba(16,20,17,0.6)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-cream/70 hover:bg-charcoal/50 sm:h-[3.75rem] sm:text-[1.0625rem] lg:w-auto lg:self-center"
