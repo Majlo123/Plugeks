@@ -26,7 +26,7 @@ export default function AdminPage() {
           Interni pristup
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Nabavne cene i drugi podaci koji ne idu na sajt.
+          Pregled cenovnika prikolica i drugi podaci za održavanje sajta.
         </p>
 
         {adminToken() ? (

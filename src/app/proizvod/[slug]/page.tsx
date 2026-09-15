@@ -45,6 +45,7 @@ import {
   type Product,
 } from "@/lib/products";
 import { TRAILER_BRAND } from "@/lib/catalog";
+import { CENOVNIK, ispisCene, datumCenovnika } from "@/lib/cene";
 
 const SITE_URL = "https://plugeks.com";
 
@@ -254,17 +255,36 @@ function ProductJsonLd({ p }: { p: Product }) {
       ? { brand: { "@type": "Brand", name: p.brandLabel } }
       : {}),
     /**
-     * `offers` je SKINUT, nije zaboravljen.
+     * `offers` ide SAMO uz proizvod koji ima cenu na cenovniku — danas su to
+     * prikolice i oprema (vidi `lib/cene.ts`).
      *
-     * Cena se kod nas dogovara upitom, pa je ponuda stajala bez `price` — a
-     * `Offer` bez cene Google smatra neispravnim i ume da odbaci ceo `Product`
-     * node zajedno sa njim. Time bi otišla i `image` lista iznad, koja je
-     * jedini razlog zbog kog ovaj node i postoji. `Product` bez ponude je
-     * potpuno ispravan schema.org zapis.
+     * Delovi i mašine se dogovaraju upitom, pa za njih ponude nema: `Offer`
+     * bez `price` Google smatra neispravnim i ume da odbaci ceo `Product` node
+     * zajedno sa njim, a time bi otišla i `image` lista iznad. `Product` bez
+     * ponude je ispravan schema.org zapis — Search Console ga doduše vodi kao
+     * „nije za rich results", što je za deo na upit i tačno.
      *
-     * Prodavac se i dalje pominje, ali preko `@id` reference na `Store` node sa
-     * početne (vidi `components/FirmaJsonLd.tsx`) — bez ponavljanja logoa.
+     * Iznos u ponudi je isti koji stranica ispisuje (Google traži da se
+     * strukturirani podaci poklapaju sa vidljivim sadržajem).
+     *
+     * Prodavac se pominje preko `@id` reference na `Store` node sa početne
+     * (vidi `components/FirmaJsonLd.tsx`) — bez ponavljanja logoa.
      */
+    ...(p.cena != null
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: canonical,
+            price: p.cena,
+            priceCurrency: CENOVNIK.valuta,
+            itemCondition: "https://schema.org/NewCondition",
+            // Bez `availability`: prikolice se poručuju od proizvođača, pa
+            // „na stanju" ne bismo smeli da tvrdimo. Google to vodi kao
+            // preporuku (upozorenje), ne kao grešku.
+            seller: { "@id": `${SITE_URL}/#plugeks` },
+          },
+        }
+      : {}),
     seller: { "@id": `${SITE_URL}/#plugeks` },
   };
 
@@ -437,6 +457,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <p className="mt-3 text-lg text-muted-foreground">{p.tagline}</p>
               ) : null}
 
+              {/* Cena — samo prikolice i oprema sa cenovnika (vidi `lib/cene`).
+                  Isti iznos ide u `offers` u JSON-LD iznad; Google traži da se
+                  ono što tvrdi structured data vidi i na stranici. Datum stanja
+                  stoji uz cenu da kupac zna koliko je sveža. */}
+              {p.cena != null ? <Cena iznos={p.cena} /> : null}
+
               {/* Mašina koja ima fabričku tabelu pokazuje NJU, a ne opis.
                   Opis je kod tih mašina sastavljen automatski („…je mašina iz
                   Hofman programa za rad na gazdinstvu…") i kupcu ne kaže ništa
@@ -525,6 +551,20 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 }
 
 /* ------------------------------ Podkomponente ----------------------------- */
+
+function Cena({ iznos }: { iznos: number }) {
+  const stanje = datumCenovnika();
+  return (
+    <p className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <span className="font-display text-2xl font-bold tabular-nums text-charcoal md:text-3xl">
+        {ispisCene(iznos)}
+      </span>
+      <span className="text-xs text-muted-foreground">
+        cena po cenovniku{stanje ? ` (${stanje})` : ""} — potvrđujemo uz ponudu
+      </span>
+    </p>
+  );
+}
 
 function SpecTable({ p }: { p: Product }) {
   // Prikolice nose fabričku specifikaciju (`specs`) — delovi je nemaju, pa im se

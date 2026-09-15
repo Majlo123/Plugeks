@@ -17,6 +17,7 @@ import imagesJson from "@/data/images.json";
 import machineImagesJson from "@/data/machine-images.json";
 import ogImagesJson from "@/data/og-images.json";
 import { uzBroj } from "@/lib/brojevi";
+import { cenaPrikolice } from "@/lib/cene";
 import {
   GRANE,
   granaKljucevi,
@@ -98,6 +99,11 @@ export type Product = {
   izvedbe?: Izvedba[];
   /** Fotografije cele mašine (bez vezivanja za izvedbu), uz naslovnu. */
   galerija?: string[];
+  /**
+   * Cena u dinarima — samo prikolice i oprema, iz `trailer-prices.json`. Nema
+   * je kad izvor vodi model po upitu; mašine i delovi je nikad nemaju.
+   */
+  cena?: number;
 };
 
 /* -------------------------------- Jezik ----------------------------------- */
@@ -212,6 +218,7 @@ export function slikeMasine(p: Product): { slika: string; izvedba: string | null
 function buildTrailer(t: (typeof trailerRows)[number]): Product {
   const oprema = t.vrsta === "oprema";
   const program = TRAILER_PROGRAMS[t.facets.program];
+  const cena = cenaPrikolice(t.id);
 
   return {
     kind: oprema ? "oprema" : "prikolica",
@@ -229,6 +236,7 @@ function buildTrailer(t: (typeof trailerRows)[number]): Product {
     brandKey: TRAILER_BRAND.key,
     brandLabel: TRAILER_BRAND.label,
     specs: t.specs,
+    ...(cena != null ? { cena } : {}),
   };
 }
 

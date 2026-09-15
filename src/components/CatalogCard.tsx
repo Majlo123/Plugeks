@@ -4,6 +4,7 @@ import { ProductThumb } from "@/components/ProductThumb";
 import { Button } from "@/components/ui/button";
 import { productPath, TRAILER_BRAND, type CatalogItem } from "@/lib/catalog";
 import { cn } from "@/lib/utils";
+import { ispisCene } from "@/lib/cene";
 
 const THUMB_SIZES = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
 
@@ -70,6 +71,12 @@ export function MachineCard({
         ) : null}
 
         <div className="flex-1" />
+        {/* Cena — samo prikolice i oprema sa cenovnika; mašine je nemaju. */}
+        {item.cena != null ? (
+          <p className="mt-3 text-[1.05rem] font-bold tabular-nums text-charcoal">
+            {ispisCene(item.cena)}
+          </p>
+        ) : null}
         <Button asChild variant="primary" size="sm" className="mt-4 w-full">
           <Link href={href}>
             Detaljnije

@@ -4,9 +4,9 @@ import { cookies } from "next/headers";
 /**
  * Interni pristup — samo za vlasnika sajta.
  *
- * Postoji zbog nabavnih cena prikolica: to je podatak koji ne sme na javnu
- * stranicu, a vlasniku treba uvid u njega. Zato NIJE nikakav korisnički sistem
- * nego jedna lozinka iz okruženja.
+ * Postoji zbog pregleda cenovnika prikolica (`/admin/cene`) — strane za
+ * održavanje, ne za kupce. Zato NIJE nikakav korisnički sistem nego jedna
+ * lozinka iz okruženja.
  *
  * PODEŠAVANJE (Vercel → Settings → Environment Variables, i lokalno u
  * `.env.local`):

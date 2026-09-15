@@ -5,10 +5,10 @@ import Link from "next/link";
 import { ExternalLink, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { normalize } from "@/lib/catalog";
-import { dinara } from "./dinara";
+import { dinara } from "@/lib/cene";
 
 /**
- * Tabele nabavnih cena sa pretragom.
+ * Tabele cenovnika prikolica sa pretragom.
  *
  * Klijentska komponenta samo zbog polja za pretragu — 181 red je premalo da bi
  * filtriranje išlo na server; strana je i tako `force-dynamic`, pa bi svaki
@@ -153,7 +153,7 @@ function Tabela({
               <th className="px-4 py-3 font-semibold">Naziv</th>
               <th className="hidden px-4 py-3 font-semibold sm:table-cell">Program</th>
               <th className="px-4 py-3 text-right font-semibold">
-                <span className="hidden sm:inline">Nabavna cena</span>
+                <span className="hidden sm:inline">Cena</span>
                 <span className="sm:hidden">Cena</span> ({valuta})
               </th>
               <th className="hidden px-4 py-3 sm:table-cell" />

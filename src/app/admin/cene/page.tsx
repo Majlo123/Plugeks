@@ -3,19 +3,17 @@ import { redirect } from "next/navigation";
 import { jeAdmin } from "@/lib/admin";
 import { getTrailers, getTrailerAccessories, productHref } from "@/lib/products";
 import { TRAILER_PROGRAMS, normalize } from "@/lib/catalog";
-import cenovnik from "@/data/trailer-prices.json";
 import { OdjavaDugme } from "./OdjavaDugme";
 import { CeneTabele, type Red } from "./CeneTabele";
-import { dinara } from "./dinara";
+import { CENOVNIK, dinara, datumCenovnika } from "@/lib/cene";
 
 /**
- * Nabavne cene auto-prikolica — SAMO za vlasnika.
+ * Pregled cenovnika auto-prikolica na jednom mestu — za vlasnika.
  *
- * Zašto baš ovde, a ne kao red na stranici proizvoda: sve stranice proizvoda su
- * statične (unapred izgenerisan HTML za ~4.800 komada). Cena upisana u takvu
- * stranicu bi završila u javnom HTML-u, u kešu i u Google-ovom indeksu — i to
- * bez ikakvog upozorenja. Ova strana se, nasuprot tome, računa pri svakom
- * zahtevu i vraća prazno svakome ko nije prijavljen.
+ * Od 15. 9. 2026. iste cene stoje i javno, na stranici i kartici svake
+ * prikolice (vidi `lib/cene.ts` — zašto). Ova strana je ostala kao tabela za
+ * brzu proveru: koji modeli imaju cenu, koji su na upit i od kog datuma je
+ * stanje. I dalje traži prijavu, jer nije za kupce nego za održavanje.
  *
  * ODAKLE CENE: `src/data/trailer-prices.json`, koji puni
  * `npm run cene` (`scripts/import-trailer-prices.mjs`) sa istog izvora sa kog
@@ -27,27 +25,14 @@ import { dinara } from "./dinara";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Nabavne cene — interno",
+  title: "Cenovnik prikolica — interno",
   robots: { index: false, follow: false, nocache: true },
 };
-
-type Cenovnik = {
-  valuta: string;
-  azurirano?: string;
-  izvor?: string;
-  cene: Record<string, number>;
-};
-
-/** „2026-09-10” → „10.09.2026.” */
-function datum(iso?: string) {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso ?? "");
-  return m ? `${m[3]}.${m[2]}.${m[1]}.` : null;
-}
 
 export default function CenePage() {
   if (!jeAdmin()) redirect("/admin");
 
-  const { valuta, azurirano, izvor, cene } = cenovnik as Cenovnik;
+  const { valuta, izvor, cene } = CENOVNIK;
 
   /* Redovi se sastavljaju ovde da klijentska komponenta ne uvuče ni katalog ni
      cenovnik u bundle — `search` je gotov ključ za pretragu bez dijakritike. */
@@ -70,7 +55,7 @@ export default function CenePage() {
   const oprema = getTrailerAccessories().map(uRed);
   const ukupno = prikolice.length + oprema.length;
   const upisano = [...prikolice, ...oprema].filter((r) => r.cena != null).length;
-  const kada = datum(azurirano);
+  const kada = datumCenovnika();
 
   return (
     <section className="section bg-cream pt-28 md:pt-32">
@@ -78,11 +63,11 @@ export default function CenePage() {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <h1 className="font-display text-2xl font-bold text-charcoal md:text-3xl">
-              Nabavne cene — auto-prikolice
+              Cenovnik — auto-prikolice
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Vidi se samo prijavljenom. Nijedan od ovih iznosa ne postoji na
-              javnim stranicama sajta.
+              Isti iznosi stoje javno na stranici i kartici svake prikolice;
+              ovde su svi na jednom mestu radi provere.
             </p>
           </div>
           <OdjavaDugme />

@@ -1,14 +1,12 @@
 /**
- * Uvozi NABAVNE CENE auto-prikolica i opreme sa proizvođačevog sajta u
- * `src/data/trailer-prices.json` — fajl koji čita samo interna strana
- * `/admin/cene`.
+ * Uvozi CENE auto-prikolica i opreme sa proizvođačevog sajta u
+ * `src/data/trailer-prices.json` — fajl koji čita `src/lib/cene.ts` (cena na
+ * stranici i kartici prikolice, `offers` u JSON-LD, pregled na `/admin/cene`).
  *
  *   node scripts/import-trailer-prices.mjs        (ili: npm run cene)
  *
- * ZAŠTO ODVOJENO OD `import-trailers.mjs`: taj skript pravi katalog koji ide u
- * javni build i namerno ne prenosi cene (na sajtu PlugekS radi po upitu). Cene
- * su drugi život podatka — vide se samo prijavljenom vlasniku, menjaju se češće
- * od specifikacija i sme da im se osveži samo ovaj jedan fajl, bez ponovnog
+ * ZAŠTO ODVOJENO OD `import-trailers.mjs`: cene se menjaju češće od
+ * specifikacija, pa sme da im se osveži samo ovaj jedan fajl, bez ponovnog
  * skidanja 181 fotografije.
  *
  * ODAKLE CENA: sa stranice proizvoda, iz dva izvora u ovom redu:

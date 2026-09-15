@@ -1,4 +1,5 @@
 import { productHref, type Product } from "@/lib/products";
+import { CENOVNIK } from "@/lib/cene";
 
 const SITE_URL = "https://plugeks.com";
 
@@ -11,8 +12,9 @@ const SITE_URL = "https://plugeks.com";
  * proizvoda sa poznatim brojem stavki, što je tačno ono što se traži upitom
  * „deo za Lemken".
  *
- * Navodi se samo redosled i adresa svake stavke (`url`), bez cene — cena se kod
- * nas dogovara upitom, pa bi `offers` ovde bio izmišljen podatak.
+ * Navodi se redosled i adresa svake stavke (`url`). `offers` ide samo uz
+ * stavke koje imaju cenu na cenovniku (prikolice i oprema — vidi `lib/cene`);
+ * delovi i mašine se dogovaraju upitom, pa bi im ponuda bila izmišljen podatak.
  */
 export function SpisakJsonLd({
   naziv,
@@ -52,6 +54,17 @@ export function SpisakJsonLd({
         name: p.name,
         url: `${SITE_URL}${productHref(p)}`,
         ...(p.image ? { image: `${SITE_URL}${p.image}` } : {}),
+        ...(p.cena != null
+          ? {
+              offers: {
+                "@type": "Offer",
+                url: `${SITE_URL}${productHref(p)}`,
+                price: p.cena,
+                priceCurrency: CENOVNIK.valuta,
+                itemCondition: "https://schema.org/NewCondition",
+              },
+            }
+          : {}),
       },
     })),
   };

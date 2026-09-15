@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  *
  * OSIM U INTERNOM DELU (`/admin`): tamo je jedini posetilac vlasnik sajta, pa
  * dugme nema kome da ponudi poziv — a na telefonu je stajalo tačno preko
- * desne, cenovne kolone u tabeli nabavnih cena.
+ * desne, cenovne kolone u tabeli cenovnika.
  */
 export function FloatingContact() {
   const putanja = usePathname();

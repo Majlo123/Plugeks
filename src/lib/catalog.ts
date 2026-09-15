@@ -19,6 +19,7 @@ import popularJson from "@/data/popular.json";
 import { categories } from "@/lib/data";
 import { GRANE, granaKljucevi, tipLabel } from "@/lib/masine";
 import { poredaj, type ZaRedosled } from "@/lib/redosled";
+import { cenaPrikolice } from "@/lib/cene";
 
 /**
  * Prave fotografije proizvoda (id proizvoda → lokalna putanja): delovi sa
@@ -57,6 +58,8 @@ export type CatalogItem = {
   facets: Record<string, string>;
   /** Normalizovan tekst za pretragu (bez dijakritike, mala slova). */
   search: string;
+  /** Cena u dinarima (samo prikolice i oprema sa cenovnika) — vidi `lib/cene`. */
+  cena?: number;
 };
 
 export type FacetOption = { value: string; label: string; count: number };
@@ -306,6 +309,7 @@ export const trailers: CatalogItem[] = trailerRows.map((t) => ({
   tagline: t.tagline,
   image: t.image,
   facets: t.facets,
+  cena: cenaPrikolice(t.id) ?? undefined,
   // „prikolica za auto”, „prikolica za čamac”, „vesta light 23”, „cerada” —
   // narodni pojmovi ulaze u indeks pretrage iako se nigde ne prikazuju.
   search: normalize(
