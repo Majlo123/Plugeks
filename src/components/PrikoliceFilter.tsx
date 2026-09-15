@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { trailers, trailerBadge, facetLabel, type CatalogItem } from "@/lib/catalog";
+import { trailers, facetLabel, type CatalogItem } from "@/lib/catalog";
 import { TrailerCard } from "@/components/CatalogCard";
 import { uzBroj } from "@/lib/brojevi";
 import { cn } from "@/lib/utils";
@@ -162,7 +162,7 @@ export function PrikoliceFilter({ program }: { program: string }) {
       {rezultati.length > 0 ? (
         <div className="grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {rezultati.map((item: CatalogItem) => (
-            <TrailerCard key={item.id} item={item} typeLabel={trailerBadge(item)} />
+            <TrailerCard key={item.id} item={item} />
           ))}
         </div>
       ) : (

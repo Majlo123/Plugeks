@@ -21,6 +21,10 @@ export function MachineCard({
   podloga = "bg-bone",
 }: {
   item: CatalogItem;
+  /**
+   * Značka u uglu slike („Tanjirače", „Cepači drva"). Prazan string = bez
+   * značke — prikolice je ne nose, vidi `TrailerCard`.
+   */
   typeLabel: string;
   /** Prikolice koriste isti kadar 16:10 i isti raspored — vidi `TrailerCard`. */
   kind?: "masina" | "prikolica" | "oprema";
@@ -49,9 +53,11 @@ export function MachineCard({
           podloga={podloga}
           className="h-full w-full transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute right-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[0.72rem] font-medium text-cream backdrop-blur-sm">
-          {typeLabel}
-        </span>
+        {typeLabel ? (
+          <span className="absolute right-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[0.72rem] font-medium text-cream backdrop-blur-sm">
+            {typeLabel}
+          </span>
+        ) : null}
       </Link>
 
       <div className="flex flex-1 flex-col p-4">
@@ -88,12 +94,18 @@ export function MachineCard({
   );
 }
 
-/** Auto-prikolica — ista kartica kao mašina, samo drugi brend i vrsta vizuala. */
-export function TrailerCard({ item, typeLabel }: { item: CatalogItem; typeLabel: string }) {
+/**
+ * Auto-prikolica — ista kartica kao mašina, samo drugi brend i vrsta vizuala.
+ *
+ * Bez značke programa u uglu slike: kupac je program (LIGHT, MARINE…) već
+ * izabrao na `/prikolice`, pa je oznaka ponavljala naslov strane na svakoj
+ * kartici; u pretrazi program ionako stoji u nazivu modela.
+ */
+export function TrailerCard({ item }: { item: CatalogItem }) {
   return (
     <MachineCard
       item={item}
-      typeLabel={typeLabel}
+      typeLabel=""
       kind="prikolica"
       brandLabel={TRAILER_BRAND.label}
     />

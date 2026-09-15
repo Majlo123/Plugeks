@@ -326,10 +326,6 @@ export const trailers: CatalogItem[] = trailerRows.map((t) => ({
   ),
 }));
 
-/** Kratka oznaka za značku na kartici: „LIGHT”, „MARINE”, „Cerade”. */
-export const trailerBadge = (item: CatalogItem) =>
-  facetLabel("prikolice", "program", item.facets.program);
-
 /**
  * Prikolice pre opreme dok korisnik nije ništa filtrirao — opreme ima skoro
  * dvaput više, pa bi inače prvi ekran kataloga bio pun čekrka i blatobrana.

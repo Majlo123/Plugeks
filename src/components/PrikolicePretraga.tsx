@@ -4,7 +4,6 @@ import { useMemo, useRef, useState, type ReactNode } from "react";
 import { Search, X } from "lucide-react";
 import {
   trailers,
-  trailerBadge,
   filterItems,
   trailersFirst,
   poredajStavke,
@@ -98,7 +97,7 @@ export function PrikolicePretraga({ children }: { children: ReactNode }) {
           {pogoci.length > 0 ? (
             <div className="mt-5 grid grid-cols-1 gap-4 min-[360px]:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
               {pogoci.map((item) => (
-                <TrailerCard key={item.id} item={item} typeLabel={trailerBadge(item)} />
+                <TrailerCard key={item.id} item={item} />
               ))}
             </div>
           ) : (
