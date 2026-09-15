@@ -20,7 +20,3 @@ tsconfig.tsbuildinfo
 *.npy
 /IMG_*.JPG
 /IMG_*.jpg
-
-# Generisane og kartice (npm run og) — vidi scripts/build_og_images.py.
-# Ulaze u git tek kad se svesno odluci: ~78 MB.
-/public/images/og/
