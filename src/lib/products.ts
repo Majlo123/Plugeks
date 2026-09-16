@@ -436,7 +436,8 @@ export function machineHighlights(p: Product): string[] {
     freze: ["Fina priprema setvenog sloja u jednom prohodu", "Radna širina i broj noževa prema traktoru"],
     kosenje: ["Košenje, okretanje i baliranje u jednom programu", "Priključci se biraju prema veličini parcela"],
     "setva-zetva": ["Podešavanje razmaka i dubine setve", "Rezervni delovi obezbeđeni"],
-    "prskalice-rasipaci": ["Ravnomerna raspodela po celoj radnoj širini", "Lako čišćenje i održavanje"],
+    prskalice: ["Ravnomerno prskanje po celoj radnoj širini", "Lako ispiranje rezervoara i dizni"],
+    rasipaci: ["Ravnomerna raspodela đubriva po radnoj širini", "Doza se podešava prema normi po hektaru"],
     "traktorske-prikolice": ["Nosivost i sanduk biramo prema poslu", "Kiper izvedba po izboru"],
     "mesaone-mlinovi": ["Priprema smeše na gazdinstvu", "Kapacitet prema veličini stada"],
     cepaci: ["Kardanski, električni ili benzinski pogon", "Sila cepanja prema debljini trupca"],
@@ -449,6 +450,86 @@ export function machineHighlights(p: Product): string[] {
     "mini-dumperi": ["Prevoz materijala po neuređenom terenu", "Gusenice za mek i blatnjav teren"],
   };
   return [...(byType[p.typeKey ?? ""] ?? []), ...common];
+}
+
+/* --------------------------- Izvedbe — podaci ----------------------------- */
+
+/** Jedan podatak izabrane izvedbe, spreman za ispis („Radna širina" → „140 cm"). */
+export type PodatakIzvedbe = { naziv: string; vrednost: string };
+
+/** Naziv reda bez jedinice u zagradi: „Radna širina (cm)" → „Radna širina". */
+const bezJedinice = (naziv: string) => naziv.replace(/\s*\([^)]*\)\s*$/, "").trim();
+
+/** Jedinica iz naziva reda: „Radna širina (cm)" → „cm". */
+const jedinicaReda = (naziv: string) => naziv.match(/\(([^)]*)\)\s*$/)?.[1]?.trim() ?? "";
+
+/**
+ * Redosled kojim podaci izvedbe ulaze u karticu — od onoga po čemu se mašina
+ * bira ka onome što se proverava tek pred kupovinu.
+ *
+ * Kod nekih mašina (traktorske prikolice) razlikuje se i po dvadeset redova, a
+ * kartica prima šest; bez ovog redosleda bi u tih šest ušlo ono što je u
+ * fabričkoj tabeli slučajno prvo — debljina poda i širina traga pre nosivosti.
+ */
+const VAZNOST_REDA = [
+  /^radn[ai]\s+(širina|zahvat|dubina)/i,
+  /^(nosivost|najveća (dozvoljena|ukupna) masa)/i,
+  /^(zapremina|rezervoar|kapacitet|sila cepanja|najveća dužina cepanice)/i,
+  /snaga\s+(motora|traktora)/i,
+  /^(sopstvena\s+)?masa\b/i,
+  /^(ukupna\s+)?(širina|dužina|visina)/i,
+];
+
+/** Koliko podataka izvedbe staje u karticu pre nego što počne da liči na tabelu. */
+const NAJVISE_PODATAKA = 6;
+
+/**
+ * Podaci po kojima se JEDNA izvedba razlikuje od ostalih iz iste tabele.
+ *
+ * ZAŠTO SAMO RAZLIKE, A NE CELA KOLONA: kad kupac na stranici malčera pritisne
+ * „G LINE G 125", ono što mu treba nije dvanaest redova ponovo — visina,
+ * prečnik rotora i kategorija priključka su kod svih šest izvedbi isti i ne
+ * govore ništa o izboru. Razlikuju se radna širina, masa, broj čekića i
+ * hidraulični pomak; to je, doslovno, ono što ta izvedba jeste. Zato se red
+ * uzima samo ako mu vrednosti po kolonama NISU sve iste.
+ *
+ * Tabela sa jednom kolonom nema šta da razlikuje (izvedbe kod takvih mašina
+ * dolaze iz galerija, a ne iz tabele) — tu se vraća prazno, a stranica onda
+ * prikazuje fabričku tabelu umesto kartice.
+ */
+export function podaciIzvedbe(
+  tabela: TabelaModela | undefined,
+  izvedba: string,
+): PodatakIzvedbe[] {
+  if (!tabela || tabela.kolone.length < 2) return [];
+
+  // +1 jer je prva ćelija svakog reda naziv osobine, a ne vrednost.
+  const kolona = tabela.kolone.indexOf(izvedba) + 1;
+  if (kolona === 0) return [];
+
+  const vazi = (naziv: string) => {
+    const i = VAZNOST_REDA.findIndex((r) => r.test(naziv));
+    return i === -1 ? VAZNOST_REDA.length : i;
+  };
+
+  return tabela.redovi
+    .filter((red) => {
+      const vrednosti = red.slice(1);
+      return Boolean(red[kolona]) && vrednosti.some((v) => v !== vrednosti[0]);
+    })
+    .map((red, redom) => ({ red, redom }))
+    .sort((a, b) => vazi(a.red[0]) - vazi(b.red[0]) || a.redom - b.redom)
+    .slice(0, NAJVISE_PODATAKA)
+    .map(({ red }) => {
+      const jedinica = jedinicaReda(red[0]);
+      const vrednost = red[kolona];
+      return {
+        naziv: bezJedinice(red[0]),
+        // Jedinica se lepi samo na broj: „Ne" i „CAT I" je ne traže, a
+        // „15-40" (opseg snage) je nosi u samom nazivu reda.
+        vrednost: jedinica && /\d/.test(vrednost) ? `${vrednost} ${jedinica}` : vrednost,
+      };
+    });
 }
 
 /* ------------------------- Auto-prikolice — tekst ------------------------- */

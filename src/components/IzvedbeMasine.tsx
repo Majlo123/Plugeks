@@ -4,28 +4,27 @@ import { createContext, useContext, useMemo, useState, type ReactNode } from "re
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
-import { TabelaModela } from "@/components/TabelaModela";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { Izvedba, TabelaModela as Tabela } from "@/lib/products";
+import type { Izvedba, PodatakIzvedbe } from "@/lib/products";
 
 /**
  * Izbor izvedbe mašine na stranici proizvoda — kao na izvoru (hofman.at), gde
  * kupac klikne model i vidi baš njegove fotografije.
  *
  * Jedan izbor pokreće tri stvari na stranici koje stoje u različitim kolonama:
- * galeriju (levo), istaknutu kolonu tabele i link „Zatraži ponudu" (desno).
- * Zato je stanje u kontekstu, a stranica — koja ostaje serverska — samo slaže
- * delove: `IzvedbeProvider` oko mreže, pa `GalerijaMasine`, `BiracIzvedbe`,
- * `TabelaIzvedbi` i `PonudaZaIzvedbu` gde im je mesto.
+ * galeriju (levo), karticu sa podacima te izvedbe i link „Zatraži ponudu"
+ * (desno). Zato je stanje u kontekstu, a stranica — koja ostaje serverska —
+ * samo slaže delove: `IzvedbeProvider` oko mreže, pa `GalerijaMasine`,
+ * `BiracIzvedbe`, `OpisIzvedbe` i `PonudaZaIzvedbu` gde im je mesto.
  *
- * Bez izbora (početno stanje, i ono što Google vidi) stranica je ista kao
- * ranije: naslovna fotografija, cela tabela, ponuda za mašinu.
+ * Stanja „bez izbora" nema: prva izvedba je izabrana od prvog kadra, pa i
+ * posetilac i Google zatiču stranicu na konkretnom modelu.
  */
 
 type Stanje = {
   izvedbe: Izvedba[];
-  /** Indeks izabrane izvedbe; `null` = pregled cele mašine. */
+  /** Indeks izabrane izvedbe; `null` samo kad mašina nema nijednu. */
   izabrana: number | null;
   izaberi: (i: number | null) => void;
 };
@@ -45,14 +44,23 @@ export function IzvedbeProvider({
   izvedbe: Izvedba[];
   children: ReactNode;
 }) {
-  const [izabrana, izaberi] = useState<number | null>(null);
+  // PRVA IZVEDBA JE IZABRANA ODMAH. Ranije se kretalo iz stanja „Pregled", u
+  // kojem stranica nije pokazivala nijedan konkretan model — ni njegove
+  // fotografije ni njegove brojke, nego mašinu uopšte i celu matricu. Kupac
+  // ne kupuje „malčer G LINE" nego G 125, pa stranica odmah stoji na jednom
+  // modelu; ostali su jedan klik dalje.
+  const [izabrana, izaberi] = useState<number | null>(izvedbe.length ? 0 : null);
   const vrednost = useMemo(() => ({ izvedbe, izabrana, izaberi }), [izvedbe, izabrana]);
   return <Kontekst.Provider value={vrednost}>{children}</Kontekst.Provider>;
 }
 
 /* --------------------------------- Birač ---------------------------------- */
 
-/** Pločice sa izvedbama; „Pregled" vraća na celu mašinu. */
+/**
+ * Pločice sa izvedbama. „Pregled" je sklonjen: bio je jedina pločica iza koje
+ * ne stoji nijedan model iz cenovnika, a pošto je bio i prvi u redu, stranica
+ * je po dolasku stajala na njemu.
+ */
 export function BiracIzvedbe() {
   const { izvedbe, izabrana, izaberi } = useIzvedbe();
   if (izvedbe.length === 0) return null;
@@ -72,14 +80,6 @@ export function BiracIzvedbe() {
         Izvedba
       </p>
       <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Izbor izvedbe">
-        <button
-          type="button"
-          onClick={() => izaberi(null)}
-          aria-pressed={izabrana === null}
-          className={plocica(izabrana === null)}
-        >
-          Pregled
-        </button>
         {izvedbe.map((i, n) => (
           <button
             key={i.naziv}
@@ -96,12 +96,81 @@ export function BiracIzvedbe() {
   );
 }
 
+/* --------------------------- Specifikacija -------------------------------- */
+
+/**
+ * Kartica izabrane izvedbe — ono po čemu se BAŠ ona razlikuje od ostalih.
+ *
+ * ZAŠTO KARTICA, A NE TABELA: fabrička matrica malčera F LINE je 12×4 — pola
+ * strane na ekranu, a na telefonu četiri bloka jedan ispod drugog, od kojih su
+ * tri tuđi modeli kroz koje se skroluje. Od tih dvanaest redova samo tri-četiri
+ * uopšte zavise od toga koja je izvedba izabrana; visina, dužina i prečnik
+ * rotora su kod svih isti i opisuju mašinu, ne izbor. Kartica nosi tačno te
+ * redove (vidi `podaciIzvedbe`) — kupac u dva reda teksta vidi šta dobija za
+ * koji model, i šta se menja kad pređe na sledeći.
+ *
+ * Podaci se ne pišu ručno nego se vade iz iste fabričke tabele, pa kartica ne
+ * može da ode iz koraka sa uvozom.
+ */
+export function OpisIzvedbe({ podaci }: { podaci: PodatakIzvedbe[][] }) {
+  const { izvedbe, izabrana } = useIzvedbe();
+  if (izabrana === null) return null;
+
+  const stavke = podaci[izabrana] ?? [];
+  if (stavke.length === 0) return null;
+
+  return (
+    <div className="rounded-2xl border border-brand/25 bg-brand-50/60 p-4 sm:p-5">
+      <p className="font-display text-base font-bold text-charcoal">
+        {izvedbe[izabrana].naziv}
+      </p>
+      <dl className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+        {stavke.map((s) => (
+          <div
+            key={s.naziv}
+            className="flex items-baseline justify-between gap-3 border-b border-brand/15 pb-1.5 last:border-b-0 sm:last:border-b"
+          >
+            <dt className="min-w-0 text-sm text-muted-foreground">{s.naziv}</dt>
+            <dd className="shrink-0 whitespace-nowrap text-sm font-semibold tabular-nums text-charcoal">
+              {s.vrednost}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-3 text-xs text-muted-foreground">
+        Ostali podaci su isti za sve izvedbe — pitajte nas za punu specifikaciju.
+      </p>
+    </div>
+  );
+}
+
 /* -------------------------------- Galerija -------------------------------- */
 
 /**
+ * Izvedba čije se fotografije prikazuju kad izabrana svoje nema — najbliža u
+ * spisku (izvedbe su poređane po veličini, pa je susedna i najsličnija).
+ * `null` znači da ih nema nijedna, pa se pada na fotografije cele mašine.
+ */
+function saFotografijama(izvedbe: Izvedba[], izabrana: number): number | null {
+  if (izvedbe[izabrana]?.slike.length) return izabrana;
+  let najbliza: number | null = null;
+  izvedbe.forEach((iz, n) => {
+    if (!iz.slike.length) return;
+    if (najbliza === null || Math.abs(n - izabrana) < Math.abs(najbliza - izabrana))
+      najbliza = n;
+  });
+  return najbliza;
+}
+
+/**
  * Fotografije mašine: naslovna + galerija cele mašine u pregledu, a posle
- * izbora fotografije te izvedbe. Izvedba bez sopstvenih fotografija (izvor ih
- * nema za svaki model) pokazuje iste slike kao pregled — ne prazninu.
+ * izbora fotografije te izvedbe.
+ *
+ * IZVEDBA BEZ SOPSTVENIH FOTOGRAFIJA (izvor ih ima samo za neke modele) uzima
+ * fotografije najbliže izvedbe koja ih ima, a POTPIS kaže koja je to. Ranije je
+ * u tom slučaju stajala naslovna fotografija sa potpisom „izvedba G LINE G 105"
+ * — potpis je tvrdio da je na slici model koji na njoj nije. Bolje je pokazati
+ * susednu izvedbu i reći koju, nego pogrešno potpisati sliku.
  */
 export function GalerijaMasine({
   slika,
@@ -130,7 +199,9 @@ export function GalerijaMasine({
     [slika, galerija],
   );
   const izvedba = izabrana === null ? null : izvedbe[izabrana];
-  const slike = izvedba?.slike.length ? izvedba.slike : osnovne;
+  // Koja izvedba je STVARNO na fotografijama — ne mora biti izabrana.
+  const naSlici = izabrana === null ? null : saFotografijama(izvedbe, izabrana);
+  const slike = naSlici === null ? osnovne : izvedbe[naSlici].slike;
 
   // Promena izvedbe vraća na prvu sliku; indeks iz prethodnog skupa ne znači ništa.
   const [prethodna, postaviPrethodnu] = useState(izabrana);
@@ -141,6 +212,20 @@ export function GalerijaMasine({
 
   const glavna = slike[Math.min(aktivna, Math.max(slike.length - 1, 0))];
   const naslovIzvedbe = izvedba ? `${name} — ${izvedba.naziv}` : name;
+
+  /**
+   * Potpis govori o onome što se VIDI. Tri slučaja: pregled (cela mašina),
+   * izvedba sa svojim fotografijama i izvedba koja ih nema — kod nje potpis
+   * imenuje izvedbu sa slike, da se fotografija ne pripiše pogrešnom modelu.
+   */
+  const potpis =
+    izabrana === null
+      ? `${name} — ${natpis}`
+      : naSlici === izabrana
+        ? `${naslovIzvedbe} — ${natpisi[izabrana]}`
+        : naSlici === null
+          ? `${naslovIzvedbe} — na fotografiji je mašina bez oznake izvedbe, ${natpis}`
+          : `${naslovIzvedbe} — na fotografiji je izvedba ${izvedbe[naSlici].naziv}, ${natpis}`;
 
   return (
     <figure>
@@ -186,23 +271,9 @@ export function GalerijaMasine({
         </ul>
       ) : null}
 
-      <figcaption className="mt-3 text-sm text-muted-foreground">
-        {naslovIzvedbe} — {izabrana === null ? natpis : natpisi[izabrana]}
-      </figcaption>
+      <figcaption className="mt-3 text-sm text-muted-foreground">{potpis}</figcaption>
     </figure>
   );
-}
-
-/* --------------------------------- Tabela --------------------------------- */
-
-/** Tabela modela sa istaknutom kolonom izabrane izvedbe. */
-export function TabelaIzvedbi({ tabela }: { tabela: Tabela }) {
-  const { izvedbe, izabrana } = useIzvedbe();
-  // Kolona se traži po nazivu, ne po indeksu: kad izvedbe dolaze iz galerija
-  // (CASTA C300/8 ECO uz jedinu kolonu „CASTA"), redosled im nije isti.
-  const istaknuta =
-    izabrana === null ? undefined : tabela.kolone.indexOf(izvedbe[izabrana].naziv);
-  return <TabelaModela tabela={tabela} istaknuta={istaknuta} />;
 }
 
 /* --------------------------------- Ponuda --------------------------------- */

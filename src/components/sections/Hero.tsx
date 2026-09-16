@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Phone, Tractor, Truck, ShieldCheck, Star } from "lucide-react";
+import { Banknote, Phone, Tractor, Truck, ShieldCheck, Star } from "lucide-react";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { site } from "@/lib/site";
 
@@ -41,8 +41,13 @@ import { site } from "@/lib/site";
  * Opis ispod naziva je kratak OPIS onoga što je iza klika („500–3500 kg, sa
  * opremom"), a ne broj stavki: brojka („4.800 delova") je izgledala kao
  * statistika, a kupcu ne kaže da li je njegova mašina među njima — opis kaže.
- * Strelica stoji uz taj red, a ne uz naziv: naziv „Rezervni delovi" i strelica
- * ne staju u isti red u pojasu za tekst, pa bi se naziv lomio.
+ *
+ * ZAŠTO NEMA STRELICE: crni krug sa strelicom je stajao na kraju pojasa za
+ * tekst, a to je optički SREDINA kartice — ne njena ivica. Jedina tamna,
+ * potpuno zasićena stvar na svetloj ploči stajala je tačno preko mesta gde red
+ * proizvoda počinje i sekla ga na dva dela. Kartica je ionako cela link
+ * (podvlačenje naziva na hover to i kaže), pa strelica nije govorila ništa što
+ * se već ne vidi — samo je uzimala prostor u kojem sad stoje mašine.
  */
 function Ulaz({
   href,
@@ -86,24 +91,22 @@ function Ulaz({
           className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-1px_0_rgba(16,20,17,0.07)]"
         />
 
-        <span className="absolute inset-y-0 left-0 flex w-[46%] flex-col justify-center gap-1 pl-4 pr-1 sm:gap-1.5 xl:pl-5">
-          <span className="relative w-fit max-w-full font-display text-[1rem] font-bold leading-tight tracking-[-0.02em] text-charcoal xl:text-[1.15rem]">
+        {/* Pojas za tekst. Širina mu je vezana za `Red.od` u
+            `scripts/build_category_images.py`: tamo počinje red proizvoda na
+            slici, pa svako širenje ovog pojasa znači tekst preko mašina.
+            42% je najuže u čemu „Rezervni delovi" staje u JEDAN red i na
+            ekranu od 360px — dva reda naslova su ovde vidno duža od ostale
+            dve kartice. */}
+        <span className="absolute inset-y-0 left-0 flex w-[42%] flex-col justify-center gap-1 pl-4 pr-1.5 sm:gap-1.5 xl:pl-5">
+          <span className="relative w-fit max-w-full font-display text-[0.95rem] font-bold leading-tight tracking-[-0.02em] text-charcoal xl:text-[1.15rem]">
             {naziv}
             <span
               aria-hidden
               className="absolute -bottom-[3px] left-0 h-px w-full origin-left scale-x-0 bg-charcoal/45 transition-transform duration-300 ease-out group-hover:scale-x-100"
             />
           </span>
-          <span className="flex items-center justify-between gap-2">
-            <span className="line-clamp-2 min-w-0 text-[0.72rem] font-medium leading-snug text-charcoal/60 xl:text-[0.8rem]">
-              {opis}
-            </span>
-            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-charcoal text-cream shadow-[0_6px_14px_-6px_rgba(16,20,17,0.9)] transition-transform duration-300 ease-out group-hover:scale-110 sm:h-8 sm:w-8">
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
-                strokeWidth={2.4}
-              />
-            </span>
+          <span className="line-clamp-2 text-[0.72rem] font-medium leading-snug text-charcoal/60 xl:text-[0.8rem]">
+            {opis}
           </span>
         </span>
       </Link>
@@ -231,18 +234,31 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Trust signali */}
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-cream/90 sm:mt-12 sm:gap-x-8 sm:gap-y-4">
-            <span className="flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-brand-400" />
+          {/* Trust signali.
+
+              „Isporuka širom Srbije i regiona" je otišla: uz „Dostava na
+              adresu" pored nje red je istu stvar tvrdio dvaput, a treće mesto
+              je time praktično bilo prazno. Na njeno mesto je ide plaćanje —
+              jedina od tri stvari zbog koje kupac zove pre nego što išta
+              izabere, i jedina koja nije logistika.
+
+              ZAŠTO JEDAN RED I NA TELEFONU: prelomljen u dva reda (`flex-wrap`)
+              ovaj pojas je prestajao da bude pojas — druga stavka je visila
+              sama ispod prve i čitala se kao početak nove sekcije, a ne kao
+              deo istog niza. Zato `flex-nowrap` + `whitespace-nowrap`, kraća
+              slova na telefonu i razmak koji raste sa širinom: tri stavke staju
+              u ~300px, dakle i na 360px ekranu ostaje vazduha. */}
+          <div className="mt-8 flex flex-nowrap items-center justify-between gap-x-3 whitespace-nowrap text-[0.7rem] text-cream/90 sm:mt-12 sm:justify-start sm:gap-x-8 sm:text-sm">
+            <span className="flex items-center gap-1.5 sm:gap-2">
+              <ShieldCheck className="h-4 w-4 shrink-0 text-brand-400 sm:h-5 sm:w-5" />
               Garancija
             </span>
-            <span className="flex items-center gap-2">
-              <Truck className="h-5 w-5 text-brand-400" />
-              Isporuka širom Srbije i regiona
+            <span className="flex items-center gap-1.5 sm:gap-2">
+              <Banknote className="h-4 w-4 shrink-0 text-brand-400 sm:h-5 sm:w-5" />
+              Rate i lizing
             </span>
-            <span className="flex items-center gap-2">
-              <Tractor className="h-5 w-5 text-brand-400" />
+            <span className="flex items-center gap-1.5 sm:gap-2">
+              <Truck className="h-4 w-4 shrink-0 text-brand-400 sm:h-5 sm:w-5" />
               Dostava na adresu
             </span>
           </div>

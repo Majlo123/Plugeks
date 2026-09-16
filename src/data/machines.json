@@ -2887,88 +2887,11 @@
     ]
   },
   {
-    "id": "5037",
-    "name": "Rasipač đubriva FERO",
-    "group": "masine-hofman",
-    "grana": "poljoprivredne",
-    "subgroup": "prskalice-rasipaci",
-    "tagline": "",
-    "brand": "hofman",
-    "izvor": "/hr/noseni-rasipaci/fero",
-    "slug": "rasipac-dubriva-fero",
-    "tabela": {
-      "kolone": [
-        "FERO FR 600L",
-        "FERO FR 800L",
-        "FERO FR 1000L"
-      ],
-      "redovi": [
-        [
-          "Kapacitet (kg/l)",
-          "600",
-          "800",
-          "1000"
-        ],
-        [
-          "Ukupna širina (cm)",
-          "170",
-          "170",
-          "170"
-        ],
-        [
-          "Masa (kg)",
-          "160",
-          "175",
-          "205"
-        ],
-        [
-          "Širina rasipanja (m)",
-          "12-30",
-          "12-30",
-          "12-30"
-        ]
-      ]
-    },
-    "izvedbe": [
-      {
-        "naziv": "FERO FR 600L",
-        "slike": [
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133151410-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133156952-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133202564-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133207491-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133227824-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133232909-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133237566-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133240900-ios-png.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133245763-ios-png.jpg"
-        ]
-      },
-      {
-        "naziv": "FERO FR 800L",
-        "slike": [
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6253-png-2.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6227-png-2.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6231-png-3.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6233-png-2.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6237-png-2.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6239-png-2.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6244-png-2.jpg",
-          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6251-png-2.jpg"
-        ]
-      },
-      {
-        "naziv": "FERO FR 1000L",
-        "slike": []
-      }
-    ]
-  },
-  {
     "id": "5038",
     "name": "Nošena prskalica CASTA",
     "group": "masine-hofman",
     "grana": "poljoprivredne",
-    "subgroup": "prskalice-rasipaci",
+    "subgroup": "prskalice",
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/prijenosne-prskalice/casta",
@@ -3045,7 +2968,7 @@
     "name": "Nošena prskalica MANTA",
     "group": "masine-hofman",
     "grana": "poljoprivredne",
-    "subgroup": "prskalice-rasipaci",
+    "subgroup": "prskalice",
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/prijenosne-prskalice/manta",
@@ -3141,7 +3064,7 @@
     "name": "Nošena prskalica PADA",
     "group": "masine-hofman",
     "grana": "poljoprivredne",
-    "subgroup": "prskalice-rasipaci",
+    "subgroup": "prskalice",
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/prijenosne-prskalice/pada",
@@ -3221,7 +3144,7 @@
     "name": "Voćarski atomizer RONA",
     "group": "masine-hofman",
     "grana": "poljoprivredne",
-    "subgroup": "prskalice-rasipaci",
+    "subgroup": "prskalice",
     "tagline": "",
     "brand": "hofman",
     "izvor": "/hr/prijenosni-prskalici/rona",
@@ -3287,6 +3210,83 @@
           "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6919-png.jpg",
           "/images/masine/hofman/izvedbe/vocarski-atomizer-rona/17-img-6922-png.jpg"
         ]
+      }
+    ]
+  },
+  {
+    "id": "5037",
+    "name": "Rasipač đubriva FERO",
+    "group": "masine-hofman",
+    "grana": "poljoprivredne",
+    "subgroup": "rasipaci",
+    "tagline": "",
+    "brand": "hofman",
+    "izvor": "/hr/noseni-rasipaci/fero",
+    "slug": "rasipac-dubriva-fero",
+    "tabela": {
+      "kolone": [
+        "FERO FR 600L",
+        "FERO FR 800L",
+        "FERO FR 1000L"
+      ],
+      "redovi": [
+        [
+          "Kapacitet (kg/l)",
+          "600",
+          "800",
+          "1000"
+        ],
+        [
+          "Ukupna širina (cm)",
+          "170",
+          "170",
+          "170"
+        ],
+        [
+          "Masa (kg)",
+          "160",
+          "175",
+          "205"
+        ],
+        [
+          "Širina rasipanja (m)",
+          "12-30",
+          "12-30",
+          "12-30"
+        ]
+      ]
+    },
+    "izvedbe": [
+      {
+        "naziv": "FERO FR 600L",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133151410-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133156952-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133202564-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133207491-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133227824-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133232909-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133237566-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133240900-ios-png.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-20240308-133245763-ios-png.jpg"
+        ]
+      },
+      {
+        "naziv": "FERO FR 800L",
+        "slike": [
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6253-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6227-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6231-png-3.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6233-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6237-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6239-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6244-png-2.jpg",
+          "/images/masine/hofman/izvedbe/rasipac-dubriva-fero/17-img-6251-png-2.jpg"
+        ]
+      },
+      {
+        "naziv": "FERO FR 1000L",
+        "slike": []
       }
     ]
   },

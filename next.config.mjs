@@ -56,6 +56,12 @@ const nextConfig = {
       { source: "/masine/agregati", destination: "/masine/obrada-zemljista", permanent: true },
       { source: "/masine/podrivaci", destination: "/masine/obrada-zemljista", permanent: true },
 
+      // Tip „Prskalice i rasipači đubriva" je razdvojen na dva (vidi `GRANE` u
+      // `scripts/import-hofman.mjs`). Stara adresa vodi na prskalice — njih je
+      // četiri od pet mašina koje su tu stajale, pa je to strana na kojoj će se
+      // većina onih koji je otvore i zaustaviti; rasipač je odatle jedan klik.
+      { source: "/masine/prskalice-rasipaci", destination: "/masine/prskalice", permanent: true },
+
       // Tip „Predplužna daska" je spojen sa „Daska predplužnjaka" (isti deo pod
       // dva imena iz izvornog kataloga).
       { source: "/delovi/predpluzna-daska", destination: "/delovi/daska-predpluznjaka", permanent: true },

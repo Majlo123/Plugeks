@@ -18,8 +18,8 @@ import { TabelaModela } from "@/components/TabelaModela";
 import {
   IzvedbeProvider,
   BiracIzvedbe,
+  OpisIzvedbe,
   GalerijaMasine,
-  TabelaIzvedbi,
   PonudaZaIzvedbu,
 } from "@/components/IzvedbeMasine";
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,7 @@ import {
   machineHighlights,
   partDescription,
   natpisSlike,
+  podaciIzvedbe,
   slikeMasine,
   ukrstenaHref,
   tipZaMasinu,
@@ -362,6 +363,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   // Stari slug istog proizvoda → trajno preusmerenje na aktuelnu adresu.
   if (params.slug !== p.slug) permanentRedirect(productHref(p));
 
+  // Podaci kartice za SVAKU izvedbu (vidi `OpisIzvedbe`). Računaju se ovde, na
+  // serveru, pa klijentska komponenta samo bira po indeksu. Prazno kod mašina
+  // bez izvedbi i kod onih kojima tabela ima jednu kolonu za ceo program.
+  const kartice = (p.izvedbe ?? []).map((i) => podaciIzvedbe(p.tabela, i.naziv));
+
   return (
     <>
       <ProductJsonLd p={p} />
@@ -480,9 +486,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     <span className="h-px w-6 bg-current" />
                     Tehnički podaci
                   </p>
+                  {/* Mašina čije izvedbe stoje kao kolone tabele pokazuje samo
+                      KARTICU izabrane izvedbe — ne celu matricu (vidi
+                      `OpisIzvedbe`). Podaci se računaju ovde, na serveru, za sve
+                      izvedbe odjednom: klijentska komponenta bira po indeksu i
+                      ne nosi logiku o tabeli.
+
+                      Mašina bez izvedbi, i ona kod koje izvedbe dolaze iz
+                      galerija a tabela ima jednu kolonu za ceo program, i dalje
+                      dobija tabelu — tu izvedba nema svoje brojke, pa nema od
+                      čega da se napravi kartica. */}
                   <div className="mt-3">
-                    {p.izvedbe?.length ? (
-                      <TabelaIzvedbi tabela={p.tabela} />
+                    {kartice.some((k) => k.length > 0) ? (
+                      <OpisIzvedbe podaci={kartice} />
                     ) : (
                       <TabelaModela tabela={p.tabela} />
                     )}

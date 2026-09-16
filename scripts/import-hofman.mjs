@@ -89,6 +89,14 @@ export const GRANE = {
     // „Tanjirače" i „valjci" nose ključeve koje je sajt imao još od Rolland
     // programa (plave mašine su skinute), pa te indeksirane adrese
     // (`/masine/tanjirace`, `/masine/valjci`) i dalje vode na živu ponudu.
+    //
+    // PRSKALICE I RASIPAČI SU ODVOJENI, iako su na izvoru (i ranije kod nas)
+    // bili jedan tip „Prskalice i rasipači đubriva": to su dva različita posla
+    // u dva različita dela godine — zaštita bilja tečnošću i rasipanje
+    // mineralnog đubriva. Kupac koji traži rasipač nije kupac koji traži
+    // atomizer, a zajednička pločica je obojici tražila da preskaču tuđe
+    // mašine. Stara adresa `/masine/prskalice-rasipaci` ide 301 na
+    // `/masine/prskalice` (vidi `next.config.mjs`).
     tipovi: {
       plugovi: "Plugovi",
       tanjirace: "Tanjirače",
@@ -98,7 +106,8 @@ export const GRANE = {
       freze: "Freze",
       kosenje: "Kosačice, grabulje i balirke",
       "setva-zetva": "Sejalice i kombajni",
-      "prskalice-rasipaci": "Prskalice i rasipači đubriva",
+      prskalice: "Prskalice i atomizeri",
+      rasipaci: "Rasipači đubriva",
       "traktorske-prikolice": "Traktorske prikolice i kiperi",
       "mesaone-mlinovi": "Mešaone i mlinovi",
       "bastenske-masine": "Baštenske mašine",
@@ -186,12 +195,12 @@ const IZVOR = {
   sejalnice: { grana: "poljoprivredne", tip: "setva-zetva", naziv: "Sejalica" },
   zitnokombajni: { grana: "poljoprivredne", tip: "setva-zetva", naziv: "Silažni kombajn" },
 
-  /* --- Poljoprivredne: prskalice i rasipači --- */
-  "prskalna-tehnika": { grana: "poljoprivredne", tip: "prskalice-rasipaci", naziv: "Prskalica" },
-  "prijenosne-prskalice": { grana: "poljoprivredne", tip: "prskalice-rasipaci", naziv: "Nošena prskalica" },
-  "prijenosni-prskalici": { grana: "poljoprivredne", tip: "prskalice-rasipaci", naziv: "Voćarski atomizer" },
-  "rasprsivaci-umjetnih-gnojiva": { grana: "poljoprivredne", tip: "prskalice-rasipaci", naziv: "Rasipač đubriva" },
-  "noseni-rasipaci": { grana: "poljoprivredne", tip: "prskalice-rasipaci", naziv: "Rasipač đubriva" },
+  /* --- Poljoprivredne: prskalice i rasipači (dva ODVOJENA tipa) --- */
+  "prskalna-tehnika": { grana: "poljoprivredne", tip: "prskalice", naziv: "Prskalica" },
+  "prijenosne-prskalice": { grana: "poljoprivredne", tip: "prskalice", naziv: "Nošena prskalica" },
+  "prijenosni-prskalici": { grana: "poljoprivredne", tip: "prskalice", naziv: "Voćarski atomizer" },
+  "rasprsivaci-umjetnih-gnojiva": { grana: "poljoprivredne", tip: "rasipaci", naziv: "Rasipač đubriva" },
+  "noseni-rasipaci": { grana: "poljoprivredne", tip: "rasipaci", naziv: "Rasipač đubriva" },
 
   /* --- Poljoprivredne: prikolice i kiperi --- */
   "traktorske-prikolice-i-platforme": { grana: "poljoprivredne", tip: "traktorske-prikolice", naziv: "Traktorska prikolica" },
