@@ -581,6 +581,19 @@ export function facetOptions(
 
 /* -------------------------------- Filtriranje ------------------------------ */
 
+/**
+ * Kataloški broj se traži po POČETKU, ne kao deo teksta.
+ *
+ * ZAŠTO NIJE PROSTO UBAČEN U `search`: nazivi delova su puni brojeva („Raonik
+ * Regent DU S DW S 440 440", „Daska Kverneland 063 261"), pa bi kataloški broj
+ * kao još jedan niz cifara u istom tekstu značio da upit „440" vadi i sve
+ * komade čiji broj negde sadrži 440. Poređenje po početku broja drži pretragu
+ * uskom: „3802" nađe 3802, „38" nađe sve od 3800 do 3899.
+ *
+ * Kraće od dve cifre se ne poredi — jednocifren upit bi značio pola kataloga.
+ */
+const BROJ = /^\d{2,}$/;
+
 /** Faseta bez izabranih opcija ne filtrira; unutar fasete važi ILI, između fasete I. */
 export function filterItems(
   items: CatalogItem[],
@@ -596,8 +609,26 @@ export function filterItems(
     for (const [key, values] of active) {
       if (!values.includes(item.facets[key])) return false;
     }
-    return terms.every((term) => item.search.includes(term));
+    return terms.every(
+      (term) =>
+        item.search.includes(term) || (BROJ.test(term) && item.id.startsWith(term)),
+    );
   });
+}
+
+/**
+ * Tačan pogodak po kataloškom broju ide na prvo mesto.
+ *
+ * Bez ovoga ga propisani redosled (`poredajStavke`, `trailersFirst`) gurne među
+ * ostale: kupac koji je prepisao „3802" sa stare daske dobije stranu punu
+ * brojeva od 3802 naviše, a svoj komad negde u sredini. Ostatak redosleda se ne
+ * dira — samo se jedan red izvuče na vrh.
+ */
+export function brojPrvi(items: CatalogItem[], query: string): CatalogItem[] {
+  const broj = query.trim();
+  if (!BROJ.test(broj)) return items;
+  const i = items.findIndex((item) => item.id === broj);
+  return i <= 0 ? items : [items[i], ...items.slice(0, i), ...items.slice(i + 1)];
 }
 
 /* -------------------------------- Redosled -------------------------------- */

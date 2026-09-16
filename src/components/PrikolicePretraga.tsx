@@ -4,6 +4,7 @@ import { useMemo, useRef, useState, type ReactNode } from "react";
 import { Search, X } from "lucide-react";
 import {
   trailers,
+  brojPrvi,
   filterItems,
   trailersFirst,
 } from "@/lib/catalog";
@@ -33,7 +34,7 @@ export function PrikolicePretraga({ children }: { children: ReactNode }) {
     if (!upit) return [];
     // Prikolice pre opreme, unutar toga po ceni — `trailersFirst` samo deli
     // na dve grupe i čuva redosled iz `trailers`, koji je već po ceni.
-    return trailersFirst(filterItems(trailers, {}, upit));
+    return brojPrvi(trailersFirst(filterItems(trailers, {}, upit)), upit);
   }, [upit]);
 
   const prikolica = pogoci.filter((p) => p.facets.tip !== "oprema").length;
@@ -55,7 +56,7 @@ export function PrikolicePretraga({ children }: { children: ReactNode }) {
           type="search"
           autoComplete="off"
           aria-label="Pretraga prikolica i opreme"
-          placeholder="Pretraži prikolice i opremu — model, nosivost, namena…"
+          placeholder="Pretraži prikolice i opremu — model, nosivost, kataloški broj…"
           // 16px na telefonu: Safari na iOS-u sam zumira stranicu čim se
           // fokusira polje sa sitnijim slovima, pa polje odleti iz kadra.
           className="h-12 w-full rounded-xl border border-input bg-white pl-11 pr-11 text-base outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-ring md:text-sm"

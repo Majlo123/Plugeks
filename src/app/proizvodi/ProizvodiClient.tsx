@@ -11,6 +11,7 @@ import {
   TYPE_META,
   facetLabel,
   facetOptions,
+  brojPrvi,
   filterItems,
   loadParts,
   machines,
@@ -155,7 +156,8 @@ export function ProizvodiClient() {
     // Propisani redosled ide POSLE svega i važi za svako filtriranje: obični
     // delovi pre predplužnjakovih, crteži pre fotografija pre onih bez slike.
     // Sort je stabilan, pa kuracija iznad ostaje netaknuta unutar istog ranga.
-    return poredajStavke(osnova);
+    // Jedini izuzetak je tačan kataloški broj — on ide na sam vrh.
+    return brojPrvi(poredajStavke(osnova), query);
   }, [items, selection, query, type]);
 
   const [visible, setVisible] = useState(PAGE_SIZE);
@@ -233,7 +235,7 @@ export function ProizvodiClient() {
               placeholder={
                 type === "delovi"
                   ? "Pretraga po nazivu, brendu ili kataloškom broju…"
-                  : "Pretraga po nazivu mašine…"
+                  : "Pretraga po nazivu ili kataloškom broju…"
               }
               className="h-12 w-full rounded-xl border border-input bg-white pl-11 pr-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-ring"
             />
