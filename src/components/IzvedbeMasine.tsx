@@ -1,8 +1,16 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { ProductThumb } from "@/components/ProductThumb";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -193,6 +201,7 @@ export function GalerijaMasine({
 }) {
   const { izvedbe, izabrana } = useIzvedbe();
   const [aktivna, postaviAktivnu] = useState(0);
+  const traka = useRef<HTMLUListElement>(null);
 
   const osnovne = useMemo(
     () => [...(slika ? [slika] : []), ...galerija.filter((g) => g !== slika)],
@@ -210,8 +219,25 @@ export function GalerijaMasine({
     postaviAktivnu(0);
   }
 
-  const glavna = slike[Math.min(aktivna, Math.max(slike.length - 1, 0))];
+  // Indeks se drži u granicama i kad se skup slika promeni ispod njega —
+  // izvedba sa pet fotografija pa izvedba sa dve.
+  const poslednja = Math.max(slike.length - 1, 0);
+  const trenutna = Math.min(aktivna, poslednja);
+  const glavna = slike[trenutna];
   const naslovIzvedbe = izvedba ? `${name} — ${izvedba.naziv}` : name;
+
+  const pomeri = (smer: -1 | 1) =>
+    postaviAktivnu(Math.min(Math.max(trenutna + smer, 0), poslednja));
+
+  // Strelicama se stigne i do sličice koja je van vidnog polja trake (osam
+  // fotografija, a u red ih stane tri) — traka ide za izborom.
+  useEffect(() => {
+    traka.current?.children[trenutna]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest",
+    });
+  }, [trenutna]);
 
   /**
    * Potpis govori o onome što se VIDI. Tri slučaja: pregled (cela mašina),
@@ -229,7 +255,7 @@ export function GalerijaMasine({
 
   return (
     <figure>
-      <div className="overflow-hidden rounded-3xl border border-border bg-bone shadow-card">
+      <div className="relative overflow-hidden rounded-3xl border border-border bg-bone shadow-card">
         <ProductThumb
           key={glavna ?? "bez-slike"}
           src={glavna}
@@ -242,20 +268,40 @@ export function GalerijaMasine({
           priority
           className="aspect-[16/10] w-full"
         />
+
+        {/* Strelice preko same fotografije. Sličice ispod i dalje postoje —
+            one kažu KOLIKO ih ima i koja je koja, a strelice su za listanje bez
+            ciljanja: na telefonu je sličica široka 6,4rem, strelica je pola
+            visine slike. Na krajevima se gase umesto da se vrte u krug: kad
+            dugme radi i na poslednjoj slici, ne vidi se da je kraj. */}
+        {slike.length > 1 ? (
+          <>
+            <Strelica smer={-1} onClick={() => pomeri(-1)} ugasena={trenutna === 0} />
+            <Strelica
+              smer={1}
+              onClick={() => pomeri(1)}
+              ugasena={trenutna === poslednja}
+            />
+          </>
+        ) : null}
       </div>
 
       {slike.length > 1 ? (
-        <ul className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Fotografije">
+        <ul
+          ref={traka}
+          className="mt-3 flex gap-2 overflow-x-auto pb-1"
+          aria-label="Fotografije"
+        >
           {slike.map((s, n) => (
             <li key={s} className="shrink-0">
               <button
                 type="button"
                 onClick={() => postaviAktivnu(n)}
-                aria-pressed={n === aktivna}
+                aria-pressed={n === trenutna}
                 aria-label={`Fotografija ${n + 1} od ${slike.length}`}
                 className={cn(
                   "block overflow-hidden rounded-xl border-2 bg-bone transition-colors",
-                  n === aktivna ? "border-brand" : "border-transparent hover:border-brand/50",
+                  n === trenutna ? "border-brand" : "border-transparent hover:border-brand/50",
                 )}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -273,6 +319,36 @@ export function GalerijaMasine({
 
       <figcaption className="mt-3 text-sm text-muted-foreground">{potpis}</figcaption>
     </figure>
+  );
+}
+
+/** Jedno dugme za listanje fotografija; na kraju niza je ugašeno, ne skriveno. */
+function Strelica({
+  smer,
+  onClick,
+  ugasena,
+}: {
+  smer: -1 | 1;
+  onClick: () => void;
+  ugasena: boolean;
+}) {
+  const Ikona = smer < 0 ? ChevronLeft : ChevronRight;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={ugasena}
+      aria-label={smer < 0 ? "Prethodna fotografija" : "Sledeća fotografija"}
+      className={cn(
+        "absolute top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border bg-white/90 text-charcoal shadow-soft backdrop-blur transition-colors",
+        smer < 0 ? "left-3" : "right-3",
+        ugasena
+          ? "cursor-not-allowed opacity-35"
+          : "hover:border-brand/40 hover:bg-white hover:text-brand",
+      )}
+    >
+      <Ikona className="h-5 w-5" strokeWidth={2.2} />
+    </button>
   );
 }
 
