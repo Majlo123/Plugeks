@@ -594,6 +594,9 @@ export function facetOptions(
  */
 const BROJ = /^\d{2,}$/;
 
+/** Samo cifre iz teksta — „063 605" → „063605", da razmak između grupa brojeva ne smeta pretrazi. */
+const onlyDigits = (text: string) => text.replace(/\D+/g, "");
+
 /** Faseta bez izabranih opcija ne filtrira; unutar fasete važi ILI, između fasete I. */
 export function filterItems(
   items: CatalogItem[],
@@ -611,7 +614,9 @@ export function filterItems(
     }
     return terms.every(
       (term) =>
-        item.search.includes(term) || (BROJ.test(term) && item.id.startsWith(term)),
+        item.search.includes(term) ||
+        (BROJ.test(term) &&
+          (item.id.startsWith(term) || onlyDigits(item.search).includes(term))),
     );
   });
 }
